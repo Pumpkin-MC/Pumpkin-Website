@@ -353,7 +353,7 @@ footer {
     margin-top: 60px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 770px) {
     .donation-button {
         width: fit-content;
         /* Adjust button width to content */

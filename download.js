@@ -39,13 +39,33 @@
     try{
         const os = detectOS();
         const arch = detectArch();
-        detectedEl.textContent = `${os} — ${arch}`;
-        const tokens = mapTokens(os, arch);
+
+        // Default assumption when detection fails
+        const assumedOs = 'Linux';
+        const assumedArch = 'ARM64';
+
+        // Use assumed defaults for the actual download target if detection fails
+        const targetOs = (os === 'Unknown') ? assumedOs : os;
+        const targetArch = (arch === 'Unknown') ? assumedArch : arch;
+
+        // Left column: show actual detection when available, otherwise show assumed
+        if (os === 'Unknown') {
+            detectedEl.textContent = `${assumedOs} — ${assumedArch}`;
+        } else {
+            detectedEl.textContent = `${os} — ${arch}`;
+        }
+
+        const visibleOs = (os === 'Unknown') ? 'Unknown' : os;
+        const visibleArch = (arch === 'Unknown') ? assumedArch : arch;
+
+        const tokens = mapTokens(targetOs, targetArch);
         const suggested = buildUrl(tokens.osToken, tokens.archToken);
         btn.href = suggested;
-        const download_str = `Download Pumpkin for ${os} (${arch})`
-        btn.textContent = download_str;
-        btn.setAttribute('aria-label', download_str);
+
+        const visibleText = `Download Pumpkin for ${visibleOs} (${visibleArch})`;
+        btn.textContent = visibleText;
+        const aria = `Download Pumpkin for ${targetOs} (${targetArch})`;
+        btn.setAttribute('aria-label', aria);
 
         // Fetch latest release list (first item is the very latest, including pre-releases)
         const relsResp = await fetch(`https://api.github.com/repos/${owner}/${repo}/releases`);

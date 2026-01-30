@@ -49,6 +49,12 @@ a {
     text-decoration: none;
 }
 
+@media (max-width: 570px) {
+    .download-card {
+        width: 100%;
+    }
+}
+
 .download-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -150,7 +156,6 @@ a {
 }
 
 .quick-download-actions {
-    flex: 0 0 220px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -167,6 +172,7 @@ a {
     text-decoration: none;
     text-align: center;
     transition: background-color 0.2s;
+    max-width: 220px;
 }
 
 .quick-download-suggest:hover {
