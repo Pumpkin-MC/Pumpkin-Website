@@ -10,12 +10,19 @@ body {
 
 header {
     display: flex;
+    position: sticky;
+    top: 0;
     justify-content: space-between;
     align-items: center;
     padding: 20px 30px;
     flex-wrap: wrap;
     width: 100%;
     box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #18181be0;
+    backdrop-filter: blur(5px);
+    box-shadow: 0px 1px 10px 5px #18181be0;
+    z-index: 2;
 }
 
 .logo {
@@ -119,18 +126,30 @@ nav ul li:last-child {
 }
 
 main {
-    padding: 40px;
+    
 }
 
 .hero {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 60px;
+    position: relative;
+    min-height: 70vh;
+}
+
+.hero-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: blur(3px);
+    opacity: 0.9;
+    object-fit: cover;
 }
 
 .hero-text {
     flex: 1;
+    z-index: 1;
+    text-shadow: 0 0 3px #4c4c4c;
 }
 
 .hero-text h1 {
@@ -206,7 +225,7 @@ main {
     width: 100%;
     max-width: 500px;
     height: auto;
-    filter: drop-shadow(0 0 100px rgba(255, 140, 0, 0.5));
+    filter: drop-shadow(0 0 100px rgba(255, 140, 0, 0.9));
     /* Vibrant Orange glow effect */
 }
 
