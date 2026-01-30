@@ -64,13 +64,13 @@ a {
 .download-card i {
     font-size: 2.5em;
     margin-bottom: 10px;
-    color: #212529;
+    color: #252525;
 }
 
 .download-card h3 {
     margin: 0;
     font-size: 1.2em;
-    color: #212529;
+    color: #252525;
     text-align: center;
 }
 
@@ -109,7 +109,7 @@ a {
     display: block;
     background-color: var(--primary-color, #ff9800);
     border-radius: 5px;
-    color: white;
+    color: #252525;
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.2s;
@@ -147,12 +147,16 @@ a {
 .quick-download-title {
     font-size: 1.5em;
     margin: 0 0 6px 0;
-    color: var(--primary-color, #ff9800);
+    color: #9f5f00;
 }
 
 .quick-download-meta {
     color: #6c757d;
     font-size: 0.95em;
+}
+
+#quick-detected {
+    color: #252525;
 }
 
 .quick-download-actions {
@@ -166,7 +170,7 @@ a {
     display: inline-block;
     padding: 12px 18px;
     background: var(--primary-color, #ff9800);
-    color: #fff;
+    color: #252525;
     font-weight: 700;
     border-radius: 8px;
     text-decoration: none;

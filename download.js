@@ -73,9 +73,32 @@
             const rels = await relsResp.json();
             const latest = Array.isArray(rels) && rels.length ? rels[0] : null;
             if(latest){
-                if(latest.published_at){
-                    const published = new Date(latest.published_at).toLocaleDateString();
-                    metaEl.textContent = `Latest build: ${published}`;
+                // Relative time for <24 hours, otherwise show date
+                function timeAgoOrDate(iso){
+                    const then = new Date(iso).getTime();
+                    const diff = Date.now() - then;
+                    const s = Math.floor(diff/1000);
+                    if (s < 10) return 'just now';
+                    if (s < 60) return `${s}s ago`;
+                    const m = Math.floor(s/60);
+                    if (m < 60) return `${m} mins ago`;
+                    const h = Math.floor(m/60);
+                    if (h < 24) return `${h} hours ago`;
+                    return new Date(iso).toLocaleDateString();
+                }
+
+                // Prefer the most recently updated/created asset's time if available
+                if(Array.isArray(latest.assets) && latest.assets.length){
+                    let newest = latest.assets[0];
+                    for(const a of latest.assets){
+                        const aTime = a.updated_at || a.created_at || latest.published_at;
+                        const nTime = newest.updated_at || newest.created_at || latest.published_at;
+                        if(new Date(aTime) > new Date(nTime)) newest = a;
+                    }
+                    const assetTime = newest.updated_at || newest.created_at || latest.published_at;
+                    metaEl.textContent = `Latest build: ${timeAgoOrDate(assetTime)}`;
+                } else if(latest.published_at){
+                    metaEl.textContent = `Latest build: ${timeAgoOrDate(latest.published_at)}`;
                 }
                 const tag = latest.tag_name;
                 if(tag){
