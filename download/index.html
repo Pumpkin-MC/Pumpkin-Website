@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Download Pumpkin - Blazingly Fast Minecraft Server</title>
+    <meta name="description" content="Download the latest release of Pumpkin, the fastest Minecraft server."/>
+    <link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+    <link rel="stylesheet" href="../style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+    <div class="marquee">
+        <div class="marquee-content">
+            <span>BLAZINGLY FAST</span>
+            <span class="star">★</span>
+            <span>WRITTEN IN RUST</span>
+            <span class="star">★</span>
+            <span>NO JAVA NEEDED</span>
+            <span class="star">★</span>
+            <span>OPEN SOURCE</span>
+            <span class="star">★</span>
+            <span>BLAZINGLY FAST</span>
+            <span class="star">★</span>
+            <span>WRITTEN IN RUST</span>
+            <span class="star">★</span>
+            <span>NO JAVA NEEDED</span>
+            <span class="star">★</span>
+            <span>OPEN SOURCE</span>
+            <span class="star">★</span>
+        </div>
+    </div>
+
+    <header>
+        <a href="/" class="logo">
+            <img src="../assets/icon.svg" alt="Pumpkin"/>
+            <span>pumpkin</span>
+        </a>
+        <nav>
+            <a href="https://docs.pumpkinmc.org/">Docs</a>
+            <a href="/download/">Download</a>
+            <a href="https://github.com/Pumpkin-MC">GitHub</a>
+            <a href="https://discord.com/invite/wT8XjrjKkf">Discord</a>
+        </nav>
+        <a href="https://github.com/sponsors/Snowiiii" class="sponsor-btn">
+            <i class="fa-solid fa-heart"></i> Sponsor
+        </a>
+    </header>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK7NXQQ2ZP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-QK7NXQQ2ZP');
+    </script>
+
+    <main>
+        <section class="download-hero">
+            <h1 class="section-title">
+                <span class="highlight">Download</span> Pumpkin
+            </h1>
+            <p>Self-contained executable. No Java required. Just download, run, and play.</p>
+
+            <!-- Auto-detect OS download -->
+            <div class="auto-download">
+                <a id="auto-download-btn" href="#" class="btn btn-primary btn-xl">
+                    <i id="auto-download-icon" class="fab fa-windows"></i>
+                    <span id="auto-download-text">Download for Windows</span>
+                    <i class="fa-solid fa-download"></i>
+                </a>
+                <p class="auto-download-meta">
+                    <span id="auto-download-arch">x86-64</span> &bull; <span id="auto-download-version">Nightly Build</span>
+                </p>
+                <p class="auto-download-alt">
+                    Not your OS? <a href="#all-downloads">See all downloads below</a>
+                </p>
+            </div>
+
+            <h2 id="all-downloads" class="downloads-heading">All Platforms</h2>
+
+            <div class="download-grid">
+                <!-- Windows -->
+                <div class="download-card">
+                    <h3><i class="fab fa-windows"></i> Windows</h3>
+                    <div class="download-options">
+                        <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Windows.exe" class="download-option">
+                            <div class="arch">
+                                <span>x86-64</span>
+                            </div>
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                        <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Windows.exe" class="download-option">
+                            <div class="arch">
+                                <span>ARM64</span>
+                            </div>
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Linux -->
+                <div class="download-card">
+                    <h3><i class="fab fa-linux"></i> Linux</h3>
+                    <div class="download-options">
+                        <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Linux" class="download-option">
+                            <div class="arch">
+                                <span>x86-64</span>
+                            </div>
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                        <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Linux" class="download-option">
+                            <div class="arch">
+                                <span>ARM64</span>
+                            </div>
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- macOS -->
+                <div class="download-card">
+                    <h3><i class="fab fa-apple"></i> macOS</h3>
+                    <div class="download-options">
+                        <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-macOS" class="download-option">
+                            <div class="arch">
+                                <span>ARM64</span>
+                                <span class="badge">Apple Silicon</span>
+                            </div>
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                        <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-macOS" class="download-option">
+                            <div class="arch">
+                                <span>x86-64</span>
+                            </div>
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <p class="download-note">
+                Need older versions? Check <a href="https://github.com/Pumpkin-MC/Pumpkin/releases" target="_blank" rel="noopener">GitHub Releases</a>.
+            </p>
+        </section>
+
+        <!-- Quick Start -->
+        <section class="quickstart">
+            <div class="quickstart-content">
+                <div class="quickstart-text">
+                    <h2>Get Started in Seconds</h2>
+                    <p>
+                        Download the executable, double-click, and your server is running.
+                        Check the docs for configuration options.
+                    </p>
+                    <div class="quickstart-buttons">
+                        <a href="https://docs.pumpkinmc.org/" class="btn btn-primary">
+                            Quick Start Guide <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="https://discord.com/invite/wT8XjrjKkf" class="btn btn-secondary">
+                            <i class="fab fa-discord"></i> Get Help
+                        </a>
+                    </div>
+                </div>
+                <div class="quickstart-visual">
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="terminal-line">
+                                <span class="prompt">$</span> ./pumpkin
+                            </div>
+                            <div class="terminal-line">
+                                <span class="success">[INFO]</span> Starting Pumpkin server...
+                            </div>
+                            <div class="terminal-line">
+                                <span class="success">[INFO]</span> Server started in <span class="highlight">15ms</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="success">[INFO]</span> Listening on 0.0.0.0:25565
+                            </div>
+                            <div class="terminal-line">
+                                <span class="success">[INFO]</span> Ready for connections!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-main">
+            <div class="footer-brand">
+                <img src="../assets/icon.svg" alt="Pumpkin"/>
+                <span>pumpkin</span>
+            </div>
+            <div class="footer-links">
+                <a href="https://docs.pumpkinmc.org/">Documentation</a>
+                <a href="https://github.com/Pumpkin-MC">GitHub</a>
+                <a href="https://discord.com/invite/wT8XjrjKkf">Discord</a>
+                <a href="https://github.com/sponsors/Snowiiii">Sponsor</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Open source under MIT License
+        </div>
+    </footer>
+    <script>
+        (function() {
+            const downloads = {
+                windows: {
+                    x64: 'https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Windows.exe',
+                    arm64: 'https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Windows.exe'
+                },
+                mac: {
+                    x64: 'https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-macOS',
+                    arm64: 'https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-macOS'
+                },
+                linux: {
+                    x64: 'https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Linux',
+                    arm64: 'https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Linux'
+                }
+            };
+
+            const btn = document.getElementById('auto-download-btn');
+            const icon = document.getElementById('auto-download-icon');
+            const text = document.getElementById('auto-download-text');
+            const arch = document.getElementById('auto-download-arch');
+
+            const ua = navigator.userAgent.toLowerCase();
+            const platform = navigator.platform.toLowerCase();
+
+            let os = 'windows';
+            let osName = 'Windows';
+            let iconClass = 'fab fa-windows';
+            let architecture = 'x64';
+            let archLabel = 'x86-64';
+
+            // Detect OS
+            if (ua.includes('mac') || platform.includes('mac')) {
+                os = 'mac';
+                osName = 'macOS';
+                iconClass = 'fab fa-apple';
+            } else if (ua.includes('linux') || platform.includes('linux')) {
+                os = 'linux';
+                osName = 'Linux';
+                iconClass = 'fab fa-linux';
+            }
+
+            // Detect architecture
+            if (ua.includes('arm64') || ua.includes('aarch64') ||
+                platform.includes('arm') ||
+                (navigator.userAgentData && navigator.userAgentData.architecture === 'arm')) {
+                architecture = 'arm64';
+                archLabel = 'ARM64';
+            }
+
+            // Special case: Apple Silicon detection
+            if (os === 'mac') {
+                // Check for Apple Silicon
+                const isAppleSilicon = (function() {
+                    try {
+                        const canvas = document.createElement('canvas');
+                        const gl = canvas.getContext('webgl');
+                        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                        const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                        return renderer.includes('Apple') && !renderer.includes('Intel');
+                    } catch (e) {
+                        return window.navigator.userAgent.includes('Mac') &&
+                               !window.navigator.userAgent.includes('Intel');
+                    }
+                })();
+
+                if (isAppleSilicon) {
+                    architecture = 'arm64';
+                    archLabel = 'ARM64 (Apple Silicon)';
+                }
+            }
+
+            // Update button
+            btn.href = downloads[os][architecture];
+            icon.className = iconClass;
+            text.textContent = 'Download for ' + osName;
+            arch.textContent = archLabel;
+        })();
+    </script>
+</body>
+</html>
