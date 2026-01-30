@@ -25,6 +25,12 @@ header {
     z-index: 2;
 }
 
+@media screen and (max-width: 690px) {
+    header {
+        position: static;
+    }
+}
+
 .logo {
     display: flex;
     align-items: center;
@@ -81,6 +87,13 @@ nav a:hover {
     color: #fff;
 }
 
+.outline-gray-button {
+    border: 1px solid #ccc;
+    color: #ccc;
+    padding: 7px 15px;
+    border-radius: 5px;
+}
+
 /* Specific styling for social media (Discord, GitHub) and moon icons */
 /* Target the <i> element directly within the <a> */
 nav ul li a i.fab,
@@ -123,10 +136,6 @@ nav ul li a {
 
 nav ul li:last-child {
     margin-right: 0px;
-}
-
-main {
-    
 }
 
 .hero {
@@ -345,10 +354,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-    main {
-        padding: 20px;
-    }
-
     .donation-button {
         width: fit-content;
         /* Adjust button width to content */
@@ -362,6 +367,8 @@ footer {
     .hero-text {
         max-width: 100%;
         margin-bottom: 30px;
+        padding: 20px;
+        margin-top: -60px;
     }
 
     .hero-text h1 {
@@ -381,9 +388,7 @@ footer {
     }
 
     .hero-image img {
-        max-width: 100%;
-        filter: drop-shadow(0 0 50px rgba(255, 140, 0, 0.4));
-        /* Adjusted glow for mobile */
+        scale: 0.85;
     }
 
     .features {
