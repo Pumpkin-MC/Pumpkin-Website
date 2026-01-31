@@ -50,37 +50,6 @@ body {
 }
 
 /* ==========================================
-   Marquee Banner
-   ========================================== */
-
-.marquee {
-    background: var(--orange);
-    color: var(--black);
-    padding: 0.75rem 0;
-    overflow: hidden;
-    border-bottom: var(--border-white);
-}
-
-.marquee-content {
-    display: flex;
-    gap: 2rem;
-    animation: scroll 20s linear infinite;
-    white-space: nowrap;
-    font-weight: 800;
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-}
-
-.marquee-content .star {
-    color: var(--white);
-}
-
-@keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-/* ==========================================
    Header
    ========================================== */
 
@@ -117,18 +86,33 @@ nav {
 }
 
 nav a {
-    padding: 0.6rem 1.2rem;
+    padding: 0.6rem 1.25rem;
     text-decoration: none;
-    color: var(--text);
+    color: var(--text-muted);
     font-weight: 600;
-    border: 2px solid transparent;
-    transition: all 0.1s ease;
+    font-size: 1rem;
+    position: relative;
+    transition: all 0.15s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: var(--orange);
+    transition: width 0.15s ease;
 }
 
 nav a:hover {
-    background: var(--orange);
-    color: var(--black);
-    border: 2px solid var(--orange);
+    color: var(--text);
+}
+
+nav a:hover::after {
+    width: 100%;
 }
 
 .sponsor-btn {
@@ -709,17 +693,23 @@ footer {
     header {
         flex-wrap: wrap;
         gap: 1rem;
+        padding: 1rem;
     }
 
     nav {
         order: 3;
         width: 100%;
         justify-content: center;
-        flex-wrap: wrap;
+    }
+
+    nav a {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
     }
 
     .sponsor-btn {
-        order: 2;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
     }
 
     .hero {
@@ -776,13 +766,9 @@ footer {
 }
 
 @media (max-width: 480px) {
-    .marquee {
-        display: none;
-    }
-
     nav a {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.9rem;
+        padding: 0.4rem 0.75rem;
+        font-size: 0.85rem;
     }
 
     .section-title {
