@@ -130,6 +130,11 @@ nav ul li a i.fa-moon:hover {
     /* Keep pink for donate button hover */
 }
 
+.nav-icon {
+    margin-left: -4px;
+    margin-right: 4px;
+}
+
 nav ul li a {
     display: block;
 }
