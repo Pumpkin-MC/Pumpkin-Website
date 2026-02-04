@@ -17,7 +17,6 @@
     <header>
         <a href="/" style="text-decoration:none;">
             <div class="logo">
-                <!--i class="fa-solid fa-pumpkin"></i-->
                 <img src="assets/icon.svg" alt="Pumpkin Logo" height="32px" />
                 <span>Pumpkin</span>
             </div>
@@ -25,10 +24,14 @@
         <div class="logo-spacer"></div>
         <nav>
             <ul>
-                <li><a href="https://docs.pumpkinmc.org/">Documentation</a></li>
+                <li class="outline-gray-button">
+                    <a href="https://docs.pumpkinmc.org/">
+                        <i class="fa-solid fa-book nav-icon"></i> Docs
+                    </a>
+                </li>
                 <li>
                     <a href="https://github.com/sponsors/Snowiiii" class="donation-button">
-                        <i class="fa-solid fa-heart"></i> Donate
+                        <i class="fa-solid fa-heart nav-icon"></i> Donate
                     </a>
                 </li>
             </ul>
@@ -54,6 +57,8 @@
     </script>
     <main>
         <section class="hero">
+            <img class="hero-background" src="assets/backgrounds/pumpkin_chunk_loading.webp"
+                alt="Animation of Pumpkin loading chunks" />
             <div class="hero-image">
                 <img src="assets/icon.svg" alt="Pumpkin Logo" />
             </div>
@@ -80,18 +85,21 @@
                         <tr>
                             <th class="table-header-feature"></th>
                             <th class="table-header-runtime">
-                                <img src="assets/icon.svg" alt="Pumpkin Logo" class="server-header-logo"> Pumpkin
+                                <img src="assets/icon.svg" alt="Pumpkin Logo" id="mini-pumpkin"
+                                    class="server-header-logo"> Pumpkin
                             </th>
                             <th class="table-header-runtime">
-                                <img src="assets/vanilla-logo.png" alt="Vanilla Logo" class="server-header-logo">
+                                <img src="assets/logos/vanilla-logo.png" alt="Vanilla Logo" class="server-header-logo">
                                 Vanilla
                             </th>
                             <th class="table-header-runtime">
-                                <img src="assets/paper-logo.png" alt="Spigot/PaperMC Logo" class="server-header-logo">
+                                <img src="assets/logos/paper-logo.png" alt="Spigot/PaperMC Logo"
+                                    class="server-header-logo">
                                 Spigot/Paper
                             </th>
                             <th class="table-header-runtime">
-                                <img src="assets/folia-logo.png" alt="Folia Logo" class="server-header-logo"> Folia
+                                <img src="assets/logos/folia-logo.png" alt="Folia Logo" class="server-header-logo">
+                                Folia
                             </th>
                         </tr>
                     </thead>
@@ -115,8 +123,7 @@
                             <td>
                                 <div class="tooltip-container">
                                     <i class="fa-solid fa-xmark cross-icon"></i>
-                                    <div class="tooltip">Can have slower startup due to complex initialization.
-                                    </div>
+                                    <div class="tooltip">Can have slower startup due to complex initialization.</div>
                                 </div>
                             </td>
                         </tr>
@@ -180,7 +187,7 @@
                                     <div class="tooltip">
                                         Pumpkin uses its own API, but compatibility is possible via
                                         <a href="https://github.com/Pumpkin-MC/PatchBukkit" target="_blank"
-                                            rel="noopener noreferrer">PatchBukkit</a>.
+                                            rel="noopener noreferrer" style="color: inherit;">PatchBukkit</a>.
                                     </div>
                                 </div>
                             </td>
@@ -194,10 +201,8 @@
                             <td>
                                 <div class="tooltip-container">
                                     <i class="fa-solid fa-triangle-exclamation warning-icon"></i>
-                                    <div class="tooltip">Compatibility varies; some plugins may require updates due
-                                        to
-                                        multi-threading.
-                                    </div>
+                                    <div class="tooltip">Compatibility varies; some plugins may require updates due to
+                                        multi-threading.</div>
                                 </div>
                             </td>
                         </tr>
@@ -224,8 +229,7 @@
                                 <div class="tooltip-container">
                                     <i class="fa-solid fa-triangle-exclamation warning-icon"></i>
                                     <div class="tooltip">Achievable via external plugins, but setup might be more
-                                        complex due to multi-threading.
-                                    </div>
+                                        complex due to multi-threading.</div>
                                 </div>
                             </td>
                         </tr>
@@ -328,9 +332,8 @@
                 <tr class="chart-row">
                     <td colspan="5" class="chart-cell">
                         <h3 class="chart-title">Average Startup Times</h3>
-                        <p class="chart-subtitle">Lower is better. Times are illustrative and can vary based on
-                            hardware &
-                            configuration.</p>
+                        <p class="chart-subtitle">Lower is better. Times are illustrative and can vary based on hardware
+                            & configuration.</p>
                         <div class="chart-container-screenshot">
                             <div class="chart-item-screenshot">
                                 <div class="item-label">Pumpkin</div>

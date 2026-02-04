@@ -10,12 +10,25 @@ body {
 
 header {
     display: flex;
+    position: sticky;
+    top: 0;
     justify-content: space-between;
     align-items: center;
     padding: 20px 30px;
     flex-wrap: wrap;
     width: 100%;
     box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #18181be0;
+    backdrop-filter: blur(5px);
+    box-shadow: 0px 1px 10px 5px #18181be0;
+    z-index: 2;
+}
+
+@media screen and (max-width: 690px) {
+    header {
+        position: static;
+    }
 }
 
 .logo {
@@ -74,6 +87,13 @@ nav a:hover {
     color: #fff;
 }
 
+.outline-gray-button {
+    border: 1px solid #ccc;
+    color: #ccc;
+    padding: 7px 15px;
+    border-radius: 5px;
+}
+
 /* Specific styling for social media (Discord, GitHub) and moon icons */
 /* Target the <i> element directly within the <a> */
 nav ul li a i.fab,
@@ -110,6 +130,11 @@ nav ul li a i.fa-moon:hover {
     /* Keep pink for donate button hover */
 }
 
+.nav-icon {
+    margin-left: -4px;
+    margin-right: 4px;
+}
+
 nav ul li a {
     display: block;
 }
@@ -118,19 +143,27 @@ nav ul li:last-child {
     margin-right: 0px;
 }
 
-main {
-    padding: 40px;
-}
-
 .hero {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 60px;
+    position: relative;
+    min-height: 70vh;
+}
+
+.hero-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: blur(7px);
+    opacity: 0.6;
+    object-fit: cover;
 }
 
 .hero-text {
     flex: 1;
+    z-index: 1;
+    text-shadow: 0 0 3px #4c4c4c;
 }
 
 .hero-text h1 {
@@ -206,7 +239,7 @@ main {
     width: 100%;
     max-width: 500px;
     height: auto;
-    filter: drop-shadow(0 0 100px rgba(255, 140, 0, 0.5));
+    filter: drop-shadow(0 0 100px rgba(255, 140, 0, 0.9));
     /* Vibrant Orange glow effect */
 }
 
@@ -325,11 +358,7 @@ footer {
     margin-top: 60px;
 }
 
-@media (max-width: 768px) {
-    main {
-        padding: 20px;
-    }
-
+@media (max-width: 770px) {
     .donation-button {
         width: fit-content;
         /* Adjust button width to content */
@@ -343,6 +372,8 @@ footer {
     .hero-text {
         max-width: 100%;
         margin-bottom: 30px;
+        padding: 20px;
+        margin-top: -60px;
     }
 
     .hero-text h1 {
@@ -362,9 +393,7 @@ footer {
     }
 
     .hero-image img {
-        max-width: 100%;
-        filter: drop-shadow(0 0 50px rgba(255, 140, 0, 0.4));
-        /* Adjusted glow for mobile */
+        scale: 0.85;
     }
 
     .features {
@@ -457,6 +486,11 @@ footer {
 }
 
 /* --- Comparison Table Styles --- */
+#mini-pumpkin {
+    position: relative;
+    top: -2px;
+}
+
 .comparison-section {
     padding: 80px 30px;
     /* Increased padding for more space around the table */
