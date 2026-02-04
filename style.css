@@ -481,6 +481,11 @@ footer {
 }
 
 /* --- Comparison Table Styles --- */
+#mini-pumpkin {
+    position: relative;
+    top: -2px;
+}
+
 .comparison-section {
     padding: 80px 30px;
     /* Increased padding for more space around the table */

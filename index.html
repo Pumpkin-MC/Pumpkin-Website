@@ -15,7 +15,6 @@
         <header>
             <a href="/" style="text-decoration:none;">
                 <div class="logo">
-                    <!--i class="fa-solid fa-pumpkin"></i-->
                     <img src="assets/icon.svg" alt="Pumpkin Logo" height="32px"/>
                     <span>Pumpkin</span>
                 </div>
@@ -45,7 +44,6 @@
                 </ul>
             </nav>
         </header>
-        <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK7NXQQ2ZP"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
@@ -62,10 +60,7 @@
                 </div>
                 <div class="hero-text">
                     <h1>Pumpkin <br/>Minecraft Server</h1>
-                    <p>
-                        Empowering everyone to host fast and efficient Minecraft
-                        servers
-                    </p>
+                    <p>Empowering everyone to host fast and efficient Minecraft servers</p>
                     <div class="hero-buttons">
                         <a href="./download.html" class="button primary">Download</a>
                         <a href="https://docs.pumpkinmc.org/config/introduction" class="button">Configuration</a>
@@ -83,7 +78,7 @@
                             <tr>
                                 <th class="table-header-feature"></th>
                                 <th class="table-header-runtime">
-                                    <img src="assets/logos/icon.svg" alt="Pumpkin Logo" class="server-header-logo"> Pumpkin
+                                    <img src="assets/icon.svg" alt="Pumpkin Logo" id="mini-pumpkin" class="server-header-logo"> Pumpkin
                                 </th>
                                 <th class="table-header-runtime">
                                     <img src="assets/logos/vanilla-logo.png" alt="Vanilla Logo" class="server-header-logo">
@@ -91,7 +86,7 @@
                                 </th>
                                 <th class="table-header-runtime">
                                     <img src="assets/logos/paper-logo.png" alt="Spigot/PaperMC Logo"
-                                         class="server-header-logo">
+                                           class="server-header-logo">
                                     Spigot/Paper
                                 </th>
                                 <th class="table-header-runtime">
@@ -119,16 +114,14 @@
                                 <td>
                                     <div class="tooltip-container">
                                         <i class="fa-solid fa-xmark cross-icon"></i>
-                                        <div class="tooltip">Can have slower startup due to complex initialization.
-                                        </div>
+                                        <div class="tooltip">Can have slower startup due to complex initialization.</div>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="feature-name">
                                     Optimized CPU Utilization
-                                    <span class="feature-sub-description">Maximize performance while minimizing resource
-                                    strain.</span>
+                                    <span class="feature-sub-description">Maximize performance while minimizing resource strain.</span>
                                 </td>
                                 <td><i class="fa-solid fa-check check-icon"></i></td>
                                 <td><i class="fa-solid fa-xmark cross-icon"></i></td>
@@ -148,15 +141,12 @@
                             <tr>
                                 <td class="feature-name">
                                     Multi-threading Support
-                                    <span class="feature-sub-description">Leverage modern CPUs for unparalleled
-                                    scalability.</span>
+                                    <span class="feature-sub-description">Leverage modern CPUs for unparalleled scalability.</span>
                                 </td>
                                 <td>
                                     <div class="tooltip-container">
                                         <i class="fa-solid fa-check check-icon"></i>
-                                        <div class="tooltip">Comprehensive multi-threading for core game logic and
-                                            tasks.
-                                        </div>
+                                        <div class="tooltip">Comprehensive multi-threading for core game logic and tasks.</div>
                                     </div>
                                 </td>
                                 <td><i class="fa-solid fa-xmark cross-icon"></i></td>
@@ -175,14 +165,15 @@
                             <tr>
                                 <td class="feature-name">
                                     Bukkit/Paper Plugin Support
-                                    <span class="feature-sub-description">Extensive compatibility with existing
-                                    plugins.</span>
+                                    <span class="feature-sub-description">Extensive compatibility with existing plugins.</span>
                                 </td>
                                 <td>
                                     <div class="tooltip-container">
-                                        <i class="fa-solid fa-xmark cross-icon"></i>
-                                        <div class="tooltip">Pumpkin uses its own API, not directly compatible with
-                                            Bukkit/Paper plugins.
+                                        <i class="fa-solid fa-triangle-exclamation warning-icon"></i>
+                                        <div class="tooltip">
+                                            Pumpkin uses its own API, but compatibility is possible via
+                                            <a href="https://github.com/Pumpkin-MC/PatchBukkit" target="_blank"
+                                                rel="noopener noreferrer" style="color: inherit;">PatchBukkit</a>.
                                         </div>
                                     </div>
                                 </td>
@@ -196,18 +187,14 @@
                                 <td>
                                     <div class="tooltip-container">
                                         <i class="fa-solid fa-triangle-exclamation warning-icon"></i>
-                                        <div class="tooltip">Compatibility varies; some plugins may require updates due
-                                            to
-                                            multi-threading.
-                                        </div>
+                                        <div class="tooltip">Compatibility varies; some plugins may require updates due to multi-threading.</div>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="feature-name">
                                     Cross-Edition Compatibility
-                                    <span class="feature-sub-description">Allow players on different game editions
-                                    (Java/Bedrock) to join.</span>
+                                    <span class="feature-sub-description">Allow players on different game editions (Java/Bedrock) to join.</span>
                                 </td>
                                 <td>
                                     <div class="tooltip-container">
@@ -225,17 +212,14 @@
                                 <td>
                                     <div class="tooltip-container">
                                         <i class="fa-solid fa-triangle-exclamation warning-icon"></i>
-                                        <div class="tooltip">Achievable via external plugins, but setup might be more
-                                            complex due to multi-threading.
-                                        </div>
+                                        <div class="tooltip">Achievable via external plugins, but setup might be more complex due to multi-threading.</div>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="feature-name">
                                     Comprehensive Developer API
-                                    <span class="feature-sub-description">Create custom features and integrations
-                                    easily.</span>
+                                    <span class="feature-sub-description">Create custom features and integrations easily.</span>
                                 </td>
                                 <td>
                                     <div class="tooltip-container">
@@ -250,14 +234,12 @@
                             <tr>
                                 <td class="feature-name">
                                     Extensive Configuration Options
-                                    <span class="feature-sub-description">Tailor server behavior with granular
-                                    control.</span>
+                                    <span class="feature-sub-description">Tailor server behavior with granular control.</span>
                                 </td>
                                 <td>
                                     <div class="tooltip-container">
                                         <i class="fa-solid fa-check check-icon"></i>
-                                        <div class="tooltip">Provides a large configuration, that will cover every need.
-                                        </div>
+                                        <div class="tooltip">Provides a large configuration, that will cover every need.</div>
                                     </div>
                                 </td>
                                 <td><i class="fa-solid fa-xmark cross-icon"></i></td>
@@ -268,8 +250,7 @@
                             <tr>
                                 <td class="feature-name">
                                     Open-Source
-                                    <span class="feature-sub-description">Benefit from community contributions &
-                                    transparency.</span>
+                                    <span class="feature-sub-description">Benefit from community contributions & transparency.</span>
                                 </td>
                                 <td><i class="fa-solid fa-check check-icon"></i></td>
                                 <td><i class="fa-solid fa-xmark cross-icon"></i></td>
@@ -289,8 +270,7 @@
                             <tr>
                                 <td class="feature-name">
                                     Multiple World/Chunk Formats
-                                    <span class="feature-sub-description">Support for more efficient world data storage and
-                                    loading.</span>
+                                    <span class="feature-sub-description">Support for more efficient world data storage and loading.</span>
                                 </td>
                                 <td><i class="fa-solid fa-check check-icon"></i></td>
                                 <td><i class="fa-solid fa-xmark cross-icon"></i></td>
@@ -313,8 +293,7 @@
                             <tr>
                                 <td class="feature-name">
                                     Click & Play
-                                    <span class="feature-sub-description">Self-contained executable for instant launch, no
-                                    complex setup or Java installation required.</span>
+                                    <span class="feature-sub-description">Self-contained executable for instant launch, no complex setup or Java installation required.</span>
                                 </td>
                                 <td><i class="fa-solid fa-check check-icon"></i></td>
                                 <td><i class="fa-solid fa-xmark cross-icon"></i></td>
@@ -330,16 +309,14 @@
                     <tr class="chart-row">
                         <td colspan="5" class="chart-cell">
                             <h3 class="chart-title">Average Startup Times</h3>
-                            <p class="chart-subtitle">Lower is better. Times are illustrative and can vary based on
-                                hardware &
-                                configuration.</p>
+                            <p class="chart-subtitle">Lower is better. Times are illustrative and can vary based on hardware & configuration.</p>
                             <div class="chart-container-screenshot">
                                 <div class="chart-item-screenshot">
                                     <div class="item-label">Pumpkin</div>
                                     <div class="bar-area">
                                         <div class="bar pumpkin-bar" style="width: calc((0.5 / 80) * 100%);"></div>
                                     </div>
-                                    <div class="item-value">~15ms</div>
+                                    <div class="item-value">~5ms</div>
                                 </div>
                                 <div class="chart-item-screenshot">
                                     <div class="item-label">Spigot/Paper</div>
@@ -359,7 +336,7 @@
                                     <div class="item-label">Vanilla</div>
                                     <div class="bar-area">
                                         <div class="bar vanilla-bar" style="width: calc((52 / 80) * 100%);"></div>
-                                        <span class="relative-text">1000x slower</span>
+                                        <span class="relative-text">3,000x slower</span>
                                     </div>
                                     <div class="item-value">~15s</div>
                                 </div>
@@ -369,8 +346,7 @@
                     <tr class="chart-row">
                         <td colspan="5" class="chart-cell">
                             <h3 class="chart-title">Average Idle RAM Usage</h3>
-                            <p class="chart-subtitle">Lower is better. Usage can vary based on loaded chunks &
-                                plugins.</p>
+                            <p class="chart-subtitle">Lower is better. Usage can vary based on loaded chunks & plugins.</p>
                             <div class="chart-container-screenshot">
                                 <div class="chart-item-screenshot">
                                     <div class="item-label">Pumpkin</div>
@@ -382,8 +358,7 @@
                                 <div class="chart-item-screenshot">
                                     <div class="item-label">Spigot/Paper</div>
                                     <div class="bar-area">
-                                        <div class="bar spigot-paper-bar"
-                                             style="width: calc((1400 / 1800) * 100%);"></div>
+                                        <div class="bar spigot-paper-bar" style="width: calc((1400 / 1800) * 100%);"></div>
                                     </div>
                                     <div class="item-value">~1.4GB</div>
                                 </div>
@@ -408,8 +383,7 @@
                     <tr class="chart-row">
                         <td colspan="5" class="chart-cell">
                             <h3 class="chart-title">Average Idle CPU Usage</h3>
-                            <p class="chart-subtitle">Lower is better. Represents CPU consumption when server is
-                                idle.</p>
+                            <p class="chart-subtitle">Lower is better. Represents CPU consumption when server is idle.</p>
                             <div class="chart-container-screenshot">
                                 <div class="chart-item-screenshot">
                                     <div class="item-label">Pumpkin</div>
@@ -447,8 +421,7 @@
             </table>
             <section class="end-call-to-action-section">
                 <h2 class="end-call-to-action-title">What are you waiting for?</h2>
-                <p class="end-call-to-action-text">Ready to experience the next generation of Minecraft server
-                    hosting?</p>
+                <p class="end-call-to-action-text">Ready to experience the next generation of Minecraft server hosting?</p>
                 <a href="./download.html" class="install-pumpkin-button">Download Pumpkin</a>
             </section>
         </main>
