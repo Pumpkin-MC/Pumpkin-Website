@@ -300,23 +300,18 @@ nav a:hover::after {
 }
 
 .hero-card {
-  background: var(--orange);
-  border: 3px solid var(--white);
-  box-shadow: var(--shadow-lg);
+  background: none;
+  border: none;
+  box-shadow: none;
   padding: 2.5rem;
   text-align: center;
-  transform: rotate(2deg);
-  transition: transform 0.2s ease;
-}
-
-.hero-card:hover {
-  transform: rotate(0deg);
 }
 
 .hero-logo {
-  width: 180px;
+  width: 350px;
   height: auto;
   margin-bottom: 2rem;
+  transform: rotate(5deg);
 }
 
 .hero-stats {
@@ -616,8 +611,8 @@ thead th:not(:first-child) {
 }
 
 thead .col-pumpkin {
-  background: var(--white);
-  color: var(--black);
+  background: var(--orange);
+  color: #F0F0F0;
 }
 
 tbody td:first-child {
