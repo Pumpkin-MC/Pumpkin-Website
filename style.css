@@ -536,7 +536,17 @@ nav a:hover::after {
 .comp-bar {
   height: 24px;
   background: #333;
+  width: 0;
+  transition: width var(--d, 1s) linear;
+}
+
+.comp-bars.animate .comp-bar {
   width: var(--w, 100%);
+}
+
+.comp-bars.no-animate .comp-bar {
+  width: var(--w, 100%);
+  transition: none;
 }
 
 .comp-item.winner .comp-bar {
