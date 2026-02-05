@@ -204,17 +204,17 @@
             <div class="comp-bars">
               <div class="comp-item winner">
                 <span class="comp-name">Pumpkin</span>
-                <div class="comp-bar" style="--w: 2%"></div>
+                <div class="comp-bar" style="--w: 2%; --d: 0.005s"></div>
                 <span class="comp-value">~5ms</span>
               </div>
               <div class="comp-item">
                 <span class="comp-name">Paper</span>
-                <div class="comp-bar" style="--w: 67%"></div>
+                <div class="comp-bar" style="--w: 67%; --d: 10s"></div>
                 <span class="comp-value">~10s</span>
               </div>
               <div class="comp-item">
                 <span class="comp-name">Vanilla</span>
-                <div class="comp-bar" style="--w: 100%"></div>
+                <div class="comp-bar" style="--w: 100%; --d: 15s"></div>
                 <span class="comp-value">~15s</span>
               </div>
             </div>
@@ -222,7 +222,7 @@
 
           <div class="comp-card">
             <h3><i class="fa-solid fa-memory"></i> RAM Usage</h3>
-            <div class="comp-bars">
+            <div class="comp-bars no-animate">
               <div class="comp-item winner">
                 <span class="comp-name">Pumpkin</span>
                 <div class="comp-bar" style="--w: 5%"></div>
@@ -600,5 +600,17 @@
       </div>
       <div class="footer-bottom">Made with ❤️ by <a href="https://marshall.dev" target="_blank" rel="noopener">purdze</a> · Licensed under GPL</div>
     </footer>
+    <script>
+      const bars = document.querySelectorAll('.comp-bars');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      bars.forEach((el) => observer.observe(el));
+    </script>
   </body>
 </html>
