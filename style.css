@@ -1,6 +1,5 @@
 /* ==========================================
-   PUMPKIN MC - Dark Neubrutalist Design
-   Bold colors, thick borders, playful energy
+   PUMPKIN MC - Dark Design
    ========================================== */
 
 :root {
@@ -11,7 +10,7 @@
     --text: #f0f0f0;
     --text-muted: #999;
 
-    /* Bold color palette */
+    /* palette */
     --orange: #FF6B2C;
     --blue: #4169E1;
     --green: #00C853;
@@ -47,6 +46,7 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.5;
+    overflow-x: hidden;
 }
 
 /* ==========================================
@@ -523,11 +523,13 @@ nav a:hover::after {
     padding: 5rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    overflow-x: hidden;
 }
 
 table {
     table-layout: fixed;
     width: 100%;
+    max-width: 100%;
     border-collapse: collapse;
     border: var(--border);
     background: var(--bg-card);
@@ -843,34 +845,75 @@ footer {
 }
 
 @media (max-width: 768px) {
+    *, *::before, *::after {
+        max-width: 100%;
+    }
+
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    main, section, header, footer {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
     header {
         flex-wrap: wrap;
-        gap: 1rem;
-        padding: 1rem;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+
+    .logo img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .header-icons {
+        gap: 0.35rem;
+        flex-shrink: 0;
     }
 
     nav {
         order: 3;
         width: 100%;
         justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        box-sizing: border-box;
     }
 
     nav a {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    nav a::after {
+        display: none;
     }
 
     .download-btn {
-        height: 38px;
-        padding: 0 1rem;
-        font-size: 0.85rem;
+        height: 34px;
+        padding: 0 0.75rem;
+        font-size: 0.8rem;
+        box-shadow: none;
     }
 
     .icon-btn,
     .sponsor-btn {
-        width: 38px;
-        height: 38px;
-        font-size: 1.1rem;
+        width: 34px;
+        height: 34px;
+        font-size: 1rem;
+        box-shadow: none;
     }
 
     .hero {
@@ -890,6 +933,85 @@ footer {
         width: 100%;
         max-width: 280px;
         justify-content: center;
+    }
+
+    /* Compact table for mobile */
+    .table-section {
+        padding: 3rem 0.5rem;
+        box-shadow: none;
+    }
+
+    .table-section table {
+        box-shadow: none;
+        border-left: none;
+        border-right: none;
+        font-size: 0.7rem;
+    }
+
+    th, td {
+        padding: 0.5rem 0.25rem;
+    }
+
+    thead th {
+        font-size: 0.6rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    thead th:first-child {
+        width: 30%;
+    }
+
+    thead th:not(:first-child) {
+        width: 17.5%;
+    }
+
+    thead th img {
+        display: none;
+    }
+
+    tbody td:first-child {
+        padding: 0.5rem 0.4rem;
+    }
+
+    tbody td:first-child strong {
+        font-size: 0.65rem;
+        line-height: 1.3;
+    }
+
+    .feature-desc {
+        display: none;
+    }
+
+    .check-icon, .cross-icon, .warning-icon {
+        font-size: 0.9rem;
+    }
+
+    .has-tooltip {
+        position: static;
+    }
+
+    .table-section tbody {
+        position: relative;
+    }
+
+    .has-tooltip .tooltip {
+        white-space: normal;
+        width: calc(100vw - 1rem);
+        max-width: none;
+        font-size: 0.7rem;
+        padding: 0.5rem;
+        position: fixed;
+        left: 0.5rem !important;
+        right: 0.5rem !important;
+        bottom: 1rem !important;
+        top: auto !important;
+        transform: none !important;
+        margin-bottom: 0;
+        z-index: 1000;
+    }
+
+    .has-tooltip .tooltip::after {
+        display: none;
     }
 
     .hero-stats {
@@ -927,13 +1049,45 @@ footer {
 }
 
 @media (max-width: 480px) {
+    header {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .logo {
+        font-size: 1rem;
+        gap: 0.3rem;
+    }
+
+    .logo img {
+        width: 26px;
+        height: 26px;
+    }
+
     nav a {
-        padding: 0.4rem 0.75rem;
+        padding: 0.3rem 0.4rem;
+        font-size: 0.7rem;
+    }
+
+    .header-icons {
+        gap: 0.2rem;
+    }
+
+    .download-btn {
+        height: 28px;
+        padding: 0 0.4rem;
+        font-size: 0.7rem;
+    }
+
+    .icon-btn,
+    .sponsor-btn {
+        width: 28px;
+        height: 28px;
         font-size: 0.85rem;
     }
 
     .section-title {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 
     .comp-item {
@@ -945,13 +1099,30 @@ footer {
         font-size: 0.8rem;
     }
 
-    th, td {
-        padding: 0.75rem 0.5rem;
-        font-size: 0.85rem;
+    /* Even more compact table */
+    .table-section {
+        padding: 2rem 0.25rem;
     }
 
-    thead th img {
-        display: none;
+    .table-section table {
+        font-size: 0.6rem;
+    }
+
+    th, td {
+        padding: 0.4rem 0.15rem;
+    }
+
+    thead th {
+        font-size: 0.55rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    tbody td:first-child strong {
+        font-size: 0.6rem;
+    }
+
+    .check-icon, .cross-icon, .warning-icon {
+        font-size: 0.8rem;
     }
 }
 
@@ -990,6 +1161,16 @@ footer {
     font-size: 0.95rem;
     color: var(--text-muted);
     font-weight: 600;
+}
+
+.auto-download-meta a {
+    color: var(--orange);
+    text-decoration: none;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.auto-download-meta a:hover {
+    text-decoration: underline;
 }
 
 .auto-download-alt {
@@ -1130,6 +1311,47 @@ footer {
 }
 
 .download-note a:hover {
+    text-decoration: underline;
+}
+
+.download-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-card);
+    border: 3px solid var(--blue);
+    box-shadow: 4px 4px 0 var(--blue);
+    text-align: left;
+}
+
+.download-info i {
+    font-size: 1.25rem;
+    color: var(--blue);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+}
+
+.download-info p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.download-info strong {
+    color: var(--text);
+}
+
+.download-info a {
+    color: var(--orange);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.download-info a:hover {
     text-decoration: underline;
 }
 
@@ -1454,6 +1676,16 @@ footer {
     padding: 2rem 2rem 5rem;
     max-width: 1300px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.show-more-btn {
+    margin-top: 1.5rem;
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .contributors-section .section-subtitle {
@@ -1569,6 +1801,22 @@ footer {
 @media (max-width: 768px) {
     .contributors-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contributor-avatar {
+        display: none;
+    }
+
+    .contributor-card {
+        padding: 0.75rem 1rem;
+    }
+
+    .sponsor-card img {
+        display: none;
+    }
+
+    .sponsor-card {
+        padding: 0.5rem 1rem;
     }
 
     .contributor-stats {

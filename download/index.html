@@ -62,7 +62,7 @@
                     <i class="fa-solid fa-download"></i>
                 </a>
                 <p class="auto-download-meta">
-                    <span id="auto-download-arch">x86-64</span> &bull; <span id="auto-download-version">Nightly Build</span>
+                    <span id="auto-download-arch">x86-64</span> &bull; <span id="auto-download-build">Loading...</span>
                 </p>
                 <p class="auto-download-alt">
                     Not your OS? <a href="#all-downloads">See all downloads below</a>
@@ -78,7 +78,7 @@
                     <div class="download-options">
                         <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Windows.exe" class="download-option">
                             <div class="arch">
-                                <span>x86-64</span>
+                                <span>x86-64 (Intel/AMD)</span>
                             </div>
                             <i class="fa-solid fa-download"></i>
                         </a>
@@ -97,7 +97,7 @@
                     <div class="download-options">
                         <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Linux" class="download-option">
                             <div class="arch">
-                                <span>x86-64</span>
+                                <span>x86-64 (Intel/AMD)</span>
                             </div>
                             <i class="fa-solid fa-download"></i>
                         </a>
@@ -123,12 +123,20 @@
                         </a>
                         <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-macOS" class="download-option">
                             <div class="arch">
-                                <span>x86-64</span>
+                                <span>x86-64 (Intel/AMD)</span>
                             </div>
                             <i class="fa-solid fa-download"></i>
                         </a>
                     </div>
                 </div>
+            </div>
+
+            <div class="download-info">
+                <i class="fa-solid fa-circle-info"></i>
+                <p>
+                    <strong>Note:</strong> Official x86-64 builds target x86-64 microarchitecture Level 3 (circa 2013).
+                    If your CPU predates these features, you can still compile Pumpkin from source without them.
+                </p>
             </div>
 
             <p class="download-note">
@@ -169,7 +177,7 @@
                                 <span class="success">[INFO]</span> Starting Pumpkin server...
                             </div>
                             <div class="terminal-line">
-                                <span class="success">[INFO]</span> Server started in <span class="highlight">15ms</span>
+                                <span class="success">[INFO]</span> Server started in <span class="highlight">5ms</span>
                             </div>
                             <div class="terminal-line">
                                 <span class="success">[INFO]</span> Listening on 0.0.0.0:25565
@@ -278,6 +286,43 @@
             icon.className = iconClass;
             text.textContent = 'Download for ' + osName;
             arch.textContent = archLabel;
+
+            // Fetch latest build info
+            const buildEl = document.getElementById('auto-download-build');
+
+            function timeAgo(date) {
+                const seconds = Math.floor((new Date() - date) / 1000);
+                const intervals = [
+                    { label: 'year', seconds: 31536000 },
+                    { label: 'month', seconds: 2592000 },
+                    { label: 'day', seconds: 86400 },
+                    { label: 'hour', seconds: 3600 },
+                    { label: 'minute', seconds: 60 }
+                ];
+                for (const interval of intervals) {
+                    const count = Math.floor(seconds / interval.seconds);
+                    if (count >= 1) {
+                        return count + ' ' + interval.label + (count > 1 ? 's' : '') + ' ago';
+                    }
+                }
+                return 'just now';
+            }
+
+            fetch('https://api.github.com/repos/Pumpkin-MC/Pumpkin/commits/master')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.sha && data.commit && data.commit.committer.date) {
+                        const commitDate = new Date(data.commit.committer.date);
+                        const commitShort = data.sha.substring(0, 7);
+                        const commitUrl = 'https://github.com/Pumpkin-MC/Pumpkin/commit/' + data.sha;
+                        buildEl.innerHTML = 'Latest commit: ' + timeAgo(commitDate) + ' • <a href="' + commitUrl + '" target="_blank" rel="noopener">' + commitShort + '</a>';
+                    } else {
+                        buildEl.textContent = 'Nightly Build';
+                    }
+                })
+                .catch(() => {
+                    buildEl.textContent = 'Nightly Build';
+                });
         })();
     </script>
 </body>

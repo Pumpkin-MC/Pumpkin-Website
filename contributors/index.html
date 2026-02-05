@@ -193,6 +193,9 @@
                     <span>Loading contributors...</span>
                 </div>
             </div>
+            <button class="btn btn-secondary show-more-btn" id="show-more-btn" style="display: none;">
+                Show More <i class="fa-solid fa-chevron-down"></i>
+            </button>
         </section>
 
         <section class="cta">
@@ -232,11 +235,41 @@
     <script>
         const GITHUB_REPO = 'Pumpkin-MC/Pumpkin';
         const COLORS = ['orange', 'blue', 'green', 'purple', 'pink', 'yellow'];
+        const MOBILE_BREAKPOINT = 768;
+        const CONTRIBUTORS_PER_PAGE = 10;
+        let allContributorsData = [];
+        let visibleCount = CONTRIBUTORS_PER_PAGE;
+
+        // Count up animation - linear 3 seconds
+        function countUp(element, target) {
+            const duration = 3000;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                const current = Math.floor(target * progress);
+                element.textContent = current.toLocaleString();
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = target.toLocaleString();
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
 
         async function fetchContributors() {
             const grid = document.getElementById('contributors-grid');
             const totalContributorsEl = document.getElementById('total-contributors');
             const totalCommitsEl = document.getElementById('total-commits');
+
+            // Show loading state with 0
+            totalContributorsEl.textContent = '0';
+            totalCommitsEl.textContent = '0';
 
             try {
                 // Fetch all contributors (paginated)
@@ -266,24 +299,15 @@
                 // Calculate total commits
                 const totalCommits = allContributors.reduce((sum, c) => sum + c.contributions, 0);
 
-                // Update stats
-                totalContributorsEl.textContent = allContributors.length;
-                totalCommitsEl.textContent = totalCommits.toLocaleString();
+                // Animate stats counting up
+                countUp(totalContributorsEl, allContributors.length, 1200);
+                countUp(totalCommitsEl, totalCommits, 1800);
+
+                // Store contributors data globally
+                allContributorsData = allContributors;
 
                 // Render contributors
-                grid.innerHTML = allContributors.map((contributor, index) => {
-                    const color = COLORS[index % COLORS.length];
-                    return `
-                        <a href="${contributor.html_url}" target="_blank" rel="noopener" class="contributor-card color-${color}">
-                            <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar"/>
-                            <div class="contributor-info">
-                                <span class="contributor-name">${contributor.login}</span>
-                                <span class="contributor-commits">${contributor.contributions} commits</span>
-                            </div>
-                            <i class="fa-brands fa-github contributor-link"></i>
-                        </a>
-                    `;
-                }).join('');
+                renderContributors();
 
             } catch (error) {
                 console.error('Error fetching contributors:', error);
@@ -298,6 +322,57 @@
                 `;
             }
         }
+
+        function isMobile() {
+            return window.innerWidth <= MOBILE_BREAKPOINT;
+        }
+
+        function renderContributors() {
+            const grid = document.getElementById('contributors-grid');
+            const showMoreBtn = document.getElementById('show-more-btn');
+
+            const contributorsToShow = isMobile()
+                ? allContributorsData.slice(0, visibleCount)
+                : allContributorsData;
+
+            grid.innerHTML = contributorsToShow.map((contributor, index) => {
+                const color = COLORS[index % COLORS.length];
+                return `
+                    <a href="${contributor.html_url}" target="_blank" rel="noopener" class="contributor-card color-${color}">
+                        <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar"/>
+                        <div class="contributor-info">
+                            <span class="contributor-name">${contributor.login}</span>
+                            <span class="contributor-commits">${contributor.contributions} commits</span>
+                        </div>
+                        <i class="fa-brands fa-github contributor-link"></i>
+                    </a>
+                `;
+            }).join('');
+
+            // Show/hide the "Show More" button
+            if (isMobile() && visibleCount < allContributorsData.length) {
+                showMoreBtn.style.display = 'flex';
+                const remaining = allContributorsData.length - visibleCount;
+                showMoreBtn.innerHTML = `Show More (${remaining} remaining) <i class="fa-solid fa-chevron-down"></i>`;
+            } else {
+                showMoreBtn.style.display = 'none';
+            }
+        }
+
+        function showMore() {
+            visibleCount += CONTRIBUTORS_PER_PAGE;
+            renderContributors();
+        }
+
+        // Show more button click handler
+        document.getElementById('show-more-btn').addEventListener('click', showMore);
+
+        // Re-render on resize (in case switching between mobile/desktop)
+        window.addEventListener('resize', () => {
+            if (allContributorsData.length > 0) {
+                renderContributors();
+            }
+        });
 
         fetchContributors();
 
