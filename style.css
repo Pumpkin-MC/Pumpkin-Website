@@ -847,6 +847,11 @@ footer {
   color: var(--text-muted);
 }
 
+.footer-bottom a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* ==========================================
    Responsive
    ========================================== */
@@ -1733,6 +1738,22 @@ footer {
 
 .sponsor-card.become-sponsor i {
   font-size: 1.25rem;
+}
+
+.sponsor-card.private-sponsor {
+  border-style: dashed;
+  color: var(--text-dim);
+  cursor: default;
+}
+
+.sponsor-card.private-sponsor:hover {
+  transform: none;
+  box-shadow: 4px 4px 0 var(--pink);
+}
+
+.sponsor-card.private-sponsor i {
+  font-size: 1.25rem;
+  opacity: 0.7;
 }
 
 .contributors-section {
