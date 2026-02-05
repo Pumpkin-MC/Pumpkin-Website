@@ -1,410 +1,590 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pumpkin - Blazingly Fast Minecraft Server</title>
-    <meta name="description" content="Pumpkin: The fastest, most efficient Minecraft server software. Written in Rust."/>
-    <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
-    <link rel="stylesheet" href="style.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-</head>
-<body>
+    <meta
+      name="description"
+      content="Pumpkin: The fastest, most efficient Minecraft server software. Written in Rust."
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
     <header>
-        <a href="/" class="logo">
-            <img src="assets/icon.svg" alt="Pumpkin"/>
-            <span>pumpkin</span>
+      <a href="/" class="logo">
+        <img src="assets/icon.svg" alt="Pumpkin" />
+        <span>pumpkin</span>
+      </a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="https://docs.pumpkinmc.org/">Docs</a>
+        <a href="/developers/">Developers</a>
+        <a href="/contributors/">Contributors</a>
+      </nav>
+      <div class="header-icons">
+        <a
+          href="https://github.com/Pumpkin-MC/Pumpkin"
+          class="icon-btn"
+          title="GitHub"
+        >
+          <i class="fa-brands fa-github"></i>
         </a>
-        <nav>
-            <a href="/">Home</a>
-            <a href="https://docs.pumpkinmc.org/">Docs</a>
-            <a href="/developers/">Developers</a>
-            <a href="/contributors/">Contributors</a>
-        </nav>
-        <div class="header-icons">
-            <a href="https://github.com/Pumpkin-MC/Pumpkin" class="icon-btn" title="GitHub">
-                <i class="fa-brands fa-github"></i>
-            </a>
-            <a href="https://discord.com/invite/wT8XjrjKkf" class="icon-btn" title="Discord">
-                <i class="fa-brands fa-discord"></i>
-            </a>
-            <a href="https://github.com/sponsors/Snowiiii" class="sponsor-btn" title="Sponsor">
-                <i class="fa-solid fa-heart"></i>
-            </a>
-            <a href="/download/" class="download-btn">Download</a>
-        </div>
+        <a
+          href="https://discord.com/invite/wT8XjrjKkf"
+          class="icon-btn"
+          title="Discord"
+        >
+          <i class="fa-brands fa-discord"></i>
+        </a>
+        <a
+          href="https://github.com/sponsors/Snowiiii"
+          class="sponsor-btn"
+          title="Sponsor"
+        >
+          <i class="fa-solid fa-heart"></i>
+        </a>
+        <a href="/download/" class="download-btn">Download</a>
+      </div>
     </header>
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK7NXQQ2ZP"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QK7NXQQ2ZP"
+    ></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-QK7NXQQ2ZP');
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-QK7NXQQ2ZP");
     </script>
 
     <main>
-        <section class="hero">
-            <div class="hero-left">
-                <div class="hero-badge">NEW</div>
-                <h1>
-                    The world's fastest
-                    <span class="highlight">Minecraft</span>
-                    server.
-                </h1>
-                <p>
-                    1000x faster startup than vanilla. 18x less memory.
-                    Built with Rust for maximum performance.
-                </p>
-                <div class="hero-buttons">
-                    <a href="/download/" class="btn btn-primary">
-                        Download Free
-                        <i class="fa-solid fa-arrow-down"></i>
-                    </a>
-                    <a href="https://docs.pumpkinmc.org/" class="btn btn-secondary">
-                        Read Docs
-                    </a>
-                </div>
+      <section class="hero">
+        <div class="hero-left">
+          <div class="hero-badge">NEW</div>
+          <h1>
+            The world's fastest
+            <span class="highlight">Minecraft</span>
+            server.
+          </h1>
+          <p>
+            1000x faster startup than vanilla. 18x less memory. Built with Rust
+            for maximum performance.
+          </p>
+          <div class="hero-buttons">
+            <a href="/download/" class="btn btn-primary">
+              Download Free
+              <i class="fa-solid fa-arrow-down"></i>
+            </a>
+            <a href="https://docs.pumpkinmc.org/" class="btn btn-secondary">
+              Read Docs
+            </a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-card">
+            <img src="assets/icon.svg" alt="Pumpkin Logo" class="hero-logo" />
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <span class="num">~5ms</span>
+                <span class="label">startup</span>
+              </div>
+              <div class="hero-stat">
+                <span class="num">100MB</span>
+                <span class="label">memory</span>
+              </div>
+              <div class="hero-stat">
+                <span class="num">0.1%</span>
+                <span class="label">CPU idle</span>
+              </div>
             </div>
-            <div class="hero-right">
-                <div class="hero-card">
-                    <img src="assets/icon.svg" alt="Pumpkin Logo" class="hero-logo"/>
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <span class="num">~5ms</span>
-                            <span class="label">startup</span>
-                        </div>
-                        <div class="hero-stat">
-                            <span class="num">100MB</span>
-                            <span class="label">memory</span>
-                        </div>
-                        <div class="hero-stat">
-                            <span class="num">0.1%</span>
-                            <span class="label">CPU idle</span>
-                        </div>
-                    </div>
-                </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features">
+        <h2 class="section-title">
+          Why developers <span class="highlight">love</span> Pumpkin
+        </h2>
+
+        <div class="features-grid">
+          <div class="feature-card color-orange">
+            <div class="feature-number">01</div>
+            <h3>Instant Startup</h3>
+            <p>
+              Server ready in 15 milliseconds. Not 15 seconds. That's 1000x
+              faster than vanilla.
+            </p>
+          </div>
+
+          <div class="feature-card color-blue">
+            <div class="feature-number">02</div>
+            <h3>Tiny Memory</h3>
+            <p>
+              Runs on ~100MB RAM while vanilla needs 1.8GB. Perfect for cheap
+              VPS hosting.
+            </p>
+          </div>
+
+          <div class="feature-card color-green">
+            <div class="feature-number">03</div>
+            <h3>Multi-threaded</h3>
+            <p>
+              Actually uses all your CPU cores. Not just for chunks—for
+              everything.
+            </p>
+          </div>
+
+          <div class="feature-card color-purple">
+            <div class="feature-number">04</div>
+            <h3>Cross-Play</h3>
+            <p>
+              Java and Bedrock players together. Built-in, no plugins required.
+            </p>
+          </div>
+
+          <div class="feature-card color-pink">
+            <div class="feature-number">05</div>
+            <h3>No Java</h3>
+            <p>
+              Single executable file. Download, double-click, done. Zero setup.
+            </p>
+          </div>
+
+          <div class="feature-card color-yellow">
+            <div class="feature-number">06</div>
+            <h3>Open Source</h3>
+            <p>
+              MIT licensed. Read the code, contribute, fork it. Full
+              transparency.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="comparison">
+        <h2 class="section-title">
+          See the <span class="highlight">difference</span>
+        </h2>
+
+        <div class="comparison-grid">
+          <div class="comp-card">
+            <h3><i class="fa-solid fa-stopwatch"></i> Startup Time</h3>
+            <div class="comp-bars">
+              <div class="comp-item winner">
+                <span class="comp-name">Pumpkin</span>
+                <div class="comp-bar" style="--w: 2%"></div>
+                <span class="comp-value">~5ms</span>
+              </div>
+              <div class="comp-item">
+                <span class="comp-name">Paper</span>
+                <div class="comp-bar" style="--w: 67%"></div>
+                <span class="comp-value">~10s</span>
+              </div>
+              <div class="comp-item">
+                <span class="comp-name">Vanilla</span>
+                <div class="comp-bar" style="--w: 100%"></div>
+                <span class="comp-value">~15s</span>
+              </div>
             </div>
-        </section>
+          </div>
 
-        <section class="features">
-            <h2 class="section-title">
-                Why developers <span class="highlight">love</span> Pumpkin
-            </h2>
-
-            <div class="features-grid">
-                <div class="feature-card color-orange">
-                    <div class="feature-number">01</div>
-                    <h3>Instant Startup</h3>
-                    <p>Server ready in 15 milliseconds. Not 15 seconds. That's 1000x faster than vanilla.</p>
-                </div>
-
-                <div class="feature-card color-blue">
-                    <div class="feature-number">02</div>
-                    <h3>Tiny Memory</h3>
-                    <p>Runs on ~100MB RAM while vanilla needs 1.8GB. Perfect for cheap VPS hosting.</p>
-                </div>
-
-                <div class="feature-card color-green">
-                    <div class="feature-number">03</div>
-                    <h3>Multi-threaded</h3>
-                    <p>Actually uses all your CPU cores. Not just for chunks—for everything.</p>
-                </div>
-
-                <div class="feature-card color-purple">
-                    <div class="feature-number">04</div>
-                    <h3>Cross-Play</h3>
-                    <p>Java and Bedrock players together. Built-in, no plugins required.</p>
-                </div>
-
-                <div class="feature-card color-pink">
-                    <div class="feature-number">05</div>
-                    <h3>No Java</h3>
-                    <p>Single executable file. Download, double-click, done. Zero setup.</p>
-                </div>
-
-                <div class="feature-card color-yellow">
-                    <div class="feature-number">06</div>
-                    <h3>Open Source</h3>
-                    <p>MIT licensed. Read the code, contribute, fork it. Full transparency.</p>
-                </div>
+          <div class="comp-card">
+            <h3><i class="fa-solid fa-memory"></i> RAM Usage</h3>
+            <div class="comp-bars">
+              <div class="comp-item winner">
+                <span class="comp-name">Pumpkin</span>
+                <div class="comp-bar" style="--w: 5%"></div>
+                <span class="comp-value">~100MB</span>
+              </div>
+              <div class="comp-item">
+                <span class="comp-name">Paper</span>
+                <div class="comp-bar" style="--w: 78%"></div>
+                <span class="comp-value">~1.4GB</span>
+              </div>
+              <div class="comp-item">
+                <span class="comp-name">Vanilla</span>
+                <div class="comp-bar" style="--w: 100%"></div>
+                <span class="comp-value">~1.8GB</span>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <section class="comparison">
-            <h2 class="section-title">
-                See the <span class="highlight">difference</span>
-            </h2>
+      <section class="table-section">
+        <h2 class="section-title">
+          Feature <span class="highlight">Checklist</span>
+        </h2>
 
-            <div class="comparison-grid">
-                <div class="comp-card">
-                    <h3><i class="fa-solid fa-stopwatch"></i> Startup Time</h3>
-                    <div class="comp-bars">
-                        <div class="comp-item winner">
-                            <span class="comp-name">Pumpkin</span>
-                            <div class="comp-bar" style="--w: 2%"></div>
-                            <span class="comp-value">~5ms</span>
-                        </div>
-                        <div class="comp-item">
-                            <span class="comp-name">Paper</span>
-                            <div class="comp-bar" style="--w: 67%"></div>
-                            <span class="comp-value">~10s</span>
-                        </div>
-                        <div class="comp-item">
-                            <span class="comp-name">Vanilla</span>
-                            <div class="comp-bar" style="--w: 100%"></div>
-                            <span class="comp-value">~15s</span>
-                        </div>
-                    </div>
-                </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="col-pumpkin">
+                <img src="assets/icon.svg" alt="" /> Pumpkin
+              </th>
+              <th><img src="assets/vanilla-logo.png" alt="" /> Vanilla</th>
+              <th><img src="assets/paper-logo.png" alt="" /> Spigot/Paper</th>
+              <th><img src="assets/folia-logo.png" alt="" /> Folia</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong>Fast Startup Times</strong>
+                <span class="feature-desc"
+                  >Get your server online in seconds.</span
+                >
+              </td>
+              <td class="col-pumpkin" data-label="Pumpkin">
+                <i class="fa-solid fa-check check-icon"></i>
+              </td>
+              <td data-label="Vanilla">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-xmark cross-icon"></i>
+                  <span class="tooltip"
+                    >Slower startup due to less optimization.</span
+                  >
+                </span>
+              </td>
+              <td data-label="Spigot/Paper">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Folia">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-xmark cross-icon"></i>
+                  <span class="tooltip"
+                    >Can have slower startup due to complex
+                    initialization.</span
+                  >
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Optimized CPU Utilization</strong>
+                <span class="feature-desc"
+                  >Maximize performance while minimizing resource strain.</span
+                >
+              </td>
+              <td class="col-pumpkin" data-label="Pumpkin">
+                <i class="fa-solid fa-check check-icon"></i>
+              </td>
+              <td data-label="Vanilla">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Spigot/Paper">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Folia">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Superior Memory Optimization</strong>
+                <span class="feature-desc"
+                  >Run larger servers with less memory.</span
+                >
+              </td>
+              <td class="col-pumpkin" data-label="Pumpkin">
+                <i class="fa-solid fa-check check-icon"></i>
+              </td>
+              <td data-label="Vanilla">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Spigot/Paper">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Folia">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Multi-threading Support</strong>
+                <span class="feature-desc"
+                  >Leverage modern CPUs for unparalleled scalability.</span
+                >
+              </td>
+              <td class="col-pumpkin" data-label="Pumpkin">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-check check-icon"></i>
+                  <span class="tooltip"
+                    >Comprehensive multi-threading for core game logic and
+                    tasks.</span
+                  >
+                </span>
+              </td>
+              <td data-label="Vanilla">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Spigot/Paper">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Folia">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-triangle-exclamation warning-icon"></i>
+                  <span class="tooltip">Only ticks.</span>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Bukkit/Paper Plugin Support</strong>
+                <span class="feature-desc"
+                  >Extensive compatibility with existing plugins.</span
+                >
+              </td>
+              <td class="col-pumpkin" data-label="Pumpkin">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-check check-icon"></i>
+                  <span class="tooltip"
+                    >Pumpkin uses its own API, but compatibility is possible via
+                    <a href="https://github.com/Pumpkin-MC/PatchBukkit"
+                      >PatchBukkit</a
+                    >.</span
+                  >
+                </span>
+              </td>
+              <td data-label="Vanilla">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Spigot/Paper">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-check check-icon"></i>
+                  <span class="tooltip"
+                    >Full plugin support via Bukkit/Paper API.</span
+                  >
+                </span>
+              </td>
+              <td data-label="Folia">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-triangle-exclamation warning-icon"></i>
+                  <span class="tooltip"
+                    >Compatibility varies; some plugins may require updates due
+                    to multi-threading.</span
+                  >
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Cross-Edition Compatibility</strong>
+                <span class="feature-desc"
+                  >Allow players on different game editions (Java/Bedrock) to
+                  join.</span
+                >
+              </td>
+              <td class="col-pumpkin" data-label="Pumpkin">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-check check-icon"></i>
+                  <span class="tooltip"
+                    >Built-in support for both Java & Bedrock Editions.</span
+                  >
+                </span>
+              </td>
+              <td data-label="Vanilla">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Spigot/Paper">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-triangle-exclamation warning-icon"></i>
+                  <span class="tooltip"
+                    >Achievable via external plugins (e.g., GeyserMC).</span
+                  >
+                </span>
+              </td>
+              <td data-label="Folia">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-triangle-exclamation warning-icon"></i>
+                  <span class="tooltip"
+                    >Achievable via external plugins, but setup might be more
+                    complex due to multi-threading.</span
+                  >
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Comprehensive Developer API</strong>
+                <span class="feature-desc"
+                  >Create custom features and integrations easily.</span
+                >
+              </td>
+              <td class="col-pumpkin" data-label="Pumpkin">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-check check-icon"></i>
+                  <span class="tooltip"
+                    >Rich and easy-to-use API for extensive customization.</span
+                  >
+                </span>
+              </td>
+              <td data-label="Vanilla">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Spigot/Paper">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Folia">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Extensive Configuration Options</strong>
+                <span class="feature-desc"
+                  >Tailor server behavior with granular control.</span
+                >
+              </td>
+              <td class="col-pumpkin" data-label="Pumpkin">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-check check-icon"></i>
+                  <span class="tooltip"
+                    >Provides a large configuration, that will cover every
+                    need.</span
+                  >
+                </span>
+              </td>
+              <td data-label="Vanilla">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Spigot/Paper">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Folia">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Open-Source</strong>
+                <span class="feature-desc"
+                  >Benefit from community contributions & transparency.</span
+                >
+              </td>
+              <td class="col-pumpkin" data-label="Pumpkin">
+                <i class="fa-solid fa-check check-icon"></i>
+              </td>
+              <td data-label="Vanilla">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Spigot/Paper">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-triangle-exclamation warning-icon"></i>
+                  <span class="tooltip">Only Open-Source patches.</span>
+                </span>
+              </td>
+              <td data-label="Folia">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-triangle-exclamation warning-icon"></i>
+                  <span class="tooltip">Only Open-Source patches.</span>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Multiple World/Chunk Formats</strong>
+                <span class="feature-desc"
+                  >Support for more efficient world data storage and
+                  loading.</span
+                >
+              </td>
+              <td class="col-pumpkin" data-label="Pumpkin">
+                <i class="fa-solid fa-check check-icon"></i>
+              </td>
+              <td data-label="Vanilla">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Spigot/Paper">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Folia">
+                <span class="has-tooltip"
+                  ><i class="fa-solid fa-xmark cross-icon"></i>
+                  <span class="tooltip">Primarily uses Anvil format.</span>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Click & Play</strong>
+                <span class="feature-desc"
+                  >Self-contained executable for instant launch, no complex
+                  setup or Java installation required.</span
+                >
+              </td>
+              <td class="col-pumpkin" data-label="Pumpkin">
+                <i class="fa-solid fa-check check-icon"></i>
+              </td>
+              <td data-label="Vanilla">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Spigot/Paper">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+              <td data-label="Folia">
+                <i class="fa-solid fa-xmark cross-icon"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-                <div class="comp-card">
-                    <h3><i class="fa-solid fa-memory"></i> RAM Usage</h3>
-                    <div class="comp-bars">
-                        <div class="comp-item winner">
-                            <span class="comp-name">Pumpkin</span>
-                            <div class="comp-bar" style="--w: 5%"></div>
-                            <span class="comp-value">~100MB</span>
-                        </div>
-                        <div class="comp-item">
-                            <span class="comp-name">Paper</span>
-                            <div class="comp-bar" style="--w: 78%"></div>
-                            <span class="comp-value">~1.4GB</span>
-                        </div>
-                        <div class="comp-item">
-                            <span class="comp-name">Vanilla</span>
-                            <div class="comp-bar" style="--w: 100%"></div>
-                            <span class="comp-value">~1.8GB</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="table-section">
-            <h2 class="section-title">Feature <span class="highlight">Checklist</span></h2>
-
-            <table>
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th class="col-pumpkin"><img src="assets/icon.svg" alt=""> Pumpkin</th>
-                            <th><img src="assets/vanilla-logo.png" alt=""> Vanilla</th>
-                            <th><img src="assets/paper-logo.png" alt=""> Spigot/Paper</th>
-                            <th><img src="assets/folia-logo.png" alt=""> Folia</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <strong>Fast Startup Times</strong>
-                                <span class="feature-desc">Get your server online in seconds.</span>
-                            </td>
-                            <td class="col-pumpkin" data-label="Pumpkin"><i class="fa-solid fa-check check-icon"></i></td>
-                            <td data-label="Vanilla">
-                                <span class="has-tooltip"><i class="fa-solid fa-xmark cross-icon"></i>
-                                    <span class="tooltip">Slower startup due to less optimization.</span>
-                                </span>
-                            </td>
-                            <td data-label="Spigot/Paper"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Folia">
-                                <span class="has-tooltip"><i class="fa-solid fa-xmark cross-icon"></i>
-                                    <span class="tooltip">Can have slower startup due to complex initialization.</span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Optimized CPU Utilization</strong>
-                                <span class="feature-desc">Maximize performance while minimizing resource strain.</span>
-                            </td>
-                            <td class="col-pumpkin" data-label="Pumpkin"><i class="fa-solid fa-check check-icon"></i></td>
-                            <td data-label="Vanilla"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Spigot/Paper"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Folia"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Superior Memory Optimization</strong>
-                                <span class="feature-desc">Run larger servers with less memory.</span>
-                            </td>
-                            <td class="col-pumpkin" data-label="Pumpkin"><i class="fa-solid fa-check check-icon"></i></td>
-                            <td data-label="Vanilla"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Spigot/Paper"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Folia"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Multi-threading Support</strong>
-                                <span class="feature-desc">Leverage modern CPUs for unparalleled scalability.</span>
-                            </td>
-                            <td class="col-pumpkin" data-label="Pumpkin">
-                                <span class="has-tooltip"><i class="fa-solid fa-check check-icon"></i>
-                                    <span class="tooltip">Comprehensive multi-threading for core game logic and tasks.</span>
-                                </span>
-                            </td>
-                            <td data-label="Vanilla"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Spigot/Paper"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Folia">
-                                <span class="has-tooltip"><i class="fa-solid fa-triangle-exclamation warning-icon"></i>
-                                    <span class="tooltip">Only ticks.</span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Bukkit/Paper Plugin Support</strong>
-                                <span class="feature-desc">Extensive compatibility with existing plugins.</span>
-                            </td>
-                            <td class="col-pumpkin" data-label="Pumpkin">
-                                <span class="has-tooltip"><i class="fa-solid fa-check check-icon"></i>
-                                    <span class="tooltip">Pumpkin uses its own API, but compatibility is possible via <a href="https://github.com/Pumpkin-MC/PatchBukkit">PatchBukkit</a>.</span>
-                                </span>
-                            </td>
-                            <td data-label="Vanilla"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Spigot/Paper">
-                                <span class="has-tooltip"><i class="fa-solid fa-check check-icon"></i>
-                                    <span class="tooltip">Full plugin support via Bukkit/Paper API.</span>
-                                </span>
-                            </td>
-                            <td data-label="Folia">
-                                <span class="has-tooltip"><i class="fa-solid fa-triangle-exclamation warning-icon"></i>
-                                    <span class="tooltip">Compatibility varies; some plugins may require updates due to multi-threading.</span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Cross-Edition Compatibility</strong>
-                                <span class="feature-desc">Allow players on different game editions (Java/Bedrock) to join.</span>
-                            </td>
-                            <td class="col-pumpkin" data-label="Pumpkin">
-                                <span class="has-tooltip"><i class="fa-solid fa-check check-icon"></i>
-                                    <span class="tooltip">Built-in support for both Java & Bedrock Editions.</span>
-                                </span>
-                            </td>
-                            <td data-label="Vanilla"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Spigot/Paper">
-                                <span class="has-tooltip"><i class="fa-solid fa-triangle-exclamation warning-icon"></i>
-                                    <span class="tooltip">Achievable via external plugins (e.g., GeyserMC).</span>
-                                </span>
-                            </td>
-                            <td data-label="Folia">
-                                <span class="has-tooltip"><i class="fa-solid fa-triangle-exclamation warning-icon"></i>
-                                    <span class="tooltip">Achievable via external plugins, but setup might be more complex due to multi-threading.</span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Comprehensive Developer API</strong>
-                                <span class="feature-desc">Create custom features and integrations easily.</span>
-                            </td>
-                            <td class="col-pumpkin" data-label="Pumpkin">
-                                <span class="has-tooltip"><i class="fa-solid fa-check check-icon"></i>
-                                    <span class="tooltip">Rich and easy-to-use API for extensive customization.</span>
-                                </span>
-                            </td>
-                            <td data-label="Vanilla"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Spigot/Paper"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Folia"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Extensive Configuration Options</strong>
-                                <span class="feature-desc">Tailor server behavior with granular control.</span>
-                            </td>
-                            <td class="col-pumpkin" data-label="Pumpkin">
-                                <span class="has-tooltip"><i class="fa-solid fa-check check-icon"></i>
-                                    <span class="tooltip">Provides a large configuration, that will cover every need.</span>
-                                </span>
-                            </td>
-                            <td data-label="Vanilla"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Spigot/Paper"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Folia"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Open-Source</strong>
-                                <span class="feature-desc">Benefit from community contributions & transparency.</span>
-                            </td>
-                            <td class="col-pumpkin" data-label="Pumpkin"><i class="fa-solid fa-check check-icon"></i></td>
-                            <td data-label="Vanilla"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Spigot/Paper">
-                                <span class="has-tooltip"><i class="fa-solid fa-triangle-exclamation warning-icon"></i>
-                                    <span class="tooltip">Only Open-Source patches.</span>
-                                </span>
-                            </td>
-                            <td data-label="Folia">
-                                <span class="has-tooltip"><i class="fa-solid fa-triangle-exclamation warning-icon"></i>
-                                    <span class="tooltip">Only Open-Source patches.</span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Multiple World/Chunk Formats</strong>
-                                <span class="feature-desc">Support for more efficient world data storage and loading.</span>
-                            </td>
-                            <td class="col-pumpkin" data-label="Pumpkin"><i class="fa-solid fa-check check-icon"></i></td>
-                            <td data-label="Vanilla"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Spigot/Paper"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Folia">
-                                <span class="has-tooltip"><i class="fa-solid fa-xmark cross-icon"></i>
-                                    <span class="tooltip">Primarily uses Anvil format.</span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Click & Play</strong>
-                                <span class="feature-desc">Self-contained executable for instant launch, no complex setup or Java installation required.</span>
-                            </td>
-                            <td class="col-pumpkin" data-label="Pumpkin"><i class="fa-solid fa-check check-icon"></i></td>
-                            <td data-label="Vanilla"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Spigot/Paper"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                            <td data-label="Folia"><i class="fa-solid fa-xmark cross-icon"></i></td>
-                        </tr>
-                    </tbody>
-            </table>
-        </section>
-
-        <section class="cta">
-            <div class="cta-card">
-                <h2>Ready to try?</h2>
-                <p>Download Pumpkin and experience the fastest Minecraft server ever built.</p>
-                <div class="cta-buttons">
-                    <a href="/download/" class="btn btn-primary btn-large">
-                        Download Now <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    <a href="https://github.com/Pumpkin-MC" class="btn btn-secondary btn-large">
-                        <i class="fa-brands fa-github"></i> Star on GitHub
-                    </a>
-                </div>
-            </div>
-        </section>
+      <section class="cta">
+        <div class="cta-card">
+          <h2>Ready to try?</h2>
+          <p>
+            Download Pumpkin and experience the fastest Minecraft server ever
+            built.
+          </p>
+          <div class="cta-buttons">
+            <a href="/download/" class="btn btn-primary btn-large">
+              Download Now <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a
+              href="https://github.com/Pumpkin-MC"
+              class="btn btn-secondary btn-large"
+            >
+              <i class="fa-brands fa-github"></i> Star on GitHub
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <div class="footer-main">
-            <div class="footer-brand">
-                <img src="assets/icon.svg" alt="Pumpkin"/>
-                <span>pumpkin</span>
-            </div>
-            <div class="footer-links">
-                <a href="https://docs.pumpkinmc.org/">Documentation</a>
-                <a href="https://github.com/Pumpkin-MC">GitHub</a>
-                <a href="https://discord.com/invite/wT8XjrjKkf">Discord</a>
-                <a href="https://github.com/sponsors/Snowiiii">Sponsor</a>
-            </div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="assets/icon.svg" alt="Pumpkin" />
+          <span>pumpkin</span>
         </div>
-        <div class="footer-bottom">
-            Open source under MIT License
+        <div class="footer-links">
+          <a href="https://docs.pumpkinmc.org/">Documentation</a>
+          <a href="https://github.com/Pumpkin-MC">GitHub</a>
+          <a href="https://discord.com/invite/wT8XjrjKkf">Discord</a>
+          <a href="https://github.com/sponsors/Snowiiii">Sponsor</a>
         </div>
+      </div>
+      <div class="footer-bottom">Open source under MIT License</div>
     </footer>
-</body>
+  </body>
 </html>

@@ -1,74 +1,115 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>For Developers - Pumpkin</title>
-    <meta name="description" content="Why developers love building on Pumpkin. No NMS pain, Packet API, Bedrock support, and more."/>
-    <link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
-    <link rel="stylesheet" href="../style.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-</head>
-<body>
+    <meta
+      name="description"
+      content="Why developers love building on Pumpkin. No NMS pain, Packet API, Bedrock support, and more."
+    />
+    <link rel="icon" type="image/svg+xml" href="../assets/icon.svg" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
     <header>
-        <a href="/" class="logo">
-            <img src="../assets/icon.svg" alt="Pumpkin"/>
-            <span>pumpkin</span>
+      <a href="/" class="logo">
+        <img src="../assets/icon.svg" alt="Pumpkin" />
+        <span>pumpkin</span>
+      </a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="https://docs.pumpkinmc.org/">Docs</a>
+        <a href="/developers/">Developers</a>
+        <a href="/contributors/">Contributors</a>
+      </nav>
+      <div class="header-icons">
+        <a
+          href="https://github.com/Pumpkin-MC/Pumpkin"
+          class="icon-btn"
+          title="GitHub"
+        >
+          <i class="fa-brands fa-github"></i>
         </a>
-        <nav>
-            <a href="/">Home</a>
-            <a href="https://docs.pumpkinmc.org/">Docs</a>
-            <a href="/developers/">Developers</a>
-            <a href="/contributors/">Contributors</a>
-        </nav>
-        <div class="header-icons">
-            <a href="https://github.com/Pumpkin-MC/Pumpkin" class="icon-btn" title="GitHub">
-                <i class="fa-brands fa-github"></i>
-            </a>
-            <a href="https://discord.com/invite/wT8XjrjKkf" class="icon-btn" title="Discord">
-                <i class="fa-brands fa-discord"></i>
-            </a>
-            <a href="https://github.com/sponsors/Snowiiii" class="sponsor-btn" title="Sponsor">
-                <i class="fa-solid fa-heart"></i>
-            </a>
-            <a href="/download/" class="download-btn">Download</a>
-        </div>
+        <a
+          href="https://discord.com/invite/wT8XjrjKkf"
+          class="icon-btn"
+          title="Discord"
+        >
+          <i class="fa-brands fa-discord"></i>
+        </a>
+        <a
+          href="https://github.com/sponsors/Snowiiii"
+          class="sponsor-btn"
+          title="Sponsor"
+        >
+          <i class="fa-solid fa-heart"></i>
+        </a>
+        <a href="/download/" class="download-btn">Download</a>
+      </div>
     </header>
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK7NXQQ2ZP"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QK7NXQQ2ZP"
+    ></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-QK7NXQQ2ZP');
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-QK7NXQQ2ZP");
     </script>
 
     <main>
-        <section class="dev-hero">
-            <div class="dev-hero-content">
-                <h1>Build plugins<br>without the <span class="highlight">pain.</span></h1>
-                <p><span class="strikethrough">No NMS. No reflection. No version-specific hacks.</span> Just clean, type-safe APIs.</p>
-                <div class="dev-hero-btns">
-                    <a href="https://docs.pumpkinmc.org/" class="btn btn-primary btn-large">
-                        Read the Docs <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    <a href="https://github.com/Pumpkin-MC/Pumpkin" class="btn btn-secondary btn-large">
-                        <i class="fa-brands fa-github"></i> Source
-                    </a>
-                </div>
-            </div>
-        </section>
+      <section class="dev-hero">
+        <div class="dev-hero-content">
+          <h1>
+            Build plugins<br />without the <span class="highlight">pain.</span>
+          </h1>
+          <p>
+            <span class="strikethrough"
+              >No NMS. No reflection. No version-specific hacks.</span
+            >
+            Just clean, type-safe APIs.
+          </p>
+          <div class="dev-hero-btns">
+            <a
+              href="https://docs.pumpkinmc.org/"
+              class="btn btn-primary btn-large"
+            >
+              Read the Docs <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a
+              href="https://github.com/Pumpkin-MC/Pumpkin"
+              class="btn btn-secondary btn-large"
+            >
+              <i class="fa-brands fa-github"></i> Source
+            </a>
+          </div>
+        </div>
+      </section>
 
-        <section class="dev-compare">
-            <div class="compare-block old">
-                <div class="compare-header">
-                    <span class="compare-badge bad">Paper / Spigot</span>
-                </div>
-                <pre><code>// Sending a title packet
+      <section class="dev-compare">
+        <div class="compare-block old">
+          <div class="compare-header">
+            <span class="compare-badge bad">Paper / Spigot</span>
+          </div>
+          <pre><code>// Sending a title packet
 Object packet = Class.forName("net.minecraft.server."
     + VERSION + ".PacketPlayOutTitle")
     .getConstructor(...).newInstance(...);
@@ -80,81 +121,102 @@ player.getClass().getMethod("getHandle")
     .invoke(connection, packet);
 
 // Breaks every update. Good luck.</code></pre>
-            </div>
-            <div class="compare-block new">
-                <div class="compare-header">
-                    <span class="compare-badge good">Pumpkin</span>
-                </div>
-                <pre><code>// Sending a title packet
+        </div>
+        <div class="compare-block new">
+          <div class="compare-header">
+            <span class="compare-badge good">Pumpkin</span>
+          </div>
+          <pre><code>// Sending a title packet
 player.send_title("Hello, World!");
 
 // Done.</code></pre>
-            </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="dev-features">
-            <div class="dev-feature">
-                <div class="dev-feature-icon"><i class="fa-solid fa-globe"></i></div>
-                <h3>Every Player, One Plugin</h3>
-                <p>Native Java + Bedrock support. Multi-version built in. Write once, reach everyone.</p>
-            </div>
-            <div class="dev-feature">
-                <div class="dev-feature-icon"><i class="fa-solid fa-network-wired"></i></div>
-                <h3>Full Packet API</h3>
-                <p>Send, receive, and intercept packets directly. No reflection required.</p>
-            </div>
-            <div class="dev-feature">
-                <div class="dev-feature-icon"><i class="fa-solid fa-bolt"></i></div>
-                <h3>Async by Default</h3>
-                <p>Built on Tokio. No main thread bottleneck. Heavy tasks don't freeze the server.</p>
-            </div>
-            <div class="dev-feature">
-                <div class="dev-feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <h3>Memory Safe</h3>
-                <p>Rust guarantees. No null pointers, no memory leaks, no data races.</p>
-            </div>
-        </section>
+      <section class="dev-features">
+        <div class="dev-feature">
+          <div class="dev-feature-icon"><i class="fa-solid fa-globe"></i></div>
+          <h3>Every Player, One Plugin</h3>
+          <p>
+            Native Java + Bedrock support. Multi-version built in. Write once,
+            reach everyone.
+          </p>
+        </div>
+        <div class="dev-feature">
+          <div class="dev-feature-icon">
+            <i class="fa-solid fa-network-wired"></i>
+          </div>
+          <h3>Full Packet API</h3>
+          <p>
+            Send, receive, and intercept packets directly. No reflection
+            required.
+          </p>
+        </div>
+        <div class="dev-feature">
+          <div class="dev-feature-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Async by Default</h3>
+          <p>
+            Built on Tokio. No main thread bottleneck. Heavy tasks don't freeze
+            the server.
+          </p>
+        </div>
+        <div class="dev-feature">
+          <div class="dev-feature-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3>Memory Safe</h3>
+          <p>
+            Rust guarantees. No null pointers, no memory leaks, no data races.
+          </p>
+        </div>
+      </section>
 
-        <section class="dev-stats">
-            <div class="dev-stat">
-                <span class="dev-stat-val">0</span>
-                <span class="dev-stat-label">NMS Classes</span>
-            </div>
-            <div class="dev-stat">
-                <span class="dev-stat-val">0</span>
-                <span class="dev-stat-label">Reflection Calls</span>
-            </div>
-            <div class="dev-stat">
-                <span class="dev-stat-val">100%</span>
-                <span class="dev-stat-label">Type Safe</span>
-            </div>
-        </section>
+      <section class="dev-stats">
+        <div class="dev-stat">
+          <span class="dev-stat-val">0</span>
+          <span class="dev-stat-label">NMS Classes</span>
+        </div>
+        <div class="dev-stat">
+          <span class="dev-stat-val">0</span>
+          <span class="dev-stat-label">Reflection Calls</span>
+        </div>
+        <div class="dev-stat">
+          <span class="dev-stat-val">100%</span>
+          <span class="dev-stat-label">Type Safe</span>
+        </div>
+      </section>
 
-        <section class="dev-cta">
-            <h2>Ready to build?</h2>
-            <div class="dev-cta-btns">
-                <a href="https://docs.pumpkinmc.org/" class="btn btn-primary btn-large">Get Started</a>
-                <a href="https://discord.com/invite/wT8XjrjKkf" class="btn btn-secondary btn-large"><i class="fa-brands fa-discord"></i> Discord</a>
-            </div>
-        </section>
+      <section class="dev-cta">
+        <h2>Ready to build?</h2>
+        <div class="dev-cta-btns">
+          <a
+            href="https://docs.pumpkinmc.org/"
+            class="btn btn-primary btn-large"
+            >Get Started</a
+          >
+          <a
+            href="https://discord.com/invite/wT8XjrjKkf"
+            class="btn btn-secondary btn-large"
+            ><i class="fa-brands fa-discord"></i> Discord</a
+          >
+        </div>
+      </section>
     </main>
 
     <footer>
-        <div class="footer-main">
-            <div class="footer-brand">
-                <img src="../assets/icon.svg" alt="Pumpkin"/>
-                <span>pumpkin</span>
-            </div>
-            <div class="footer-links">
-                <a href="https://docs.pumpkinmc.org/">Documentation</a>
-                <a href="https://github.com/Pumpkin-MC">GitHub</a>
-                <a href="https://discord.com/invite/wT8XjrjKkf">Discord</a>
-                <a href="https://github.com/sponsors/Snowiiii">Sponsor</a>
-            </div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="../assets/icon.svg" alt="Pumpkin" />
+          <span>pumpkin</span>
         </div>
-        <div class="footer-bottom">
-            Open source under MIT License
+        <div class="footer-links">
+          <a href="https://docs.pumpkinmc.org/">Documentation</a>
+          <a href="https://github.com/Pumpkin-MC">GitHub</a>
+          <a href="https://discord.com/invite/wT8XjrjKkf">Discord</a>
+          <a href="https://github.com/sponsors/Snowiiii">Sponsor</a>
         </div>
+      </div>
+      <div class="footer-bottom">Open source under MIT License</div>
     </footer>
-</body>
+  </body>
 </html>
