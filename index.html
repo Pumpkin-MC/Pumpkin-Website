@@ -3,11 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://avatars.githubusercontent.com data:; connect-src 'self' https://api.github.com https://www.google-analytics.com; frame-ancestors 'none'"
+    />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
     <title>Pumpkin - Blazingly Fast Minecraft Server</title>
     <meta
       name="description"
       content="Pumpkin: The fastest, most efficient Minecraft server software. Written in Rust."
     />
+    <meta property="og:title" content="Pumpkin - Blazingly Fast Minecraft Server" />
+    <meta property="og:description" content="1000x faster startup. 18x less memory. Built with Rust for maximum performance." />
+    <meta property="og:image" content="https://pumpkinmc.org/assets/logos/ogimage.png" />
+    <meta property="og:url" content="https://pumpkinmc.org/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,6 +32,7 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha384-rWj9FmWWt3OMqd9vBkWRhFavvVUYalYqGPoMdL1brs/qvvqz88gvLShYa4hKNyqb"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
@@ -107,11 +121,11 @@
                 <span class="label">startup</span>
               </div>
               <div class="hero-stat">
-                <span class="num">100MB</span>
+                <span class="num">~100MB</span>
                 <span class="label">memory</span>
               </div>
               <div class="hero-stat">
-                <span class="num">0.1%</span>
+                <span class="num">~0.1%</span>
                 <span class="label">CPU idle</span>
               </div>
             </div>
@@ -129,7 +143,7 @@
             <div class="feature-number">01</div>
             <h3>Instant Startup</h3>
             <p>
-              Server ready in 15 milliseconds. Not 15 seconds. That's 1000x
+              Server ready in ~5 milliseconds. Not 15 seconds. That's 1000x
               faster than vanilla.
             </p>
           </div>
@@ -172,7 +186,7 @@
             <div class="feature-number">06</div>
             <h3>Open Source</h3>
             <p>
-              MIT licensed. Read the code, contribute, fork it. Full
+              GPL licensed. Read the code, contribute, fork it. Full
               transparency.
             </p>
           </div>
@@ -251,7 +265,7 @@
               <td>
                 <strong>Fast Startup Times</strong>
                 <span class="feature-desc"
-                  >Get your server online in seconds.</span
+                  >Get your server online in under a second.</span
                 >
               </td>
               <td class="col-pumpkin" data-label="Pumpkin">
@@ -351,12 +365,12 @@
               <td>
                 <strong>Bukkit/Paper Plugin Support</strong>
                 <span class="feature-desc"
-                  >Extensive compatibility with existing plugins.</span
+                  >Early development with growing support.</span
                 >
               </td>
               <td class="col-pumpkin" data-label="Pumpkin">
                 <span class="has-tooltip"
-                  ><i class="fa-solid fa-check check-icon"></i>
+                  ><i class="fa-solid fa-triangle-exclamation warning-icon"></i>
                   <span class="tooltip"
                     >Pumpkin uses its own API, but compatibility is possible via
                     <a href="https://github.com/Pumpkin-MC/PatchBukkit"
@@ -584,7 +598,7 @@
           <a href="https://github.com/sponsors/Snowiiii">Sponsor</a>
         </div>
       </div>
-      <div class="footer-bottom">Made with ❤️ by <a href="https://marshall.dev" target="_blank" rel="noopener">purdze</a></div>
+      <div class="footer-bottom">Made with ❤️ by <a href="https://marshall.dev" target="_blank" rel="noopener">purdze</a> · Licensed under GPL</div>
     </footer>
   </body>
 </html>

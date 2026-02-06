@@ -3,11 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://avatars.githubusercontent.com data:; connect-src 'self' https://api.github.com https://www.google-analytics.com; frame-ancestors 'none'"
+    />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
     <title>For Developers - Pumpkin</title>
     <meta
       name="description"
       content="Why developers love building on Pumpkin. No NMS pain, Packet API, Bedrock support, and more."
     />
+    <meta property="og:title" content="For Developers - Pumpkin" />
+    <meta property="og:description" content="No NMS. No reflection. No version-specific hacks. Just clean, type-safe APIs." />
+    <meta property="og:image" content="https://pumpkinmc.org/assets/logos/ogimage.png" />
+    <meta property="og:url" content="https://pumpkinmc.org/developers/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="../assets/icon.svg" />
     <link rel="stylesheet" href="../style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,6 +32,7 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha384-rWj9FmWWt3OMqd9vBkWRhFavvVUYalYqGPoMdL1brs/qvvqz88gvLShYa4hKNyqb"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
@@ -216,7 +230,7 @@ player.send_title("Hello, World!");
           <a href="https://github.com/sponsors/Snowiiii">Sponsor</a>
         </div>
       </div>
-      <div class="footer-bottom">Made with ❤️ by <a href="https://marshall.dev" target="_blank" rel="noopener">purdze</a></div>
+      <div class="footer-bottom">Made with ❤️ by <a href="https://marshall.dev" target="_blank" rel="noopener">purdze</a> · Licensed under GPL</div>
     </footer>
   </body>
 </html>

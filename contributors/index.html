@@ -3,11 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://avatars.githubusercontent.com data:; connect-src 'self' https://api.github.com https://www.google-analytics.com; frame-ancestors 'none'"
+    />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
     <title>Contributors - Pumpkin</title>
     <meta
       name="description"
       content="Meet the amazing people who contribute to Pumpkin, the fastest Minecraft server."
     />
+    <meta property="og:title" content="Contributors - Pumpkin" />
+    <meta property="og:description" content="Meet the amazing people who contribute to Pumpkin, the fastest Minecraft server." />
+    <meta property="og:image" content="https://pumpkinmc.org/assets/logos/ogimage.png" />
+    <meta property="og:url" content="https://pumpkinmc.org/contributors/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="../assets/icon.svg" />
     <link rel="stylesheet" href="../style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,6 +32,7 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha384-rWj9FmWWt3OMqd9vBkWRhFavvVUYalYqGPoMdL1brs/qvvqz88gvLShYa4hKNyqb"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
@@ -514,7 +528,7 @@
           <a href="https://github.com/sponsors/Snowiiii">Sponsor</a>
         </div>
       </div>
-      <div class="footer-bottom">Made with ❤️ by <a href="https://marshall.dev" target="_blank" rel="noopener">purdze</a></div>
+      <div class="footer-bottom">Made with ❤️ by <a href="https://marshall.dev" target="_blank" rel="noopener">purdze</a> · Licensed under GPL</div>
     </footer>
 
     <script>
@@ -522,8 +536,31 @@
       const COLORS = ["orange", "blue", "green", "purple", "pink", "yellow"];
       const MOBILE_BREAKPOINT = 768;
       const CONTRIBUTORS_PER_PAGE = 10;
+      const CACHE_KEY = "pumpkin_contributors";
+      const CACHE_TTL = 60 * 60 * 1000; // 1 hour
       let allContributorsData = [];
       let visibleCount = CONTRIBUTORS_PER_PAGE;
+
+      function getCached(key) {
+        try {
+          const raw = localStorage.getItem(key);
+          if (!raw) return null;
+          const cached = JSON.parse(raw);
+          if (Date.now() - cached.ts > CACHE_TTL) {
+            localStorage.removeItem(key);
+            return null;
+          }
+          return cached.data;
+        } catch {
+          return null;
+        }
+      }
+
+      function setCache(key, data) {
+        try {
+          localStorage.setItem(key, JSON.stringify({ ts: Date.now(), data: data }));
+        } catch { /* storage full or unavailable */ }
+      }
 
       // Count up animation - linear 3 seconds
       function countUp(element, target) {
@@ -558,29 +595,43 @@
         totalCommitsEl.textContent = "0";
 
         try {
-          // Fetch all contributors (paginated)
-          let allContributors = [];
-          let page = 1;
-          let hasMore = true;
+          let allContributors = getCached(CACHE_KEY);
 
-          while (hasMore) {
-            const response = await fetch(
-              `https://api.github.com/repos/${GITHUB_REPO}/contributors?per_page=100&page=${page}`,
-            );
+          if (!allContributors) {
+            // Fetch all contributors (paginated)
+            allContributors = [];
+            let page = 1;
+            let hasMore = true;
 
-            if (!response.ok) throw new Error("Failed to fetch contributors");
+            while (hasMore) {
+              const response = await fetch(
+                `https://api.github.com/repos/${GITHUB_REPO}/contributors?per_page=100&page=${page}`,
+              );
 
-            const contributors = await response.json();
-            if (contributors.length === 0) {
-              hasMore = false;
-            } else {
-              allContributors = allContributors.concat(contributors);
-              page++;
+              if (response.status === 403) {
+                const resetHeader = response.headers.get("X-RateLimit-Reset");
+                const resetTime = resetHeader
+                  ? new Date(Number(resetHeader) * 1000).toLocaleTimeString()
+                  : "soon";
+                throw new Error("RATE_LIMIT:" + resetTime);
+              }
+              if (!response.ok) throw new Error("Failed to fetch contributors");
+
+              const contributors = await response.json();
+              if (contributors.length === 0) {
+                hasMore = false;
+              } else {
+                allContributors = allContributors.concat(contributors);
+                page++;
+              }
             }
-          }
 
-          // Filter out bots
-          allContributors = allContributors.filter((c) => c.type !== "Bot");
+            // Filter out bots
+            allContributors = allContributors.filter((c) => c.type !== "Bot");
+
+            // Cache the result
+            setCache(CACHE_KEY, allContributors);
+          }
 
           // Calculate total commits
           const totalCommits = allContributors.reduce(
@@ -598,21 +649,101 @@
           // Render contributors
           renderContributors();
         } catch (error) {
-          console.error("Error fetching contributors:", error);
-          grid.innerHTML = `
-                    <div class="error-state">
-                        <i class="fa-solid fa-exclamation-triangle"></i>
-                        <span>Failed to load contributors. Please try again later.</span>
-                        <a href="https://github.com/${GITHUB_REPO}/graphs/contributors" class="btn btn-secondary" style="margin-top: 1rem;">
-                            View on GitHub
-                        </a>
-                    </div>
-                `;
+          grid.innerHTML = "";
+          const errorDiv = document.createElement("div");
+          errorDiv.className = "error-state";
+          const errorIcon = document.createElement("i");
+          errorIcon.className = "fa-solid fa-exclamation-triangle";
+          const errorText = document.createElement("span");
+          const errMsg = String(error.message || "");
+          if (errMsg.startsWith("RATE_LIMIT:")) {
+            const resetTime = errMsg.split(":")[1];
+            errorText.textContent =
+              "GitHub API rate limit reached. Resets at " + resetTime + ". Please try again later.";
+          } else {
+            errorText.textContent = "Failed to load contributors. Please try again later.";
+          }
+          const errorLink = document.createElement("a");
+          errorLink.href = "https://github.com/Pumpkin-MC/Pumpkin/graphs/contributors";
+          errorLink.className = "btn btn-secondary";
+          errorLink.style.marginTop = "1rem";
+          errorLink.textContent = "View on GitHub";
+          errorDiv.appendChild(errorIcon);
+          errorDiv.appendChild(errorText);
+          errorDiv.appendChild(errorLink);
+          grid.appendChild(errorDiv);
         }
       }
 
       function isMobile() {
         return window.innerWidth <= MOBILE_BREAKPOINT;
+      }
+
+      function isValidGitHubUrl(url) {
+        try {
+          const parsed = new URL(url);
+          return (
+            parsed.protocol === "https:" &&
+            parsed.hostname === "github.com"
+          );
+        } catch {
+          return false;
+        }
+      }
+
+      function isValidAvatarUrl(url) {
+        try {
+          const parsed = new URL(url);
+          return (
+            parsed.protocol === "https:" &&
+            parsed.hostname === "avatars.githubusercontent.com"
+          );
+        } catch {
+          return false;
+        }
+      }
+
+      function createContributorCard(contributor, index) {
+        const color = COLORS[index % COLORS.length];
+
+        const link = document.createElement("a");
+        if (isValidGitHubUrl(contributor.html_url)) {
+          link.href = contributor.html_url;
+        } else {
+          link.href = "#";
+        }
+        link.target = "_blank";
+        link.rel = "noopener";
+        link.className = "contributor-card color-" + color;
+
+        const img = document.createElement("img");
+        if (isValidAvatarUrl(contributor.avatar_url)) {
+          img.src = contributor.avatar_url;
+        }
+        img.alt = String(contributor.login).replace(/[^a-zA-Z0-9_\-]/g, "");
+        img.className = "contributor-avatar";
+
+        const info = document.createElement("div");
+        info.className = "contributor-info";
+
+        const name = document.createElement("span");
+        name.className = "contributor-name";
+        name.textContent = contributor.login;
+
+        const commits = document.createElement("span");
+        commits.className = "contributor-commits";
+        commits.textContent = Number(contributor.contributions) + " commits";
+
+        const icon = document.createElement("i");
+        icon.className = "fa-brands fa-github contributor-link";
+
+        info.appendChild(name);
+        info.appendChild(commits);
+        link.appendChild(img);
+        link.appendChild(info);
+        link.appendChild(icon);
+
+        return link;
       }
 
       function renderContributors() {
@@ -623,27 +754,20 @@
           ? allContributorsData.slice(0, visibleCount)
           : allContributorsData;
 
-        grid.innerHTML = contributorsToShow
-          .map((contributor, index) => {
-            const color = COLORS[index % COLORS.length];
-            return `
-                    <a href="${contributor.html_url}" target="_blank" rel="noopener" class="contributor-card color-${color}">
-                        <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar"/>
-                        <div class="contributor-info">
-                            <span class="contributor-name">${contributor.login}</span>
-                            <span class="contributor-commits">${contributor.contributions} commits</span>
-                        </div>
-                        <i class="fa-brands fa-github contributor-link"></i>
-                    </a>
-                `;
-          })
-          .join("");
+        grid.innerHTML = "";
+        contributorsToShow.forEach((contributor, index) => {
+          grid.appendChild(createContributorCard(contributor, index));
+        });
 
         // Show/hide the "Show More" button
         if (isMobile() && visibleCount < allContributorsData.length) {
           showMoreBtn.style.display = "flex";
           const remaining = allContributorsData.length - visibleCount;
-          showMoreBtn.innerHTML = `Show More (${remaining} remaining) <i class="fa-solid fa-chevron-down"></i>`;
+          showMoreBtn.textContent = "";
+          showMoreBtn.textContent = "Show More (" + remaining + " remaining) ";
+          const chevron = document.createElement("i");
+          chevron.className = "fa-solid fa-chevron-down";
+          showMoreBtn.appendChild(chevron);
         } else {
           showMoreBtn.style.display = "none";
         }
