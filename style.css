@@ -52,6 +52,39 @@ body {
 }
 
 /* ==========================================
+   Info Banner
+   ========================================== */
+
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.info-banner {
+  background: var(--orange);
+  color: var(--black);
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.info-banner a {
+  color: var(--black);
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.info-banner a:hover {
+  opacity: 0.8;
+}
+
+.info-banner i {
+  margin-right: 0.4rem;
+}
+
+/* ==========================================
    Header
    ========================================== */
 
@@ -62,9 +95,6 @@ header {
   padding: 1rem 2rem;
   background: var(--bg-card);
   border-bottom: var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
 }
 
 .logo {
@@ -536,7 +566,17 @@ nav a:hover::after {
 .comp-bar {
   height: 24px;
   background: #333;
+  width: 0;
+  transition: width var(--d, 1s) linear;
+}
+
+.comp-bars.animate .comp-bar {
   width: var(--w, 100%);
+}
+
+.comp-bars.no-animate .comp-bar {
+  width: var(--w, 100%);
+  transition: none;
 }
 
 .comp-item.winner .comp-bar {
