@@ -56,6 +56,9 @@
         <a href="/contributors/">Contributors</a>
         <a href="https://blog.pumpkinmc.org/">Blog</a>
       </nav>
+      <button class="burger-btn" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
       <div class="header-icons">
         <a
           href="https://github.com/Pumpkin-MC/Pumpkin"
@@ -82,6 +85,17 @@
       </div>
     </header>
     </div>
+    <script>
+      document.querySelector(".burger-btn").addEventListener("click", function () {
+        const header = document.querySelector("header");
+        const expanded = this.getAttribute("aria-expanded") === "true";
+        header.classList.toggle("nav-open");
+        this.setAttribute("aria-expanded", !expanded);
+        this.querySelector("i").className = expanded
+          ? "fa-solid fa-bars"
+          : "fa-solid fa-xmark";
+      });
+    </script>
 
     <!-- Google tag (gtag.js) -->
     <script
