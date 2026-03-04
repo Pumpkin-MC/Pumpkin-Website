@@ -447,30 +447,35 @@ nav a:hover::after {
   border-color: var(--orange);
   box-shadow: 4px 4px 0 var(--orange);
 }
+
 .feature-card.color-blue {
   background: var(--blue);
   color: var(--white);
   border-color: var(--blue);
   box-shadow: 4px 4px 0 var(--blue);
 }
+
 .feature-card.color-green {
   background: var(--green);
   color: var(--black);
   border-color: var(--green);
   box-shadow: 4px 4px 0 var(--green);
 }
+
 .feature-card.color-purple {
   background: var(--purple);
   color: var(--white);
   border-color: var(--purple);
   box-shadow: 4px 4px 0 var(--purple);
 }
+
 .feature-card.color-pink {
   background: var(--pink);
   color: var(--black);
   border-color: var(--pink);
   box-shadow: 4px 4px 0 var(--pink);
 }
+
 .feature-card.color-yellow {
   background: var(--yellow);
   color: var(--black);
@@ -481,18 +486,23 @@ nav a:hover::after {
 .feature-card.color-orange:hover {
   box-shadow: 8px 8px 0 var(--orange);
 }
+
 .feature-card.color-blue:hover {
   box-shadow: 8px 8px 0 var(--blue);
 }
+
 .feature-card.color-green:hover {
   box-shadow: 8px 8px 0 var(--green);
 }
+
 .feature-card.color-purple:hover {
   box-shadow: 8px 8px 0 var(--purple);
 }
+
 .feature-card.color-pink:hover {
   box-shadow: 8px 8px 0 var(--pink);
 }
+
 .feature-card.color-yellow:hover {
   box-shadow: 8px 8px 0 var(--yellow);
 }
@@ -626,7 +636,6 @@ nav a:hover::after {
   padding: 5rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  overflow-x: hidden;
 }
 
 table {
@@ -710,12 +719,12 @@ tbody td:first-child {
   display: inline-block;
 }
 
-.has-tooltip > i:first-child {
+.has-tooltip>i:first-child {
   position: relative;
   padding-bottom: 4px;
 }
 
-.has-tooltip > i:first-child::after {
+.has-tooltip>i:first-child::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -737,7 +746,10 @@ tbody td:first-child {
   padding: 0.75rem 1rem;
   font-size: 0.85rem;
   font-weight: 500;
-  white-space: nowrap;
+  white-space: normal;
+  width: max-content;
+  max-width: 350px;
+  text-align: center;
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease;
@@ -954,6 +966,7 @@ footer {
 }
 
 @media (max-width: 768px) {
+
   *,
   *::before,
   *::after {
@@ -1325,7 +1338,7 @@ footer {
   letter-spacing: 0.05em;
 }
 
-.download-hero > p {
+.download-hero>p {
   font-size: 1.2rem;
   color: var(--text-muted);
   margin-bottom: 3rem;
@@ -1558,9 +1571,11 @@ footer {
 .terminal-dot.red {
   background: var(--red);
 }
+
 .terminal-dot.yellow {
   background: var(--yellow);
 }
+
 .terminal-dot.green {
   background: var(--green);
 }
@@ -1658,7 +1673,7 @@ footer {
   text-align: center;
 }
 
-.contributors-hero > p {
+.contributors-hero>p {
   font-size: 1.25rem;
   color: var(--text-muted);
   margin-bottom: 2rem;
@@ -1870,22 +1885,27 @@ footer {
   border-color: var(--orange);
   box-shadow: 4px 4px 0 var(--orange);
 }
+
 .contributor-card.color-blue {
   border-color: var(--blue);
   box-shadow: 4px 4px 0 var(--blue);
 }
+
 .contributor-card.color-green {
   border-color: var(--green);
   box-shadow: 4px 4px 0 var(--green);
 }
+
 .contributor-card.color-purple {
   border-color: var(--purple);
   box-shadow: 4px 4px 0 var(--purple);
 }
+
 .contributor-card.color-pink {
   border-color: var(--pink);
   box-shadow: 4px 4px 0 var(--pink);
 }
+
 .contributor-card.color-yellow {
   border-color: var(--yellow);
   box-shadow: 4px 4px 0 var(--yellow);
@@ -1894,18 +1914,23 @@ footer {
 .contributor-card.color-orange:hover {
   box-shadow: 8px 8px 0 var(--orange);
 }
+
 .contributor-card.color-blue:hover {
   box-shadow: 8px 8px 0 var(--blue);
 }
+
 .contributor-card.color-green:hover {
   box-shadow: 8px 8px 0 var(--green);
 }
+
 .contributor-card.color-purple:hover {
   box-shadow: 8px 8px 0 var(--purple);
 }
+
 .contributor-card.color-pink:hover {
   box-shadow: 8px 8px 0 var(--pink);
 }
+
 .contributor-card.color-yellow:hover {
   box-shadow: 8px 8px 0 var(--yellow);
 }
