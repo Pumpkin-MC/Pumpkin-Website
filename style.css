@@ -147,6 +147,17 @@ nav a:hover::after {
   width: 100%;
 }
 
+.external-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.external-nav-link i {
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
 .header-icons {
   display: flex;
   align-items: center;
