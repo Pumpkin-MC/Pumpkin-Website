@@ -1408,15 +1408,28 @@ footer {
 .download-option .arch {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
 .download-option .badge {
   font-size: 0.65rem;
   padding: 2px 6px;
-  background: var(--green);
-  color: var(--black);
+  background: var(--badge-bg, var(--green));
+  color: var(--white);
   font-weight: 700;
+}
+
+.download-option .badge.badge-apple {
+  --badge-bg: var(--green);
+}
+
+.download-option .badge.badge-intel {
+  --badge-bg: var(--blue);
+}
+
+.download-option .badge.badge-amd {
+  --badge-bg: var(--red);
 }
 
 .download-option .desc {
@@ -1434,8 +1447,8 @@ footer {
 }
 
 .download-option:hover .badge {
-  background: var(--black);
-  color: var(--green);
+  background: var(--badge-bg, var(--green));
+  color: var(--white);
 }
 
 .download-note {
