@@ -270,23 +270,17 @@
                 <span class="terminal-dot yellow"></span>
                 <span class="terminal-dot green"></span>
               </div>
-              <div class="terminal-body">
-                <div class="terminal-line">
-                  <span class="prompt">$</span> ./pumpkin
+              <div
+                class="terminal-body terminal-demo"
+                id="quickstart-terminal"
+                aria-label="Animated Pumpkin startup demo"
+              >
+                <div class="terminal-line terminal-command" id="terminal-command-line">
+                  <span class="prompt">$</span>
+                  <span id="terminal-command-text"></span>
+                  <span class="terminal-cursor" aria-hidden="true"></span>
                 </div>
-                <div class="terminal-line">
-                  <span class="success">[INFO]</span> Starting Pumpkin server...
-                </div>
-                <div class="terminal-line">
-                  <span class="success">[INFO]</span> Server started in
-                  <span class="highlight">5ms</span>
-                </div>
-                <div class="terminal-line">
-                  <span class="success">[INFO]</span> Listening on 0.0.0.0:25565
-                </div>
-                <div class="terminal-line">
-                  <span class="success">[INFO]</span> Ready for connections!
-                </div>
+                <div class="terminal-output" id="terminal-output"></div>
               </div>
             </div>
           </div>
@@ -477,6 +471,139 @@
             .catch(() => {
               buildEl.textContent = "Nightly Build";
             });
+        }
+
+        const terminalRoot = document.getElementById("quickstart-terminal");
+        const terminalCommand = document.getElementById("terminal-command-line");
+        const terminalCommandText = document.getElementById("terminal-command-text");
+        const terminalOutput = document.getElementById("terminal-output");
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const terminalCommandSequence = [
+          { char: ".", delay: 130 },
+          { char: "/", delay: 120 },
+          { char: "p", delay: 155 },
+          { char: "u", delay: 145 },
+          { char: "m", delay: 210 },
+          { char: "p", delay: 150 },
+          { char: "k", delay: 95 },
+          { char: "i", delay: 82 },
+          { char: "n", delay: 74 },
+        ];
+        const terminalLogs = [
+          {
+            level: "info",
+            message: "Starting parallel world load...",
+          },
+          {
+            level: "info",
+            message: "Loading minecraft:the_nether",
+          },
+          {
+            level: "info",
+            message: "Loading minecraft:overworld",
+          },
+          {
+            level: "info",
+            message: "Loading minecraft:the_end",
+          },
+          {
+            level: "info",
+            message: "All worlds loaded successfully.",
+          },
+          {
+            level: "info",
+            message: "Query protocol is enabled. Starting...",
+          },
+          {
+            level: "info",
+            message: "Started server; took ",
+            accent: "5ms",
+          },
+          {
+            level: "info",
+            message: "Server is now running. Connect using port: Java Edition: 0.0.0.0:25565 | Bedrock Edition: 0.0.0.0:19132",
+          },
+          {
+            level: "info",
+            message: "Server query running on port 25565",
+          },
+        ];
+        let terminalRun = 0;
+        let terminalStarted = false;
+
+        function wait(ms) {
+          return new Promise((resolve) => window.setTimeout(resolve, ms));
+        }
+
+        function appendTerminalLine(entry) {
+          const line = document.createElement("div");
+          line.className = "terminal-line terminal-log";
+
+          const level = document.createElement("span");
+          level.className = "terminal-level " + entry.level;
+          level.textContent = "[" + entry.level.toUpperCase() + "] ";
+
+          const message = document.createElement("span");
+          message.className = "terminal-message";
+          message.textContent = entry.message;
+
+          line.appendChild(level);
+          line.appendChild(message);
+
+          if (entry.accent) {
+            const accent = document.createElement("span");
+            accent.className = "highlight";
+            accent.textContent = entry.accent;
+            line.appendChild(accent);
+          }
+
+          terminalOutput.appendChild(line);
+          terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+
+        function renderTerminalStatic() {
+          terminalCommandText.textContent = "./pumpkin";
+          terminalCommand.classList.add("complete");
+          terminalOutput.textContent = "";
+          terminalLogs.forEach(appendTerminalLine);
+        }
+
+        async function playTerminalDemo() {
+          terminalRun += 1;
+          const currentRun = terminalRun;
+
+          terminalCommand.classList.remove("complete");
+          terminalCommandText.textContent = "";
+          terminalOutput.textContent = "";
+
+          for (const step of terminalCommandSequence) {
+            if (currentRun !== terminalRun) return;
+            terminalCommandText.textContent += step.char;
+            await wait(step.delay);
+          }
+
+          if (currentRun !== terminalRun) return;
+          terminalCommand.classList.add("complete");
+          await wait(5);
+
+          if (currentRun !== terminalRun) return;
+          terminalLogs.forEach(appendTerminalLine);
+        }
+
+        if (prefersReducedMotion) {
+          renderTerminalStatic();
+        } else {
+          const terminalObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !terminalStarted) {
+                terminalStarted = true;
+                terminalObserver.unobserve(terminalRoot);
+                playTerminalDemo();
+              }
+            });
+          }, { threshold: 0.35 });
+
+          terminalObserver.observe(terminalRoot);
         }
       })();
     </script>
