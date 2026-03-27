@@ -13,7 +13,7 @@
     <title>For Developers - Pumpkin</title>
     <meta
       name="description"
-      content="Why developers love building on Pumpkin. No NMS pain, Packet API, Bedrock support, and more."
+      content="Why developers love building on Pumpkin. Typed commands, mutable events, Java + Bedrock support, and more."
     />
     <meta property="og:title" content="For Developers - Pumpkin" />
     <meta property="og:description" content="No NMS. No reflection. No version-specific hacks. Just clean, type-safe APIs." />
@@ -165,7 +165,7 @@
       <section class="dev-compare">
         <div class="compare-block old">
           <div class="compare-header">
-            <span class="compare-badge bad">Paper / Spigot</span>
+            <span class="compare-badge bad">Version-specific NMS</span>
           </div>
           <pre><code>// Sending a title packet
 Object packet = Class.forName("net.minecraft.server."
@@ -182,12 +182,21 @@ player.getClass().getMethod("getHandle")
         </div>
         <div class="compare-block new">
           <div class="compare-header">
-            <span class="compare-badge good">Pumpkin</span>
+            <span class="compare-badge good">Pumpkin plugin API</span>
           </div>
-          <pre><code>// Sending a title packet
-player.send_title("Hello, World!");
+          <pre><code>// Rewriting chat in a plugin
+context.register_event_handler::&lt;PlayerChatEvent, _&gt;(
+    PrefixChat,
+    EventPriority::Normal,
+    true,
+)?;
 
-// Done.</code></pre>
+impl EventHandler&lt;PlayerChatEvent&gt; for PrefixChat {
+    fn handle(&amp;self, _server: Server, mut event: PlayerChatEventData) -&gt; PlayerChatEventData {
+        event.message = format!("[Pumpkin] {}", event.message);
+        event
+    }
+}</code></pre>
         </div>
       </section>
 
@@ -204,10 +213,10 @@ player.send_title("Hello, World!");
           <div class="dev-feature-icon">
             <i class="fa-solid fa-network-wired"></i>
           </div>
-          <h3>Full Packet API</h3>
+          <h3>Typed Commands &amp; Events</h3>
           <p>
-            Send, receive, and intercept packets directly. No reflection
-            required.
+            Register commands and hook typed plugin events without reflection,
+            NMS, or version-specific hacks.
           </p>
         </div>
         <div class="dev-feature">
