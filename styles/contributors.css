@@ -1,0 +1,335 @@
+.contributors-hero {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 2rem 2rem;
+  text-align: center;
+}
+
+.contributors-hero > p {
+  margin-bottom: 2rem;
+  color: var(--color-text-muted);
+  font-size: 1.25rem;
+}
+
+.contributor-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.stat-box {
+  padding: 1.5rem 2.5rem;
+  border: var(--orange-border);
+  background: var(--color-surface);
+  box-shadow: var(--orange-shadow);
+  text-align: center;
+}
+
+.stat-num {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  color: var(--color-orange);
+  font-size: 2.5rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.stat-label {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sponsors-section {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem 2rem 3rem;
+  text-align: center;
+}
+
+.section-subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.section-subtitle i {
+  color: var(--color-pink);
+}
+
+.sponsors-desc {
+  margin-bottom: 2rem;
+  color: var(--color-text-muted);
+}
+
+.sponsor-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.sponsor-tab {
+  padding: 0.6rem 1.5rem;
+  border: 3px solid var(--color-text-muted);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-family: var(--font-base);
+  font-size: 1rem;
+  font-weight: 700;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.sponsor-tab:hover {
+  border-color: var(--color-text);
+  color: var(--color-text);
+}
+
+.sponsor-tab.active {
+  border-color: var(--color-pink);
+  background: var(--color-pink);
+  box-shadow: 4px 4px 0 var(--color-pink);
+  color: var(--color-black);
+}
+
+.sponsors-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.sponsors-grid.hidden {
+  display: none;
+}
+
+.no-sponsors {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.sponsor-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border: 3px solid var(--color-pink);
+  background: var(--color-surface);
+  box-shadow: 4px 4px 0 var(--color-pink);
+  color: var(--color-text);
+  text-decoration: none;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.sponsor-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 var(--color-pink);
+}
+
+.sponsor-card img {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--color-white);
+}
+
+.sponsor-card span {
+  font-weight: 700;
+}
+
+.sponsor-card.become-sponsor {
+  border-style: dashed;
+  color: var(--color-pink);
+}
+
+.sponsor-card.become-sponsor i,
+.sponsor-card.private-sponsor i {
+  font-size: 1.25rem;
+}
+
+.sponsor-card.private-sponsor {
+  border-style: dashed;
+  color: var(--color-text-muted);
+  cursor: default;
+}
+
+.sponsor-card.private-sponsor:hover {
+  transform: none;
+  box-shadow: 4px 4px 0 var(--color-pink);
+}
+
+.sponsor-card.private-sponsor i {
+  opacity: 0.7;
+}
+
+.contributors-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem 2rem 5rem;
+}
+
+.contributors-section .section-subtitle {
+  margin-bottom: 2rem;
+}
+
+.contributors-section .section-subtitle i {
+  color: var(--color-orange);
+}
+
+.contributors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.contributor-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 3px solid var(--accent, var(--color-orange));
+  background: var(--color-surface);
+  box-shadow: 4px 4px 0 var(--accent, var(--color-orange));
+  color: var(--color-text);
+  text-decoration: none;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.contributor-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 var(--accent, var(--color-orange));
+}
+
+.contributor-avatar {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--color-white);
+}
+
+.contributor-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.contributor-name {
+  display: block;
+  overflow: hidden;
+  font-size: 1rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contributor-commits {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.contributor-link {
+  color: var(--color-text-muted);
+  font-size: 1.25rem;
+  transition: color 0.15s ease;
+}
+
+.contributor-card:hover .contributor-link {
+  color: var(--color-text);
+}
+
+.show-more-btn {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.loading-state,
+.error-state {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+}
+
+.loading-state i,
+.error-state i {
+  color: var(--color-orange);
+  font-size: 2rem;
+}
+
+.error-state i {
+  color: var(--color-red);
+}
+
+@media (max-width: 1024px) {
+  .contributors-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .contributors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contributor-avatar,
+  .sponsor-card img {
+    display: none;
+  }
+
+  .contributor-card {
+    padding: 0.75rem 1rem;
+  }
+
+  .sponsor-card {
+    padding: 0.5rem 1rem;
+  }
+
+  .contributor-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .stat-box {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contributors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contributor-card {
+    padding: 0.85rem 1rem;
+  }
+}

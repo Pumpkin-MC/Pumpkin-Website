@@ -1,0 +1,252 @@
+.dev-hero {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.dev-hero-content {
+  display: grid;
+}
+
+.dev-hero h1 {
+  margin-bottom: 1.5rem;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.dev-hero .highlight {
+  display: inline-block;
+  padding: 0 0.25em;
+  border: 2px solid var(--color-orange);
+  background: var(--color-orange);
+  color: var(--color-black);
+  transform: rotate(-1deg);
+}
+
+.dev-hero p {
+  margin-bottom: 2rem;
+  color: var(--color-text-muted);
+  font-size: 1.25rem;
+}
+
+.dev-hero .strikethrough {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.dev-hero-btns {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dev-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+
+.compare-block {
+  overflow: hidden;
+  border: 3px solid var(--compare-color, var(--color-orange));
+  background: var(--color-surface);
+  box-shadow: 4px 4px 0 var(--compare-color, var(--color-orange));
+}
+
+.compare-block.old {
+  --compare-color: var(--color-red);
+}
+
+.compare-block.new {
+  --compare-color: var(--color-green);
+  box-shadow: 6px 6px 0 var(--compare-color);
+}
+
+.compare-header {
+  padding: 0.75rem 1.25rem;
+}
+
+.compare-badge {
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.compare-badge.bad,
+.compare-badge.good {
+  color: var(--color-black);
+}
+
+.compare-badge.bad {
+  background: var(--color-red);
+}
+
+.compare-badge.good {
+  background: var(--color-green);
+}
+
+.compare-block pre {
+  overflow-x: auto;
+  margin: 0;
+  padding: 1.5rem;
+  border-top: 2px solid var(--compare-color, var(--color-orange));
+}
+
+.compare-block code {
+  color: var(--color-text-muted);
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.dev-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+
+.dev-feature {
+  padding: 1.75rem;
+  border: var(--orange-border);
+  background: var(--color-surface);
+  box-shadow: var(--orange-shadow);
+  text-align: center;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.dev-feature:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--orange-shadow-hover);
+}
+
+.dev-feature-icon {
+  margin-bottom: 1rem;
+  color: var(--color-orange);
+  font-size: 2rem;
+}
+
+.dev-feature h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.dev-feature p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.dev-stats {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding: 3rem 2rem;
+  border-top: var(--orange-border);
+  border-bottom: var(--orange-border);
+  background: var(--color-orange);
+}
+
+.dev-stat {
+  text-align: center;
+}
+
+.dev-stat-val {
+  display: block;
+  color: var(--color-black);
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.dev-stat-label {
+  color: var(--color-black);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.dev-cta {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.dev-cta h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.dev-cta-btns {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .dev-compare {
+    grid-template-columns: 1fr;
+  }
+
+  .dev-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dev-hero {
+    padding: 3rem 1.5rem;
+  }
+
+  .dev-hero h1 {
+    font-size: 2.25rem;
+  }
+
+  .dev-hero-btns,
+  .dev-cta-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dev-hero-btns .btn,
+  .dev-cta-btns .btn {
+    justify-content: center;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .dev-features {
+    grid-template-columns: 1fr;
+    padding: 0 1.5rem 3rem;
+  }
+
+  .dev-stats {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .dev-stat-val {
+    font-size: 2.5rem;
+  }
+
+  .dev-cta h2 {
+    font-size: 1.75rem;
+  }
+}
