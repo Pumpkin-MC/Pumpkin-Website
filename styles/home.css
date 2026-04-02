@@ -1,0 +1,623 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+.hero-left {
+  position: relative;
+}
+
+.hero-badge {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  padding: 0.4rem 1rem;
+  border: 3px solid var(--color-green);
+  background: var(--color-green);
+  box-shadow: 4px 4px 0 var(--color-green);
+  color: var(--color-black);
+  font-size: 0.85rem;
+  font-weight: 800;
+  transform: rotate(-2deg);
+}
+
+.hero h1 {
+  margin-bottom: 1.5rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.hero .highlight {
+  display: inline-block;
+  padding: 0 0.3em;
+  border: 2px solid var(--color-orange);
+  background: var(--color-orange);
+  color: var(--color-black);
+  transform: rotate(-1deg);
+}
+
+.hero p {
+  max-width: 500px;
+  margin-bottom: 2rem;
+  color: var(--color-text-muted);
+  font-size: 1.25rem;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hero-right {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-card {
+  padding: 2.5rem;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+}
+
+.hero-logo {
+  width: 350px;
+  margin-bottom: 2rem;
+  transform: rotate(5deg);
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.hero-stat {
+  padding: 1rem;
+  border: var(--white-border);
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.hero-stat .num {
+  display: block;
+  color: var(--color-orange);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.hero-stat .label {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.features {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.feature-card {
+  position: relative;
+  padding: 2rem;
+  border: 3px solid var(--accent, var(--color-orange));
+  background: var(--accent, var(--color-orange));
+  box-shadow: 4px 4px 0 var(--accent, var(--color-orange));
+  color: var(--accent-text, var(--color-black));
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.feature-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 var(--accent, var(--color-orange));
+}
+
+.feature-number {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 3rem;
+  font-weight: 800;
+  opacity: 0.3;
+}
+
+.feature-card h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.comparison {
+  padding: 5rem 2rem;
+  border-top: var(--orange-border);
+  border-bottom: var(--orange-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.comp-card {
+  padding: 2rem;
+  border: var(--orange-border);
+  background: var(--color-bg);
+  box-shadow: var(--orange-shadow);
+  color: var(--color-text);
+}
+
+.comp-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.comp-card h3 i {
+  color: var(--color-orange);
+}
+
+.comp-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comp-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 70px;
+  align-items: center;
+  gap: 1rem;
+}
+
+.comp-name,
+.comp-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.comp-value {
+  font-weight: 800;
+  text-align: right;
+}
+
+.comp-bar {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  overflow: hidden;
+}
+
+.comp-bar::before,
+.comp-bar::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+}
+
+.comp-bar::before {
+  background: #333333;
+}
+
+.comp-bar::after {
+  width: max(var(--bar-width, 100%), var(--bar-min-width, 0px));
+  background: #555555;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--bar-duration, 1s) linear;
+}
+
+.comp-bars.animate .comp-bar::after,
+.comp-bars.no-animate .comp-bar::after {
+  transform: scaleX(1);
+}
+
+.comp-bars.no-animate .comp-bar::after {
+  transition: none;
+}
+
+.comp-item.winner .comp-bar::after {
+  background: var(--color-orange);
+}
+
+.comp-item.winner .comp-value {
+  color: var(--color-orange);
+}
+
+.table-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: var(--orange-border);
+  background: var(--color-surface);
+}
+
+th,
+td {
+  padding: 1rem;
+  border: 2px solid var(--color-orange);
+  text-align: center;
+}
+
+thead th {
+  background: var(--color-orange);
+  color: var(--color-black);
+  font-weight: 700;
+}
+
+thead th img {
+  position: relative;
+  top: -2px;
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+thead th:first-child {
+  width: 40%;
+  text-align: left;
+}
+
+thead th:not(:first-child) {
+  width: 15%;
+}
+
+.col-pumpkin {
+  background: rgb(255 107 44 / 0.2);
+  color: var(--color-orange);
+}
+
+thead .col-pumpkin {
+  background: var(--color-orange);
+  color: var(--color-text);
+}
+
+tbody td:first-child {
+  background: var(--color-bg);
+  font-weight: 600;
+  text-align: left;
+}
+
+.check,
+.check-icon {
+  color: var(--color-green);
+  font-size: 1.25rem;
+}
+
+.cross,
+.cross-icon {
+  color: var(--color-red);
+  font-size: 1.25rem;
+}
+
+.partial,
+.warning-icon {
+  color: var(--color-yellow);
+  font-size: 1.25rem;
+}
+
+.has-tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.has-tooltip > i:first-child {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.has-tooltip > i:first-child::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 60%;
+  height: 1px;
+  background: var(--color-text-muted);
+  content: "";
+  transform: translateX(-50%);
+}
+
+.has-tooltip .tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: max-content;
+  max-width: 350px;
+  margin-bottom: 8px;
+  padding: 0.75rem 1rem;
+  border: 3px solid var(--color-orange);
+  background: var(--color-surface);
+  box-shadow: 4px 4px 0 var(--color-orange);
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  white-space: normal;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%);
+  transition:
+    opacity 0.15s ease,
+    visibility 0.15s ease;
+  z-index: 100;
+}
+
+.has-tooltip .tooltip::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  border: 8px solid transparent;
+  border-top-color: var(--color-orange);
+  content: "";
+  transform: translateX(-50%);
+}
+
+.has-tooltip:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.has-tooltip .tooltip a {
+  color: var(--color-orange);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.has-tooltip .tooltip a:hover {
+  color: var(--color-white);
+}
+
+tbody .col-pumpkin .check,
+tbody .col-pumpkin .check-icon {
+  color: var(--color-green);
+}
+
+.category-row td {
+  padding: 0.85rem 1rem;
+  background: var(--color-orange) !important;
+  color: var(--color-black);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-align: left !important;
+  text-transform: uppercase;
+}
+
+.category-row td i {
+  margin-right: 0.5rem;
+}
+
+tbody td:first-child strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.feature-desc {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .hero-left {
+    order: 2;
+  }
+
+  .hero-right {
+    order: 1;
+  }
+
+  .hero p {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 3rem 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-buttons .btn {
+    justify-content: center;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .table-section {
+    padding: 3rem 0.5rem;
+  }
+
+  .table-section table {
+    border-left: 0;
+    border-right: 0;
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.5rem 0.25rem;
+  }
+
+  thead th {
+    padding: 0.5rem 0.2rem;
+    font-size: 0.6rem;
+  }
+
+  thead th:first-child {
+    width: 30%;
+  }
+
+  thead th:not(:first-child) {
+    width: 17.5%;
+  }
+
+  thead th img {
+    display: none;
+  }
+
+  tbody td:first-child {
+    padding: 0.5rem 0.4rem;
+  }
+
+  tbody td:first-child strong {
+    font-size: 0.65rem;
+    line-height: 1.3;
+  }
+
+  .feature-desc {
+    display: none;
+  }
+
+  .check-icon,
+  .cross-icon,
+  .warning-icon {
+    font-size: 0.9rem;
+  }
+
+  .has-tooltip {
+    position: static;
+  }
+
+  .table-section tbody {
+    position: relative;
+  }
+
+  .has-tooltip .tooltip {
+    position: fixed;
+    right: 0.5rem !important;
+    bottom: 1rem !important;
+    left: 0.5rem !important;
+    top: auto !important;
+    width: calc(100vw - 1rem);
+    max-width: none;
+    margin-bottom: 0;
+    padding: 0.5rem;
+    font-size: 0.7rem;
+    transform: none !important;
+  }
+
+  .has-tooltip .tooltip::after {
+    display: none;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .comp-item {
+    grid-template-columns: 60px 1fr 60px;
+    gap: 0.5rem;
+  }
+
+  .comp-name,
+  .comp-value {
+    font-size: 0.8rem;
+  }
+
+  .table-section {
+    padding: 2rem 0.25rem;
+  }
+
+  .table-section table {
+    font-size: 0.6rem;
+  }
+
+  th,
+  td {
+    padding: 0.4rem 0.15rem;
+  }
+
+  thead th {
+    padding: 0.4rem 0.1rem;
+    font-size: 0.55rem;
+  }
+
+  tbody td:first-child strong {
+    font-size: 0.6rem;
+  }
+
+  .check-icon,
+  .cross-icon,
+  .warning-icon {
+    font-size: 0.8rem;
+  }
+}

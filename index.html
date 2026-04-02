@@ -22,7 +22,8 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/common.css" />
+    <link rel="stylesheet" href="styles/home.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -248,17 +249,26 @@
             <div class="comp-bars">
               <div class="comp-item winner">
                 <span class="comp-name">Pumpkin</span>
-                <div class="comp-bar" style="--w: 2%; --d: 0.005s"></div>
+                <div
+                  class="comp-bar"
+                  style="--bar-width: 0.0333%; --bar-duration: 0.005s; --bar-min-width: 12px"
+                ></div>
                 <span class="comp-value">~5ms</span>
               </div>
               <div class="comp-item">
                 <span class="comp-name">Paper</span>
-                <div class="comp-bar" style="--w: 67%; --d: 10s"></div>
+                <div
+                  class="comp-bar"
+                  style="--bar-width: 66.6667%; --bar-duration: 10s"
+                ></div>
                 <span class="comp-value">~10s</span>
               </div>
               <div class="comp-item">
                 <span class="comp-name">Vanilla</span>
-                <div class="comp-bar" style="--w: 100%; --d: 15s"></div>
+                <div
+                  class="comp-bar"
+                  style="--bar-width: 100%; --bar-duration: 15s"
+                ></div>
                 <span class="comp-value">~15s</span>
               </div>
             </div>
@@ -269,17 +279,17 @@
             <div class="comp-bars no-animate">
               <div class="comp-item winner">
                 <span class="comp-name">Pumpkin</span>
-                <div class="comp-bar" style="--w: 5%"></div>
+                <div class="comp-bar" style="--bar-width: 5.5556%"></div>
                 <span class="comp-value">~100MB</span>
               </div>
               <div class="comp-item">
                 <span class="comp-name">Paper</span>
-                <div class="comp-bar" style="--w: 78%"></div>
+                <div class="comp-bar" style="--bar-width: 77.7778%"></div>
                 <span class="comp-value">~1.4GB</span>
               </div>
               <div class="comp-item">
                 <span class="comp-name">Vanilla</span>
-                <div class="comp-bar" style="--w: 100%"></div>
+                <div class="comp-bar" style="--bar-width: 100%"></div>
                 <span class="comp-value">~1.8GB</span>
               </div>
             </div>

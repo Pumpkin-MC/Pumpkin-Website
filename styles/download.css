@@ -1,0 +1,478 @@
+.download-hero {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.download-hero .section-title {
+  margin-bottom: 1rem;
+}
+
+.download-hero > p {
+  margin-bottom: 3rem;
+  color: var(--color-text-muted);
+  font-size: 1.2rem;
+}
+
+.auto-download {
+  margin: 3rem 0 4rem;
+}
+
+.btn-xl {
+  gap: 1rem;
+  padding: 1.5rem 3rem;
+  font-size: 1.35rem;
+}
+
+.btn-xl i:first-child {
+  font-size: 1.5rem;
+}
+
+.auto-download-meta {
+  margin-top: 1rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.auto-download-meta a {
+  color: var(--color-orange);
+  font-family: "SF Mono", "Fira Code", monospace;
+  text-decoration: none;
+}
+
+.auto-download-meta a:hover,
+.auto-download-alt a:hover,
+.download-note a:hover,
+.download-info a:hover {
+  text-decoration: underline;
+}
+
+.auto-download-alt {
+  margin-top: 0.75rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.auto-download-alt a,
+.download-note a,
+.download-info a {
+  color: var(--color-orange);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.downloads-heading {
+  margin-bottom: 2rem;
+  color: var(--color-text-muted);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.download-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.download-card {
+  padding: 2rem;
+  border: var(--orange-border);
+  background: var(--color-surface);
+  box-shadow: var(--orange-shadow);
+  text-align: left;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.download-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--orange-shadow-hover);
+}
+
+.download-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-orange);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.download-card h3 i {
+  color: var(--color-orange);
+  font-size: 1.5rem;
+}
+
+.download-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.download-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  border: 2px solid var(--color-orange);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    border-color 0.1s ease,
+    background-color 0.1s ease,
+    color 0.1s ease;
+}
+
+.download-option:hover {
+  background: var(--color-orange);
+  color: var(--color-black);
+}
+
+.download-option .arch {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.download-option .badge {
+  padding: 2px 6px;
+  background: var(--badge-color, var(--color-green));
+  color: var(--color-white);
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.download-option .badge.badge-apple {
+  --badge-color: var(--color-green);
+}
+
+.download-option .badge.badge-intel {
+  --badge-color: var(--color-blue);
+}
+
+.download-option .badge.badge-amd {
+  --badge-color: var(--color-red);
+}
+
+.download-option .desc {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.download-option i {
+  color: var(--color-orange);
+  transition: color 0.1s ease;
+}
+
+.download-option:hover i {
+  color: var(--color-black);
+}
+
+.download-option:hover .badge {
+  background: var(--badge-color, var(--color-green));
+  color: var(--color-white);
+}
+
+.download-note {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.download-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  padding: 1.25rem 1.5rem;
+  border: 3px solid var(--color-blue);
+  background: var(--color-surface);
+  box-shadow: 4px 4px 0 var(--color-blue);
+  text-align: left;
+}
+
+.download-info i {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--color-blue);
+  font-size: 1.25rem;
+}
+
+.download-info p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.download-info strong {
+  color: var(--color-text);
+}
+
+.quickstart {
+  padding: 6rem 2rem;
+  border-top: var(--orange-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.quickstart-content {
+  display: grid;
+  grid-template-columns: minmax(380px, 1fr) minmax(0, 680px);
+  align-items: center;
+  gap: 4rem;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+.quickstart-text {
+  max-width: 500px;
+}
+
+.quickstart-text h2 {
+  margin-bottom: 1rem;
+  color: var(--color-orange);
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.quickstart-text p {
+  margin-bottom: 2rem;
+  color: var(--color-text-muted);
+  font-size: 1.15rem;
+}
+
+.quickstart-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.quickstart .btn-primary {
+  color: var(--color-black);
+}
+
+.quickstart .btn-secondary {
+  border-color: var(--color-text);
+  box-shadow: 4px 4px 0 var(--color-text);
+  color: var(--color-text);
+}
+
+.quickstart-visual {
+  justify-self: start;
+  width: 100%;
+  max-width: 680px;
+}
+
+.terminal {
+  width: 100%;
+  overflow: hidden;
+  border: var(--orange-border);
+  background: var(--color-bg);
+}
+
+.terminal-header {
+  display: flex;
+  gap: 8px;
+  padding: 1rem;
+  border-bottom: 2px solid var(--color-orange);
+  background: rgb(255 107 44 / 0.1);
+}
+
+.terminal-dot {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--color-bg);
+  border-radius: 0;
+}
+
+.terminal-dot.red {
+  background: var(--color-red);
+}
+
+.terminal-dot.yellow {
+  background: var(--color-yellow);
+}
+
+.terminal-dot.green {
+  background: var(--color-green);
+}
+
+.terminal-body {
+  padding: 1.5rem;
+  color: var(--color-text);
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 0.9rem;
+}
+
+.terminal-demo {
+  display: flex;
+  flex-direction: column;
+  height: 380px;
+}
+
+.terminal-line {
+  margin-bottom: 0.5rem;
+}
+
+.terminal-command {
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.terminal-command .prompt,
+.terminal-line .prompt {
+  margin-right: 0.35rem;
+  color: var(--color-orange);
+  font-weight: 700;
+}
+
+.terminal-command.complete .terminal-cursor {
+  display: none;
+}
+
+.terminal-output {
+  flex: 1;
+  min-height: 0;
+  max-height: 305px;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+.terminal-output::-webkit-scrollbar {
+  display: none;
+}
+
+.terminal-log {
+  color: var(--color-text-muted);
+  line-height: 1.45;
+  animation: terminal-line-enter 0.16s ease;
+}
+
+.terminal-level {
+  font-weight: 800;
+}
+
+.terminal-level.info,
+.terminal-line .success {
+  color: var(--color-green);
+}
+
+.terminal-level.warn,
+.terminal-line .highlight {
+  color: var(--color-yellow);
+  font-weight: 700;
+}
+
+.terminal-message {
+  color: var(--color-text);
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 0.7ch;
+  height: 1.15em;
+  background: var(--color-orange);
+  animation: terminal-cursor-blink 0.9s steps(1, end) infinite;
+}
+
+@keyframes terminal-cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes terminal-line-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .download-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-xl {
+    padding: 1.25rem 2rem;
+    font-size: 1.15rem;
+  }
+
+  .quickstart-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .quickstart-buttons {
+    justify-content: center;
+  }
+
+  .quickstart-visual {
+    justify-self: center;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-xl {
+    justify-content: center;
+    width: 100%;
+    max-width: 320px;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .auto-download {
+    margin: 2rem 0 3rem;
+  }
+
+  .download-info {
+    flex-direction: column;
+  }
+
+  .quickstart-text h2 {
+    font-size: 2rem;
+  }
+
+  .quickstart-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .quickstart-buttons .btn {
+    justify-content: center;
+    width: 100%;
+    max-width: 280px;
+  }
+}
