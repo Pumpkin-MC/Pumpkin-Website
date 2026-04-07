@@ -11,6 +11,44 @@
   font-size: 1.25rem;
 }
 
+/* Tier Headers */
+.tier-group { margin-bottom: 4rem; }
+.tier-header {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* Tier Specific Visuals */
+.tier-titanium .tier-header i { color: #d1d8e0; text-shadow: 0 0 10px rgba(209, 216, 224, 0.5); }
+.tier-titanium .sponsor-card { 
+  border-color: #d1d8e0; 
+  box-shadow: 6px 6px 0 #d1d8e0; 
+  background: linear-gradient(145deg, rgba(209, 216, 224, 0.05), transparent);
+}
+
+.tier-silver .tier-header i { color: #a5b1c2; }
+.tier-bronze .tier-header i { color: #cd7f32; }
+
+/* Grid Hierarchy */
+.tier-grid-titanium { 
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+  margin-bottom: 3rem;
+}
+
+/* Visibility Fix */
+.hidden { display: none !important; }
+
+/* Grid adjustments for size hierarchy */
+.tier-grid-large { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.tier-grid-standard { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
 .contributor-stats {
   display: flex;
   justify-content: center;
