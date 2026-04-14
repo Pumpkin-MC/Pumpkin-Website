@@ -97,6 +97,12 @@
         >
           <i class="fa-brands fa-discord"></i>
         </a>
+        <a href="https://x.com/pumpkinmcdev" class="icon-btn" title="X (Twitter)">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://www.youtube.com/@PumpkinServer" class="icon-btn" title="YouTube">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
         <a
           href="https://github.com/sponsors/Pumpkin-MC"
           class="sponsor-btn"
@@ -254,6 +260,128 @@ impl EventHandler&lt;PlayerChatEvent&gt; for PrefixChat {
         </div>
       </section>
 
+      <section class="dev-guide">
+        <div class="guide-container">
+          <div class="guide-header">
+            <h2>Quick Start Guide</h2>
+            <div class="lang-selector">
+              <button class="lang-btn active" data-lang="rust">
+                <i class="fa-brands fa-rust"></i> Rust
+              </button>
+              <button class="lang-btn" data-lang="python">
+                <i class="fa-brands fa-python"></i> Python
+              </button>
+            </div>
+          </div>
+
+          <div id="rust-guide" class="guide-content active">
+            <div class="guide-step">
+              <h3>Creating a new project</h3>
+              <p>Pumpkin plugins use the Cargo build system.</p>
+              <p>The complete code for this plugin can be found as a <a href="https://github.com/Pumpkin-MC/pumpkin-rust-template">template on GitHub</a>.</p>
+            </div>
+
+            <div class="guide-step">
+              <h3>Installing the toolchain</h3>
+              <p>Before we can compile a plugin, we have to have the <code>wasm32-wasip2</code> target installed. You can install the target by running:</p>
+              <pre><code>rustup target add wasm32-wasip2</code></pre>
+            </div>
+
+            <div class="guide-step">
+              <h3>Initializing a new crate</h3>
+              <p>First we need to create a new project folder. You can do this by running this command in the folder you created:</p>
+              <pre><code>cargo new &lt;project-name&gt; --lib</code></pre>
+              <p>After adding this, we want to create a new directory called <code>.cargo</code> and add in a <code>config.toml</code> file with the following contents:</p>
+              <pre><code>[build]
+target = "wasm32-wasip2"</code></pre>
+              <p>Altogether your new folder structure should look like this:</p>
+              <pre><code>├── .cargo/
+│   └── config.toml
+├── src/
+│   └── lib.rs
+├── Cargo.toml
+└── Cargo.lock</code></pre>
+            </div>
+
+            <div class="guide-step">
+              <h3>Configuring the crate</h3>
+              <p>Since Pumpkin plugins are loaded at runtime as dynamic libraries, we need to tell Cargo to build this crate as one.</p>
+              <p><strong>Cargo.toml</strong></p>
+              <pre><code>[package]
+name = "hello-pumpkin-wasm"
+version = "0.1.0"
+edition = "2024"
+
+[lib] 
+crate-type = ["cdylib"]
+
+[dependencies]</code></pre>
+              <p>Next we need to add some basic dependencies. Since Pumpkin is still in early development, the internal crates aren't published to crates.io, so we need to tell Cargo to download the dependencies directly from GitHub.</p>
+              <p><strong>Cargo.toml</strong></p>
+              <pre><code>[package]
+name = "hello-pumpkin"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+# This is the api crate that makes creating plugins easier, and has wit definitions
+pumpkin-plugin-api = { version = "0.1.0", git = "https://github.com/Pumpkin-MC/Pumpkin", package = "pumpkin-plugin-api" }
+tracing = "0.1"</code></pre>
+            </div>
+            <p class="guide-more">Refer to the <a href="https://docs.pumpkinmc.org/plugin-dev/rust/creating-project">documentation</a> for more.</p>
+          </div>
+
+          <div id="python-guide" class="guide-content">
+            <div class="guide-step">
+              <h3>Installation</h3>
+              <p>First, you need to install the <code>pumpkin-api-py</code> library:</p>
+              <pre><code>pip install pumpkin-api-py</code></pre>
+            </div>
+
+            <div class="guide-step">
+              <h3>Creating your first plugin</h3>
+              <p>Create a file named <code>main.py</code> and add the following content:</p>
+              <pre><code>from pumpkin_api import (
+    Plugin, PluginMetadata, register_plugin, 
+    server, event, command, text, context
+)
+
+class MyPlugin(Plugin):
+    def metadata(self) -> PluginMetadata:
+        return PluginMetadata(
+            name="my-plugin",
+            version="0.1.0",
+            authors=["you"],
+            description="An example plugin."
+        )
+
+    def on_load(self, ctx: context.Context) -> None:
+        print("Python plugin loaded!")
+        
+        # Register an event handler
+        self.register_event(ctx, event.EventType.PLAYER_JOIN_EVENT, self.on_player_join)
+
+    def on_player_join(self, srv: server.Server, evt: event.PlayerJoinEventData) -> event.PlayerJoinEventData:
+        print(f"Player {evt.player.get_name()} joined!")
+        return evt
+
+register_plugin(MyPlugin)</code></pre>
+            </div>
+
+            <div class="guide-step">
+              <h3>Building the plugin</h3>
+              <p>Build your plugin into a WebAssembly component using the provided build tool:</p>
+              <pre><code>pumpkin-api-build main -o my_plugin.wasm</code></pre>
+              <p>This will generate a <code>my_plugin.wasm</code> file that you can place in the plugins folder of your Pumpkin server.</p>
+            </div>
+            <p class="guide-more">Refer to the <a href="https://docs.pumpkinmc.org/plugin-dev/python/quick-start">documentation</a> for more.</p>
+          </div>
+        </div>
+      </section>
+
       <section class="dev-cta">
         <h2>Ready to build?</h2>
         <div class="dev-cta-btns">
@@ -281,10 +409,26 @@ impl EventHandler&lt;PlayerChatEvent&gt; for PrefixChat {
           <a href="https://docs.pumpkinmc.org/">Documentation</a>
           <a href="https://github.com/Pumpkin-MC">GitHub</a>
           <a href="https://discord.gg/pumpkinmc">Discord</a>
+          <a href="https://x.com/pumpkinmcdev">X</a>
+          <a href="https://www.youtube.com/@PumpkinServer">YouTube</a>
           <a href="https://github.com/sponsors/Pumpkin-MC">Sponsor</a>
         </div>
       </div>
       <div class="footer-bottom">Made with ❤️ by <a href="https://marshall.dev" target="_blank" rel="noopener">purdze</a> · Licensed under GPL</div>
     </footer>
+    <script>
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const lang = btn.getAttribute("data-lang");
+          document.querySelectorAll(".lang-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          document.querySelectorAll(".guide-content").forEach((content) => {
+            content.classList.remove("active");
+          });
+          document.getElementById(`${lang}-guide`).classList.add("active");
+        });
+      });
+    </script>
   </body>
 </html>
