@@ -271,6 +271,9 @@ impl EventHandler&lt;PlayerChatEvent&gt; for PrefixChat {
               <button class="lang-btn" data-lang="python">
                 <i class="fa-brands fa-python"></i> Python
               </button>
+              <button class="lang-btn" data-lang="c">
+                <i class="fa-solid fa-c"></i> C/C++
+              </button>
             </div>
           </div>
 
@@ -378,6 +381,57 @@ register_plugin(MyPlugin)</code></pre>
               <p>This will generate a <code>my_plugin.wasm</code> file that you can place in the plugins folder of your Pumpkin server.</p>
             </div>
             <p class="guide-more">Refer to the <a href="https://docs.pumpkinmc.org/plugin-dev/python/quick-start">documentation</a> for more.</p>
+          </div>
+
+          <div id="c-guide" class="guide-content">
+            <div class="guide-step">
+              <h3>Installation</h3>
+              <p>You will need the <code>wasi-sdk</code> to compile C/C++ plugins for Pumpkin. Download the latest release from the <a href="https://github.com/WebAssembly/wasi-sdk/releases">wasi-sdk repository</a>.</p>
+              <p>The complete code for this plugin can be found in the <a href="https://github.com/Pumpkin-MC/pumpkin-api-c">pumpkin-api-c repository</a>.</p>
+            </div>
+
+            <div class="guide-step">
+              <h3>Creating your first plugin</h3>
+              <p>Create a file named <code>main.c</code> and add the following content:</p>
+              <pre><code>#include "pumpkin_api.h"
+#include &lt;stdio.h&gt;
+
+// Define the plugin's metadata
+pumpkin_metadata_t get_meta(void) {
+    static const char* authors[] = {"you"};
+    return (pumpkin_metadata_t) {
+        .name = "my-c-plugin",
+        .version = "0.1.0",
+        .authors = authors,
+        .authors_count = 1,
+        .description = "A simple C plugin for Pumpkin",
+        .dependencies_count = 0
+    };
+}
+
+// Callback executed when the plugin is loaded
+void on_load(plugin_own_context_t ctx) {
+    printf("C plugin loaded!\n");
+}
+
+// Register the plugin with the API
+REGISTER_PUMPKIN_PLUGIN(((pumpkin_plugin_t){
+    .get_metadata = get_meta,
+    .on_load = on_load
+}))</code></pre>
+            </div>
+
+            <div class="guide-step">
+              <h3>Building the plugin</h3>
+              <p>To compile this plugin into a WebAssembly component, use <code>clang</code> from the <code>wasi-sdk</code>:</p>
+              <pre><code>/path/to/wasi-sdk/bin/clang -O3 \
+ -Iinclude -Isrc/gen \
+ src/gen/plugin.c src/pumpkin_api.c main.c \
+ -o my_plugin.wasm \
+ -mexec-model=reactor</code></pre>
+              <p>This will generate a <code>my_plugin.wasm</code> file that can be loaded by Pumpkin.</p>
+            </div>
+            <p class="guide-more">Refer to the <a href="https://github.com/Pumpkin-MC/pumpkin-api-c">GitHub repository</a> for more.</p>
           </div>
         </div>
       </section>
