@@ -271,6 +271,9 @@ impl EventHandler&lt;PlayerChatEvent&gt; for PrefixChat {
               <button class="lang-btn" data-lang="python">
                 <i class="fa-brands fa-python"></i> Python
               </button>
+              <button class="lang-btn" data-lang="csharp">
+                <i class="fa-solid fa-hashtag"></i> C#
+              </button>
               <button class="lang-btn" data-lang="c">
                 <i class="fa-solid fa-c"></i> C/C++
               </button>
@@ -381,6 +384,41 @@ register_plugin(MyPlugin)</code></pre>
               <p>This will generate a <code>my_plugin.wasm</code> file that you can place in the plugins folder of your Pumpkin server.</p>
             </div>
             <p class="guide-more">Refer to the <a href="https://docs.pumpkinmc.org/plugin-dev/python/quick-start">documentation</a> for more.</p>
+          </div>
+
+          <div id="csharp-guide" class="guide-content">
+            <div class="guide-step">
+              <h3>Installation</h3>
+              <p>You will need the <code>.NET SDK</code> and the WASI workload to compile C# plugins for Pumpkin.</p>
+              <pre><code>dotnet workload install wasi-experimental</code></pre>
+            </div>
+
+            <div class="guide-step">
+              <h3>Creating your first plugin</h3>
+              <p>Create a new class library and add the following code:</p>
+              <pre><code>using Pumpkin.API;
+
+public class MyPlugin : IPlugin {
+    public PluginMetadata GetMetadata() => new() {
+        Name = "my-csharp-plugin",
+        Version = "0.1.0",
+        Authors = new[] { "you" },
+        Description = "A simple C# plugin for Pumpkin"
+    };
+
+    public void OnLoad(IContext ctx) {
+        Console.WriteLine("C# plugin loaded!");
+    }
+}</code></pre>
+            </div>
+
+            <div class="guide-step">
+              <h3>Building the plugin</h3>
+              <p>Compile the plugin to WebAssembly using the WASI runtime identifier:</p>
+              <pre><code>dotnet build -c Release /p:RuntimeIdentifier=wasi-wasm</code></pre>
+              <p>This will generate a <code>.wasm</code> file in your output directory that can be loaded by Pumpkin.</p>
+            </div>
+            <p class="guide-more">Refer to the <a href="https://docs.pumpkinmc.org/plugin-dev/csharp/quick-start">documentation</a> for more.</p>
           </div>
 
           <div id="c-guide" class="guide-content">
