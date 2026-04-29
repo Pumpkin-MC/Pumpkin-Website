@@ -277,6 +277,9 @@ impl EventHandler&lt;PlayerChatEvent&gt; for PrefixChat {
               <button class="lang-btn" data-lang="c">
                 <i class="fa-solid fa-c"></i> C/C++
               </button>
+              <button class="lang-btn" data-lang="go">
+                <i class="fa-brands fa-golang"></i> Go
+              </button>
             </div>
           </div>
 
@@ -470,6 +473,52 @@ REGISTER_PUMPKIN_PLUGIN(((pumpkin_plugin_t){
               <p>This will generate a <code>my_plugin.wasm</code> file that can be loaded by Pumpkin.</p>
             </div>
             <p class="guide-more">Refer to the <a href="https://github.com/Pumpkin-MC/pumpkin-api-c">GitHub repository</a> for more.</p>
+          </div>
+
+          <div id="go-guide" class="guide-content">
+            <div class="guide-step">
+              <h3>Installation</h3>
+              <p>You will need <a href="https://go.dev/doc/install">Go 1.23 or later</a> and <code>tinygo</code> to compile Go plugins for Pumpkin.</p>
+              <pre><code>brew tap tinygo-org/tools && brew install tinygo</code></pre>
+            </div>
+
+            <div class="guide-step">
+              <h3>Creating your first plugin</h3>
+              <p>Create a file named <code>main.go</code> and add the following content:</p>
+              <pre><code>package main
+
+import (
+    "fmt"
+    "github.com/pumpkin-mc/pumpkin-api-go"
+)
+
+type MyPlugin struct{}
+
+func (p *MyPlugin) Metadata() pumpkin.PluginMetadata {
+    return pumpkin.PluginMetadata{
+        Name:        "my-go-plugin",
+        Version:     "0.1.0",
+        Authors:     []string{"you"},
+        Description: "A simple Go plugin for Pumpkin",
+    }
+}
+
+func (p *MyPlugin) OnLoad(ctx pumpkin.Context) {
+    fmt.Println("Go plugin loaded!")
+}
+
+func main() {
+    pumpkin.RegisterPlugin(&MyPlugin{})
+}</code></pre>
+            </div>
+
+            <div class="guide-step">
+              <h3>Building the plugin</h3>
+              <p>Compile the plugin to WebAssembly using <code>tinygo</code>:</p>
+              <pre><code>tinygo build -o my_plugin.wasm -target=wasi main.go</code></pre>
+              <p>This will generate a <code>my_plugin.wasm</code> file that can be loaded by Pumpkin.</p>
+            </div>
+            <p class="guide-more">Refer to the <a href="https://docs.pumpkinmc.org/plugin-dev/go/quick-start">documentation</a> for more.</p>
           </div>
         </div>
       </section>
