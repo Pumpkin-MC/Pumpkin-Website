@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://avatars.githubusercontent.com data:; connect-src 'self' https://api.github.com https://www.google-analytics.com; frame-ancestors 'none'" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+  <title>Donate - Pumpkin</title>
+  <meta name="description" content="Support Pumpkin, the fastest Minecraft server, by becoming a sponsor." />
+  <meta property="og:title" content="Donate - Pumpkin" />
+  <meta property="og:description"
+    content="Support Pumpkin, the fastest Minecraft server, by becoming a sponsor." />
+  <meta property="og:image" content="https://pumpkinmc.org/assets/logos/ogimage.png" />
+  <meta property="og:url" content="https://pumpkinmc.org/donate/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="../assets/icon.svg" />
+  <link rel="stylesheet" href="../styles/common.css" />
+  <link rel="stylesheet" href="../styles/donate.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha384-rWj9FmWWt3OMqd9vBkWRhFavvVUYalYqGPoMdL1brs/qvvqz88gvLShYa4hKNyqb" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <div class="sticky-top">
+    <div class="info-banner">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      Pumpkin is in early development and bugs can happen. If you find any, report them on our
+      <a href="https://github.com/Pumpkin-MC/Pumpkin/issues">GitHub</a>.
+    </div>
+    <header>
+      <a href="/" class="logo">
+        <img src="../assets/icon.svg" alt="Pumpkin" />
+        <span>Pumpkin</span>
+      </a>
+      <nav>
+        <a href="https://docs.pumpkinmc.org/" class="external-nav-link" aria-label="Docs (external site)">
+          <span>Docs</span>
+          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        </a>
+        <a href="/developers/">Developers</a>
+        <a href="https://blog.pumpkinmc.org/" class="external-nav-link" aria-label="Blog (external site)">
+          <span>Blog</span>
+          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        </a>
+        <a href="https://market.pumpkinmc.org/" class="external-nav-link" aria-label="Market (external site)">
+          <span>Market</span>
+          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        </a>
+      </nav>
+      <button class="burger-btn" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="header-icons">
+        <a href="https://github.com/Pumpkin-MC/Pumpkin" class="icon-btn" title="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://discord.gg/pumpkinmc" class="icon-btn" title="Discord">
+          <i class="fa-brands fa-discord"></i>
+        </a>
+        <a href="https://x.com/pumpkinmcdev" class="icon-btn" title="X (Twitter)">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://www.youtube.com/@PumpkinServer" class="icon-btn" title="YouTube">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+        <a href="/donate/" class="sponsor-btn" title="Sponsor">
+          <i class="fa-solid fa-heart"></i>
+        </a>
+        <a href="/download/" class="download-btn">Download</a>
+      </div>
+    </header>
+  </div>
+  <script>
+    document.querySelector(".burger-btn").addEventListener("click", function () {
+      const header = document.querySelector("header");
+      const expanded = this.getAttribute("aria-expanded") === "true";
+      header.classList.toggle("nav-open");
+      this.setAttribute("aria-expanded", !expanded);
+      this.querySelector("i").className = expanded
+        ? "fa-solid fa-bars"
+        : "fa-solid fa-xmark";
+    });
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK7NXQQ2ZP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-QK7NXQQ2ZP");
+  </script>
+
+  <main>
+    <section class="donate-hero">
+      <h1 class="section-title">
+        Support <span class="highlight">Pumpkin</span>
+      </h1>
+      <p>
+        Help us fund development and infrastructure for the fastest Minecraft server ever.
+      </p>
+    </section>
+
+    <section class="support-section">
+      <div class="tier-boxes">
+        <a href="https://donate.stripe.com/3cI4gyavV0K3aiH3N32cg00" class="tier-box tier-bronze-box">
+          <span class="tier-price">$5 a month</span>
+          <span class="tier-name">Bronze</span>
+          <p>Become a Bronze sponsor for $5.00 per month</p>
+        </a>
+        <a href="https://donate.stripe.com/dRm5kC5bBboH2Qf2IZ2cg01" class="tier-box tier-silver-box">
+          <span class="tier-price">$10 a month</span>
+          <span class="tier-name">Silver</span>
+          <p>Become a Silver sponsor for $10.00 per month</p>
+        </a>
+        <a href="https://donate.stripe.com/cNi8wO5bB50j4Yn83j2cg02" class="tier-box tier-gold-box">
+          <span class="tier-price">$20 a month</span>
+          <span class="tier-name">Gold</span>
+          <p>Become a Gold sponsor for $20.00 per month</p>
+        </a>
+        <a href="https://donate.stripe.com/aFa6oGeMb9gz2QffvL2cg03" class="tier-box tier-platinum-box">
+          <span class="tier-price">$50 a month</span>
+          <span class="tier-name">Platinum</span>
+          <p>Become a Platinum sponsor for $50.00 per month</p>
+        </a>
+        <a href="https://donate.stripe.com/bJeaEW7jJboHeyX2IZ2cg05" class="tier-box tier-titanium-box">
+          <span class="tier-price">$100 a month</span>
+          <span class="tier-name">Titanium</span>
+          <p>Become a Titanium sponsor for $100.00 per month</p>
+        </a>
+        <a href="https://donate.stripe.com/dRmbJ033teATfD16Zf2cg04" class="tier-box tier-diamond-box">
+          <span class="tier-price">$250 a month</span>
+          <span class="tier-name">Diamond</span>
+          <p>Become a Diamond sponsor for $250.00 per month</p>
+        </a>
+      </div>
+
+      <div class="corporate-tiers-header">
+        <h2 class="section-subtitle"><i class="fa-solid fa-building"></i> Corporate Sponsorships</h2>
+        <p class="sponsors-desc">Perfect for companies looking to support open source development.</p>
+      </div>
+
+      <div class="tier-boxes corporate-tier-boxes">
+        <a href="https://donate.stripe.com/28E6oG9rReAT3Uj83j2cg06" class="tier-box tier-corp-bronze">
+          <span class="tier-price">$500 a month</span>
+          <span class="tier-name">Corporate Bronze</span>
+          <p>Become a Corporate Bronze sponsor for $500.00 per month</p>
+          <ul class="tier-benefits">
+            <li><i class="fa-solid fa-check"></i> Logo & Link in Credits</li>
+          </ul>
+        </a>
+        <a href="https://donate.stripe.com/8x2aEWeMbakD2Qf0AR2cg07" class="tier-box tier-corp-silver">
+          <span class="tier-price">$1,000 a month</span>
+          <span class="tier-name">Corporate Silver</span>
+          <p>Become a Corporate Silver sponsor for $1000.00 per month</p>
+          <ul class="tier-benefits">
+            <li><i class="fa-solid fa-check"></i> Logo & Link in Credits</li>
+          </ul>
+        </a>
+        <a href="https://donate.stripe.com/00w7sK6fF1O776v1EV2cg08" class="tier-box tier-corp-gold">
+          <span class="tier-price">$2,000 a month</span>
+          <span class="tier-name">Corporate Gold</span>
+          <p>Become a Corporate Gold sponsor for $2000.00 per month</p>
+          <ul class="tier-benefits">
+            <li><i class="fa-solid fa-check"></i> Logo & Link in Credits</li>
+          </ul>
+        </a>
+        <a href="https://donate.stripe.com/eVq3cu5bBfEX4YnerH2cg09" class="tier-box tier-corp-platinum">
+          <span class="tier-price">$4,000 a month</span>
+          <span class="tier-name">Corporate Platinum</span>
+          <p>Become a Corporate Platinum sponsor for $4000.00 per month</p>
+          <ul class="tier-benefits">
+            <li><i class="fa-solid fa-check"></i> Logo & Link in Credits</li>
+          </ul>
+        </a>
+      </div>
+    </section>
+    <section class="sponsors-section">
+      <h2 class="section-subtitle"><i class="fa-solid fa-heart"></i> Sponsors</h2>
+      <p class="sponsors-desc">These amazing people help fund Pumpkin's development.</p>
+
+      <div class="sponsor-tabs">
+        <button class="sponsor-tab active" data-tab="current">Current</button>
+        <button class="sponsor-tab" data-tab="past">Past / One-time</button>
+      </div>
+
+      <div id="sponsors-current-wrapper">
+
+        <div class="tier-group tier-titanium">
+          <h3 class="tier-header"><i class="fa-solid fa-shield-halved"></i> Titanium Sponsors</h3>
+          <div class="sponsors-grid tier-grid-titanium">
+            <a href="https://github.com/Lysander05" class="sponsor-card" target="_blank">
+              <img src="https://avatars.githubusercontent.com/u/56302470?v=4" alt="Lysander" />
+              <span>Lysander</span>
+            </a>
+            <a href="https://github.com/starrider346" class="sponsor-card" target="_blank">
+              <img src="https://avatars.githubusercontent.com/u/58882729?v=4" alt="Strider" />
+              <span>Strider</span>
+            </a>
+            <a href="https://github.com/wynn-dev" class="sponsor-card" target="_blank">
+              <img src="https://avatars.githubusercontent.com/u/66362261?v=4" alt="wynn" />
+              <span>wynn</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="tier-group tier-platinum">
+          <h3 class="tier-header"><i class="fa-solid fa-shield-halved"></i> Platinum Sponsors</h3>
+          <div class="sponsors-grid tier-grid-platinum">
+            <a href="https://github.com/Oldprotocol" class="sponsor-card" target="_blank">
+              <img src="https://avatars.githubusercontent.com/u/265181542?v=4" alt="Oldprotocol" />
+              <span>Oldprotocol</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="tier-group tier-silver">
+          <h3 class="tier-header"><i class="fa-solid fa-medal"></i> Silver Sponsors</h3>
+          <div class="sponsors-grid">
+            <a href="https://github.com/lineality" class="sponsor-card" target="_blank"><span>Geoffrey Gordon
+                Ashbrook</span></a>
+            <a href="https://github.com/GodData001" class="sponsor-card" target="_blank"><span>GodData001</span></a>
+            <a href="https://github.com/Pookachu" class="sponsor-card" target="_blank"><span>Pooka</span></a>
+          </div>
+        </div>
+
+        <div class="tier-group tier-bronze">
+          <h3 class="tier-header"><i class="fa-solid fa-user-group"></i> Bronze Sponsors</h3>
+          <div class="sponsors-grid">
+            <a href="https://github.com/clemensrh" class="sponsor-card" target="_blank"><span>Clemens</span></a>
+            <a href="https://github.com/bybrooklyn" class="sponsor-card" target="_blank"><span>Brook</span></a>
+            <a href="https://github.com/Grimwald-SMP" class="sponsor-card" target="_blank"><span>Grimwald SMP</span></a>
+            <a href="https://github.com/ThatOneToast" class="sponsor-card" target="_blank"><span>White Bread</span></a>
+            <a href="https://github.com/snarkyalyx" class="sponsor-card" target="_blank"><span>Alyx Buckmann</span></a>
+            <a href="https://github.com/mtthidoteu" class="sponsor-card" target="_blank"><span>Matthieu B</span></a>
+            <a href="https://github.com/GjorgjiML" class="sponsor-card" target="_blank"><span>Gjorgji
+                Mladenovski</span></a>
+            <a href="https://github.com/illyrius666" class="sponsor-card" target="_blank"><span>Illyrius</span></a>
+            <a href="https://github.com/Schweeeeeeeeeeeeeeee" class="sponsor-card"
+              target="_blank"><span>Schweeeeeeeeeeeeeeee</span></a>
+            <a href="https://github.com/alexanderstdev" class="sponsor-card" target="_blank"><span>Alexander
+                Andersen</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div id="sponsors-past" class="hidden">
+        <div class="sponsors-grid">
+          <a href="https://github.com/Rotstein007" class="sponsor-card" target="_blank"><span>Rotstein</span></a>
+          <a href="https://github.com/bartwx" class="sponsor-card" target="_blank"><span>Bart Wiggers</span></a>
+          <a href="https://github.com/RoosterBooster007" class="sponsor-card" target="_blank"><span>RB007
+            </span></a>
+          <a href="https://github.com/Vianpyro" class="sponsor-card" target="_blank"><span>Vianney Veremme
+            </span></a>
+          <a href="https://github.com/robke96" class="sponsor-card" target="_blank"><span>Robertas</span></a>
+          <a href="https://github.com/ayubrawr" class="sponsor-card" target="_blank"><span>ayub</span></a>
+          <a href="https://github.com/Byundai" class="sponsor-card" target="_blank"><span>Byundai</span></a>
+          <a href="https://github.com/Siydge" class="sponsor-card" target="_blank"><span>Siydge</span></a>
+          <a href="https://github.com/ItzCelyrian" class="sponsor-card" target="_blank"><span>ItzCelyrian</span></a>
+          <a href="https://github.com/Wuemeli" class="sponsor-card" target="_blank"><span>Wuemeli</span></a>
+          <a href="https://github.com/DylanClouden28" class="sponsor-card"
+            target="_blank"><span>DylanClouden28</span></a>
+          <a href="https://github.com/vyPal" class="sponsor-card" target="_blank"><span>vyPal</span></a>
+          <a href="https://github.com/Unoqwy" class="sponsor-card" target="_blank"><span>Unoqwy</span></a>
+          <a href="https://github.com/ForceGamer" class="sponsor-card" target="_blank"><span>Force</span></a>
+          <a href="https://github.com/sweattypalms" class="sponsor-card" target="_blank"><span>Sweattypalms</span></a>
+
+          <div class="sponsor-card private-sponsor"><i class="fa-solid fa-user-secret"></i><span>Private Sponsor</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="../assets/icon.svg" alt="Pumpkin" />
+        <span>Pumpkin</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://docs.pumpkinmc.org/">Documentation</a>
+        <a href="https://github.com/Pumpkin-MC">GitHub</a>
+        <a href="https://discord.gg/pumpkinmc">Discord</a>
+        <a href="https://x.com/pumpkinmcdev">X</a>
+        <a href="https://www.youtube.com/@PumpkinServer">YouTube</a>
+        <a href="/donate/">Donate</a>
+      </div>
+    </div>
+    <div class="footer-bottom">Made with ❤️ by <a href="https://marshall.dev" target="_blank" rel="noopener">purdze</a>
+      · Licensed under GPL</div>
+  </footer>
+
+  <script>
+    // Sponsor tabs
+    document.querySelectorAll(".sponsor-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const targetTab = tab.dataset.tab;
+
+        // Update active tab button style
+        document.querySelectorAll(".sponsor-tab").forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        // Toggle entire sections
+        const currentWrapper = document.getElementById("sponsors-current-wrapper");
+        const pastSection = document.getElementById("sponsors-past");
+
+        if (targetTab === "current") {
+          currentWrapper.classList.remove("hidden");
+          pastSection.classList.add("hidden");
+        } else {
+          currentWrapper.classList.add("hidden");
+          pastSection.classList.remove("hidden");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

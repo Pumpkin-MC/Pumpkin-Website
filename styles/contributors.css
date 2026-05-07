@@ -11,44 +11,6 @@
   font-size: 1.25rem;
 }
 
-/* Tier Headers */
-.tier-group { margin-bottom: 4rem; }
-.tier-header {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  color: var(--color-text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-}
-
-/* Tier Specific Visuals */
-.tier-titanium .tier-header i { color: #d1d8e0; text-shadow: 0 0 10px rgba(209, 216, 224, 0.5); }
-.tier-titanium .sponsor-card { 
-  border-color: #d1d8e0; 
-  box-shadow: 6px 6px 0 #d1d8e0; 
-  background: linear-gradient(145deg, rgba(209, 216, 224, 0.05), transparent);
-}
-
-.tier-silver .tier-header i { color: #a5b1c2; }
-.tier-bronze .tier-header i { color: #cd7f32; }
-
-/* Grid Hierarchy */
-.tier-grid-titanium { 
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
-  margin-bottom: 3rem;
-}
-
-/* Visibility Fix */
-.hidden { display: none !important; }
-
-/* Grid adjustments for size hierarchy */
-.tier-grid-large { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-.tier-grid-standard { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-
 .contributor-stats {
   display: flex;
   justify-content: center;
@@ -84,13 +46,6 @@
   text-transform: uppercase;
 }
 
-.sponsors-section {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 2rem 2rem 3rem;
-  text-align: center;
-}
-
 .section-subtitle {
   display: flex;
   align-items: center;
@@ -99,121 +54,6 @@
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
   font-weight: 800;
-}
-
-.section-subtitle i {
-  color: var(--color-pink);
-}
-
-.sponsors-desc {
-  margin-bottom: 2rem;
-  color: var(--color-text-muted);
-}
-
-.sponsor-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.sponsor-tab {
-  padding: 0.6rem 1.5rem;
-  border: 3px solid var(--color-text-muted);
-  background: var(--color-surface);
-  color: var(--color-text-muted);
-  cursor: pointer;
-  font-family: var(--font-base);
-  font-size: 1rem;
-  font-weight: 700;
-  transition:
-    color 0.15s ease,
-    border-color 0.15s ease,
-    background-color 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-.sponsor-tab:hover {
-  border-color: var(--color-text);
-  color: var(--color-text);
-}
-
-.sponsor-tab.active {
-  border-color: var(--color-pink);
-  background: var(--color-pink);
-  box-shadow: 4px 4px 0 var(--color-pink);
-  color: var(--color-black);
-}
-
-.sponsors-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.sponsors-grid.hidden {
-  display: none;
-}
-
-.no-sponsors {
-  color: var(--color-text-muted);
-  font-style: italic;
-}
-
-.sponsor-card {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.25rem;
-  border: 3px solid var(--color-pink);
-  background: var(--color-surface);
-  box-shadow: 4px 4px 0 var(--color-pink);
-  color: var(--color-text);
-  text-decoration: none;
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-.sponsor-card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 7px 7px 0 var(--color-pink);
-}
-
-.sponsor-card img {
-  width: 36px;
-  height: 36px;
-  border: 2px solid var(--color-white);
-}
-
-.sponsor-card span {
-  font-weight: 700;
-}
-
-.sponsor-card.become-sponsor {
-  border-style: dashed;
-  color: var(--color-pink);
-}
-
-.sponsor-card.become-sponsor i,
-.sponsor-card.private-sponsor i {
-  font-size: 1.25rem;
-}
-
-.sponsor-card.private-sponsor {
-  border-style: dashed;
-  color: var(--color-text-muted);
-  cursor: default;
-}
-
-.sponsor-card.private-sponsor:hover {
-  transform: none;
-  box-shadow: 4px 4px 0 var(--color-pink);
-}
-
-.sponsor-card.private-sponsor i {
-  opacity: 0.7;
 }
 
 .contributors-section {
@@ -337,17 +177,12 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .contributor-avatar,
-  .sponsor-card img {
+  .contributor-avatar {
     display: none;
   }
 
   .contributor-card {
     padding: 0.75rem 1rem;
-  }
-
-  .sponsor-card {
-    padding: 0.5rem 1rem;
   }
 
   .contributor-stats {
