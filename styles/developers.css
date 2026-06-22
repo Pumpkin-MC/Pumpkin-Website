@@ -278,6 +278,14 @@
   margin-bottom: 0;
 }
 
+.guide-step a {
+  color: #2BFFE2;
+}
+
+.guide-step a:visited {
+  color: #56AA9F;
+}
+
 .guide-step h3 {
   margin-bottom: 1rem;
   color: var(--color-orange);
