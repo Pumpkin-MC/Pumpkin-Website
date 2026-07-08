@@ -274,6 +274,9 @@ impl EventHandler&lt;PlayerChatEvent&gt; for PrefixChat {
               <button class="lang-btn" data-lang="go">
                 <i class="fa-brands fa-golang"></i> Go
               </button>
+              <button class="lang-btn" data-lang="kotlin">
+                <i class="fa-solid fa-k"></i> Kotlin
+              </button>
             </div>
           </div>
 
@@ -513,6 +516,98 @@ func main() {
               <p>This will generate a <code>my_plugin.wasm</code> file that can be loaded by Pumpkin.</p>
             </div>
             <p class="guide-more">Refer to the <a href="https://docs.pumpkinmc.org/plugin-dev/go/quick-start">documentation</a> for more.</p>
+          </div>
+
+          <div id="kotlin-guide" class="guide-content">
+            <div class="guide-step">
+              <h3>Installation</h3>
+              <p>You will need a number of things installed.</p>
+              <p>
+              <ul>
+                <li>Git</li>
+                <li>JDK 17+</li>
+                <li><a href="https://rust-lang.org/">Rust</a> (only default/host toolchain)</li>
+                <li><a href="https://github.com/bytecodealliance/wasm-tools">wasm-tools</a></li>
+                <li><code>make</code> (e.g. <a href="https://www.gnu.org/software/make/">GNU Make</a>)</li>
+              </ul>
+              </p>
+              <p>Unlike most of the other APIs, this one is actually a template instead. Clone it and rename.</p>
+              <pre><code>git clone --recurse-submodules https://github.com/Pumpkin-MC/pumpkin-api-kt
+mv pumpkin-api-kt my_kotlin_plugin
+cd my_kotlin_plugin</code></pre>
+              <p>Then change the <code>rootProject.name</code> in <code>settings.gradle.kts</code>,
+              AND the <code>PROJECT_NAME</code> in <code>Makefile</code>. They must both match.
+              Whatever you name the project, is going to be the filename of the Wasm produced.
+              </p>
+            </div>
+
+            <div class="guide-step">
+              <h3>Creating your first plugin</h3>
+              <p>The template already has some code prepared. <code>src/wasmWasiMain/kotlin/plugin/Plugin.kt</code> contains:</p>
+              <pre><code>package plugin;
+
+import pumpkin.*
+
+class PluginRootFunctionsExportsImpl {
+    companion object : PluginRootFunctions.Exports {
+        override fun initPlugin() {
+            Logging.log(Logging.Level.INFO, "Init Kotlin plugin!")
+        }
+
+        override fun onLoad(context: Context.Context): Result&lt;Unit&gt; {
+            Logging.log(Logging.Level.INFO, "Load Kotlin plugin!")
+            return Result.success(Unit)
+        }
+
+        override fun onUnload(context: Context.Context): Result&lt;Unit&gt; {
+            Logging.log(Logging.Level.INFO, "Unload Kotlin plugin!")
+            return Result.success(Unit)
+        }
+
+        override fun handleCommand(
+            commandId: UInt,
+            sender: Command.CommandSender,
+            server: Server.Server,
+            args: Command.ConsumedArgs
+        ): Result&lt;Int&gt; {
+            TODO("Not yet implemented")
+        }
+
+        override fun handleEvent(eventId: UInt, server: Server.Server, event: Event.Event): Event.Event {
+            TODO("Not yet implemented")
+        }
+
+        override fun handleTask(handlerId: UInt, server: Server.Server) {
+            TODO("Not yet implemented")
+        }
+    }
+}
+
+class MetadataImpl {
+    companion object : Metadata {
+        override fun getMetadata(): Metadata.PluginMetadata {
+            return Metadata.PluginMetadata(
+                name = "Example Kotlin Plugin",
+                version = "0.1.0",
+                authors = listOf("You"),
+                description = "An example plugin written in Kotlin",
+                dependencies = listOf(),
+                permissions = listOf()
+            );
+        }
+    }
+}
+</code></pre>
+            </div>
+
+            <div class="guide-step">
+              <h3>Building the plugin</h3>
+              <p>Compile the plugin to WebAssembly by running the <code>Makefile</code></p>
+              <pre><code>make</code></pre>
+              <p>This will take a while the first time as it builds some Rust dependencies from source.</p>
+              <p>Once it is done, <code>my_kotlin_plugin.wasm</code> (or whatever your Gradle project name is) will appear in <code>build</code>, ready to load into Pumpkin.</p>
+            </div>
+            <p class="guide-more">Refer to the <a href="https://docs.pumpkinmc.org/plugin-dev/kotlin/quick-start">documentation</a> for more.</p>
           </div>
         </div>
       </section>
