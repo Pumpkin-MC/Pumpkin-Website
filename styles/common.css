@@ -207,6 +207,65 @@ nav a:hover::after {
   color: var(--color-orange);
 }
 
+.lang-dropdown-wrapper {
+  position: relative;
+  z-index: 250;
+}
+
+.lang-toggle-btn {
+  width: auto;
+  gap: 0.4rem;
+  padding: 0 0.6rem;
+  cursor: pointer;
+}
+
+.current-lang-code {
+  font-size: 0.85rem;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.lang-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  display: none;
+  flex-direction: column;
+  min-width: 140px;
+  background: var(--color-surface);
+  border: 3px solid var(--color-orange);
+  box-shadow: 4px 4px 0 var(--color-orange);
+  z-index: 300;
+}
+
+.lang-dropdown-menu.show {
+  display: flex;
+}
+
+.lang-opt {
+  padding: 0.6rem 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-text);
+  font-family: var(--font-base);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lang-opt:last-child {
+  border-bottom: none;
+}
+
+.lang-opt:hover,
+.lang-opt.active {
+  background: var(--color-orange);
+  color: var(--color-black);
+}
+
 .sponsor-btn {
   width: 42px;
   height: 42px;
@@ -371,7 +430,7 @@ nav a:hover::after {
 
 footer {
   margin-top: 0;
-  padding: 3rem 2rem 2rem;
+  padding: 1.75rem 2rem 1.25rem;
   border-top: var(--orange-border);
   background: var(--color-surface);
   color: var(--color-text);
@@ -381,33 +440,34 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1.5rem;
   max-width: 1200px;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1.25rem;
   flex-wrap: wrap;
 }
 
 .footer-brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 1.25rem;
+  gap: 0.5rem;
+  font-size: 1.1rem;
   font-weight: 800;
 }
 
 .footer-brand img {
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
 }
 
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1.25rem;
 }
 
 .footer-links a {
   color: var(--color-text);
+  font-size: 0.9rem;
   font-weight: 500;
   text-decoration: none;
   opacity: 0.8;
@@ -422,10 +482,10 @@ footer {
 }
 
 .footer-bottom {
-  padding-top: 2rem;
+  padding-top: 1.25rem;
   border-top: 1px solid #333333;
   color: var(--color-text-muted);
-  font-size: 0.9rem;
+  font-size: 0.825rem;
   text-align: center;
 }
 

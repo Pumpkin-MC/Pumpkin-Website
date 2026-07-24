@@ -1,0 +1,48 @@
+{
+  "nav": {
+    "docs": "Docs",
+    "developers": "Développeurs",
+    "blog": "Blog",
+    "market": "Marché",
+    "download": "Télécharger"
+  },
+  "banner": {
+    "earlyDev": "Pumpkin est en cours de développement initial. Si vous trouvez des bugs, signalez-les sur notre",
+    "github": "GitHub"
+  },
+  "hero": {
+    "newBadge": "NOUVEAU",
+    "titlePart1": "Le serveur",
+    "titleHighlight": "Minecraft",
+    "titlePart2": "le plus rapide au monde.",
+    "subtitle": "Démarrage 1000x plus rapide que Vanilla. 18x moins de mémoire. Écrit en Rust.",
+    "downloadBtn": "Télécharger",
+    "buildPluginsBtn": "Créer des plugins",
+    "statStartup": "démarrage",
+    "statMemory": "mémoire",
+    "statCpu": "CPU au repos"
+  },
+  "features": {
+    "title": "Pourquoi les développeurs",
+    "titleHighlight": "adorent",
+    "titleEnd": "Pumpkin",
+    "f1Title": "Démarrage instantané",
+    "f1Desc": "Serveur prêt en ~5 millisecondes au lieu de 15 secondes. 1000x plus rapide que Vanilla.",
+    "f2Title": "Empreinte mémoire minime",
+    "f2Desc": "Tourne avec ~100 Mo de RAM là où Vanilla demande 1,8 Go. Parfait pour les hébergements VPS.",
+    "f3Title": "Multi-threadé",
+    "f3Desc": "Exploite réellement tous vos cœurs CPU. Pas seulement pour les chunks—pour tout.",
+    "f4Title": "Cross-Play",
+    "f4Desc": "Joueurs Java et Bedrock ensemble. Intégré sans aucun plugin requis.",
+    "f5Title": "Sans Java",
+    "f5Desc": "Un seul fichier exécutable. Téléchargez, double-cliquez, terminé.",
+    "f6Title": "Open Source",
+    "f6Desc": "Sous licence GPL. Lisez le code, contribuez, forkez. Transparence totale."
+  },
+  "comparison": {
+    "title": "Voyez la",
+    "titleHighlight": "différence",
+    "startupTitle": "Temps de démarrage",
+    "ramTitle": "Utilisation RAM"
+  }
+}

@@ -37,13 +37,14 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script src="i18n.js" defer></script>
   </head>
   <body>
     <div class="sticky-top">
       <div class="info-banner">
         <i class="fa-solid fa-triangle-exclamation"></i>
-        Pumpkin is in early development and bugs can happen. If you find any, report them on our
-        <a href="https://github.com/Pumpkin-MC/Pumpkin/issues">GitHub</a>.
+        <span data-i18n="banner.earlyDev">Pumpkin is in early development and bugs can happen. If you find any, report them on our</span>
+        <a href="https://github.com/Pumpkin-MC/Pumpkin/issues" data-i18n="banner.github">GitHub</a>.
       </div>
       <header>
       <a href="/" class="logo">
@@ -56,16 +57,16 @@
           class="external-nav-link"
           aria-label="Docs (external site)"
         >
-          <span>Docs</span>
+          <span data-i18n="nav.docs">Docs</span>
           <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
         </a>
-        <a href="/developers/">Developers</a>
+        <a href="/developers/" data-i18n="nav.developers">Developers</a>
         <a
           href="https://blog.pumpkinmc.org/"
           class="external-nav-link"
           aria-label="Blog (external site)"
         >
-          <span>Blog</span>
+          <span data-i18n="nav.blog">Blog</span>
           <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
         </a>
         <a
@@ -73,7 +74,7 @@
           class="external-nav-link"
           aria-label="Market (external site)"
         >
-          <span>Market</span>
+          <span data-i18n="nav.market">Market</span>
           <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
         </a>
       </nav>
@@ -104,7 +105,7 @@
         <a href="/donate/" class="sponsor-btn" title="Sponsor">
           <i class="fa-solid fa-heart"></i>
         </a>
-        <a href="/download/" class="download-btn">Download</a>
+        <a href="/download/" class="download-btn" data-i18n="nav.download">Download</a>
       </div>
     </header>
     </div>
@@ -139,22 +140,22 @@
     <main>
       <section class="hero">
         <div class="hero-left">
-          <div class="hero-badge">NEW</div>
+          <div class="hero-badge" data-i18n="hero.newBadge">NEW</div>
           <h1>
-            The world's fastest
-            <span class="highlight">Minecraft</span>
-            server.
+            <span data-i18n="hero.titlePart1">The world's fastest</span>
+            <span class="highlight" data-i18n="hero.titleHighlight">Minecraft</span>
+            <span data-i18n="hero.titlePart2">server.</span>
           </h1>
-          <p>
+          <p data-i18n="hero.subtitle">
             1000x faster startup than vanilla. 18x less memory. Built with Rust
             for maximum performance.
           </p>
           <div class="hero-buttons">
             <a href="/download/" class="btn btn-primary">
-              Download Free
+              <span data-i18n="hero.downloadBtn">Download</span>
               <i class="fa-solid fa-arrow-down"></i>
             </a>
-            <a href="/developers/" class="btn btn-secondary">
+            <a href="/developers/" class="btn btn-secondary" data-i18n="hero.buildPluginsBtn">
               Build Plugins
             </a>
           </div>
@@ -165,15 +166,15 @@
             <div class="hero-stats">
               <div class="hero-stat">
                 <span class="num">~5ms</span>
-                <span class="label">startup</span>
+                <span class="label" data-i18n="hero.statStartup">startup</span>
               </div>
               <div class="hero-stat">
                 <span class="num">~100MB</span>
-                <span class="label">memory</span>
+                <span class="label" data-i18n="hero.statMemory">memory</span>
               </div>
               <div class="hero-stat">
                 <span class="num">~0.1%</span>
-                <span class="label">CPU idle</span>
+                <span class="label" data-i18n="hero.statCpu">CPU idle</span>
               </div>
             </div>
           </div>
@@ -182,14 +183,14 @@
 
       <section class="features">
         <h2 class="section-title">
-          Why developers <span class="highlight">love</span> Pumpkin
+          <span data-i18n="features.title">Why developers</span> <span class="highlight" data-i18n="features.titleHighlight">love</span> <span data-i18n="features.titleEnd">Pumpkin</span>
         </h2>
 
         <div class="features-grid">
           <div class="feature-card color-orange">
             <div class="feature-number">01</div>
-            <h3>Instant Startup</h3>
-            <p>
+            <h3 data-i18n="features.f1Title">Instant Startup</h3>
+            <p data-i18n="features.f1Desc">
               Server ready in ~5 milliseconds. Not 15 seconds. That's 1000x
               faster than vanilla.
             </p>
@@ -197,8 +198,8 @@
 
           <div class="feature-card color-blue">
             <div class="feature-number">02</div>
-            <h3>Tiny Memory</h3>
-            <p>
+            <h3 data-i18n="features.f2Title">Tiny Memory</h3>
+            <p data-i18n="features.f2Desc">
               Runs on ~100MB RAM while vanilla needs 1.8GB. Perfect for cheap
               VPS hosting.
             </p>
@@ -206,8 +207,8 @@
 
           <div class="feature-card color-green">
             <div class="feature-number">03</div>
-            <h3>Multi-threaded</h3>
-            <p>
+            <h3 data-i18n="features.f3Title">Multi-threaded</h3>
+            <p data-i18n="features.f3Desc">
               Actually uses all your CPU cores. Not just for chunks—for
               everything.
             </p>
@@ -215,24 +216,24 @@
 
           <div class="feature-card color-purple">
             <div class="feature-number">04</div>
-            <h3>Cross-Play</h3>
-            <p>
+            <h3 data-i18n="features.f4Title">Cross-Play</h3>
+            <p data-i18n="features.f4Desc">
               Java and Bedrock players together. Built-in, no plugins required.
             </p>
           </div>
 
           <div class="feature-card color-pink">
             <div class="feature-number">05</div>
-            <h3>No Java</h3>
-            <p>
+            <h3 data-i18n="features.f5Title">No Java</h3>
+            <p data-i18n="features.f5Desc">
               Single executable file. Download, double-click, done. Zero setup.
             </p>
           </div>
 
           <div class="feature-card color-yellow">
             <div class="feature-number">06</div>
-            <h3>Open Source</h3>
-            <p>
+            <h3 data-i18n="features.f6Title">Open Source</h3>
+            <p data-i18n="features.f6Desc">
               GPL licensed. Read the code, contribute, fork it. Full
               transparency.
             </p>
@@ -242,12 +243,12 @@
 
       <section class="comparison">
         <h2 class="section-title">
-          See the <span class="highlight">difference</span>
+          <span data-i18n="comparison.title">See the</span> <span class="highlight" data-i18n="comparison.titleHighlight">difference</span>
         </h2>
 
         <div class="comparison-grid">
           <div class="comp-card">
-            <h3><i class="fa-solid fa-stopwatch"></i> Startup Time</h3>
+            <h3><i class="fa-solid fa-stopwatch"></i> <span data-i18n="comparison.startupTitle">Startup Time</span></h3>
             <div class="comp-bars">
               <div class="comp-item winner">
                 <span class="comp-name">Pumpkin</span>
@@ -277,7 +278,7 @@
           </div>
 
           <div class="comp-card">
-            <h3><i class="fa-solid fa-memory"></i> RAM Usage</h3>
+            <h3><i class="fa-solid fa-memory"></i> <span data-i18n="comparison.ramTitle">RAM Usage</span></h3>
             <div class="comp-bars no-animate">
               <div class="comp-item winner">
                 <span class="comp-name">Pumpkin</span>

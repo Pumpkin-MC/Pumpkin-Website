@@ -1,0 +1,48 @@
+{
+  "nav": {
+    "docs": "Doku",
+    "developers": "Entwickler",
+    "blog": "Blog",
+    "market": "Markt",
+    "download": "Herunterladen"
+  },
+  "banner": {
+    "earlyDev": "Pumpkin befindet sich in der frühen Entwicklung und Fehler können auftreten. Melde sie auf unserem",
+    "github": "GitHub"
+  },
+  "hero": {
+    "newBadge": "NEU",
+    "titlePart1": "Der schnellste",
+    "titleHighlight": "Minecraft",
+    "titlePart2": "Server der Welt.",
+    "subtitle": "1000x schnellerer Start als Vanilla. 18x weniger Arbeitsspeicher. Mit Rust für maximale Leistung gebaut.",
+    "downloadBtn": "Herunterladen",
+    "buildPluginsBtn": "Plugins erstellen",
+    "statStartup": "Startzeit",
+    "statMemory": "Speicher",
+    "statCpu": "CPU Leerlauf"
+  },
+  "features": {
+    "title": "Warum Entwickler Pumpkin",
+    "titleHighlight": "lieben",
+    "titleEnd": "",
+    "f1Title": "Sofortiger Start",
+    "f1Desc": "Serverstart in ~5 Millisekunden statt 15 Sekunden. Das ist 1000x schneller als Vanilla.",
+    "f2Title": "Minimaler Speicher",
+    "f2Desc": "Benötigt nur ~100MB RAM, während Vanilla 1,8GB benötigt. Perfekt für günstige VPS.",
+    "f3Title": "Multithreading",
+    "f3Desc": "Nutzt alle CPU-Kerne voll aus. Nicht nur für Chunks—für alles.",
+    "f4Title": "Cross-Play",
+    "f4Desc": "Java- und Bedrock-Spieler zusammen. Integriert, keine Plugins erforderlich.",
+    "f5Title": "Kein Java",
+    "f5Desc": "Einzelne ausführbare Datei. Herunterladen, doppelklicken, fertig. Keine Einrichtung.",
+    "f6Title": "Open Source",
+    "f6Desc": "GPL-lizenziert. Code lesen, beitragen, forken. Volle Transparenz."
+  },
+  "comparison": {
+    "title": "Sieh den",
+    "titleHighlight": "Unterschied",
+    "startupTitle": "Startzeit",
+    "ramTitle": "RAM-Verbrauch"
+  }
+}

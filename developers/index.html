@@ -37,13 +37,14 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script src="../i18n.js" defer></script>
   </head>
   <body>
     <div class="sticky-top">
       <div class="info-banner">
         <i class="fa-solid fa-triangle-exclamation"></i>
-        Pumpkin is in early development and bugs can happen. If you find any, report them on our
-        <a href="https://github.com/Pumpkin-MC/Pumpkin/issues">GitHub</a>.
+        <span data-i18n="banner.earlyDev">Pumpkin is in early development and bugs can happen. If you find any, report them on our</span>
+        <a href="https://github.com/Pumpkin-MC/Pumpkin/issues" data-i18n="banner.github">GitHub</a>.
       </div>
       <header>
       <a href="/" class="logo">
@@ -56,16 +57,16 @@
           class="external-nav-link"
           aria-label="Docs (external site)"
         >
-          <span>Docs</span>
+          <span data-i18n="nav.docs">Docs</span>
           <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
         </a>
-        <a href="/developers/">Developers</a>
+        <a href="/developers/" data-i18n="nav.developers">Developers</a>
         <a
           href="https://blog.pumpkinmc.org/"
           class="external-nav-link"
           aria-label="Blog (external site)"
         >
-          <span>Blog</span>
+          <span data-i18n="nav.blog">Blog</span>
           <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
         </a>
         <a
@@ -73,7 +74,7 @@
           class="external-nav-link"
           aria-label="Market (external site)"
         >
-          <span>Market</span>
+          <span data-i18n="nav.market">Market</span>
           <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
         </a>
       </nav>
@@ -104,7 +105,7 @@
         <a href="/donate/" class="sponsor-btn" title="Sponsor">
           <i class="fa-solid fa-heart"></i>
         </a>
-        <a href="/download/" class="download-btn">Download</a>
+        <a href="/download/" class="download-btn" data-i18n="nav.download">Download</a>
       </div>
     </header>
     </div>
@@ -166,38 +167,78 @@
       <section class="dev-compare">
         <div class="compare-block old">
           <div class="compare-header">
-            <span class="compare-badge bad">Version-specific NMS</span>
+            <span class="compare-badge bad">Spigot + Reflection NMS + Geyser API (Java)</span>
           </div>
-          <pre><code>// Sending a title packet
-Object packet = Class.forName("net.minecraft.server."
-    + VERSION + ".PacketPlayOutTitle")
-    .getConstructor(...).newInstance(...);
+          <pre><code>// Send chat message
+player.sendMessage("Welcome!");
 
-player.getClass().getMethod("getHandle")
-    .invoke(player).getClass()
-    .getField("playerConnection").get(...)
-    .getClass().getMethod("sendPacket", ...)
-    .invoke(connection, packet);
+// Handling Java vs Bedrock with Reflection NMS &amp; Geyser
+GeyserApi geyser = GeyserApi.api();
+if (!geyser.isBedrockPlayer(player.getUniqueId())) {
+    try {
+        // Multi-version NMS Packet via Reflection
+        Object nmsPlayer = player.getClass().getMethod("getHandle").invoke(player);
+        Object connection = nmsPlayer.getClass().getField("playerConnection").get(nmsPlayer);
+        Class&lt;?&gt; pingClass = Class.forName("net.minecraft.network.protocol.game.ClientboundPingPacket");
+        Object packet = pingClass.getConstructor(int.class).newInstance(id);
+        connection.getClass().getMethod("send", Class.forName("net.minecraft.network.protocol.Packet")).invoke(connection, packet);
 
-// Breaks every update. Good luck.</code></pre>
+        openCustomJavaDialog(player, "Confirm Action");
+    } catch (Exception e) { e.printStackTrace(); }
+} else {
+    // Bedrock-exclusive Geyser form API
+    GeyserConnection conn = geyser.connectionByUuid(player.getUniqueId());
+    CustomForm form = SimpleForm.builder().title("Confirm Action").content("Are you sure?").button("Yes").build();
+    conn.sendForm(form);
+}
+
+void openCustomJavaDialog(Player player, String title) throws Exception {
+    Object nmsPlayer = player.getClass().getMethod("getHandle").invoke(player);
+    Object conn = nmsPlayer.getClass().getField("playerConnection").get(nmsPlayer);
+    Class&lt;?&gt; dialogPacket = Class.forName("net.minecraft.network.protocol.game.ClientboundShowDialogPacket");
+    Object packet = dialogPacket.getConstructor(String.class).newInstance(title);
+    conn.getClass().getMethod("send", Class.forName("net.minecraft.network.protocol.Packet")).invoke(conn, packet);
+}
+// Nightmarish reflection boilerplate &amp; fragile third-party dependencies</code></pre>
         </div>
         <div class="compare-block new">
           <div class="compare-header">
-            <span class="compare-badge good">Pumpkin plugin API</span>
+            <span class="compare-badge good">Pumpkin Native API (Rust)</span>
           </div>
-          <pre><code>// Rewriting chat in a plugin
-context.register_event_handler::&lt;PlayerChatEvent, _&gt;(
-    PrefixChat,
-    EventPriority::Normal,
-    true,
-)?;
+          <pre><code>// Unified cross-platform message
+player.send_system_message(TextComponent::text("Welcome!"), false);
 
-impl EventHandler&lt;PlayerChatEvent&gt; for PrefixChat {
-    fn handle(&amp;self, _server: Server, mut event: PlayerChatEventData) -&gt; PlayerChatEventData {
-        event.message = format!("[Pumpkin] {}", event.message);
-        event
-    }
-}</code></pre>
+// Clean native Java vs Bedrock branch
+if let Some(java) = player.as_java() {
+    // Call Java-exclusive features &amp; packets
+    java.send_packet(java_packets::ClientboundPacket::Ping(&amp;ping_data));
+
+    let dialog = Dialog {
+        title: TextComponent::from("Confirm Action"),
+        type_: DialogType::Confirmation,
+        body: vec![DialogBody::PlainMessage(TextComponent::from("Are you sure you want to run this?"))],
+        inputs: vec![],
+        buttons: vec![ActionButton {
+            text: TextComponent::from("Yes"),
+            tooltip: None,
+            width: None,
+        }],
+        links: vec![],
+        after_action: Some(AfterAction::Pop),
+        can_close_with_escape: true,
+        external_title: None,
+    };
+    player.show_dialog(dialog);
+} else if let Some(bedrock) = player.as_bedrock() {
+    // Call Bedrock-exclusive features &amp; forms
+    bedrock.send_packet(bedrock_packets::ClientboundPacket::PlayStatus(&amp;status_data));
+
+    let form = SimpleFormBuilder::new("Confirm Action", "Are you sure you want to run this?")
+        .button("Click Me", None)
+        .build();
+    bedrock.send_form(form);
+}
+// 100% native, zero dependencies, compile-time type-checked</code></pre>
         </div>
       </section>
 
