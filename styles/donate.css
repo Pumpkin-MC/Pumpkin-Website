@@ -182,14 +182,18 @@
   gap: 0.75rem;
 }
 
+.tier-corp-platinum .tier-header i, .tier-platinum .tier-header i { color: #e5e4e2; }
+.tier-corp-gold .tier-header i, .tier-gold .tier-header i { color: #ffd700; }
+.tier-corp-silver .tier-header i, .tier-silver .tier-header i { color: #a5b1c2; }
+.tier-corp-bronze .tier-header i, .tier-bronze .tier-header i { color: #cd7f32; }
+.tier-diamond .tier-header i { color: #b9f2ff; text-shadow: 0 0 10px rgba(185, 242, 255, 0.5); }
 .tier-titanium .tier-header i { color: #d1d8e0; text-shadow: 0 0 10px rgba(209, 216, 224, 0.5); }
 .tier-titanium .sponsor-card { 
   border-color: #d1d8e0; 
   box-shadow: 6px 6px 0 #d1d8e0; 
   background: linear-gradient(145deg, rgba(209, 216, 224, 0.05), transparent);
 }
-.tier-silver .tier-header i { color: #a5b1c2; }
-.tier-bronze .tier-header i { color: #cd7f32; }
+
 
 .tier-grid-titanium { 
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 

@@ -198,89 +198,9 @@
       </div>
 
       <div id="sponsors-current-wrapper">
-
-        <div class="tier-group tier-corp-bronze">
-          <h3 class="tier-header"><i class="fa-solid fa-building"></i> Corporate Bronze Sponsors</h3>
-          <div class="sponsors-grid">
-            <a href="https://github.com/Lysander05" class="sponsor-card" target="_blank">
-              <span>Lysander Spathopoulos</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="tier-group tier-titanium">
-          <h3 class="tier-header"><i class="fa-solid fa-shield-halved"></i> Titanium Sponsors</h3>
-          <div class="sponsors-grid tier-grid-titanium">
-            <a href="https://github.com/wynn-dev" class="sponsor-card" target="_blank">
-              <img src="https://avatars.githubusercontent.com/u/66362261?v=4" alt="wynn" />
-              <span>wynn</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- <div class="tier-group tier-platinum">
-          <h3 class="tier-header"><i class="fa-solid fa-shield-halved"></i> Platinum Sponsors</h3>
-          <div class="sponsors-grid tier-grid-platinum">
-          </div>
-        </div> -->
-
-        <div class="tier-group tier-silver">
-          <h3 class="tier-header"><i class="fa-solid fa-medal"></i> Silver Sponsors</h3>
-          <div class="sponsors-grid">
-            <a href="https://github.com/lineality" class="sponsor-card" target="_blank"><span>Geoffrey Gordon
-                Ashbrook</span></a>
-            <a href="https://github.com/GodData001" class="sponsor-card" target="_blank"><span>GodData001</span></a>
-            <a href="https://github.com/Pookachu" class="sponsor-card" target="_blank"><span>Pooka</span></a>
-          </div>
-        </div>
-
-        <div class="tier-group tier-bronze">
-          <h3 class="tier-header"><i class="fa-solid fa-user-group"></i> Bronze Sponsors</h3>
-          <div class="sponsors-grid">
-            <a href="https://github.com/clemensrh" class="sponsor-card" target="_blank"><span>Clemens</span></a>
-            <a href="https://github.com/bybrooklyn" class="sponsor-card" target="_blank"><span>Brook</span></a>
-            <a href="https://github.com/Grimwald-SMP" class="sponsor-card" target="_blank"><span>Grimwald SMP</span></a>
-            <a href="https://github.com/snarkyalyx" class="sponsor-card" target="_blank"><span>Alyx Buckmann</span></a>
-            <a href="https://github.com/GjorgjiML" class="sponsor-card" target="_blank"><span>Gjorgji
-                Mladenovski</span></a>
-            <a href="https://github.com/illyrius666" class="sponsor-card" target="_blank"><span>Illyrius</span></a>
-            <a href="https://github.com/alexanderstdev" class="sponsor-card" target="_blank"><span>Alexander
-                Andersen</span></a>
-            <a class="sponsor-card" target="_blank"><span>Rylan Livingston
-              </span></a>
-            <a class="sponsor-card" target="_blank"><span>Agyagási Ferenc Attila</span></a>
-          </div>
-        </div>
       </div>
 
       <div id="sponsors-past" class="hidden">
-        <div class="sponsors-grid">
-          <a href="https://github.com/ThatOneToast" class="sponsor-card" target="_blank"><span>White Bread</span></a>
-          <a href="https://github.com/mtthidoteu" class="sponsor-card" target="_blank"><span>Matthieu B</span></a>
-          <a href="https://github.com/Schweeeeeeeeeeeeeeee" class="sponsor-card"
-            target="_blank"><span>Schweeeeeeeeeeeeeeee</span></a>
-          <a href="https://github.com/Rotstein007" class="sponsor-card" target="_blank"><span>Rotstein</span></a>
-          <a href="https://github.com/bartwx" class="sponsor-card" target="_blank"><span>Bart Wiggers</span></a>
-          <a href="https://github.com/RoosterBooster007" class="sponsor-card" target="_blank"><span>RB007
-            </span></a>
-          <a href="https://github.com/Vianpyro" class="sponsor-card" target="_blank"><span>Vianney Veremme
-            </span></a>
-          <a href="https://github.com/robke96" class="sponsor-card" target="_blank"><span>Robertas</span></a>
-          <a href="https://github.com/ayubrawr" class="sponsor-card" target="_blank"><span>ayub</span></a>
-          <a href="https://github.com/Byundai" class="sponsor-card" target="_blank"><span>Byundai</span></a>
-          <a href="https://github.com/Siydge" class="sponsor-card" target="_blank"><span>Siydge</span></a>
-          <a href="https://github.com/ItzCelyrian" class="sponsor-card" target="_blank"><span>ItzCelyrian</span></a>
-          <a href="https://github.com/Wuemeli" class="sponsor-card" target="_blank"><span>Wuemeli</span></a>
-          <a href="https://github.com/DylanClouden28" class="sponsor-card"
-            target="_blank"><span>DylanClouden28</span></a>
-          <a href="https://github.com/vyPal" class="sponsor-card" target="_blank"><span>vyPal</span></a>
-          <a href="https://github.com/Unoqwy" class="sponsor-card" target="_blank"><span>Unoqwy</span></a>
-          <a href="https://github.com/ForceGamer" class="sponsor-card" target="_blank"><span>Force</span></a>
-          <a href="https://github.com/sweattypalms" class="sponsor-card" target="_blank"><span>Sweattypalms</span></a>
-
-          <div class="sponsor-card private-sponsor"><i class="fa-solid fa-user-secret"></i><span>Private Sponsor</span>
-          </div>
-        </div>
       </div>
     </section>
   </main>
@@ -327,6 +247,111 @@
         }
       });
     });
+
+    const TIER_ORDER = [
+      { slug: "tier-corp-platinum", name: "Corporate Platinum Sponsors", icon: "fa-solid fa-building" },
+      { slug: "tier-corp-gold", name: "Corporate Gold Sponsors", icon: "fa-solid fa-building" },
+      { slug: "tier-corp-silver", name: "Corporate Silver Sponsors", icon: "fa-solid fa-building" },
+      { slug: "tier-corp-bronze", name: "Corporate Bronze Sponsors", icon: "fa-solid fa-building" },
+      { slug: "tier-diamond", name: "Diamond Sponsors", icon: "fa-solid fa-gem" },
+      { slug: "tier-titanium", name: "Titanium Sponsors", icon: "fa-solid fa-shield-halved", gridClass: "tier-grid-titanium" },
+      { slug: "tier-platinum", name: "Platinum Sponsors", icon: "fa-solid fa-shield-halved", gridClass: "tier-grid-platinum" },
+      { slug: "tier-gold", name: "Gold Sponsors", icon: "fa-solid fa-award" },
+      { slug: "tier-silver", name: "Silver Sponsors", icon: "fa-solid fa-medal" },
+      { slug: "tier-bronze", name: "Bronze Sponsors", icon: "fa-solid fa-user-group" }
+    ];
+
+    async function loadDonators() {
+      const apiUrl = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+        ? "http://localhost:5000/api/v1/rest/donators"
+        : "https://market.pumpkinmc.org/api/v1/rest/donators";
+
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error("Failed to fetch donators");
+        const data = await response.json();
+        renderDonators(data);
+      } catch (err) {
+        console.error("Error loading donators from API:", err);
+      }
+    }
+
+    function createSponsorCard(donator) {
+      if (donator.is_private) {
+        const card = document.createElement("div");
+        card.className = "sponsor-card private-sponsor";
+        card.innerHTML = `<i class="fa-solid fa-user-secret"></i><span>Private Sponsor</span>`;
+        return card;
+      }
+
+      const card = document.createElement("a");
+      card.className = "sponsor-card";
+      card.target = "_blank";
+      if (donator.url) {
+        card.href = donator.url;
+        card.rel = "noopener";
+      }
+
+      let content = "";
+      if (donator.avatar_url) {
+        content += `<img src="${donator.avatar_url}" alt="${donator.name}" />`;
+      }
+      content += `<span>${donator.name}</span>`;
+      card.innerHTML = content;
+      return card;
+    }
+
+    function renderDonators(data) {
+      const currentWrapper = document.getElementById("sponsors-current-wrapper");
+      const pastWrapper = document.getElementById("sponsors-past");
+
+      currentWrapper.innerHTML = "";
+      pastWrapper.innerHTML = "";
+
+      const currentDonators = data.current || [];
+      const pastDonators = data.past || [];
+
+      // Group current donators by tier_slug
+      const grouped = {};
+      currentDonators.forEach((donator) => {
+        const slug = donator.tier_slug || "tier-bronze";
+        if (!grouped[slug]) grouped[slug] = [];
+        grouped[slug].push(donator);
+      });
+
+      // Render in defined tier order
+      TIER_ORDER.forEach((tierInfo) => {
+        const list = grouped[tierInfo.slug];
+        if (list && list.length > 0) {
+          const groupDiv = document.createElement("div");
+          groupDiv.className = `tier-group ${tierInfo.slug}`;
+
+          const header = document.createElement("h3");
+          header.className = "tier-header";
+          header.innerHTML = `<i class="${tierInfo.icon}"></i> ${tierInfo.name}`;
+          groupDiv.appendChild(header);
+
+          const grid = document.createElement("div");
+          grid.className = `sponsors-grid ${tierInfo.gridClass || ""}`;
+          list.forEach((donator) => {
+            grid.appendChild(createSponsorCard(donator));
+          });
+
+          groupDiv.appendChild(grid);
+          currentWrapper.appendChild(groupDiv);
+        }
+      });
+
+      // Render past sponsors
+      const pastGrid = document.createElement("div");
+      pastGrid.className = "sponsors-grid";
+      pastDonators.forEach((donator) => {
+        pastGrid.appendChild(createSponsorCard(donator));
+      });
+      pastWrapper.appendChild(pastGrid);
+    }
+
+    document.addEventListener("DOMContentLoaded", loadDonators);
   </script>
 </body>
 
