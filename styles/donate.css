@@ -241,6 +241,67 @@
 
 .hidden { display: none !important; }
 
+/* Code Signing Section */
+.code-signing-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  text-align: center;
+  border-top: 1px solid rgb(255 255 255 / 0.1);
+}
+
+.code-signing-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.code-signing-title i {
+  color: var(--color-pink);
+}
+
+.code-signing-card {
+  padding: 1.25rem 1.5rem;
+  border: 2px solid var(--color-pink);
+  background: var(--color-surface);
+  box-shadow: 4px 4px 0 var(--color-pink);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.code-signing-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-pink);
+}
+
+.code-signing-text {
+  max-width: 700px;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.code-signing-text a {
+  color: var(--color-pink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+
+.code-signing-text a:hover {
+  color: var(--color-text);
+}
+
 @media (max-width: 768px) {
   .donate-hero {
     padding: 3rem 1rem 1rem;
