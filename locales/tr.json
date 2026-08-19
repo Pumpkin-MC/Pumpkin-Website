@@ -7,8 +7,8 @@
     "download": "İndir"
   },
   "banner": {
-    "earlyDev": "Pumpkin henüz erken geliştirme aşamasındadır ve hatalarla karşılaşabilirsiniz. Bir hata bulursanız, lütfen",
-    "github": "GitHub"
+    "earlyDev": "Pumpkin henüz erken geliştirme aşamasında ve hatalar oluşabilir. Herhangi birini bulursanız, bunları bizim",
+    "github": "GitHub'ımızda bildirin"
   },
   "hero": {
     "newBadge": "YENİ",
