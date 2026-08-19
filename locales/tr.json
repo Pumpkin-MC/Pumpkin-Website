@@ -1,0 +1,48 @@
+{
+  "nav": {
+    "docs": "Dokümanlar",
+    "developers": "Geliştiriciler",
+    "blog": "Blog",
+    "market": "Market",
+    "download": "İndir"
+  },
+  "banner": {
+    "earlyDev": "Pumpkin henüz erken geliştirme aşamasındadır ve hatalarla karşılaşabilirsiniz. Bir hata bulursanız, lütfen",
+    "github": "GitHub"
+  },
+  "hero": {
+    "newBadge": "YENİ",
+    "titlePart1": "Dünyanın en hızlı",
+    "titleHighlight": "Minecraft",
+    "titlePart2": "sunucusu.",
+    "subtitle": "Vanilla'dan 1000 kat daha hızlı başlangıç. 18 kat daha az bellek kullanımı. Maksimum performans için Rust ile geliştirildi.",
+    "downloadBtn": "İndir",
+    "buildPluginsBtn": "Eklenti Oluştur",
+    "statStartup": "başlangıç",
+    "statMemory": "bellek",
+    "statCpu": "boşta CPU"
+  },
+  "features": {
+    "title": "Geliştiriciler neden Pumpkin'i",
+    "titleHighlight": "seviyor",
+    "titleEnd": "",
+    "f1Title": "Anlık Başlangıç",
+    "f1Desc": "Sunucu ~5 milisaniyede hazır. 15 saniye değil. Bu, vanilla'dan 1000 kat daha hızlı demek.",
+    "f2Title": "Minik Bellek Kullanımı",
+    "f2Desc": "Vanilla 1.8GB'a ihtiyaç duyarken ~100MB RAM ile çalışır. Ucuz VPS barındırma için mükemmel.",
+    "f3Title": "Çok İş Parçacıklı",
+    "f3Desc": "Tüm CPU çekirdeklerinizi gerçekten kullanır. Sadece chunk'lar için değil, her şey için.",
+    "f4Title": "Çapraz Oyun",
+    "f4Desc": "Java ve Bedrock oyuncuları bir arada. Eklenti gerektirmeden, dahili olarak.",
+    "f5Title": "Java Gerekmez",
+    "f5Desc": "Tek bir çalıştırılabilir dosya. İndir, çift tıkla, hazır. Sıfır kurulum.",
+    "f6Title": "Açık Kaynak",
+    "f6Desc": "GPL lisanslıdır. Kodu incele, katkıda bulun, fork'la. Tam şeffaflık."
+  },
+  "comparison": {
+    "title": "Farkı",
+    "titleHighlight": "görün",
+    "startupTitle": "Başlangıç Süresi",
+    "ramTitle": "RAM Kullanımı"
+  }
+}
