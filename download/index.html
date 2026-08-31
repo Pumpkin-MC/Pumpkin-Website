@@ -164,85 +164,62 @@
         <h2 id="all-downloads" class="downloads-heading">All Platforms</h2>
 
         <div class="download-grid">
-          <!-- Windows -->
-          <div class="download-card">
-            <h3><i class="fab fa-windows"></i> Windows</h3>
-            <div class="download-options">
-              <a
-                href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Windows.exe"
-                class="download-option"
-              >
-                <div class="arch">
-                  <span>x86-64</span>
-                  <span class="badge badge-intel">Intel</span>
-                  <span class="badge badge-amd">AMD</span>
-                </div>
-                <i class="fa-solid fa-download"></i>
-              </a>
-              <a
-                href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Windows.exe"
-                class="download-option"
-              >
-                <div class="arch">
-                  <span>ARM64</span>
-                </div>
-                <i class="fa-solid fa-download"></i>
-              </a>
+          <div class="platform-btn" data-href-primary="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Windows.exe">
+            <div class="platform-icon"><i class="fab fa-windows"></i></div>
+            <div class="platform-info">
+              <div class="platform-name">Windows</div>
+              <div class="platform-arches">
+                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Windows.exe" class="platform-arch-link">
+                  x86-64 <span class="arch-tag">Intel / AMD</span>
+                </a>
+                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Windows.exe" class="platform-arch-link">
+                  ARM64
+                </a>
+              </div>
             </div>
+            <div class="platform-dl-icon"><i class="fa-solid fa-download"></i></div>
           </div>
 
-          <!-- Linux -->
-          <div class="download-card">
-            <h3><i class="fab fa-linux"></i> Linux</h3>
-            <div class="download-options">
-              <a
-                href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Linux"
-                class="download-option"
-              >
-                <div class="arch">
-                  <span>x86-64</span>
-                  <span class="badge badge-intel">Intel</span>
-                  <span class="badge badge-amd">AMD</span>
-                </div>
-                <i class="fa-solid fa-download"></i>
-              </a>
-              <a
-                href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Linux"
-                class="download-option"
-              >
-                <div class="arch">
-                  <span>ARM64</span>
-                </div>
-                <i class="fa-solid fa-download"></i>
-              </a>
+          <div class="platform-btn" data-href-primary="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Linux">
+            <div class="platform-icon"><i class="fab fa-linux"></i></div>
+            <div class="platform-info">
+              <div class="platform-name">Linux</div>
+              <div class="platform-arches">
+                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Linux" class="platform-arch-link">
+                  x86-64 <span class="arch-tag">Intel / AMD</span>
+                </a>
+                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Linux" class="platform-arch-link">
+                  ARM64
+                </a>
+              </div>
             </div>
+            <div class="platform-dl-icon"><i class="fa-solid fa-download"></i></div>
           </div>
 
-          <!-- macOS -->
-          <div class="download-card">
-            <h3><i class="fab fa-apple"></i> macOS</h3>
-            <div class="download-options">
-              <a
-                href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-macOS"
-                class="download-option"
-              >
-                <div class="arch">
-                  <span>ARM64</span>
-                  <span class="badge badge-apple">Apple Silicon</span>
-                </div>
-                <i class="fa-solid fa-download"></i>
-              </a>
-              <a
-                href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-macOS"
-                class="download-option"
-              >
-                <div class="arch">
-                  <span>x86-64</span>
-                  <span class="badge badge-intel">Intel</span>
-                </div>
-                <i class="fa-solid fa-download"></i>
-              </a>
+          <div class="platform-btn" data-href-primary="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-macOS">
+            <div class="platform-icon"><i class="fab fa-apple"></i></div>
+            <div class="platform-info">
+              <div class="platform-name">macOS</div>
+              <div class="platform-arches">
+                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-macOS" class="platform-arch-link">
+                  ARM64 <span class="arch-tag">Apple Silicon</span>
+                </a>
+              </div>
             </div>
+            <div class="platform-dl-icon"><i class="fa-solid fa-download"></i></div>
+          </div>
+
+          <div class="platform-btn" data-href-primary="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-aarch64-android">
+            <div class="platform-icon"><i class="fab fa-android"></i></div>
+            <div class="platform-info">
+              <div class="platform-name">Android</div>
+              <div class="platform-arches">
+                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-aarch64-android" class="platform-arch-link">
+                  ARM64
+                </a>
+              </div>
+            </div>
+            <div class="platform-dl-icon"><i class="fa-solid fa-download"></i></div>
           </div>
         </div>
 
@@ -301,15 +278,6 @@
           </div>
         </div>
       </section>
-
-      <section class="code-signing-section">
-        <h3 class="code-signing-title"><i class="fa-solid fa-shield-halved"></i> Code Signing</h3>
-        <div class="code-signing-card">
-          <p class="code-signing-text">
-            Free code signing provided by <a href="https://signpath.io/" target="_blank" rel="noopener">SignPath.io</a>, certificate by <a href="https://signpath.org/" target="_blank" rel="noopener">SignPath Foundation</a>. Pumpkin releases are digitally signed using SignPath.
-          </p>
-        </div>
-      </section>
     </main>
 
     <footer>
@@ -337,7 +305,6 @@
               "https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Windows.exe",
           },
           mac: {
-            x64: "https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-macOS",
             arm64:
               "https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-macOS",
           },
@@ -345,6 +312,10 @@
             x64: "https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Linux",
             arm64:
               "https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Linux",
+          },
+          android: {
+            arm64:
+              "https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-aarch64-android",
           },
         };
 
@@ -363,10 +334,18 @@
         let archLabel = "x86-64";
 
         // Detect OS
-        if (ua.includes("mac") || platform.includes("mac")) {
+        if (ua.includes("android")) {
+          os = "android";
+          osName = "Android";
+          iconClass = "fab fa-android";
+          architecture = "arm64";
+          archLabel = "ARM64";
+        } else if (ua.includes("mac") || platform.includes("mac")) {
           os = "mac";
           osName = "macOS";
           iconClass = "fab fa-apple";
+          architecture = "arm64";
+          archLabel = "ARM64 (Apple Silicon)";
         } else if (ua.includes("linux") || platform.includes("linux")) {
           os = "linux";
           osName = "Linux";
@@ -374,45 +353,25 @@
         }
 
         // Detect architecture
-        if (
-          ua.includes("arm64") ||
-          ua.includes("aarch64") ||
-          platform.includes("arm") ||
-          (navigator.userAgentData &&
-            navigator.userAgentData.architecture === "arm")
-        ) {
-          architecture = "arm64";
-          archLabel = "ARM64";
-        }
-
-        // Special case: Apple Silicon detection
-        if (os === "mac") {
-          // Check for Apple Silicon
-          const isAppleSilicon = (function () {
-            try {
-              const canvas = document.createElement("canvas");
-              const gl = canvas.getContext("webgl");
-              const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
-              const renderer = gl.getParameter(
-                debugInfo.UNMASKED_RENDERER_WEBGL,
-              );
-              return renderer.includes("Apple") && !renderer.includes("Intel");
-            } catch (e) {
-              return (
-                window.navigator.userAgent.includes("Mac") &&
-                !window.navigator.userAgent.includes("Intel")
-              );
-            }
-          })();
-
-          if (isAppleSilicon) {
+        if (os !== "android" && os !== "mac") {
+          if (
+            ua.includes("arm64") ||
+            ua.includes("aarch64") ||
+            platform.includes("arm") ||
+            (navigator.userAgentData &&
+              navigator.userAgentData.architecture === "arm")
+          ) {
             architecture = "arm64";
-            archLabel = "ARM64 (Apple Silicon)";
+            archLabel = "ARM64";
           }
         }
 
         // Update button
-        btn.href = downloads[os][architecture];
+        btn.href =
+          (downloads[os] && downloads[os][architecture]) ||
+          (downloads[os] && downloads[os].arm64) ||
+          (downloads[os] && downloads[os].x64) ||
+          "#";
         icon.className = iconClass;
         text.textContent = "Download for " + osName;
         arch.textContent = archLabel;
@@ -631,6 +590,16 @@
           terminalObserver.observe(terminalRoot);
         }
       })();
+    </script>
+    <script>
+      document.querySelectorAll(".platform-btn").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          if (!e.target.closest(".platform-arch-link")) {
+            var href = btn.getAttribute("data-href-primary");
+            if (href) window.location.href = href;
+          }
+        });
+      });
     </script>
   </body>
 </html>

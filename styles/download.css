@@ -74,115 +74,101 @@
 
 .download-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
   margin-bottom: 2rem;
 }
 
-.download-card {
-  padding: 2rem;
+.platform-btn {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.75rem 2rem;
   border: var(--orange-border);
   background: var(--color-surface);
   box-shadow: var(--orange-shadow);
-  text-align: left;
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-.download-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: var(--orange-shadow-hover);
-}
-
-.download-card h3 {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid var(--color-orange);
-  font-size: 1.25rem;
-  font-weight: 800;
-}
-
-.download-card h3 i {
-  color: var(--color-orange);
-  font-size: 1.5rem;
-}
-
-.download-options {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.download-option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.85rem 1rem;
-  border: 2px solid var(--color-orange);
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-weight: 600;
+  cursor: pointer;
   text-decoration: none;
   transition:
-    border-color 0.1s ease,
-    background-color 0.1s ease,
-    color 0.1s ease;
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
 }
 
-.download-option:hover {
-  background: var(--color-orange);
-  color: var(--color-black);
+.platform-btn:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--orange-shadow-hover);
+  background: color-mix(in srgb, var(--color-surface) 85%, var(--color-orange) 15%);
 }
 
-.download-option .arch {
+.platform-icon {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.download-option .badge {
-  padding: 2px 6px;
-  background: var(--badge-color, var(--color-green));
-  color: var(--color-white);
-  font-size: 0.65rem;
-  font-weight: 700;
-}
-
-.download-option .badge.badge-apple {
-  --badge-color: var(--color-green);
-}
-
-.download-option .badge.badge-intel {
-  --badge-color: var(--color-blue);
-}
-
-.download-option .badge.badge-amd {
-  --badge-color: var(--color-red);
-}
-
-.download-option .desc {
-  color: var(--color-text-muted);
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
-.download-option i {
+  justify-content: center;
+  flex-shrink: 0;
+  width: 4rem;
+  height: 4rem;
+  border: 2px solid var(--color-orange);
+  background: color-mix(in srgb, var(--color-bg) 100%, transparent 0%);
   color: var(--color-orange);
+  font-size: 2rem;
+}
+
+.platform-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.platform-name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.platform-arches {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.platform-arch-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
   transition: color 0.1s ease;
 }
 
-.download-option:hover i {
-  color: var(--color-black);
+.platform-arch-link:hover {
+  color: var(--color-orange);
 }
 
-.download-option:hover .badge {
-  background: var(--badge-color, var(--color-green));
-  color: var(--color-white);
+.arch-tag {
+  padding: 1px 6px;
+  background: var(--color-orange);
+  color: var(--color-black);
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 0;
+  line-height: 1.6;
+}
+
+.platform-dl-icon {
+  flex-shrink: 0;
+  color: var(--color-orange);
+  font-size: 1.4rem;
+  opacity: 0.7;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.platform-btn:hover .platform-dl-icon {
+  opacity: 1;
+  transform: scale(1.15);
 }
 
 .download-note {
@@ -418,9 +404,6 @@
 @media (max-width: 900px) {
   .download-grid {
     grid-template-columns: 1fr;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .btn-xl {
@@ -455,6 +438,21 @@
 
   .auto-download {
     margin: 2rem 0 3rem;
+  }
+
+  .platform-btn {
+    padding: 1.25rem 1.25rem;
+    gap: 1rem;
+  }
+
+  .platform-icon {
+    width: 3.25rem;
+    height: 3.25rem;
+    font-size: 1.6rem;
+  }
+
+  .platform-name {
+    font-size: 1.2rem;
   }
 
   .download-info {
