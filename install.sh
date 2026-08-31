@@ -85,8 +85,13 @@ info "Downloading Pumpkin from GitHub releases..."
 mkdir -p "$INSTALL_DIR"
 DEST="${INSTALL_DIR}/pumpkin"
 
-curl -sSfL --progress-bar -o "$DEST" "$DOWNLOAD_URL" || \
-  error "Download failed. Check your internet connection or visit https://github.com/${REPO}/releases"
+if [ -t 1 ]; then
+  curl -fL --progress-bar -o "$DEST" "$DOWNLOAD_URL" || \
+    error "Download failed. Check your internet connection or visit https://github.com/${REPO}/releases"
+else
+  curl -sSfL -o "$DEST" "$DOWNLOAD_URL" || \
+    error "Download failed. Check your internet connection or visit https://github.com/${REPO}/releases"
+fi
 
 chmod +x "$DEST"
 
