@@ -156,9 +156,20 @@
             <span id="auto-download-arch">x86-64</span> &bull;
             <span id="auto-download-build">Loading...</span>
           </p>
-          <p class="auto-download-alt">
-            Not your OS? <a href="#all-downloads">See all downloads below</a>
+        </div>
+
+        <!-- One-liner install -->
+        <div class="oneliner-section">
+          <p class="oneliner-label">
+            <i class="fa-solid fa-terminal"></i>
+            If you're on macOS, Linux, or another Unix-like OS, run the following in your terminal to install Pumpkin:
           </p>
+          <div class="oneliner-row">
+            <code class="oneliner-code" id="oneliner-code">curl -sSfL https://pumpkinmc.org/install.sh | sh</code>
+            <button class="oneliner-copy-btn" id="oneliner-copy-btn" title="Copy to clipboard" aria-label="Copy install command">
+              <i class="fa-regular fa-copy" id="oneliner-copy-icon"></i>
+            </button>
+          </div>
         </div>
 
         <h2 id="all-downloads" class="downloads-heading">All Platforms</h2>
@@ -203,6 +214,9 @@
               <div class="platform-arches">
                 <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-macOS" class="platform-arch-link">
                   ARM64 <span class="arch-tag">Apple Silicon</span>
+                </a>
+                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-macOS" class="platform-arch-link">
+                  x86-64 <span class="arch-tag">Intel</span>
                 </a>
               </div>
             </div>
@@ -600,6 +614,57 @@
           }
         });
       });
+
+      (function () {
+        var copyBtn = document.getElementById("oneliner-copy-btn");
+        var copyCode = document.getElementById("oneliner-code");
+        var copyIcon = document.getElementById("oneliner-copy-icon");
+
+        if (copyBtn && copyCode && copyIcon) {
+          var resetTimer = null;
+
+          function showSuccess() {
+            copyBtn.classList.add("copied");
+            copyIcon.className = "fa-solid fa-check";
+            copyBtn.setAttribute("title", "Copied!");
+            copyBtn.setAttribute("aria-label", "Copied to clipboard");
+            if (resetTimer) clearTimeout(resetTimer);
+            resetTimer = setTimeout(function () {
+              copyBtn.classList.remove("copied");
+              copyIcon.className = "fa-regular fa-copy";
+              copyBtn.setAttribute("title", "Copy to clipboard");
+              copyBtn.setAttribute("aria-label", "Copy install command");
+            }, 2000);
+          }
+
+          function fallbackCopy(text) {
+            var textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.style.position = "fixed";
+            textarea.style.opacity = "0";
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+              document.execCommand("copy");
+              showSuccess();
+            } catch (err) {
+              console.error("Copy failed", err);
+            }
+            document.body.removeChild(textarea);
+          }
+
+          copyBtn.addEventListener("click", function () {
+            var textToCopy = copyCode.textContent.trim();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(textToCopy).then(showSuccess).catch(function () {
+                fallbackCopy(textToCopy);
+              });
+            } else {
+              fallbackCopy(textToCopy);
+            }
+          });
+        }
+      })();
     </script>
   </body>
 </html>

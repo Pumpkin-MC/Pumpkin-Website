@@ -43,24 +43,101 @@
 }
 
 .auto-download-meta a:hover,
-.auto-download-alt a:hover,
 .download-note a:hover,
 .download-info a:hover {
   text-decoration: underline;
 }
 
-.auto-download-alt {
-  margin-top: 0.75rem;
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-}
-
-.auto-download-alt a,
 .download-note a,
 .download-info a {
   color: var(--color-orange);
   font-weight: 600;
   text-decoration: none;
+}
+
+.oneliner-section {
+  max-width: 660px;
+  margin: 0 auto 3.5rem;
+  text-align: left;
+}
+
+.oneliner-label {
+  margin-bottom: 0.75rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.oneliner-label i {
+  margin-right: 0.35rem;
+  color: var(--color-orange);
+}
+
+.oneliner-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.25rem;
+  border: var(--orange-border);
+  background: var(--color-surface);
+  box-shadow: var(--orange-shadow);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.oneliner-row:hover {
+  box-shadow: var(--orange-shadow-hover);
+}
+
+.oneliner-code {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  color: var(--color-text);
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.oneliner-code::-webkit-scrollbar {
+  display: none;
+}
+
+.oneliner-copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 2px solid var(--color-orange);
+  background: transparent;
+  color: var(--color-orange);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.1s ease,
+    border-color 0.15s ease;
+}
+
+.oneliner-copy-btn:hover {
+  background: var(--color-orange);
+  color: var(--color-black);
+}
+
+.oneliner-copy-btn:active {
+  transform: scale(0.92);
+}
+
+.oneliner-copy-btn.copied {
+  border-color: var(--color-green);
+  background: var(--color-green);
+  color: var(--color-black);
 }
 
 .downloads-heading {
@@ -437,7 +514,20 @@
   }
 
   .auto-download {
-    margin: 2rem 0 3rem;
+    margin: 2rem 0 2.5rem;
+  }
+
+  .oneliner-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .oneliner-row {
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .oneliner-code {
+    font-size: 0.82rem;
   }
 
   .platform-btn {
