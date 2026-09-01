@@ -65,7 +65,10 @@ case "$OS" in
     BINARY_NAME="pumpkin-${ARCH}-Linux"
     ;;
   macos)
-    BINARY_NAME="pumpkin-${ARCH}-macOS"
+    if [ "$ARCH" != "ARM64" ]; then
+      error "Unsupported macOS architecture: $(uname -m). Only Apple Silicon (ARM64) builds are available."
+    fi
+    BINARY_NAME="pumpkin-ARM64-macOS"
     ;;
   android)
     if [ "$ARCH" != "ARM64" ]; then
