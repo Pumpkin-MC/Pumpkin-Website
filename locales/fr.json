@@ -3,11 +3,11 @@
     "docs": "Docs",
     "developers": "Développeurs",
     "blog": "Blog",
-    "market": "Marché",
+    "market": "Marketplace",
     "download": "Télécharger"
   },
   "banner": {
-    "earlyDev": "Pumpkin est en cours de développement initial. Si vous trouvez des bugs, signalez-les sur notre",
+    "earlyDev": "Pumpkin est en cours de développement et des bugs peuvent survenir. Si vous en trouvez, signalez-les sur notre",
     "github": "GitHub"
   },
   "hero": {
@@ -31,7 +31,7 @@
     "f2Title": "Empreinte mémoire minime",
     "f2Desc": "Tourne avec ~100 Mo de RAM là où Vanilla demande 1,8 Go. Parfait pour les hébergements VPS.",
     "f3Title": "Multi-threadé",
-    "f3Desc": "Exploite réellement tous vos cœurs CPU. Pas seulement pour les chunks—pour tout.",
+    "f3Desc": "Exploite réellement tous vos cœurs CPU. Pas seulement pour les chunks : pour tout.",
     "f4Title": "Cross-Play",
     "f4Desc": "Joueurs Java et Bedrock ensemble. Intégré sans aucun plugin requis.",
     "f5Title": "Sans Java",
