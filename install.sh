@@ -4,7 +4,7 @@
 set -e
 
 REPO="${PUMPKIN_REPO:-Pumpkin-MC/Pumpkin}"
-TAG="${PUMPKIN_TAG:-nightly}"
+TAG="${PUMPKIN_TAG:-latest}"
 INSTALL_DIR="${PUMPKIN_INSTALL_DIR:-./pumpkin-server}"
 
 # ANSI colours (disabled if not a terminal or NO_COLOR is set)
@@ -78,7 +78,11 @@ case "$OS" in
     ;;
 esac
 
-DOWNLOAD_URL="https://github.com/${REPO}/releases/download/${TAG}/${BINARY_NAME}"
+if [ "$TAG" = "latest" ]; then
+  DOWNLOAD_URL="https://github.com/${REPO}/releases/latest/download/${BINARY_NAME}"
+else
+  DOWNLOAD_URL="https://github.com/${REPO}/releases/download/${TAG}/${BINARY_NAME}"
+fi
 
 # ── Download ──────────────────────────────────────────────────────────────────
 

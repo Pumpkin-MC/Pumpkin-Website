@@ -147,14 +147,14 @@
 
         <!-- Auto-detect OS download -->
         <div class="auto-download">
-          <a id="auto-download-btn" href="#" class="btn btn-primary btn-xl">
+          <a id="auto-download-btn" href="https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-X64-Windows.exe" class="btn btn-primary btn-xl">
             <i id="auto-download-icon" class="fab fa-windows"></i>
             <span id="auto-download-text">Download for Windows</span>
             <i class="fa-solid fa-download"></i>
           </a>
           <p class="auto-download-meta">
             <span id="auto-download-arch">x86-64</span> &bull;
-            <span id="auto-download-build">Loading...</span>
+            <span id="auto-download-build">Version: <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/tag/0.1.0-dev%2B26.2-26.45" target="_blank" rel="noopener">0.1.0-dev+26.2-26.45</a></span>
           </p>
         </div>
 
@@ -175,15 +175,15 @@
         <h2 id="all-downloads" class="downloads-heading">All Platforms</h2>
 
         <div class="download-grid">
-          <div class="platform-btn" data-href-primary="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Windows.exe">
+          <div class="platform-btn" data-href-primary="https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-X64-Windows.exe">
             <div class="platform-icon"><i class="fab fa-windows"></i></div>
             <div class="platform-info">
               <div class="platform-name">Windows</div>
               <div class="platform-arches">
-                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Windows.exe" class="platform-arch-link">
+                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-X64-Windows.exe" class="platform-arch-link">
                   x86-64 <span class="arch-tag">Intel / AMD</span>
                 </a>
-                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Windows.exe" class="platform-arch-link">
+                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-ARM64-Windows.exe" class="platform-arch-link">
                   ARM64
                 </a>
               </div>
@@ -191,15 +191,15 @@
             <div class="platform-dl-icon"><i class="fa-solid fa-download"></i></div>
           </div>
 
-          <div class="platform-btn" data-href-primary="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Linux">
+          <div class="platform-btn" data-href-primary="https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-X64-Linux">
             <div class="platform-icon"><i class="fab fa-linux"></i></div>
             <div class="platform-info">
               <div class="platform-name">Linux</div>
               <div class="platform-arches">
-                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Linux" class="platform-arch-link">
+                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-X64-Linux" class="platform-arch-link">
                   x86-64 <span class="arch-tag">Intel / AMD</span>
                 </a>
-                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Linux" class="platform-arch-link">
+                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-ARM64-Linux" class="platform-arch-link">
                   ARM64
                 </a>
               </div>
@@ -207,12 +207,12 @@
             <div class="platform-dl-icon"><i class="fa-solid fa-download"></i></div>
           </div>
 
-          <div class="platform-btn" data-href-primary="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-macOS">
+          <div class="platform-btn" data-href-primary="https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-ARM64-macOS">
             <div class="platform-icon"><i class="fab fa-apple"></i></div>
             <div class="platform-info">
               <div class="platform-name">macOS</div>
               <div class="platform-arches">
-                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-macOS" class="platform-arch-link">
+                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-ARM64-macOS" class="platform-arch-link">
                   ARM64 <span class="arch-tag">Apple Silicon</span>
                 </a>
               </div>
@@ -220,12 +220,12 @@
             <div class="platform-dl-icon"><i class="fa-solid fa-download"></i></div>
           </div>
 
-          <div class="platform-btn" data-href-primary="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-aarch64-android">
+          <div class="platform-btn" data-href-primary="https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-aarch64-android">
             <div class="platform-icon"><i class="fab fa-android"></i></div>
             <div class="platform-info">
               <div class="platform-name">Android</div>
               <div class="platform-arches">
-                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-aarch64-android" class="platform-arch-link">
+                <a href="https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-aarch64-android" class="platform-arch-link">
                   ARM64
                 </a>
               </div>
@@ -311,22 +311,22 @@
       (function () {
         const downloads = {
           windows: {
-            x64: "https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Windows.exe",
+            x64: "https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-X64-Windows.exe",
             arm64:
-              "https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Windows.exe",
+              "https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-ARM64-Windows.exe",
           },
           mac: {
             arm64:
-              "https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-macOS",
+              "https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-ARM64-macOS",
           },
           linux: {
-            x64: "https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-X64-Linux",
+            x64: "https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-X64-Linux",
             arm64:
-              "https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-ARM64-Linux",
+              "https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-ARM64-Linux",
           },
           android: {
             arm64:
-              "https://github.com/Pumpkin-MC/Pumpkin/releases/download/nightly/pumpkin-aarch64-android",
+              "https://github.com/Pumpkin-MC/Pumpkin/releases/latest/download/pumpkin-aarch64-android",
           },
         };
 
@@ -387,10 +387,13 @@
         text.textContent = "Download for " + osName;
         arch.textContent = archLabel;
 
-        // Fetch latest build info
+        // Fetch latest release info
         const buildEl = document.getElementById("auto-download-build");
-        const CACHE_KEY = "pumpkin_commit";
+        const CACHE_KEY = "pumpkin_latest_release";
         const CACHE_TTL = 60 * 60 * 1000; // 1 hour
+        const DEFAULT_VERSION = "0.1.0-dev+26.2-26.45";
+        const DEFAULT_RELEASE_URL =
+          "https://github.com/Pumpkin-MC/Pumpkin/releases/tag/0.1.0-dev%2B26.2-26.45";
 
         function getCached(key) {
           try {
@@ -413,58 +416,58 @@
           } catch { /* storage full or unavailable */ }
         }
 
-        function timeAgo(date) {
-          const seconds = Math.floor((new Date() - date) / 1000);
-          const intervals = [
-            { label: "year", seconds: 31536000 },
-            { label: "month", seconds: 2592000 },
-            { label: "day", seconds: 86400 },
-            { label: "hour", seconds: 3600 },
-            { label: "minute", seconds: 60 },
-          ];
-          for (const interval of intervals) {
-            const count = Math.floor(seconds / interval.seconds);
-            if (count >= 1) {
-              return (
-                count + " " + interval.label + (count > 1 ? "s" : "") + " ago"
-              );
-            }
+        function renderRelease(data) {
+          const version = (data && data.tag_name) || DEFAULT_VERSION;
+          const url =
+            (data && data.html_url) ||
+            (data && data.tag_name
+              ? "https://github.com/Pumpkin-MC/Pumpkin/releases/tag/" +
+                encodeURIComponent(data.tag_name)
+              : DEFAULT_RELEASE_URL);
+
+          if (buildEl) {
+            buildEl.textContent = "Version: ";
+            const versionLink = document.createElement("a");
+            versionLink.href = url;
+            versionLink.target = "_blank";
+            versionLink.rel = "noopener";
+            versionLink.textContent = version;
+            buildEl.appendChild(versionLink);
           }
-          return "just now";
         }
 
-        function renderCommit(data) {
-          if (data.sha && data.commit && data.commit.committer.date) {
-            const commitDate = new Date(data.commit.committer.date);
-            const safeSha = String(data.sha).replace(/[^a-f0-9]/gi, "");
-            const commitShort = safeSha.substring(0, 7);
-            buildEl.textContent = "Latest commit: " + timeAgo(commitDate) + " \u2022 ";
-            const commitLink = document.createElement("a");
-            commitLink.href = "https://github.com/Pumpkin-MC/Pumpkin/commit/" + safeSha;
-            commitLink.target = "_blank";
-            commitLink.rel = "noopener";
-            commitLink.textContent = commitShort;
-            buildEl.appendChild(commitLink);
-          } else {
-            buildEl.textContent = "Nightly Build";
-          }
-        }
+        try {
+          localStorage.removeItem("pumpkin_commit");
+        } catch { /* ignore */ }
 
         const cached = getCached(CACHE_KEY);
         if (cached) {
-          renderCommit(cached);
+          renderRelease(cached);
         } else {
-          fetch("https://api.github.com/repos/Pumpkin-MC/Pumpkin/commits/master")
+          fetch("https://api.github.com/repos/Pumpkin-MC/Pumpkin/releases/latest")
             .then((res) => {
-              if (res.status === 403) throw new Error("Rate limited");
+              if (!res.ok) throw new Error("Failed to fetch latest release");
               return res.json();
             })
             .then((data) => {
-              setCache(CACHE_KEY, { sha: data.sha, commit: data.commit });
-              renderCommit(data);
+              if (data && data.tag_name) {
+                setCache(CACHE_KEY, {
+                  tag_name: data.tag_name,
+                  html_url: data.html_url,
+                });
+                renderRelease(data);
+              } else {
+                renderRelease({
+                  tag_name: DEFAULT_VERSION,
+                  html_url: DEFAULT_RELEASE_URL,
+                });
+              }
             })
             .catch(() => {
-              buildEl.textContent = "Nightly Build";
+              renderRelease({
+                tag_name: DEFAULT_VERSION,
+                html_url: DEFAULT_RELEASE_URL,
+              });
             });
         }
 
