@@ -1,0 +1,48 @@
+{
+  "nav": {
+    "docs": "文档",
+    "developers": "开发者",
+    "blog": "博客",
+    "market": "市场",
+    "download": "下载"
+  },
+  "banner": {
+    "earlyDev": "Pumpkin 目前处于早期开发阶段，可能会出现 Bug。如果您发现任何问题，请前往我们的 ",
+    "github": "GitHub"
+  },
+  "hero": {
+    "newBadge": "全新",
+    "titlePart1": "全球最快的 ",
+    "titleHighlight": "Minecraft ",
+    "titlePart2": "服务器。",
+    "subtitle": "启动速度比原版快 1000 倍，内存占用仅为原版的 1/18。基于 Rust 构建，追求极致性能。",
+    "downloadBtn": "下载",
+    "buildPluginsBtn": "开发插件",
+    "statStartup": "启动",
+    "statMemory": "内存",
+    "statCpu": "CPU 占用"
+  },
+  "features": {
+    "title": "为什么开发者",
+    "titleHighlight": "热爱",
+    "titleEnd": "Pumpkin",
+    "f1Title": "极速启动",
+    "f1Desc": "服务器仅需约 5 毫秒即可就绪，而不是 15 秒。这比原版快 1000 倍。",
+    "f2Title": "极低内存",
+    "f2Desc": "仅需约 100MB 内存，而原版需要 1.8GB。完美适配低成本 VPS 托管。",
+    "f3Title": "多线程",
+    "f3Desc": "真正利用所有 CPU 核心。不仅限于区块处理——而是全局应用。",
+    "f4Title": "跨端互通",
+    "f4Desc": "Java 版与基岩版玩家同服联机。内置原生支持，无需额外插件。",
+    "f5Title": "无需 Java",
+    "f5Desc": "单一可执行文件。下载、双击、搞定。零配置。",
+    "f6Title": "开源",
+    "f6Desc": "采用 GPL 协议。阅读代码、参与贡献、自由分支。完全透明。"
+  },
+  "comparison": {
+    "title": "直观感受",
+    "titleHighlight": "差异",
+    "startupTitle": "启动时间",
+    "ramTitle": "内存占用"
+  }
+}

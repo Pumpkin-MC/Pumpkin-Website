@@ -4,7 +4,8 @@
     en: "English",
     de: "Deutsch",
     fr: "Français",
-    es: "Español"
+    es: "Español",
+    zh_cn: "简体中文"
   };
 
   let translations = {};
