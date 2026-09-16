@@ -1,0 +1,59 @@
+{
+  "nav": {
+    "developers": "Entwickler",
+    "docs": "Doku",
+    "community": "Community",
+    "market": "Markt",
+    "download": "Herunterladen",
+    "language": "Sprache",
+    "menu": "Menü"
+  },
+  "hero": {
+    "title": "Ein Minecraft-Server, der in <hl>5 ms</hl> startet.",
+    "benchTitle": "Startzeit",
+    "benchNote": "Gleiche Welt, gleiche Maschine, gemessen vom Start bis „Spieler können beitreten“.",
+    "runAgain": "Nochmal starten",
+    "loading": "lädt",
+    "ready": "bereit",
+    "lede": "Pumpkin ist ein Minecraft-Server, geschrieben in Rust. Kein Java installieren, eine Datei starten, Java- und Bedrock-Spieler in derselben Welt.",
+    "download": "Herunterladen",
+    "docs": "Zur Doku"
+  },
+  "facts": {
+    "title": "Was Pumpkin <hl>heute</hl> ist",
+    "items": [
+      {
+        "big": "Keine JVM",
+        "lead": "Eine native ausführbare Datei. Nichts zu installieren, keine Flags, kein Startskript.",
+        "rest": "In einen Ordner legen und starten."
+      },
+      {
+        "big": "~100 MB",
+        "lead": "Arbeitsspeicher im Leerlauf mit geladener Welt.",
+        "rest": "Vanilla liegt bei fast 1,8 GB, bevor jemand beigetreten ist."
+      },
+      {
+        "big": "Alle Kerne",
+        "lead": "Vom ersten Commit an für parallele Arbeit geschrieben,",
+        "rest": "nicht ein Hauptthread mit angeschraubten Helfern."
+      },
+      {
+        "big": "Java + Bedrock",
+        "lead": "Beide Editionen treten derselben Welt bei.",
+        "rest": "Eingebaut, kein Proxy davor, kein Plugin nötig."
+      },
+      {
+        "big": "7 Sprachen",
+        "lead": "Plugins in Rust, Kotlin, Python, Go, C#, C oder TypeScript.",
+        "rest": "Eine API darunter, nimm die Sprache, die du schon kennst."
+      },
+      {
+        "big": "GPL-3.0",
+        "lead": "Der ganze Server, kein Kern mit Bezahlstufe.",
+        "rest": "Lesen, forken, veröffentlichen."
+      }
+    ],
+    "earlyTag": "Frühe Entwicklung",
+    "earlyBody": "<b>Pumpkin ist noch nicht fertig.</b> Noch nicht jede Vanilla-Mechanik ist drin, Welten können zwischen Versionen kaputtgehen und Konfigurationsschlüssel ändern sich noch. Teste es zuerst auf einem Testserver, mach Backups und <report>melde, was kaputtgeht</report>. Die <docs>Doku</docs> zeigt, was heute funktioniert."
+  }
+}

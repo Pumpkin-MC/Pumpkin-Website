@@ -1,0 +1,35 @@
+@layer theme, base, components, utilities;
+
+@import "tailwindcss" source(none);
+@import "./tokens.css";
+
+@source "../app.tsx";
+@source "../components";
+@source "../pages/home";
+@source "../pages/developers";
+@source "../pages/download";
+@source "../pages/contributors";
+@source "../pages/donate";
+@source "../pages/stats";
+@source "../pages/not-found";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    overflow-x: hidden;
+    background-color: var(--color-ink);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
