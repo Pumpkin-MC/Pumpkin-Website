@@ -10,7 +10,7 @@ import Contributors from "./pages/contributors/Contributors";
 import Stats from "./pages/stats/Stats";
 import NotFound from "./pages/not-found/NotFound";
 
-export { routes, SITE_URL } from "./routes";
+export { routes } from "./routes";
 
 const pages: Record<PageId, ComponentType> = {
   home: Home,
