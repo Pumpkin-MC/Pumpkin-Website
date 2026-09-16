@@ -1,12 +1,29 @@
 import { SITE_URL, type Route } from "./routes.ts";
 
+const GOOGLE_ANALYTICS_IMAGES = [
+  "https://*.google-analytics.com",
+  "https://www.googletagmanager.com",
+  "https://*.g.doubleclick.net",
+  "https://*.google.com",
+].join(" ");
+
+const GOOGLE_ANALYTICS_CONNECT = [
+  "https://*.google-analytics.com",
+  "https://*.analytics.google.com",
+  "https://www.googletagmanager.com",
+  "https://*.g.doubleclick.net",
+  "https://*.google.com",
+  "https://pagead2.googlesyndication.com",
+].join(" ");
+
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",
   "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com",
-  "img-src 'self' https://avatars.githubusercontent.com https://market.pumpkinmc.org data:",
-  "connect-src 'self' https://api.github.com https://www.google-analytics.com https://market.pumpkinmc.org http://localhost:5000 http://127.0.0.1:5000",
+  `img-src 'self' https://avatars.githubusercontent.com https://market.pumpkinmc.org data: ${GOOGLE_ANALYTICS_IMAGES}`,
+  `connect-src 'self' https://api.github.com https://market.pumpkinmc.org http://localhost:5000 http://127.0.0.1:5000 ${GOOGLE_ANALYTICS_CONNECT}`,
+  "frame-src https://www.googletagmanager.com",
   "frame-ancestors 'none'",
 ].join("; ");
 
