@@ -1,8 +1,7 @@
+import { snippetTokens, type SnippetToken } from "virtual:snippet-tokens";
 import { useCopy } from "../../lib/useCopy";
 import type { SnippetName } from "./snippet-languages";
 import { snippets } from "./snippets";
-
-type SnippetToken = [content: string, color?: string];
 
 export interface CodeSample {
   snippet: SnippetName;
@@ -21,7 +20,7 @@ const toneMarker = {
 };
 
 export function tokensFor(snippet: SnippetName): SnippetToken[][] {
-  return snippets[snippet].split("\n").map((line) => [[line]]);
+  return snippetTokens[snippet] ?? snippets[snippet].split("\n").map((line) => [[line]]);
 }
 
 export function TokenLine({ tokens }: { tokens: SnippetToken[] }) {
