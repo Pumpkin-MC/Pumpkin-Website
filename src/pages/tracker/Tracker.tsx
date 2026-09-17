@@ -520,10 +520,10 @@ export default function Tracker() {
               From the source
             </span>
             <p className="text-[1.1rem] leading-normal">
-              <strong className="font-extrabold">Where the statuses come from.</strong> Entities, redstone, combat and world were gone
-              through by hand next to the maintainers' tracking issues. Blocks, items and commands come from the source tree: a file that
-              handles the thing counts as implemented, and a TODO left in that file drops it to partial. Nothing was compared to vanilla
-              line by line, so green means the code is there, not that every edge case matches. The whole list is one file. Fix{" "}
+              <strong className="font-extrabold">Where the statuses come from.</strong> Entities, redstone, combat and world were checked
+              by hand against the maintainers' tracking issues. Blocks, items and commands come from the source tree: if Pumpkin has a file
+              for it, it counts as implemented, and a TODO inside that file knocks it down to partial. Nobody compared behaviour against
+              vanilla line by line, so green means the code exists, not that every edge case matches. The whole list lives in one file. Fix{" "}
               <a href={WEBSITE_DATA_URL} target="_blank" rel="noopener" className={inlineLink}>
                 data.json
               </a>{" "}
