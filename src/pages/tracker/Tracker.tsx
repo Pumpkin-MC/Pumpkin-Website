@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { GITHUB_URL } from "../../links";
+import { GITHUB_ORG_URL, GITHUB_URL } from "../../links";
 import { ChevronDownIcon, ExternalIcon } from "../../components/icons";
 import { withBase } from "../../lib/url";
 import {
@@ -20,7 +20,7 @@ import {
 import { trackerData } from "./trackerData";
 import { STATUS, STATUS_ORDER, counts, entryKey, pct, type Category, type Entry, type Filter, type Issue, type Status } from "./types";
 
-const WEBSITE_DATA_URL = "https://github.com/Pumpkin-MC/Pumpkin-Website/blob/master/src/pages/tracker/data.json";
+const WEBSITE_DATA_URL = `${GITHUB_ORG_URL}/Pumpkin-Website/blob/master/src/pages/tracker/data.json`;
 const COUNT_UP_MS = 1200;
 
 const inlineLink = "font-semibold text-pumpkin underline underline-offset-3 hover:text-fg";

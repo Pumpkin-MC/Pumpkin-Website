@@ -6,7 +6,6 @@
     {
       "id": "entities",
       "label": "Entities",
-      "icon": "fa-dragon",
       "unit": "entities",
       "tracking": 3468,
       "description": "All 157 entity types in the 26.2 registry, compared with the goal sets vanilla registers for each one.",
@@ -3491,7 +3490,6 @@
     {
       "id": "blocks",
       "label": "Blocks",
-      "icon": "fa-cube",
       "unit": "block behaviours",
       "description": "Every block behaviour class in the server. Most vanilla blocks need no behaviour, so this tracks the interactive ones.",
       "entries": [
@@ -5462,7 +5460,6 @@
     {
       "id": "items",
       "label": "Items",
-      "icon": "fa-wand-magic-sparkles",
       "unit": "item behaviours",
       "description": "Every item behaviour class in the server. Plain items and food need no behaviour of their own.",
       "entries": [
@@ -6051,7 +6048,6 @@
     {
       "id": "commands",
       "label": "Commands",
-      "icon": "fa-terminal",
       "unit": "commands",
       "tracking": 15,
       "description": "Every command listed on the Minecraft wiki for Java Edition, plus the Pumpkin extras.",
@@ -6746,7 +6742,6 @@
     {
       "id": "redstone",
       "label": "Redstone",
-      "icon": "fa-bolt",
       "unit": "components",
       "tracking": 1402,
       "description": "Signal, timing and mechanism parity, from the maintainers' redstone tracking issue.",
@@ -6947,7 +6942,6 @@
     {
       "id": "combat",
       "label": "Combat",
-      "icon": "fa-shield-halved",
       "unit": "mechanics",
       "tracking": 1404,
       "description": "Melee, ranged and damage mechanics, from the combat tracking issue.",
@@ -7054,7 +7048,6 @@
     {
       "id": "world",
       "label": "World",
-      "icon": "fa-earth-americas",
       "unit": "systems",
       "tracking": 1403,
       "description": "Persistence, physics and world systems, from the world engine tracking issue.",

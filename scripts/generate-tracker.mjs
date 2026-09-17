@@ -619,13 +619,13 @@ const out = {
   commit,
   updated: commitDate,
   categories: [
-    { id: "entities", label: "Entities", icon: "fa-dragon", unit: "entities", tracking: 3468, description: `All ${entityEntries.length} entity types in the ${mcVersion} registry, compared with the goal sets vanilla registers for each one.`, entries: entityEntries },
-    { id: "blocks", label: "Blocks", icon: "fa-cube", unit: "block behaviours", description: "Every block behaviour class in the server. Most vanilla blocks need no behaviour, so this tracks the interactive ones.", entries: blockEntries },
-    { id: "items", label: "Items", icon: "fa-wand-magic-sparkles", unit: "item behaviours", description: "Every item behaviour class in the server. Plain items and food need no behaviour of their own.", entries: itemEntries },
-    { id: "commands", label: "Commands", icon: "fa-terminal", unit: "commands", tracking: 15, description: "Every command listed on the Minecraft wiki for Java Edition, plus the Pumpkin extras.", entries: commandEntries },
-    { id: "redstone", label: "Redstone", icon: "fa-bolt", unit: "components", tracking: 1402, description: "Signal, timing and mechanism parity, from the maintainers' redstone tracking issue.", entries: redstoneEntries },
-    { id: "combat", label: "Combat", icon: "fa-shield-halved", unit: "mechanics", tracking: 1404, description: "Melee, ranged and damage mechanics, from the combat tracking issue.", entries: combatEntries },
-    { id: "world", label: "World", icon: "fa-earth-americas", unit: "systems", tracking: 1403, description: "Persistence, physics and world systems, from the world engine tracking issue.", entries: worldEntries },
+    { id: "entities", label: "Entities", unit: "entities", tracking: 3468, description: `All ${entityEntries.length} entity types in the ${mcVersion} registry, compared with the goal sets vanilla registers for each one.`, entries: entityEntries },
+    { id: "blocks", label: "Blocks", unit: "block behaviours", description: "Every block behaviour class in the server. Most vanilla blocks need no behaviour, so this tracks the interactive ones.", entries: blockEntries },
+    { id: "items", label: "Items", unit: "item behaviours", description: "Every item behaviour class in the server. Plain items and food need no behaviour of their own.", entries: itemEntries },
+    { id: "commands", label: "Commands", unit: "commands", tracking: 15, description: "Every command listed on the Minecraft wiki for Java Edition, plus the Pumpkin extras.", entries: commandEntries },
+    { id: "redstone", label: "Redstone", unit: "components", tracking: 1402, description: "Signal, timing and mechanism parity, from the maintainers' redstone tracking issue.", entries: redstoneEntries },
+    { id: "combat", label: "Combat", unit: "mechanics", tracking: 1404, description: "Melee, ranged and damage mechanics, from the combat tracking issue.", entries: combatEntries },
+    { id: "world", label: "World", unit: "systems", tracking: 1403, description: "Persistence, physics and world systems, from the world engine tracking issue.", entries: worldEntries },
   ],
 };
 
