@@ -24,7 +24,6 @@ const CONTENT_SECURITY_POLICY = [
   `img-src 'self' https://avatars.githubusercontent.com https://market.pumpkinmc.org data: ${GOOGLE_ANALYTICS_IMAGES}`,
   `connect-src 'self' https://api.github.com https://market.pumpkinmc.org http://localhost:5000 http://127.0.0.1:5000 ${GOOGLE_ANALYTICS_CONNECT}`,
   "frame-src https://www.googletagmanager.com",
-  "frame-ancestors 'none'",
 ].join("; ");
 
 const ANALYTICS_ID = "G-QK7NXQQ2ZP";
@@ -119,9 +118,7 @@ export function renderHead(route: Route, isBuild: boolean, base: string): string
   if (isBuild) {
     tags.push(
       `<meta http-equiv="Content-Security-Policy" content="${attr(CONTENT_SECURITY_POLICY)}" />`,
-      `<meta http-equiv="X-Content-Type-Options" content="nosniff" />`,
       `<meta name="referrer" content="strict-origin-when-cross-origin" />`,
-      `<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />`,
     );
   }
 

@@ -31,9 +31,7 @@ function detectLang(): Lang {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (isLang(saved)) return saved;
-  } catch {
-    return "en";
-  }
+  } catch {}
   const preferred = navigator.languages?.length ? navigator.languages : [navigator.language];
   for (const tag of preferred) {
     const code = tag?.toLowerCase().split("-")[0];
@@ -81,9 +79,13 @@ export function I18nProvider({ children }: { children: ReactNode }) {
       return;
     }
     let cancelled = false;
-    loaders[`./locales/${lang}.json`]?.().then((messages) => {
-      if (!cancelled) setT(merge(en, messages) as Messages);
-    });
+    loaders[`./locales/${lang}.json`]?.()
+      .then((messages) => {
+        if (!cancelled) setT(merge(en, messages) as Messages);
+      })
+      .catch(() => {
+        if (!cancelled) setLangState("en");
+      });
     return () => {
       cancelled = true;
     };

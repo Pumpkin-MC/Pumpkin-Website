@@ -4,6 +4,7 @@ import type { GeoEntry, Overview, PluginEntry, Systems, TrendPoint, TrendRange }
 
 const API_BASE = `${MARKET_API_URL}/telemetry`;
 const REFRESH_MS = 60_000;
+const TIMEOUT_MS = 15_000;
 
 export interface TelemetryData {
   overview: Overview | null;
@@ -30,7 +31,7 @@ const initialState: TelemetryData = {
 };
 
 async function getJson<T>(path: string): Promise<T> {
-  const response = await fetch(`${API_BASE}/${path}`);
+  const response = await fetch(`${API_BASE}/${path}`, { signal: AbortSignal.timeout(TIMEOUT_MS) });
   if (!response.ok) throw new Error(`Telemetry request failed: ${path}`);
   return (await response.json()) as T;
 }
@@ -81,8 +82,8 @@ export function useTelemetry(range: TrendRange): TelemetryData & { refresh: () =
     if (!mountedRef.current || request !== requestRef.current) return;
     setState((previous) => ({
       ...previous,
-      overview: settled(overview, previous.overview),
-      trends: settled(trends, previous.trends),
+      overview: settled(overview, null),
+      trends: settled(trends, null),
       rangeLoading: false,
     }));
   }, []);

@@ -313,6 +313,7 @@ function Comparison() {
               key={panel.id}
               type="button"
               role="tab"
+              id={`compare-tab-${panel.id}`}
               aria-selected={side === panel.id}
               aria-controls={`compare-${panel.id}`}
               onClick={() => setSide(panel.id)}
@@ -328,6 +329,8 @@ function Comparison() {
             <article
               key={panel.id}
               id={`compare-${panel.id}`}
+              role="tabpanel"
+              aria-labelledby={`compare-tab-${panel.id}`}
               className={`${side === panel.id ? "flex" : "hidden"} min-w-0 flex-col border-3 bg-surface lg:flex ${panel.tone}`}
             >
               <header className="flex flex-col gap-3 border-b-2 border-white/15 p-4">

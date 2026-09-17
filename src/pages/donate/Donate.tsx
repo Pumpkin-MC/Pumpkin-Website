@@ -59,6 +59,10 @@ function hasSafeUrl(url: string | null | undefined): url is string {
   }
 }
 
+function named(donators: Donator[] | undefined): Donator[] {
+  return (donators ?? []).filter((donator) => donator.is_private || donator.name?.trim());
+}
+
 function initials(name: string): string {
   const parts = name.trim().split(/\s+/).filter(Boolean);
   const letters = parts.length > 1 ? parts[0][0] + parts[parts.length - 1][0] : name.trim().slice(0, 2);
@@ -132,7 +136,7 @@ export default function Donate() {
         return response.json() as Promise<DonatorList>;
       })
       .then((data) => {
-        if (!cancelled) setDonators(data);
+        if (!cancelled) setDonators({ ...data, current: named(data.current), past: named(data.past) });
       })
       .catch((error: unknown) => {
         console.error("Error loading donators from API:", error);

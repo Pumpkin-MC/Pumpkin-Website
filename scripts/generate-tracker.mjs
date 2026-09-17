@@ -24,6 +24,14 @@ function walk(dir) {
   return out;
 }
 
+function ensureSource(label, source) {
+  if (!fs.existsSync(path.join(PUMPKIN, source))) {
+    console.error(`${label}: ${source} is not in the checkout`);
+    process.exit(1);
+  }
+  return source;
+}
+
 function rel(p) {
   return path.relative(PUMPKIN, p).replace(/\\/g, "/");
 }
@@ -69,8 +77,8 @@ function entitySource(id) {
     spawner_minecart: "entity/vehicle/minecart.rs",
     experience_bottle: "item/items/experience_bottle.rs",
   };
-  if (overrides[id]) return "crates/pumpkin/src/" + overrides[id];
-  if (/_(chest_)?(boat|raft)$/.test(id)) return "crates/pumpkin/src/entity/vehicle/boat.rs";
+  if (overrides[id]) return ensureSource(id, "crates/pumpkin/src/" + overrides[id]);
+  if (/_(chest_)?(boat|raft)$/.test(id)) return ensureSource(id, "crates/pumpkin/src/entity/vehicle/boat.rs");
   const hit = entityFiles.find((f) => path.basename(f) === `${id}.rs`);
   return hit ? rel(hit) : null;
 }
@@ -469,8 +477,8 @@ for (const file of walk(path.join(SRC, "item/items")).sort()) {
   itemEntries.push(entry);
 }
 itemEntries.push(
-  { id: "elytra", name: "Elytra", group: "Utility", status: "partial", note: "Gliding is handled in the player logic rather than an item behaviour. Parity fixes are in review.", source: "crates/pumpkin/src/entity/player.rs" },
-  { id: "totem_of_undying", name: "Totem of Undying", group: "Utility", status: "done", note: "Handled in the living entity death path.", source: "crates/pumpkin/src/entity/living.rs" },
+  { id: "elytra", name: "Elytra", group: "Utility", status: "partial", note: "Gliding is handled in the player logic rather than an item behaviour. Parity fixes are in review.", source: ensureSource("elytra", "crates/pumpkin/src/entity/player.rs") },
+  { id: "totem_of_undying", name: "Totem of Undying", group: "Utility", status: "done", note: "Handled in the living entity death path.", source: ensureSource("totem_of_undying", "crates/pumpkin/src/entity/living.rs") },
   { id: "chorus_fruit", name: "Chorus Fruit", group: "Throwables", status: "planned", note: "Random teleport on eating is not implemented." },
 );
 const ITEM_GROUP_ORDER = ITEM_GROUPS.map((g) => g[0]);
@@ -513,13 +521,7 @@ function checklist(rows) {
   return rows.map(([name, status, group, note, source]) => {
     const e = { id: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""), name, group, status };
     if (note) e.note = note;
-    if (source) {
-      if (!fs.existsSync(path.join(PUMPKIN, source))) {
-        console.error(`${name}: ${source} is not in the checkout`);
-        process.exit(1);
-      }
-      e.source = source;
-    }
+    if (source) e.source = ensureSource(name, source);
     return e;
   });
 }
@@ -600,7 +602,10 @@ async function issueInfo(number) {
   const headers = { accept: "application/vnd.github+json" };
   if (process.env.GITHUB_TOKEN) headers.authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
   try {
-    const response = await fetch(`https://api.github.com/repos/Pumpkin-MC/Pumpkin/issues/${number}`, { headers });
+    const response = await fetch(`https://api.github.com/repos/Pumpkin-MC/Pumpkin/issues/${number}`, {
+      headers,
+      signal: AbortSignal.timeout(10_000),
+    });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const { title, state, pull_request: pr } = await response.json();
     return { number, title, state: pr?.merged_at ? "merged" : state, ...(pr && { pr: true }) };

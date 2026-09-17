@@ -105,9 +105,7 @@ function useLatestRelease(): Release {
   useEffect(() => {
     try {
       localStorage.removeItem("pumpkin_commit");
-    } catch {
-      return;
-    }
+    } catch {}
     const cached = readCache<Release>(RELEASE_CACHE_KEY, RELEASE_CACHE_TTL_MS);
     if (cached) {
       setRelease(cached);

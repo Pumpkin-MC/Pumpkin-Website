@@ -138,6 +138,7 @@ export default function Stats() {
   }, [selectedCountry]);
 
   const topCountry = [...(geo ?? [])].sort((a, b) => b.servers - a.servers)[0];
+  const topOnMap = [...(geo ?? [])].sort((a, b) => b[mapMetric] - a[mapMetric])[0];
   const geoTotal = (geo ?? []).reduce((sum, entry) => sum + (geoSort === "servers" ? entry.servers : entry.players), 0);
   const geoItems: DistributionItem[] = [...(geo ?? [])]
     .sort((a, b) => (geoSort === "servers" ? b.servers - a.servers : b.players - a.players))
@@ -189,7 +190,7 @@ export default function Stats() {
   const reportingServers = (geo ?? []).reduce((sum, entry) => sum + entry.servers, 0);
 
   const mapSummary = [
-    { label: "Top location", value: topCountry ? topCountry.country_name : "-" },
+    { label: "Top location", value: topOnMap ? topOnMap.country_name : "-" },
     { label: "Regions", value: geo ? formatNumber(geo.length) : "-" },
     { label: "Reported players", value: geo ? formatNumber(reportedPlayers) : "-" },
     {
