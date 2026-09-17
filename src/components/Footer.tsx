@@ -54,6 +54,8 @@ const columns: { heading: string; links: NamedLink[] }[] = [
   },
 ];
 
+const creditLink = "underline underline-offset-3 hover:text-pumpkin";
+
 const socials = [
   { label: "GitHub", href: GITHUB_URL, Icon: GitHubIcon },
   { label: "Discord", href: DISCORD_URL, Icon: DiscordIcon },
@@ -105,8 +107,12 @@ export function Footer() {
         <div className="flex flex-col justify-between gap-x-8 gap-y-2 pt-6 text-[0.85rem] text-muted md:flex-row md:flex-wrap">
           <span>
             Made with ❤️ by{" "}
-            <a href="https://marshall.dev" target="_blank" rel="noopener" className="underline underline-offset-3 hover:text-pumpkin">
+            <a href="https://marshall.dev" target="_blank" rel="noopener" className={creditLink}>
               purdze
+            </a>
+            ,{" "}
+            <a href="https://github.com/MegalithOfficial" target="_blank" rel="noopener" className={creditLink}>
+              MegalithOfficial
             </a>{" "}
             and contributors · GPL-3.0
           </span>
