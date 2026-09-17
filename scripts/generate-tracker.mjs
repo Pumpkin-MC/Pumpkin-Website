@@ -371,17 +371,17 @@ for (const file of walk(path.join(SRC, "block/blocks")).sort()) {
   const r = rel(file);
   const group = BLOCK_GROUPS.find(([, test]) => test(r))[0];
   const ids = blockIds(file, txt);
+  const todos = todoCount(file);
   const entry = {
     id: r.replace("crates/pumpkin/src/block/blocks/", "").replace(/\.rs$/, "").replace(/\//g, "-"),
     name: BLOCK_NAMES[base] || humanize(base),
     group,
-    status: BLOCK_PARTIAL[base] ? "partial" : "done",
+    status: BLOCK_PARTIAL[base] || todos ? "partial" : "done",
     source: r,
   };
   if (BLOCK_PARTIAL[base]) entry.note = BLOCK_PARTIAL[base];
+  else if (todos) entry.note = `${todos} TODO${todos > 1 ? "s" : ""} left in the source.`;
   if (ids.length) entry.ids = ids;
-  const todos = todoCount(file);
-  if (todos && !entry.note) entry.note = `${todos} TODO${todos > 1 ? "s" : ""} left in the source.`;
   blockEntries.push(entry);
 }
 blockEntries.push(

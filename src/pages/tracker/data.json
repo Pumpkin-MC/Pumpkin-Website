@@ -3549,7 +3549,7 @@
           "id": "bed",
           "name": "Beds",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/bed.rs",
           "ids": [
             "minecraft:beds"
@@ -3620,7 +3620,7 @@
           "id": "campfire",
           "name": "Campfire",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/campfire.rs",
           "ids": [
             "minecraft:campfires"
@@ -3697,7 +3697,7 @@
           "id": "chests",
           "name": "Chests",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/chests.rs",
           "ids": [
             "c:chests/wooden",
@@ -3710,7 +3710,7 @@
           "id": "chiseled_bookshelf",
           "name": "Chiseled Bookshelf",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/chiseled_bookshelf.rs",
           "ids": [
             "minecraft:chiseled_bookshelf"
@@ -3786,7 +3786,7 @@
           "id": "dirt_path",
           "name": "Dirt Path",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/dirt_path.rs",
           "ids": [
             "minecraft:dirt_path"
@@ -3877,7 +3877,7 @@
           "id": "ender_chest",
           "name": "Ender Chest",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/ender_chest.rs",
           "ids": [
             "minecraft:ender_chest"
@@ -4047,7 +4047,7 @@
           "id": "infested",
           "name": "Infested Blocks",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/infested.rs",
           "ids": [
             "c:cobblestones/infested"
@@ -4078,7 +4078,7 @@
           "id": "jukebox",
           "name": "Jukebox",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/jukebox.rs",
           "ids": [
             "minecraft:jukebox"
@@ -4226,7 +4226,7 @@
           "id": "note",
           "name": "Note Block",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/note.rs",
           "ids": [
             "minecraft:note_block"
@@ -4307,7 +4307,7 @@
           "id": "shulker_box",
           "name": "Shulker Box",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/shulker_box.rs",
           "ids": [
             "minecraft:shulker_boxes"
@@ -4583,7 +4583,7 @@
           "id": "fire-fire",
           "name": "Fire",
           "group": "Fire & Sculk",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/fire/fire.rs",
           "ids": [
             "minecraft:fire"
@@ -4602,7 +4602,7 @@
           "id": "sculk-sculk_shrieker",
           "name": "Sculk Shrieker",
           "group": "Fire & Sculk",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/sculk/sculk_shrieker.rs",
           "note": "1 TODO left in the source."
         },
@@ -4630,7 +4630,7 @@
           "id": "piston-piston_extension",
           "name": "Moving Piston",
           "group": "Pistons",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/piston/piston_extension.rs",
           "ids": [
             "minecraft:moving_piston"
@@ -4641,7 +4641,7 @@
           "id": "piston-piston_head",
           "name": "Piston Head",
           "group": "Pistons",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/piston/piston_head.rs",
           "ids": [
             "minecraft:piston_head"
@@ -4724,7 +4724,7 @@
           "id": "plant-big_dripleaf",
           "name": "Big Dripleaf",
           "group": "Plants & Crops",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/plant/big_dripleaf.rs",
           "ids": [
             "minecraft:big_dripleaf"
@@ -4943,7 +4943,7 @@
           "id": "plant-lily_pad",
           "name": "Lily Pad",
           "group": "Plants & Crops",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/plant/lily_pad.rs",
           "ids": [
             "minecraft:lily_pad"
@@ -5016,7 +5016,7 @@
           "id": "plant-crop-gourds-stem",
           "name": "Pumpkin & Melon Stems",
           "group": "Plants & Crops",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/plant/crop/gourds/stem.rs",
           "ids": [
             "minecraft:pumpkin_stem",
@@ -5055,7 +5055,7 @@
           "id": "plant-sea_pickles",
           "name": "Sea Pickles",
           "group": "Plants & Crops",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/plant/sea_pickles.rs",
           "ids": [
             "minecraft:sea_pickle"
@@ -5108,7 +5108,7 @@
           "id": "plant-sugar_cane",
           "name": "Sugar Cane",
           "group": "Plants & Crops",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/plant/sugar_cane.rs",
           "ids": [
             "minecraft:sugar_cane"
@@ -5198,7 +5198,7 @@
           "id": "redstone-rails-activator_rail",
           "name": "Activator Rail",
           "group": "Redstone",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/redstone/rails/activator_rail.rs",
           "ids": [
             "minecraft:activator_rail"
@@ -5209,7 +5209,7 @@
           "id": "redstone-bell",
           "name": "Bell",
           "group": "Redstone",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/redstone/bell.rs",
           "ids": [
             "minecraft:bell"
@@ -5278,7 +5278,7 @@
           "id": "redstone-dispenser",
           "name": "Dispenser",
           "group": "Redstone",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/redstone/dispenser.rs",
           "ids": [
             "minecraft:dispenser"
@@ -5329,7 +5329,7 @@
           "id": "redstone-rails-powered_rail",
           "name": "Powered Rail",
           "group": "Redstone",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/redstone/rails/powered_rail.rs",
           "ids": [
             "minecraft:powered_rail"

@@ -381,7 +381,7 @@ export default function Tracker() {
               <div className="mb-5 flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-white/15 pb-2.5 text-sm text-muted md:text-[0.9rem]">
                 <span className="font-extrabold tracking-[0.08em] text-fg uppercase">Overall progress</span>
                 <span>
-                  {trackerData.all.entries.length} entries checked against Pumpkin {trackerData.commit} for Minecraft {trackerData.version},{" "}
+                  {trackerData.all.entries.length} entries read from Pumpkin {trackerData.commit} for Minecraft {trackerData.version},{" "}
                   {trackerData.updated}
                 </span>
               </div>
@@ -520,10 +520,12 @@ export default function Tracker() {
               From the source
             </span>
             <p className="text-[1.1rem] leading-normal">
-              <strong className="font-extrabold">Every entry is checked against the Pumpkin code.</strong> An entity counts as implemented
-              when it has its own type with a goal set that matches vanilla, partial when the type exists but goals or mechanics are
-              missing, and planned when nothing maps to it yet. The checklists come from the maintainers' tracking issues and from
-              reading the code. Spotted a mistake or shipped something new? Edit{" "}
+              <strong className="font-extrabold">Read from the Pumpkin source, not from a wish list.</strong> Entities, redstone, combat
+              and world are audited by hand against the maintainers' tracking issues: implemented means the goals and mechanics vanilla
+              registers are there, partial means the type exists with pieces missing, planned means nothing maps to it yet. Blocks, items
+              and commands are read straight from the server source tree, so implemented means Pumpkin has code handling it and a TODO in
+              that code drops it to partial; the behaviour itself is not compared line by line. Spotted a mistake or shipped something new?
+              Edit{" "}
               <a href={WEBSITE_DATA_URL} target="_blank" rel="noopener" className={inlineLink}>
                 data.json
               </a>{" "}
