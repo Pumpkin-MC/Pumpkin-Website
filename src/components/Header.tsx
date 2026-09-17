@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { languages, useI18n, type Lang } from "../i18n";
 import { GITHUB_URL, MARKET_URL } from "../links";
+import { withBase } from "../lib/url";
 import { menuPanels, type MenuPanel } from "./menu";
 import { ChevronDownIcon, CloseIcon, ExternalIcon, GitHubIcon, GlobeIcon, MenuIcon } from "./icons";
 
@@ -29,7 +30,7 @@ function Panel({ panel, open }: { panel: MenuPanel; open: boolean }) {
             {column.links.map((link) => (
               <li key={link.label}>
                 <a
-                  href={link.href}
+                  href={withBase(link.href)}
                   className={`group/link block ${column.compact ? "py-1.5" : "py-2"} px-3 text-[0.95rem] leading-snug font-bold text-fg hover:bg-pumpkin hover:text-black focus-visible:bg-pumpkin focus-visible:text-black focus-visible:outline-none`}
                 >
                   {link.label}
@@ -185,8 +186,8 @@ export function Header() {
       className="sticky top-0 z-100 border-b-3 border-pumpkin bg-surface text-fg"
     >
       <div className="mx-auto flex max-w-325 flex-wrap items-center gap-2 px-4 py-3 nav:flex-nowrap nav:px-8 nav:py-3.5">
-        <a href="/" className="flex items-center gap-2 text-xl font-extrabold nav:mr-4 nav:text-2xl">
-          <img src="/assets/icon.svg" alt="" className="size-8 nav:size-10" />
+        <a href={withBase("/")} className="flex items-center gap-2 text-xl font-extrabold nav:mr-4 nav:text-2xl">
+          <img src={withBase("/assets/icon.svg")} alt="" className="size-8 nav:size-10" />
           <span>Pumpkin</span>
         </a>
 
@@ -250,7 +251,7 @@ export function Header() {
               <GitHubIcon className="size-5" />
             </a>
             <a
-              href="/download/"
+              href={withBase("/download/")}
               className="inline-flex h-10.5 items-center border-3 border-pumpkin bg-pumpkin px-5 text-[0.95rem] font-bold text-black transition duration-100 nav:brutal-3 nav:hover:brutal-5 nav:hover:-translate-0.5"
             >
               {t.nav.download}

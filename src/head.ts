@@ -109,7 +109,7 @@ function structuredData(route: Route): string[] {
   ];
 }
 
-export function renderHead(route: Route, isBuild: boolean): string {
+export function renderHead(route: Route, isBuild: boolean, base: string): string {
   const url = `${SITE_URL}${route.path}`;
   const tags = [
     `<meta charset="UTF-8" />`,
@@ -145,8 +145,8 @@ export function renderHead(route: Route, isBuild: boolean): string {
     `<meta name="twitter:title" content="${attr(route.ogTitle)}" />`,
     `<meta name="twitter:description" content="${attr(route.ogDescription)}" />`,
     `<meta name="twitter:image" content="${OG_IMAGE.url}" />`,
-    `<link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />`,
-    `<link rel="apple-touch-icon" href="/assets/logos/icon_png.png" />`,
+    `<link rel="icon" type="image/svg+xml" href="${base}assets/icon.svg" />`,
+    `<link rel="apple-touch-icon" href="${base}assets/logos/icon_png.png" />`,
     `<link rel="preconnect" href="https://fonts.googleapis.com" />`,
     `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />`,
     `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" />`,

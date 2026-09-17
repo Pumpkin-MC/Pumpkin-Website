@@ -9,6 +9,7 @@ import {
   YOUTUBE_URL,
   type NamedLink,
 } from "../links";
+import { withBase } from "../lib/url";
 import { DiscordIcon, GitHubIcon, XIcon, YouTubeIcon } from "./icons";
 
 const columns: { heading: string; links: NamedLink[] }[] = [
@@ -67,7 +68,7 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-6 border-b border-white/15 pb-10 lg:grid-cols-[minmax(220px,1.4fr)_repeat(4,1fr)] lg:gap-8">
           <div className="col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 text-xl font-extrabold">
-              <img src="/assets/icon.svg" alt="" className="size-7.5" />
+              <img src={withBase("/assets/icon.svg")} alt="" className="size-7.5" />
               Pumpkin
             </div>
             <p className="mt-3 max-w-96 text-[0.95rem] text-muted">
@@ -92,7 +93,7 @@ export function Footer() {
               <ul className="grid gap-2">
                 {column.links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-[0.95rem] font-medium hover:text-pumpkin">
+                    <a href={withBase(link.href)} className="text-[0.95rem] font-medium hover:text-pumpkin">
                       {link.label}
                     </a>
                   </li>

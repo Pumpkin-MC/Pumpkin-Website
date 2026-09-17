@@ -4,6 +4,7 @@ import { rich } from "../../i18n/rich";
 import { DOCS_URL } from "../../links";
 import { ButtonLink } from "../../components/Button";
 import { DownloadIcon } from "../../components/icons";
+import { withBase } from "../../lib/url";
 
 const PUMPKIN_STARTUP_SECONDS = 0.005;
 const VANILLA_STARTUP_SECONDS = 15;
@@ -142,7 +143,7 @@ export function Hero() {
 
         <div aria-hidden="true" className="relative mt-8 h-32.5 lg:mt-0 lg:h-auto">
           <img
-            src="/assets/icon.svg"
+            src={withBase("/assets/icon.svg")}
             alt=""
             className="pointer-events-none absolute right-[-8%] bottom-[-60%] h-[210%] w-auto max-w-none -rotate-9 select-none lg:right-auto lg:bottom-[-38%] lg:left-6 lg:h-[125%]"
           />

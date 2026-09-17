@@ -13,13 +13,17 @@ import { snippetLanguages, type SnippetName } from "./src/pages/developers/snipp
 import { CODE_FOREGROUND, pumpkinCodeTheme } from "./src/pages/developers/code-theme.ts";
 
 const root = import.meta.dirname;
+const basePath = (process.env.BASE_PATH ?? "").replace(/^\/+|\/+$/g, "");
+const base = basePath ? `/${basePath}/` : "/";
 
 function pageHead(): Plugin {
   let isBuild = false;
+  let publicBase = "/";
   return {
     name: "pumpkin-page-head",
     configResolved(config) {
       isBuild = config.command === "build";
+      publicBase = config.base;
     },
     transformIndexHtml: {
       order: "pre",
@@ -29,7 +33,7 @@ function pageHead(): Plugin {
         if (!route) {
           throw new Error(`No route is registered for ${ctx.path}`);
         }
-        return html.replace("<!--app-head-->", renderHead(route, isBuild));
+        return html.replace("<!--app-head-->", renderHead(route, isBuild, publicBase));
       },
     },
   };
@@ -52,13 +56,19 @@ function isFile(path: string): boolean {
   }
 }
 
-function directoryRedirect(req: IncomingMessage, directories: string[]): string | null {
+function sitePath(req: IncomingMessage, prefix: string): string {
+  const pathname = decodeURIComponent(new URL(req.url ?? "/", "http://localhost").pathname);
+  return prefix !== "/" && pathname.startsWith(prefix) ? pathname.slice(prefix.length - 1) : pathname;
+}
+
+function directoryRedirect(req: IncomingMessage, directories: string[], prefix: string): string | null {
   if (req.method !== "GET") return null;
   const url = new URL(req.url ?? "/", "http://localhost");
-  const pathname = decodeURIComponent(url.pathname);
+  if (prefix !== "/" && url.pathname === prefix.slice(0, -1)) return `${prefix}${url.search}`;
+  const pathname = sitePath(req, prefix);
   if (pathname.endsWith("/") || /\.[a-z0-9]+$/i.test(pathname)) return null;
   const hasIndex = directories.some((directory) => isFile(resolve(directory, `.${pathname}/index.html`)));
-  return hasIndex ? `${url.pathname}/${url.search}` : null;
+  return hasIndex ? `${prefix}${pathname.slice(1)}/${url.search}` : null;
 }
 
 function redirect(res: ServerResponse, location: string) {
@@ -67,9 +77,9 @@ function redirect(res: ServerResponse, location: string) {
   res.end();
 }
 
-function isMissingPage(req: IncomingMessage, directories: string[]): boolean {
+function isMissingPage(req: IncomingMessage, directories: string[], prefix: string): boolean {
   if (req.method !== "GET" || !(req.headers.accept ?? "").includes("text/html")) return false;
-  const pathname = decodeURIComponent(new URL(req.url ?? "/", "http://localhost").pathname);
+  const pathname = sitePath(req, prefix);
   const candidates = pathname.endsWith("/")
     ? [`${pathname}index.html`]
     : [pathname, `${pathname}.html`, `${pathname}/index.html`];
@@ -93,9 +103,9 @@ function siteFiles(isSsrBuild: boolean): Plugin {
       return () => {
         server.middlewares.use(async (req, res, next) => {
           const directories = [root, server.config.publicDir];
-          const location = directoryRedirect(req, directories);
+          const location = directoryRedirect(req, directories, server.config.base);
           if (location) return redirect(res, location);
-          if (!isMissingPage(req, directories)) return next();
+          if (!isMissingPage(req, directories, server.config.base)) return next();
           try {
             const template = await readFile(resolve(root, "404.html"), "utf8");
             sendNotFound(res, await server.transformIndexHtml("/404.html", template, req.originalUrl));
@@ -109,9 +119,9 @@ function siteFiles(isSsrBuild: boolean): Plugin {
       return () => {
         server.middlewares.use(async (req, res, next) => {
           const outDir = resolve(root, server.config.build.outDir);
-          const location = directoryRedirect(req, [outDir]);
+          const location = directoryRedirect(req, [outDir], server.config.base);
           if (location) return redirect(res, location);
-          if (!isMissingPage(req, [outDir])) return next();
+          if (!isMissingPage(req, [outDir], server.config.base)) return next();
           try {
             sendNotFound(res, await readFile(resolve(outDir, "404.html"), "utf8"));
           } catch (error) {
@@ -174,6 +184,7 @@ function snippetTokens(): Plugin {
 }
 
 export default defineConfig(({ isSsrBuild }) => ({
+  base,
   appType: "mpa",
   plugins: [react(), tailwindcss(), pageHead(), snippetTokens(), siteFiles(isSsrBuild === true)],
   build:

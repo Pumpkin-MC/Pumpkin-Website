@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes } from "react";
+import { withBase } from "../lib/url";
 
 type Variant = "primary" | "ghost";
 
@@ -14,6 +15,6 @@ interface ButtonLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   variant?: Variant;
 }
 
-export function ButtonLink({ variant = "primary", className = "", ...props }: ButtonLinkProps) {
-  return <a className={`${base} ${variants[variant]} ${className}`} {...props} />;
+export function ButtonLink({ variant = "primary", className = "", href, ...props }: ButtonLinkProps) {
+  return <a href={href && withBase(href)} className={`${base} ${variants[variant]} ${className}`} {...props} />;
 }
