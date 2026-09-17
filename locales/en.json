@@ -5,7 +5,8 @@
     "blog": "Blog",
     "market": "Market",
     "stats": "Stats",
-    "download": "Download"
+    "download": "Download",
+    "tracker": "Tracker"
   },
   "banner": {
     "earlyDev": "Pumpkin is in early development and bugs can happen. If you find any, report them on our",
