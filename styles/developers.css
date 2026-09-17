@@ -217,6 +217,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
   padding: 1.5rem 2rem;
   border-bottom: 2px solid var(--color-orange);
   background: var(--color-bg);
@@ -229,6 +231,7 @@
 
 .lang-selector {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 

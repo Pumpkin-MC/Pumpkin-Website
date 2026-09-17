@@ -319,6 +319,9 @@ if let Some(java) = player.as_java() {
               <button class="lang-btn" data-lang="kotlin">
                 <i class="fa-solid fa-k"></i> Kotlin
               </button>
+              <button class="lang-btn" data-lang="d">
+                <i class="fa-solid fa-d"></i> D
+              </button>
             </div>
           </div>
 
@@ -650,6 +653,86 @@ class MetadataImpl {
               <p>Once it is done, <code>my_kotlin_plugin.wasm</code> (or whatever your Gradle project name is) will appear in <code>build</code>, ready to load into Pumpkin.</p>
             </div>
             <p class="guide-more">Refer to the <a href="https://docs.pumpkinmc.org/plugin-dev/kotlin/quick-start">documentation</a> for more.</p>
+          </div>
+
+          <div id="d-guide" class="guide-content">
+            <div class="guide-step">
+              <h3>Installation</h3>
+              <p>You will need <a href="https://github.com/ldc-developers/ldc">LDC</a> 1.43 or later with the <code>addon-wasi</code> package installed, and <a href="https://dub.pm/">DUB</a>.</p>
+              <p>The D bindings are provided by the <a href="https://github.com/Pumpkin-MC/pumpkin-api-d">pumpkin-api-d</a> package.</p>
+              <p>Create a <code>dub.json</code> configuration file for your plugin:</p>
+              <pre><code>{
+    "name": "my-d-plugin",
+    "description": "A minimal Pumpkin plugin built with D.",
+    "license": "proprietary",
+    "authors": ["You"],
+    "copyright": "Copyright © 2026, You",
+
+    "dependencies": {
+        "pumpkin-api-d": "~&gt;0.1.0"
+    },
+
+    "targetType": "executable",
+    "dflags": ["-Xcc=-mexec-model=reactor"],
+    "buildTypes": {
+        "debug": {
+            "buildOptions": ["debugMode", "debugInfo"]
+        },
+        "release": {
+            "buildOptions": ["optimize", "inline"],
+            "dflags": ["-L-S"]
+        }
+    }
+}</code></pre>
+            </div>
+
+            <div class="guide-step">
+              <h3>Creating your first plugin</h3>
+              <p>Create a source file in <code>source/app.d</code> and add the following content:</p>
+              <pre><code>module plugin;
+
+import wit.pumpkin.plugin.plugin;
+import wit.common;
+import pumpkin.register;
+
+struct MyPlugin {
+    @GetMetadata PluginMetadata getMetadata()
+    {
+        immutable(WitString)[$] authors = [
+            "You".witList
+        ];
+
+        return (immutable PluginMetadata(
+                name: "my-d-plugin".witList,
+                version_: "0.1.0".witList,
+                authors: authors.witList,
+                description: "An example plugin in D.".witList,
+                dependencies: WitList!WitString(),
+                permissions: WitList!WitString()
+        )).witClone;
+    }
+
+    @OnLoad
+    Result!(void, WitString) onLoad(Context ctx)
+    {
+        scope (exit)
+            ctx.witDrop; // Incoming resources must be cleaned up after use
+
+        log(Level.info, "Hello from D plugin!".witList);
+        return ok!WitString;
+    }
+}
+
+mixin RegisterPlugin!MyPlugin;</code></pre>
+            </div>
+
+            <div class="guide-step">
+              <h3>Building the plugin</h3>
+              <p>Compile the plugin into a WebAssembly component targeting <code>wasm32-wasip2</code> using DUB:</p>
+              <pre><code>dub build -b release -a wasm32-wasip2</code></pre>
+              <p>This will generate a <code>my-d-plugin.wasm</code> file in the project root that can be loaded by Pumpkin.</p>
+            </div>
+            <p class="guide-more">Refer to the <a href="https://docs.pumpkinmc.org/plugin-dev/d/quick-start">documentation</a> for more.</p>
           </div>
         </div>
       </section>
