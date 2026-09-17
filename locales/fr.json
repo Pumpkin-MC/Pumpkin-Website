@@ -5,7 +5,8 @@
     "blog": "Blog",
     "market": "Marché",
     "stats": "Statistiques",
-    "download": "Télécharger"
+    "download": "Télécharger",
+    "tracker": "Suivi"
   },
   "banner": {
     "earlyDev": "Pumpkin est en cours de développement initial. Si vous trouvez des bugs, signalez-les sur notre",

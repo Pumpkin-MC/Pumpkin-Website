@@ -39,7 +39,8 @@
                         window.location.pathname.includes("/download/") ||
                         window.location.pathname.includes("/donate/") ||
                         window.location.pathname.includes("/contributors/") ||
-                        window.location.pathname.includes("/stats/");
+                        window.location.pathname.includes("/stats/") ||
+                        window.location.pathname.includes("/tracker/");
       const basePath = isSubdir ? "../locales/" : "locales/";
 
       const res = await fetch(`${basePath}${lang}.json`);

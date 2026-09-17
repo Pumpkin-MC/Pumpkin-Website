@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://avatars.githubusercontent.com https://market.pumpkinmc.org data:; connect-src 'self' https://api.github.com https://www.google-analytics.com https://market.pumpkinmc.org http://localhost:5000 http://127.0.0.1:5000; frame-ancestors 'none'"
+    />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+    <title>Vanilla Parity - Pumpkin</title>
+    <meta
+      name="description"
+      content="How close Pumpkin is to vanilla: which entities, blocks, items and commands are implemented, which are partial, and which are still missing."
+    />
+    <meta property="og:title" content="Vanilla Parity - Pumpkin" />
+    <meta
+      property="og:description"
+      content="How close Pumpkin is to vanilla: which entities, blocks, items and commands are implemented, which are partial, and which are still missing."
+    />
+    <meta property="og:image" content="https://pumpkinmc.org/assets/logos/ogimage.png" />
+    <meta property="og:url" content="https://pumpkinmc.org/tracker/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="../assets/icon.svg" />
+    <link rel="stylesheet" href="../styles/common.css" />
+    <link rel="stylesheet" href="../styles/tracker.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha384-rWj9FmWWt3OMqd9vBkWRhFavvVUYalYqGPoMdL1brs/qvvqz88gvLShYa4hKNyqb"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="../i18n.js" defer></script>
+    <script src="tracker.js" defer></script>
+  </head>
+
+  <body>
+    <div class="sticky-top">
+      <div class="info-banner">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span data-i18n="banner.earlyDev"
+          >Pumpkin is in early development and bugs can happen. If you find any, report them on our</span
+        >
+        <a href="https://github.com/Pumpkin-MC/Pumpkin/issues" data-i18n="banner.github">GitHub</a>.
+      </div>
+      <header>
+        <a href="/" class="logo">
+          <img src="../assets/icon.svg" alt="Pumpkin" />
+          <span>Pumpkin</span>
+        </a>
+        <nav>
+          <a
+            href="https://docs.pumpkinmc.org/"
+            class="external-nav-link"
+            aria-label="Docs (external site)"
+          >
+            <span data-i18n="nav.docs">Docs</span>
+            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+          <a href="/developers/" data-i18n="nav.developers">Developers</a>
+          <a
+            href="https://blog.pumpkinmc.org/"
+            class="external-nav-link"
+            aria-label="Blog (external site)"
+          >
+            <span data-i18n="nav.blog">Blog</span>
+            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+          <a
+            href="https://market.pumpkinmc.org/"
+            class="external-nav-link"
+            aria-label="Market (external site)"
+          >
+            <span data-i18n="nav.market">Market</span>
+            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+          <a href="/stats/" data-i18n="nav.stats">Stats</a>
+          <a href="/tracker/" class="active" aria-current="page" data-i18n="nav.tracker">Tracker</a>
+        </nav>
+        <button class="burger-btn" aria-label="Toggle menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="header-icons">
+          <a
+            href="https://github.com/Pumpkin-MC/Pumpkin"
+            class="icon-btn"
+            title="GitHub"
+          >
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a
+            href="https://discord.com/invite/wT8XjrjKkf"
+            class="icon-btn"
+            title="Discord"
+          >
+            <i class="fa-brands fa-discord"></i>
+          </a>
+          <a href="https://x.com/pumpkinmcdev" class="icon-btn" title="X (Twitter)">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a href="https://www.youtube.com/@PumpkinServer" class="icon-btn" title="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+          <a href="/donate/" class="sponsor-btn" title="Sponsor">
+            <i class="fa-solid fa-heart"></i>
+          </a>
+          <a href="/download/" class="download-btn" data-i18n="nav.download">Download</a>
+        </div>
+      </header>
+    </div>
+
+    <script>
+      document.querySelector(".burger-btn").addEventListener("click", function () {
+        const header = document.querySelector("header");
+        const expanded = this.getAttribute("aria-expanded") === "true";
+        header.classList.toggle("nav-open");
+        this.setAttribute("aria-expanded", !expanded);
+        this.querySelector("i").className = expanded
+          ? "fa-solid fa-bars"
+          : "fa-solid fa-xmark";
+      });
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK7NXQQ2ZP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-QK7NXQQ2ZP");
+    </script>
+
+    <main>
+      <section class="tracker-hero">
+        <div class="hero-status-pill">
+          <i class="fa-solid fa-code-compare"></i>
+          <span>Implementation tracker <span id="hero-version"></span></span>
+        </div>
+        <h1>Vanilla <span class="highlight">Parity</span></h1>
+        <p class="tracker-hero-sub">
+          What Pumpkin already does like vanilla, what is half way there, and what is still on the list.
+        </p>
+        <div class="tracker-toolbar">
+          <div class="toolbar-meta">
+            <i class="fa-solid fa-code-commit"></i>
+            <span>Pumpkin commit: <strong id="audit-text">-</strong></span>
+          </div>
+          <div class="toolbar-actions">
+            <a
+              href="https://github.com/Pumpkin-MC/Pumpkin/issues/3468"
+              target="_blank"
+              rel="noopener"
+              class="issue-link-btn"
+              id="tracking-link"
+            >
+              <span>Tracking issue</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div class="tracker-container">
+        <section class="kpi-grid" aria-label="Summary">
+          <button type="button" class="kpi-card" data-status="all">
+            <div class="kpi-top">
+              <span class="kpi-label">Total entries</span>
+              <i class="fa-solid fa-layer-group kpi-icon"></i>
+            </div>
+            <div class="kpi-num" id="kpi-total">-</div>
+            <div class="kpi-sub" id="kpi-total-sub"></div>
+          </button>
+          <button type="button" class="kpi-card kpi-done" data-status="done">
+            <div class="kpi-top">
+              <span class="kpi-label">Implemented</span>
+              <i class="fa-solid fa-circle-check kpi-icon"></i>
+            </div>
+            <div class="kpi-num" id="kpi-done">-</div>
+            <div class="kpi-sub" id="kpi-done-sub"></div>
+          </button>
+          <button type="button" class="kpi-card kpi-partial" data-status="partial">
+            <div class="kpi-top">
+              <span class="kpi-label">Partial</span>
+              <i class="fa-solid fa-circle-half-stroke kpi-icon"></i>
+            </div>
+            <div class="kpi-num" id="kpi-partial">-</div>
+            <div class="kpi-sub" id="kpi-partial-sub"></div>
+          </button>
+          <button type="button" class="kpi-card kpi-planned" data-status="planned">
+            <div class="kpi-top">
+              <span class="kpi-label">Missing</span>
+              <i class="fa-regular fa-circle kpi-icon"></i>
+            </div>
+            <div class="kpi-num" id="kpi-planned">-</div>
+            <div class="kpi-sub" id="kpi-planned-sub"></div>
+          </button>
+        </section>
+
+        <section class="progress-card" aria-label="Progress">
+          <div class="progress-head">
+            <div>
+              <h2 class="progress-title">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span id="progress-title">Progress</span>
+              </h2>
+              <div class="progress-sub" id="progress-sub"></div>
+            </div>
+            <div class="progress-legend">
+              <div class="legend-item"><span class="legend-dot done"></span><span id="legend-done">Implemented</span></div>
+              <div class="legend-item"><span class="legend-dot partial"></span><span id="legend-partial">Partial</span></div>
+              <div class="legend-item"><span class="legend-dot planned"></span><span id="legend-planned">Missing</span></div>
+            </div>
+          </div>
+          <div class="progress-track" role="img" aria-label="Implementation progress">
+            <div class="progress-seg done" id="seg-done"></div>
+            <div class="progress-seg partial" id="seg-partial"></div>
+          </div>
+          <div class="progress-overview" id="progress-overview"></div>
+        </section>
+
+        <section class="tracker-controls" aria-label="Filters">
+          <div class="segmented-control" id="category-tabs" role="tablist"></div>
+          <label class="tracker-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" id="search-input" placeholder="Search entries, goals, keywords..." aria-label="Search entries" autocomplete="off" />
+            <button type="button" class="clear-btn" id="search-clear" aria-label="Clear search">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </label>
+          <div class="segmented-control" id="status-filter">
+            <button type="button" class="control-btn active" data-status="all" aria-pressed="true">All</button>
+            <button type="button" class="control-btn" data-status="done" aria-pressed="false">Implemented</button>
+            <button type="button" class="control-btn" data-status="partial" aria-pressed="false">Partial</button>
+            <button type="button" class="control-btn" data-status="planned" aria-pressed="false">Missing</button>
+          </div>
+        </section>
+
+        <section class="tracker-list-wrap">
+          <div class="list-meta">
+            <span id="list-count">Loading...</span>
+            <a id="expand-toggle" href="#" role="button">Expand all</a>
+          </div>
+          <div class="tracker-list" id="tracker-list"></div>
+        </section>
+
+        <div class="tracker-info-card">
+          <i class="fa-solid fa-clipboard-check"></i>
+          <div class="tracker-info-content">
+            <h3>How this list is kept honest</h3>
+            <p>
+              Every entry is checked against the Pumpkin source: an entity counts as implemented when it has its own type with a goal set that matches vanilla, partial when the type exists but goals or mechanics are missing, and missing when nothing maps to it yet. The checklists come from the maintainers' tracking issues and from reading the code.
+            </p>
+            <p>
+              Spotted a mistake or shipped something new? Edit
+              <a href="https://github.com/Pumpkin-MC/Pumpkin-Website/blob/master/tracker/data.json" target="_blank" rel="noopener">tracker/data.json</a>
+              and open a pull request.
+            </p>
+            <div class="status-key">
+              <span><span class="tr-dot" style="background: var(--color-green);"></span>Implemented: behaves like vanilla</span>
+              <span><span class="tr-dot" style="background: var(--color-yellow);"></span>Partial: exists, gaps listed</span>
+              <span><span class="tr-dot"></span>Missing: not started</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="../assets/icon.svg" alt="Pumpkin" />
+          <span>Pumpkin</span>
+        </div>
+        <div class="footer-links">
+          <a href="https://docs.pumpkinmc.org/">Documentation</a>
+          <a href="https://github.com/Pumpkin-MC">GitHub</a>
+          <a href="https://discord.com/invite/wT8XjrjKkf">Discord</a>
+          <a href="https://x.com/pumpkinmcdev">X</a>
+          <a href="https://www.youtube.com/@PumpkinServer">YouTube</a>
+          <a href="/donate/">Donate</a>
+          <a href="/stats/">Stats</a>
+          <a href="/tracker/" data-i18n="nav.tracker">Tracker</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        Made with <i class="fa-solid fa-heart" style="color: var(--color-orange);"></i> by <a href="https://marshall.dev" target="_blank" rel="noopener">purdze</a> · Licensed under GPL
+      </div>
+    </footer>
+  </body>
+</html>
