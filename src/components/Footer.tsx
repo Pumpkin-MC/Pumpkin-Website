@@ -36,6 +36,7 @@ const columns: { heading: string; links: NamedLink[] }[] = [
     links: [
       { label: "Blog", href: BLOG_URL },
       { label: "Stats", href: "/stats/" },
+      { label: "Vanilla parity", href: "/tracker/" },
       { label: "Benchmarks", href: `${DOCS_URL}/about/benchmarks` },
       { label: "Sponsor", href: "/donate/" },
     ],

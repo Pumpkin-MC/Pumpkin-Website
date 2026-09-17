@@ -103,6 +103,7 @@ export const menuPanels: MenuPanel[] = [
         links: [
           { label: "Blog", hint: "Release notes and longer posts.", href: BLOG_URL },
           { label: "Stats", hint: "Servers running Pumpkin right now.", href: "/stats/" },
+          { label: "Vanilla parity", hint: "What is implemented, partial or planned.", href: "/tracker/" },
           { label: "Contributors", hint: "The people who build Pumpkin.", href: "/contributors/" },
           { label: "Sponsor", hint: "Keep the project funded.", href: "/donate/" },
         ],
