@@ -11,6 +11,7 @@
 @source "../pages/contributors";
 @source "../pages/donate";
 @source "../pages/stats";
+@source "../pages/tracker";
 @source "../pages/not-found";
 
 @layer base {

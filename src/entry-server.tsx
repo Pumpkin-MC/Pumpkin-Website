@@ -8,6 +8,7 @@ import Developers from "./pages/developers/Developers";
 import Donate from "./pages/donate/Donate";
 import Contributors from "./pages/contributors/Contributors";
 import Stats from "./pages/stats/Stats";
+import Tracker from "./pages/tracker/Tracker";
 import NotFound from "./pages/not-found/NotFound";
 
 export { routes } from "./routes";
@@ -19,6 +20,7 @@ const pages: Record<PageId, ComponentType> = {
   donate: Donate,
   contributors: Contributors,
   stats: Stats,
+  tracker: Tracker,
   notFound: NotFound,
 };
 

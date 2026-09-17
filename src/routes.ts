@@ -1,4 +1,4 @@
-export type PageId = "home" | "download" | "developers" | "donate" | "contributors" | "stats" | "notFound";
+export type PageId = "home" | "download" | "developers" | "donate" | "contributors" | "stats" | "tracker" | "notFound";
 
 export interface Route {
   id: PageId;
@@ -76,6 +76,18 @@ export const routes: Route[] = [
     ogTitle: "Telemetry & Stats - Pumpkin",
     ogDescription:
       "Live ecosystem telemetry, server health, hardware distribution, global world map, and community statistics for Pumpkin and Vine.",
+  },
+  {
+    id: "tracker",
+    breadcrumb: "Vanilla parity",
+    path: "/tracker/",
+    html: "tracker/index.html",
+    title: "Vanilla Parity - Pumpkin",
+    description:
+      "How close Pumpkin is to vanilla: which entities, blocks, items and commands are implemented, which are partial, and which are still on the list.",
+    ogTitle: "Vanilla Parity - Pumpkin",
+    ogDescription:
+      "How close Pumpkin is to vanilla: which entities, blocks, items and commands are implemented, which are partial, and which are still on the list.",
   },
   {
     id: "notFound",
