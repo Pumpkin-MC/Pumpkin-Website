@@ -534,6 +534,7 @@ for (const name of VANILLA_COMMANDS) {
   commandEntries.push(entry);
 }
 for (const [name, note] of Object.entries(PUMPKIN_COMMANDS)) {
+  if (!commandFiles.has(name)) continue;
   commandEntries.push({ id: name, name: `/${name}`, group: "Pumpkin", status: "done", note, source: `crates/pumpkin/src/command/commands/${name}.rs` });
 }
 
