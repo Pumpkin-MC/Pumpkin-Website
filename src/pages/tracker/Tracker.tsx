@@ -520,12 +520,10 @@ export default function Tracker() {
               From the source
             </span>
             <p className="text-[1.1rem] leading-normal">
-              <strong className="font-extrabold">Read from the Pumpkin source, not from a wish list.</strong> Entities, redstone, combat
-              and world are audited by hand against the maintainers' tracking issues: implemented means the goals and mechanics vanilla
-              registers are there, partial means the type exists with pieces missing, planned means nothing maps to it yet. Blocks, items
-              and commands are read straight from the server source tree, so implemented means Pumpkin has code handling it and a TODO in
-              that code drops it to partial; the behaviour itself is not compared line by line. Spotted a mistake or shipped something new?
-              Edit{" "}
+              <strong className="font-extrabold">Where the statuses come from.</strong> Entities, redstone, combat and world were gone
+              through by hand next to the maintainers' tracking issues. Blocks, items and commands come from the source tree: a file that
+              handles the thing counts as implemented, and a TODO left in that file drops it to partial. Nothing was compared to vanilla
+              line by line, so green means the code is there, not that every edge case matches. The whole list is one file. Fix{" "}
               <a href={WEBSITE_DATA_URL} target="_blank" rel="noopener" className={inlineLink}>
                 data.json
               </a>{" "}
