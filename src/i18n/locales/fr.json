@@ -45,8 +45,8 @@
         "rest": "Intégré, sans proxy devant, sans plugin à installer."
       },
       {
-        "big": "7 langages",
-        "lead": "Écrivez des plugins en Rust, Kotlin, Python, Go, C#, C ou TypeScript.",
+        "big": "8 langages",
+        "lead": "Écrivez des plugins en Rust, Kotlin, Python, Go, C#, C, D ou TypeScript.",
         "rest": "Une seule API en dessous, choisissez le langage que vous connaissez déjà."
       },
       {

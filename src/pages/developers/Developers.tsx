@@ -88,6 +88,21 @@ const firstSteps: Record<GuideId, { snippet: SnippetName } | { note: ReactNode }
   },
   go: { snippet: "goInstall" },
   kotlin: { snippet: "kotlinClone" },
+  d: {
+    note: (
+      <>
+        Install{" "}
+        <a href="https://github.com/ldc-developers/ldc" className={inlineLink}>
+          LDC
+        </a>{" "}
+        1.43 or later with the addon-wasi package, plus{" "}
+        <a href="https://dub.pm/" className={inlineLink}>
+          DUB
+        </a>
+        .
+      </>
+    ),
+  },
   typescript: {
     note: (
       <>

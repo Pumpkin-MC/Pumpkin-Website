@@ -2,7 +2,7 @@ import type { snippets } from "./snippets.ts";
 
 export type SnippetName = keyof typeof snippets;
 
-export type SnippetLanguage = "java" | "rust" | "toml" | "python" | "csharp" | "c" | "go" | "kotlin" | "shellscript" | "text";
+export type SnippetLanguage = "java" | "rust" | "toml" | "python" | "csharp" | "c" | "go" | "kotlin" | "d" | "json" | "shellscript" | "text";
 
 export const snippetLanguages: Record<SnippetName, SnippetLanguage> = {
   javaReflection: "java",
@@ -27,4 +27,7 @@ export const snippetLanguages: Record<SnippetName, SnippetLanguage> = {
   kotlinClone: "shellscript",
   kotlinPlugin: "kotlin",
   kotlinBuild: "shellscript",
+  dManifest: "json",
+  dPlugin: "d",
+  dBuild: "shellscript",
 };

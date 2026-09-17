@@ -61,8 +61,8 @@ export const checklist: ChecklistRow[] = [
     },
   },
   {
-    feature: "Plugin API in 7 languages",
-    detail: "Rust, Kotlin, Python, Go, C#, C, TypeScript.",
+    feature: "Plugin API in 8 languages",
+    detail: "Rust, Kotlin, Python, Go, C#, C, D, TypeScript.",
     support: ["yes", "no", "no", "no"],
     notes: {},
   },

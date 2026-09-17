@@ -3,7 +3,7 @@ import type { CodeSample } from "./CodeBlock";
 import type { SnippetName } from "./snippet-languages";
 import { DOCS_URL } from "../../links";
 
-export type GuideId = "rust" | "python" | "csharp" | "c" | "go" | "kotlin" | "typescript";
+export type GuideId = "rust" | "python" | "csharp" | "c" | "go" | "kotlin" | "d" | "typescript";
 
 export type StepContent = ReactNode | CodeSample;
 
@@ -305,6 +305,49 @@ export const guides: Guide[] = [
           <p key="output">
             Once it is done, <Code>my_kotlin_plugin.wasm</Code> (or whatever your Gradle project name is) will appear
             in <Code>build</Code>, ready to load into Pumpkin.
+          </p>,
+        ],
+      },
+    ],
+  },
+  {
+    id: "d",
+    label: "D",
+    docsHref: `${DOCS_URL}/plugin-dev/d/quick-start`,
+    docsLabel: "the D documentation",
+    steps: [
+      {
+        title: "Installation",
+        content: [
+          <p key="needs">
+            You will need <Link href="https://github.com/ldc-developers/ldc">LDC</Link> 1.43 or later with the{" "}
+            <Code>addon-wasi</Code> package installed, and <Link href="https://dub.pm/">DUB</Link>.
+          </p>,
+          <p key="package">
+            The bindings come from the <Link href="https://github.com/Pumpkin-MC/pumpkin-api-d">pumpkin-api-d</Link>{" "}
+            package. Declare it in a <Code>dub.json</Code> next to your plugin:
+          </p>,
+          { snippet: "dManifest", label: "dub.json" },
+        ],
+      },
+      {
+        title: "Creating your first plugin",
+        content: [
+          <p key="source">
+            Then put the plugin itself in <Code>source/app.d</Code>:
+          </p>,
+          { snippet: "dPlugin", label: "app.d" },
+        ],
+      },
+      {
+        title: "Building the plugin",
+        content: [
+          <p key="dub">
+            Compile the plugin into a WebAssembly component targeting <Code>wasm32-wasip2</Code> with DUB:
+          </p>,
+          terminal("dBuild"),
+          <p key="output">
+            <Code>my-d-plugin.wasm</Code> appears in the project root, ready to load into Pumpkin.
           </p>,
         ],
       },
