@@ -233,7 +233,7 @@ export function Header() {
               );
             })}
             <div className="relative border-b border-white/8 nav:border-0">
-              <a href="/tracker/" className={`${triggerBase} text-muted nav:after:w-0`}>
+              <a href={withBase("/tracker/")} className={`${triggerBase} text-muted nav:after:w-0`}>
                 {t.nav.tracker}
               </a>
             </div>

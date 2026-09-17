@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { GITHUB_URL } from "../../links";
 import { ChevronDownIcon, ExternalIcon } from "../../components/icons";
+import { withBase } from "../../lib/url";
 import {
   BoltIcon,
   BugIcon,
@@ -400,7 +401,7 @@ export default function Tracker() {
 
           <div aria-hidden="true" className="relative mt-4 h-44 xl:mt-0 xl:h-auto">
             <img
-              src="/assets/pumpkin-clipboard.webp"
+              src={withBase("/assets/pumpkin-clipboard.webp")}
               alt=""
               className="pointer-events-none absolute right-[-3%] bottom-[-10%] h-[120%] w-auto max-w-none -rotate-6 select-none xl:inset-x-0 xl:bottom-[-8%] xl:h-auto xl:w-full"
             />
