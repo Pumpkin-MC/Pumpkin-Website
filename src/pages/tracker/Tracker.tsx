@@ -42,7 +42,6 @@ function CategoryIcon({ id, className }: { id: string; className?: string }) {
   return <Component className={className} />;
 }
 
-// Turns `code` spans in data text into <code>.
 function inline(text: string): ReactNode[] {
   return text.split(/(`[^`]+`)/g).map((part, index) =>
     part.startsWith("`") ? (
@@ -83,7 +82,6 @@ function Legend() {
   );
 }
 
-// Renders the final number first so the prerendered page is right, then rolls up from zero.
 function useCountUp(target: number): number {
   const [value, setValue] = useState(target);
 
@@ -294,7 +292,6 @@ export default function Tracker() {
     return () => window.removeEventListener("hashchange", apply);
   }, []);
 
-  // The target row only exists once the category has rendered, so scroll after that render.
   useEffect(() => {
     if (!scrollTarget) return;
     const target = document.getElementById(scrollTarget);
@@ -449,7 +446,6 @@ export default function Tracker() {
               );
             })}
           </div>
-
 
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
             <div role="radiogroup" aria-label="Status" className="flex flex-wrap gap-2">

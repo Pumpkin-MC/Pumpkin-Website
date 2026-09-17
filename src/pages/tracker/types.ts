@@ -44,8 +44,6 @@ export interface TrackerData {
   all: Category;
 }
 
-// Same glyphs as the feature checklist on the home page. Planned is white rather than red: it is
-// work not started, not a fault.
 export const STATUS: Record<Status, { label: string; glyph: string; text: string; bg: string }> = {
   done: { label: "Implemented", glyph: "✓", text: "text-success", bg: "bg-success" },
   partial: { label: "Partial", glyph: "!", text: "text-warning", bg: "bg-warning" },

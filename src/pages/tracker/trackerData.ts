@@ -5,7 +5,6 @@ type RawEntry = Omit<Entry, "cat" | "catLabel" | "status"> & { status: string };
 type RawCategory = Omit<Category, "entries"> & { entries: RawEntry[] };
 type RawData = Omit<TrackerData, "categories" | "all"> & { categories: RawCategory[] };
 
-// data.json is edited by hand, so an unknown status is treated as missing rather than crashing the page.
 function toStatus(value: string): Status {
   return (STATUS_ORDER as string[]).includes(value) ? (value as Status) : "planned";
 }
@@ -28,5 +27,4 @@ function annotate(data: RawData): TrackerData {
   };
 }
 
-// Bundled with the page so the whole list is in the HTML instead of arriving after a fetch.
 export const trackerData: TrackerData = annotate(raw as RawData);

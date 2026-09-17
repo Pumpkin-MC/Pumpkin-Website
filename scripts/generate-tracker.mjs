@@ -1,9 +1,3 @@
-// Seeds src/pages/tracker/data.json from a Pumpkin checkout: blocks, items and commands are read
-// from the source tree, entities come from the audit table below. data.json is the file the site
-// builds from and the one to edit for quick fixes; rerun this only for a full re-audit and merge by
-// hand.
-// Usage: node scripts/generate-tracker.mjs <pumpkin-checkout> [src/pages/tracker/data.json]
-
 import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
@@ -49,10 +43,6 @@ function todoCount(file) {
   const txt = fs.readFileSync(file, "utf8");
   return (txt.match(/\b(TODO|FIXME|unimplemented!)/g) || []).length;
 }
-
-// ---------------------------------------------------------------------------
-// Entities
-// ---------------------------------------------------------------------------
 
 const entityFiles = walk(path.join(SRC, "entity"));
 function entitySource(id) {
@@ -110,9 +100,7 @@ const HORSE_ITEMS = [
 const BOAT_ITEMS = ["+Placement and riding", "+Paddle state sync", "-Vanilla boat physics"];
 const CHEST_BOAT_ITEMS = [...BOAT_ITEMS, "-Chest inventory"];
 
-// [status, group, note, items, issues]
 const ENTITIES = {
-  // Hostile
   zombie: ["partial", "Hostile", "Base zombie goals match vanilla, including door breaking and turtle egg raids.", ["+`ZombieAttackGoal`, `BreakDoorGoal` and `DestroyEggGoal`", "+Revenge and player targeting", "-`MoveThroughVillageGoal`", "-`SpearUseGoal` (new in 26.2)"], [1336]],
   husk: ["partial", "Hostile", "Wraps the zombie base with desert spawn rules.", ["+Zombie goal set", "+Surface monster spawn rules", "-Conversion to zombie when submerged"]],
   zombie_villager: ["partial", "Hostile", "Villager profession data and curing are ported.", ["+Villager profession and biome data", "+Curing with a golden apple", "+Zombie goal set", "-`MoveThroughVillageGoal`"]],
@@ -156,11 +144,9 @@ const ENTITIES = {
   giant: ["done", "Hostile", "Vanilla giant registers no goals at all. Pumpkin adds a small goal set on top.", ["+Entity type and attributes"]],
   bat: ["partial", "Passive", "", ["+Roosting under blocks", "+Random flight", "+Cave spawn rules", "-Flying navigation hook"]],
 
-  // Boss
   wither: ["partial", "Boss", "Shoots skulls from all three heads and breaks blocks, but does not fly and only targets whatever hurt it.", ["+Spawning from soul sand and skulls", "+Spawn invulnerability window and explosion", "+Wither skulls from all three heads", "+Half-health armour phase", "+Block breaking and boss bar", "-Player targeting, only revenge", "-Flying movement"], []],
   ender_dragon: ["partial", "Boss", "All twelve flight phases are ported. Collision and damage still run against the main bounding box instead of the parts.", ["+12-phase `PhaseManager`", "+Crystal healing and block breaking", "+Flight history", "+Part tracking, not yet registered as world entities", "-Part based knockback", "-Hurt-time gating and creative exclusion", "-Push semantics", "-Contact damage guard"], []],
 
-  // Passive
   cow: ["done", "Passive", "", ["+Breed, tempt and follow parent", "+Milking"]],
   pig: ["done", "Passive", "", ["+Breed, tempt and follow parent", "+Saddle and carrot on a stick"]],
   sheep: ["done", "Passive", "", ["+Breed, tempt and follow parent", "+Eat grass and regrow wool", "+Shearing and dyeing"]],
@@ -209,7 +195,6 @@ const ENTITIES = {
   wandering_trader: ["partial", "Villager", "Trades, wanders and drinks its potions. Natural spawning and the llama escort are missing.", ["+Trading screen and generated offers", "+Invisibility potion at night", "+Despawn timer and wander targets", "-Natural spawn cycle and `level.dat` persistence", "-Leashed trader llamas", "-Trade offer parity"], [3364, 3083]],
   mannequin: ["planned", "Villager", "New in 26.x. Not implemented."],
 
-  // Projectiles
   arrow: ["done", "Projectile", "", ["+Flight, hit and pickup", "+Damage on hit"], []],
   spectral_arrow: ["done", "Projectile", "Shares the arrow entity.", ["+Shares the arrow entity", "+Glowing effect on hit"]],
   trident: ["done", "Projectile", "", ["+Thrown trident with pickup", "+Loyalty and riptide through the item"]],
@@ -232,7 +217,6 @@ const ENTITIES = {
   firework_rocket: ["done", "Projectile", "", [], []],
   fishing_bobber: ["partial", "Projectile", "", ["+Casting and hooking", "-Loot tables (gives raw cod only)"], []],
 
-  // Decoration
   armor_stand: ["partial", "Decoration", "", ["+Placement, poses and breaking", "-Equipment slot drops on break", "-Fire damage"]],
   item_frame: ["done", "Decoration"],
   glow_item_frame: ["done", "Decoration"],
@@ -245,7 +229,6 @@ const ENTITIES = {
   marker: ["done", "Decoration", "", [], []],
   interaction: ["done", "Decoration", "", [], []],
 
-  // Misc
   item: ["done", "Misc", "", [], []],
   experience_orb: ["done", "Misc", "", [], []],
   falling_block: ["done", "Misc", "", [], []],
@@ -289,10 +272,6 @@ const entityEntries = entityIds
     return entry;
   })
   .sort((a, b) => GROUP_ORDER.indexOf(a.group) - GROUP_ORDER.indexOf(b.group) || a.name.localeCompare(b.name));
-
-// ---------------------------------------------------------------------------
-// Blocks
-// ---------------------------------------------------------------------------
 
 const BLOCK_SKIP = new Set(["mod", "abstract_wall_mounting", "abstract_redstone_gate", "common", "tests", "segmented", "tree_grower", "spreading_snowy_block"]);
 const BLOCK_NAMES = {
@@ -411,10 +390,6 @@ blockEntries.push(
 );
 blockEntries.sort((a, b) => a.group.localeCompare(b.group) || a.name.localeCompare(b.name));
 
-// ---------------------------------------------------------------------------
-// Items
-// ---------------------------------------------------------------------------
-
 const ITEM_SKIP = new Set(["mod", "projectile_weapon", "ignition"]);
 const ITEM_NAMES = {
   on_a_stick: "Carrot & Fungus on a Stick",
@@ -501,10 +476,6 @@ itemEntries.push(
 const ITEM_GROUP_ORDER = ITEM_GROUPS.map((g) => g[0]);
 itemEntries.sort((a, b) => ITEM_GROUP_ORDER.indexOf(a.group) - ITEM_GROUP_ORDER.indexOf(b.group) || a.name.localeCompare(b.name));
 
-// ---------------------------------------------------------------------------
-// Commands
-// ---------------------------------------------------------------------------
-
 const VANILLA_COMMANDS = [
   "advancement", "attribute", "ban", "ban-ip", "banlist", "bossbar", "clear", "clone", "damage", "data", "datapack", "debug",
   "defaultgamemode", "deop", "dialog", "difficulty", "effect", "enchant", "execute", "experience", "fetchprofile", "fill",
@@ -538,11 +509,6 @@ for (const [name, note] of Object.entries(PUMPKIN_COMMANDS)) {
   commandEntries.push({ id: name, name: `/${name}`, group: "Pumpkin", status: "done", note, source: `crates/pumpkin/src/command/commands/${name}.rs` });
 }
 
-// ---------------------------------------------------------------------------
-// Checklist categories from the tracking issues
-// ---------------------------------------------------------------------------
-
-// [name, status, group, note, source]
 function checklist(rows) {
   return rows.map(([name, status, group, note, source]) => {
     const e = { id: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""), name, group, status };
@@ -630,10 +596,6 @@ const worldEntries = checklist([
   ["Entity spawning", "done", "Logic & Physics", "", `${WLD}/natural_spawner.rs`],
 ]);
 
-// ---------------------------------------------------------------------------
-// Issue titles are looked up once here so the site itself stays static.
-// ---------------------------------------------------------------------------
-
 async function issueInfo(number) {
   const headers = { accept: "application/vnd.github+json" };
   if (process.env.GITHUB_TOKEN) headers.authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
@@ -651,8 +613,6 @@ async function issueInfo(number) {
 for (const entry of entityEntries) {
   if (entry.issues) entry.issues = await Promise.all(entry.issues.map(issueInfo));
 }
-
-// ---------------------------------------------------------------------------
 
 const out = {
   version: mcVersion,
