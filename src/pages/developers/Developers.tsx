@@ -103,6 +103,7 @@ const firstSteps: Record<GuideId, { snippet: SnippetName } | { note: ReactNode }
       </>
     ),
   },
+  zig: { snippet: "zigFetch" },
   typescript: {
     note: (
       <>

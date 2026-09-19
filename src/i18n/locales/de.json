@@ -45,8 +45,8 @@
         "rest": "Eingebaut, kein Proxy davor, kein Plugin nötig."
       },
       {
-        "big": "8 Sprachen",
-        "lead": "Plugins in Rust, Kotlin, Python, Go, C#, C, D oder TypeScript.",
+        "big": "9 Sprachen",
+        "lead": "Plugins in Rust, Kotlin, Python, Go, C#, C, D, Zig oder TypeScript.",
         "rest": "Eine API darunter, nimm die Sprache, die du schon kennst."
       },
       {

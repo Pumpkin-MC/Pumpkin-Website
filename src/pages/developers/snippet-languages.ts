@@ -2,7 +2,7 @@ import type { snippets } from "./snippets.ts";
 
 export type SnippetName = keyof typeof snippets;
 
-export type SnippetLanguage = "java" | "rust" | "toml" | "python" | "csharp" | "c" | "go" | "kotlin" | "d" | "json" | "shellscript" | "text";
+export type SnippetLanguage = "java" | "rust" | "toml" | "python" | "csharp" | "c" | "go" | "kotlin" | "d" | "zig" | "json" | "shellscript" | "text";
 
 export const snippetLanguages: Record<SnippetName, SnippetLanguage> = {
   javaReflection: "java",
@@ -30,4 +30,8 @@ export const snippetLanguages: Record<SnippetName, SnippetLanguage> = {
   dManifest: "json",
   dPlugin: "d",
   dBuild: "shellscript",
+  zigFetch: "shellscript",
+  zigBuildZig: "zig",
+  zigPlugin: "zig",
+  zigBuild: "shellscript",
 };

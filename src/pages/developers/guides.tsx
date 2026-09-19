@@ -3,7 +3,7 @@ import type { CodeSample } from "./CodeBlock";
 import type { SnippetName } from "./snippet-languages";
 import { DOCS_URL } from "../../links";
 
-export type GuideId = "rust" | "python" | "csharp" | "c" | "go" | "kotlin" | "d" | "typescript";
+export type GuideId = "rust" | "python" | "csharp" | "c" | "go" | "kotlin" | "d" | "zig" | "typescript";
 
 export type StepContent = ReactNode | CodeSample;
 
@@ -348,6 +348,51 @@ export const guides: Guide[] = [
           terminal("dBuild"),
           <p key="output">
             <Code>my-d-plugin.wasm</Code> appears in the project root, ready to load into Pumpkin.
+          </p>,
+        ],
+      },
+    ],
+  },
+  {
+    id: "zig",
+    label: "Zig",
+    docsHref: `${DOCS_URL}/plugin-dev/zig/quick-start`,
+    docsLabel: "the Zig documentation",
+    steps: [
+      {
+        title: "Setting up the project",
+        content: [
+          <p key="needs">
+            You will need <Link href="https://ziglang.org/download/">Zig</Link> 0.16.0 or later and{" "}
+            <Link href="https://github.com/bytecodealliance/wasm-tools">wasm-tools</Link> in your <Code>PATH</Code>.
+          </p>,
+          <p key="fetch">
+            Fetch and add the <Link href="https://github.com/Pumpkin-MC/pumpkin-api-zig">pumpkin-api-zig</Link> package
+            as a dependency:
+          </p>,
+          terminal("zigFetch"),
+          <p key="build-zig">
+            Create a <Code>build.zig</Code> file in the root of your project:
+          </p>,
+          { snippet: "zigBuildZig", label: "build.zig" },
+        ],
+      },
+      {
+        title: "Creating your first plugin",
+        content: [
+          <p key="source">
+            Create your plugin source code in <Code>src/main.zig</Code>:
+          </p>,
+          { snippet: "zigPlugin", label: "src/main.zig" },
+        ],
+      },
+      {
+        title: "Building the plugin",
+        content: [
+          <p key="build">Compile the plugin into a WebAssembly component:</p>,
+          terminal("zigBuild"),
+          <p key="output">
+            This will produce <Code>zig-out/my-zig-plugin.wasm</Code> ready to be loaded into Pumpkin.
           </p>,
         ],
       },

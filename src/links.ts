@@ -21,5 +21,6 @@ export const pluginLanguages: NamedLink[] = [
   { label: "C#", href: `${DOCS_URL}/plugin-dev/csharp/quick-start` },
   { label: "C / C++", href: `${DOCS_URL}/plugin-dev/c/quick-start` },
   { label: "D", href: `${DOCS_URL}/plugin-dev/d/quick-start` },
+  { label: "Zig", href: `${DOCS_URL}/plugin-dev/zig/quick-start` },
   { label: "TypeScript", href: "https://github.com/Pumpkin-MC/pumpkin-api-ts" },
 ];
