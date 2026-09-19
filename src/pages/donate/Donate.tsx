@@ -30,6 +30,8 @@ const tierOrder = [
   { slug: "tier-bronze", name: "Bronze" },
 ];
 
+const ONE_TIME_DONATION_URL = "https://donate.stripe.com/5kQ8wO9rReATeyXfvL2cg0a";
+
 const monthlyTiers = [
   { name: "Bronze", amount: 5, href: "https://donate.stripe.com/3cI4gyavV0K3aiH3N32cg00" },
   { name: "Silver", amount: 10, href: "https://donate.stripe.com/dRm5kC5bBboH2Qf2IZ2cg01" },
@@ -167,7 +169,13 @@ export default function Donate() {
       <section className="mx-auto max-w-325 px-5 pt-12 md:px-8 md:pt-16">
         <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
           <h2 className="text-3xl font-extrabold md:text-4xl">Monthly</h2>
-          <p className="text-muted">Pick an amount. Checkout happens on Stripe.</p>
+          <p className="text-muted">
+            Pick an amount. Prefer a{" "}
+            <a href="#one-time" className={inlineLink}>
+              one-time donation
+            </a>
+            ?
+          </p>
         </div>
         <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
           {monthlyTiers.map((tier) => (
@@ -187,6 +195,31 @@ export default function Donate() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section id="one-time" className="mx-auto max-w-325 px-5 pt-12 md:px-8 md:pt-16">
+        <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
+          <h2 className="text-3xl font-extrabold md:text-4xl">One-time</h2>
+          <p className="text-muted">Give any amount you like to support the project.</p>
+        </div>
+        <a
+          href={ONE_TIME_DONATION_URL}
+          aria-label="Make a one-time donation"
+          className="group flex flex-col items-start justify-between gap-6 border-2 border-white/15 bg-surface p-6 transition-colors hover:border-pumpkin sm:p-8 md:flex-row md:items-center focus-visible:border-pumpkin focus-visible:outline-none"
+        >
+          <div className="max-w-xl">
+            <span className="font-mono text-xs tracking-wider text-muted uppercase group-hover:text-pumpkin">
+              Any amount
+            </span>
+            <h3 className="mt-1 text-2xl font-extrabold md:text-3xl">Single contribution</h3>
+            <p className="mt-2 text-muted">
+              Prefer not to commit to a monthly subscription? You can support Pumpkin with a one-time donation of any amount.
+            </p>
+          </div>
+          <span className="inline-flex shrink-0 items-center justify-center border-3 border-pumpkin bg-pumpkin px-8 py-3.5 text-base font-bold text-black transition duration-100 brutal-3 group-hover:brutal-6 group-hover:-translate-0.5">
+            Donate once
+          </span>
+        </a>
       </section>
 
       <section className="mx-auto max-w-325 px-5 py-12 md:px-8 md:py-16">
@@ -236,7 +269,7 @@ export default function Donate() {
                   onClick={() => setTab(id)}
                   className={`cursor-pointer px-4 py-2 transition-colors ${tab === id ? "bg-fg text-black" : "text-muted hover:text-fg"}`}
                 >
-                  {id === "current" ? `Current${donators ? ` · ${current.length}` : ""}` : `Past${donators ? ` · ${past.length}` : ""}`}
+                  {id === "current" ? `Current${donators ? ` · ${current.length}` : ""}` : `Past / One-time${donators ? ` · ${past.length}` : ""}`}
                 </button>
               ))}
             </div>
@@ -268,7 +301,7 @@ export default function Donate() {
                 )}
               </div>
               <div id="sponsors-panel-past" role="tabpanel" aria-labelledby="sponsors-tab-past" hidden={tab !== "past"}>
-                {past.length === 0 ? <p className="text-muted">No past sponsors.</p> : <SponsorGrid donators={past} showTier />}
+                {past.length === 0 ? <p className="text-muted">No past or one-time sponsors.</p> : <SponsorGrid donators={past} showTier />}
               </div>
             </>
           )}

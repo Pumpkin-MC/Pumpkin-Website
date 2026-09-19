@@ -6,6 +6,7 @@ export const X_URL = "https://x.com/pumpkinmcdev";
 export const YOUTUBE_URL = "https://www.youtube.com/@PumpkinServer";
 export const BLOG_URL = "https://blog.pumpkinmc.org/";
 export const MARKET_URL = "https://market.pumpkinmc.org/";
+export const DONATE_URL = "https://donate.stripe.com/5kQ8wO9rReATeyXfvL2cg0a";
 
 export interface NamedLink {
   label: string;
