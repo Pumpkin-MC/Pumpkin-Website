@@ -26,8 +26,8 @@ function walk(dir) {
 
 function ensureSource(label, source) {
   if (!fs.existsSync(path.join(PUMPKIN, source))) {
-    console.error(`${label}: ${source} is not in the checkout`);
-    process.exit(1);
+    console.warn(`${label}: ${source} is not in the checkout, leaving the source link out`);
+    return null;
   }
   return source;
 }
@@ -263,8 +263,8 @@ for (const id of entityIds) {
 
 const missing = entityIds.filter((id) => !ENTITIES[id]);
 if (missing.length) {
-  console.error("Entities without an audit entry:", missing.join(", "));
-  process.exit(1);
+  console.warn("Entities without an audit entry, listed as planned:", missing.join(", "));
+  for (const id of missing) ENTITIES[id] = ["planned", "Misc", "New in the registry and not audited yet."];
 }
 
 const GROUP_ORDER = ["Hostile", "Boss", "Passive", "Villager", "Projectile", "Vehicle", "Decoration", "Misc"];
@@ -598,6 +598,13 @@ const worldEntries = checklist([
   ["Entity spawning", "done", "Logic & Physics", "", `${WLD}/natural_spawner.rs`],
 ]);
 
+const knownIssues = new Map();
+if (fs.existsSync(OUT)) {
+  for (const category of JSON.parse(fs.readFileSync(OUT, "utf8")).categories) {
+    for (const entry of category.entries) for (const issue of entry.issues ?? []) knownIssues.set(issue.number, issue);
+  }
+}
+
 async function issueInfo(number) {
   const headers = { accept: "application/vnd.github+json" };
   if (process.env.GITHUB_TOKEN) headers.authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
@@ -610,8 +617,8 @@ async function issueInfo(number) {
     const { title, state, pull_request: pr } = await response.json();
     return { number, title, state: pr?.merged_at ? "merged" : state, ...(pr && { pr: true }) };
   } catch (error) {
-    console.warn(`Could not look up #${number}: ${error.message}`);
-    return { number };
+    console.warn(`Could not look up #${number}: ${error.message}, keeping the last known details`);
+    return knownIssues.get(number) ?? { number };
   }
 }
 
