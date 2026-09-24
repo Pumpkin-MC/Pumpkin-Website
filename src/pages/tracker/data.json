@@ -1,14 +1,14 @@
 {
-  "version": "26.2",
-  "commit": "844e287",
-  "updated": "2026-09-16",
+  "version": "26.3",
+  "commit": "10a2ad5",
+  "updated": "2026-09-24",
   "categories": [
     {
       "id": "entities",
       "label": "Entities",
       "unit": "entities",
       "tracking": 3468,
-      "description": "All 157 entity types in the 26.2 registry, compared with the goal sets vanilla registers for each one.",
+      "description": "All 160 entity types in the 26.3 registry, compared with the goal sets vanilla registers for each one.",
       "entries": [
         {
           "id": "blaze",
@@ -3254,6 +3254,54 @@
           "source": "crates/pumpkin/src/entity/vehicle/boat.rs"
         },
         {
+          "id": "poplar_boat",
+          "name": "Poplar Boat",
+          "group": "Vehicle",
+          "status": "partial",
+          "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+          "items": [
+            {
+              "text": "Placement and riding",
+              "done": true
+            },
+            {
+              "text": "Paddle state sync",
+              "done": true
+            },
+            {
+              "text": "Vanilla boat physics",
+              "done": false
+            }
+          ],
+          "source": "crates/pumpkin/src/entity/vehicle/boat.rs"
+        },
+        {
+          "id": "poplar_chest_boat",
+          "name": "Poplar Chest Boat",
+          "group": "Vehicle",
+          "status": "partial",
+          "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+          "items": [
+            {
+              "text": "Placement and riding",
+              "done": true
+            },
+            {
+              "text": "Paddle state sync",
+              "done": true
+            },
+            {
+              "text": "Vanilla boat physics",
+              "done": false
+            },
+            {
+              "text": "Chest inventory",
+              "done": false
+            }
+          ],
+          "source": "crates/pumpkin/src/entity/vehicle/boat.rs"
+        },
+        {
           "id": "spawner_minecart",
           "name": "Spawner Minecart",
           "group": "Vehicle",
@@ -3444,6 +3492,14 @@
           "source": "crates/pumpkin/src/entity/area_effect_cloud.rs"
         },
         {
+          "id": "cushion",
+          "name": "Cushion",
+          "group": "Misc",
+          "status": "planned",
+          "note": "New in the registry and not audited yet.",
+          "source": "crates/pumpkin/src/entity/decoration/cushion.rs"
+        },
+        {
           "id": "experience_orb",
           "name": "Experience Orb",
           "group": "Misc",
@@ -3549,10 +3605,10 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/bed.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:beds"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "beehive",
@@ -3620,10 +3676,10 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/campfire.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:campfires"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "candle_cakes",
@@ -3697,12 +3753,12 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/chests.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "c:chests/wooden",
             "minecraft:copper_chests",
             "minecraft:trapped_chest"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "chiseled_bookshelf",
@@ -3710,10 +3766,10 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/chiseled_bookshelf.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:chiseled_bookshelf"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "cobweb",
@@ -3786,10 +3842,10 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/dirt_path.rs",
+          "note": "2 TODOs left in the source.",
           "ids": [
             "minecraft:dirt_path"
-          ],
-          "note": "2 TODOs left in the source."
+          ]
         },
         {
           "id": "doors",
@@ -3877,10 +3933,10 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/ender_chest.rs",
+          "note": "2 TODOs left in the source.",
           "ids": [
             "minecraft:ender_chest"
-          ],
-          "note": "2 TODOs left in the source."
+          ]
         },
         {
           "id": "falling",
@@ -4047,10 +4103,10 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/infested.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "c:cobblestones/infested"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "iron_bars",
@@ -4078,10 +4134,10 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/jukebox.rs",
+          "note": "2 TODOs left in the source.",
           "ids": [
             "minecraft:jukebox"
-          ],
-          "note": "2 TODOs left in the source."
+          ]
         },
         {
           "id": "ladder",
@@ -4226,10 +4282,10 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/note.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:note_block"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "nylium",
@@ -4307,10 +4363,10 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/shulker_box.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:shulker_boxes"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "signs",
@@ -4428,6 +4484,16 @@
           "source": "crates/pumpkin/src/block/blocks/stonecutter.rs",
           "ids": [
             "minecraft:stonecutter"
+          ]
+        },
+        {
+          "id": "straw_bed",
+          "name": "Straw Bed",
+          "group": "Blocks",
+          "status": "done",
+          "source": "crates/pumpkin/src/block/blocks/straw_bed.rs",
+          "ids": [
+            "minecraft:straw_bed"
           ]
         },
         {
@@ -4583,10 +4649,10 @@
           "group": "Fire & Sculk",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/fire/fire.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:fire"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "sculk-sculk_catalyst",
@@ -4600,9 +4666,8 @@
           "id": "sculk-sculk_shrieker",
           "name": "Sculk Shrieker",
           "group": "Fire & Sculk",
-          "status": "partial",
-          "source": "crates/pumpkin/src/block/blocks/sculk/sculk_shrieker.rs",
-          "note": "1 TODO left in the source."
+          "status": "done",
+          "source": "crates/pumpkin/src/block/blocks/sculk/sculk_shrieker.rs"
         },
         {
           "id": "sculk-sculk_vein",
@@ -4630,10 +4695,10 @@
           "group": "Pistons",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/piston/piston_extension.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:moving_piston"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "piston-piston_head",
@@ -4641,10 +4706,10 @@
           "group": "Pistons",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/piston/piston_head.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:piston_head"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "piston-piston",
@@ -4685,7 +4750,7 @@
           "source": "crates/pumpkin/src/block/blocks/plant/azalea.rs",
           "ids": [
             "minecraft:minecraft_supports_azalea",
-            "minecraft:minecraft_supp"
+            "minecraft:minecraft_supports_vegetation"
           ]
         },
         {
@@ -4724,10 +4789,10 @@
           "group": "Plants & Crops",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/plant/big_dripleaf.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:big_dripleaf"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "plant-big_dripleaf_stem",
@@ -4785,8 +4850,7 @@
           "ids": [
             "minecraft:cave_vines",
             "minecraft:cave_vines_plant",
-            "minecraft:air",
-            "minecraft:c"
+            "minecraft:air"
           ]
         },
         {
@@ -4828,7 +4892,8 @@
           "ids": [
             "minecraft:minecraft_coral_blocks",
             "minecraft:dead_brain_coral_block",
-            "minecraft:dead_bubble_coral_block"
+            "minecraft:dead_bubble_coral_block",
+            "minecraft:dead_fire_coral_block"
           ]
         },
         {
@@ -4859,8 +4924,7 @@
           "source": "crates/pumpkin/src/block/blocks/plant/dry_vegetation.rs",
           "ids": [
             "minecraft:short_dry_grass",
-            "minecraft:tall_dry_grass",
-            "minecraft:shor"
+            "minecraft:tall_dry_grass"
           ]
         },
         {
@@ -4943,10 +5007,10 @@
           "group": "Plants & Crops",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/plant/lily_pad.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:lily_pad"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "plant-mangrove_propagule",
@@ -5016,6 +5080,7 @@
           "group": "Plants & Crops",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/plant/crop/gourds/stem.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:pumpkin_stem",
             "minecraft:attached_pumpkin_stem",
@@ -5023,8 +5088,7 @@
             "minecraft:attached_melon_stem",
             "minecraft:pumpkin",
             "minecraft:melon"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "plant-roots",
@@ -5055,10 +5119,10 @@
           "group": "Plants & Crops",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/plant/sea_pickles.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:sea_pickle"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "plant-seagrass",
@@ -5068,6 +5132,16 @@
           "source": "crates/pumpkin/src/block/blocks/plant/seagrass.rs",
           "ids": [
             "minecraft:seagrass"
+          ]
+        },
+        {
+          "id": "plant-shelf_mushroom",
+          "name": "Shelf Mushroom",
+          "group": "Plants & Crops",
+          "status": "done",
+          "source": "crates/pumpkin/src/block/blocks/plant/shelf_mushroom.rs",
+          "ids": [
+            "minecraft:shelf_mushroom"
           ]
         },
         {
@@ -5108,10 +5182,10 @@
           "group": "Plants & Crops",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/plant/sugar_cane.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:sugar_cane"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "plant-crop-sweet_berry_bush",
@@ -5198,10 +5272,10 @@
           "group": "Redstone",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/redstone/rails/activator_rail.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:activator_rail"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "redstone-bell",
@@ -5209,10 +5283,10 @@
           "group": "Redstone",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/redstone/bell.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:bell"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "redstone-buttons",
@@ -5278,10 +5352,10 @@
           "group": "Redstone",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/redstone/dispenser.rs",
+          "note": "2 TODOs left in the source.",
           "ids": [
             "minecraft:dispenser"
-          ],
-          "note": "2 TODOs left in the source."
+          ]
         },
         {
           "id": "redstone-dropper",
@@ -5329,10 +5403,10 @@
           "group": "Redstone",
           "status": "partial",
           "source": "crates/pumpkin/src/block/blocks/redstone/rails/powered_rail.rs",
+          "note": "1 TODO left in the source.",
           "ids": [
             "minecraft:powered_rail"
-          ],
-          "note": "1 TODO left in the source."
+          ]
         },
         {
           "id": "redstone-pressure_plate-plate",
@@ -5905,6 +5979,27 @@
           ]
         },
         {
+          "id": "cushion",
+          "name": "Cushion",
+          "group": "Utility",
+          "status": "done",
+          "source": "crates/pumpkin/src/item/items/cushion.rs",
+          "ids": [
+            "minecraft:white_cushion",
+            "minecraft:orange_cushion",
+            "minecraft:magenta_cushion",
+            "minecraft:light_blue_cushion",
+            "minecraft:yellow_cushion",
+            "minecraft:lime_cushion",
+            "minecraft:pink_cushion",
+            "minecraft:gray_cushion",
+            "minecraft:light_gray_cushion",
+            "minecraft:cyan_cushion",
+            "minecraft:purple_cushion",
+            "minecraft:blue_cushion"
+          ]
+        },
+        {
           "id": "dye",
           "name": "Dyes",
           "group": "Utility",
@@ -5929,8 +6024,8 @@
           "status": "done",
           "source": "crates/pumpkin/src/item/items/glass_bottle.rs",
           "ids": [
-            "minecraft:glass_bottle",
-            "minecraft:potion"
+            "minecraft:potion",
+            "minecraft:glass_bottle"
           ]
         },
         {
