@@ -1,0 +1,59 @@
+@theme {
+  --color-ink: #0d0d0d;
+  --color-surface: #1a1a1a;
+  --color-fg: #f0f0f0;
+  --color-muted: #999999;
+  --color-pumpkin: #ff6b2c;
+  --color-success: #00c853;
+  --color-danger: #ff4757;
+  --color-warning: #ffd93d;
+  --font-sans: "Bricolage Grotesque", system-ui, sans-serif;
+  --breakpoint-nav: 60rem;
+  --animate-blink: blink 0.8s steps(1) infinite;
+  --animate-type: type calc(var(--chars, 20) * 0.03s) steps(var(--chars, 20)) both;
+  --animate-progress: progress 4s linear both;
+  --animate-fade-up: fade-up 0.4s ease-out both;
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes type {
+    from {
+      width: 0;
+    }
+    to {
+      width: calc(var(--chars, 20) * 1ch);
+    }
+  }
+
+  @keyframes progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@utility brutal-* {
+  box-shadow: calc(--value(integer) * 1px) calc(--value(integer) * 1px) 0 var(--brutal-color, var(--color-pumpkin));
+}
+
+@utility brutal-color-* {
+  --brutal-color: --value(--color-*);
+}

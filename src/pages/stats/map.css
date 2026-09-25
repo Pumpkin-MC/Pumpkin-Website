@@ -1,0 +1,27 @@
+.jvm-tooltip {
+  border: 2px solid rgb(255 255 255 / 0.15);
+  border-radius: 0;
+  background-color: #0d0d0d;
+  box-shadow: none;
+  color: #f0f0f0;
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  padding: 0.5rem 0.75rem;
+}
+
+.jvm-zoom-btn {
+  border: 2px solid rgb(255 255 255 / 0.2);
+  border-radius: 0;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.jvm-zoom-btn:hover {
+  border-color: #ff6b2c;
+  color: #ff6b2c;
+}

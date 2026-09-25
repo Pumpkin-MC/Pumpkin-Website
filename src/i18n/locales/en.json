@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "developers": "Developers",
+    "docs": "Docs",
+    "community": "Community",
+    "market": "Market",
+
+    "tracker": "Tracker",
+    "download": "Download",
+    "language": "Language",
+    "menu": "Menu"
+  },
+  "hero": {
+    "title": "A Minecraft server that boots in <hl>5 ms.</hl>",
+    "benchTitle": "Startup time",
+    "benchNote": "Same world, same machine, measured from launch to \"players can join\".",
+    "runAgain": "Run it again",
+    "loading": "loading",
+    "ready": "ready",
+    "lede": "Pumpkin is a Minecraft server written in Rust. No Java to install, one file to run, Java and Bedrock players on the same world.",
+    "download": "Download",
+    "docs": "Read the docs"
+  },
+  "facts": {
+    "title": "What Pumpkin is <hl>today</hl>",
+    "items": [
+      {
+        "big": "No JVM",
+        "lead": "One native executable. Nothing to install, no flags to tune, no start script.",
+        "rest": "Drop it in a folder and run it."
+      },
+      {
+        "big": "~100 MB",
+        "lead": "Memory at idle with a world loaded.",
+        "rest": "Vanilla sits near 1.8 GB before anyone has joined."
+      },
+      {
+        "big": "All cores",
+        "lead": "Written for parallel work from the first commit,",
+        "rest": "not one main thread with helpers bolted on."
+      },
+      {
+        "big": "Java + Bedrock",
+        "lead": "Both editions join the same world.",
+        "rest": "Built in, no proxy in front, no plugin to install."
+      },
+      {
+        "big": "9 languages",
+        "lead": "Write plugins in Rust, Kotlin, Python, Go, C#, C, D, Zig or TypeScript.",
+        "rest": "One API underneath, pick the language you already know."
+      },
+      {
+        "big": "GPL-3.0",
+        "lead": "The whole server, not a core with a paid tier.",
+        "rest": "Read it, fork it, ship it."
+      }
+    ],
+    "earlyTag": "Early development",
+    "earlyBody": "<b>Pumpkin is not finished.</b> Not every vanilla mechanic is in yet, worlds can break between versions, and config keys still move. Run it on a test server first, keep backups, and <report>report what breaks</report>. The <docs>docs</docs> say what works today."
+  }
+}
