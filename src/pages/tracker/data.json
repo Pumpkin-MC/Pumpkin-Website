@@ -1,6 +1,6 @@
 {
   "version": "26.3",
-  "commit": "5a7714e",
+  "commit": "4426d1113",
   "updated": "2026-09-28",
   "categories": [
     {
@@ -111,11 +111,7 @@
               "done": false
             },
             {
-              "text": "`SpiderAttackGoal`",
-              "done": false
-            },
-            {
-              "text": "`AvoidEntityGoal`",
+              "text": "`AvoidEntityGoal` for armadillos",
               "done": false
             },
             {
@@ -159,7 +155,7 @@
           "name": "Creeper",
           "group": "Hostile",
           "status": "partial",
-          "note": "Ignites and explodes like vanilla. Only the cat and ocelot avoidance and the effect cloud are missing.",
+          "note": "Ignites and explodes like vanilla. Only the effect cloud is missing.",
           "items": [
             {
               "text": "`CreeperIgniteGoal` and explosion",
@@ -175,7 +171,7 @@
             },
             {
               "text": "`AvoidEntityGoal` for cats and ocelots",
-              "done": false
+              "done": true
             },
             {
               "text": "Area effect cloud from potion effects",
@@ -794,7 +790,7 @@
           "name": "Spider",
           "group": "Hostile",
           "status": "partial",
-          "note": "Uses the generic melee set. No leap, no wall climbing, no daylight gate on targeting.",
+          "note": "Melee plus the daylight give-up. No leap, no wall climbing and no light-gated targeting.",
           "items": [
             {
               "text": "Climbing flag synced to clients",
@@ -809,11 +805,7 @@
               "done": false
             },
             {
-              "text": "`SpiderAttackGoal`",
-              "done": false
-            },
-            {
-              "text": "`AvoidEntityGoal`",
+              "text": "`AvoidEntityGoal` for armadillos",
               "done": false
             },
             {
@@ -3402,6 +3394,32 @@
           "source": "crates/pumpkin/src/entity/decoration/display.rs"
         },
         {
+          "id": "cushion",
+          "name": "Cushion",
+          "group": "Decoration",
+          "status": "partial",
+          "note": "A seat: placed from cushion items, sits one player, is dyeable and drops itself when broken.",
+          "items": [
+            {
+              "text": "Placement, sitting and spawn colour metadata",
+              "done": true
+            },
+            {
+              "text": "Dye colour",
+              "done": true
+            },
+            {
+              "text": "Break drops the matching item",
+              "done": true
+            },
+            {
+              "text": "Get-up sound when standing up",
+              "done": false
+            }
+          ],
+          "source": "crates/pumpkin/src/entity/decoration/cushion.rs"
+        },
+        {
           "id": "end_crystal",
           "name": "End Crystal",
           "group": "Decoration",
@@ -3490,14 +3508,6 @@
           "group": "Misc",
           "status": "done",
           "source": "crates/pumpkin/src/entity/area_effect_cloud.rs"
-        },
-        {
-          "id": "cushion",
-          "name": "Cushion",
-          "group": "Misc",
-          "status": "planned",
-          "note": "New in the registry and not audited yet.",
-          "source": "crates/pumpkin/src/entity/decoration/cushion.rs"
         },
         {
           "id": "experience_orb",
