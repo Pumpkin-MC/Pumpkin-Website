@@ -479,7 +479,7 @@ for (const file of walk(path.join(SRC, "item/items")).sort()) {
 itemEntries.push(
   { id: "elytra", name: "Elytra", group: "Utility", status: "partial", note: "Gliding is handled in the player logic rather than an item behaviour. Parity fixes are in review.", source: ensureSource("elytra", "crates/pumpkin/src/entity/player.rs") },
   { id: "totem_of_undying", name: "Totem of Undying", group: "Utility", status: "done", note: "Handled in the living entity death path.", source: ensureSource("totem_of_undying", "crates/pumpkin/src/entity/living.rs") },
-  { id: "chorus_fruit", name: "Chorus Fruit", group: "Throwables", status: "planned", note: "Random teleport on eating is not implemented." },
+  { id: "chorus_fruit", name: "Chorus Fruit", group: "Throwables", status: "done", note: "Random teleport handled in the living entity path.", source: ensureSource("chorus_fruit", "crates/pumpkin/src/entity/living.rs") },
 );
 const ITEM_GROUP_ORDER = ITEM_GROUPS.map((g) => g[0]);
 itemEntries.sort((a, b) => ITEM_GROUP_ORDER.indexOf(a.group) - ITEM_GROUP_ORDER.indexOf(b.group) || a.name.localeCompare(b.name));
