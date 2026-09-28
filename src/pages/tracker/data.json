@@ -5721,8 +5721,9 @@
           "id": "chorus_fruit",
           "name": "Chorus Fruit",
           "group": "Throwables",
-          "status": "planned",
-          "note": "Random teleport on eating is not implemented."
+          "status": "done",
+          "note": "Random teleport handled in the living entity path.",
+          "source": "crates/pumpkin/src/entity/living.rs"
         },
         {
           "id": "egg",
