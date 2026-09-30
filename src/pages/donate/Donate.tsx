@@ -30,22 +30,22 @@ const tierOrder = [
   { slug: "tier-bronze", name: "Bronze" },
 ];
 
-const ONE_TIME_DONATION_URL = "https://donate.stripe.com/5kQ8wO9rReATeyXfvL2cg0a";
+const ONE_TIME_DONATION_URL = "https://donate.stripe.com/00w3cudFIfPL7xPeyb5os0a";
 
 const monthlyTiers = [
-  { name: "Bronze", amount: 5, href: "https://donate.stripe.com/3cI4gyavV0K3aiH3N32cg00" },
-  { name: "Silver", amount: 10, href: "https://donate.stripe.com/dRm5kC5bBboH2Qf2IZ2cg01" },
-  { name: "Gold", amount: 20, href: "https://donate.stripe.com/cNi8wO5bB50j4Yn83j2cg02" },
-  { name: "Platinum", amount: 50, href: "https://donate.stripe.com/aFa6oGeMb9gz2QffvL2cg03" },
-  { name: "Titanium", amount: 100, href: "https://donate.stripe.com/bJeaEW7jJboHeyX2IZ2cg05" },
-  { name: "Diamond", amount: 250, href: "https://donate.stripe.com/dRmbJ033teATfD16Zf2cg04" },
+  { name: "Bronze", amount: 5, href: "https://donate.stripe.com/8x23cueJM7jfaK14XB5os00" },
+  { name: "Silver", amount: 10, href: "https://donate.stripe.com/9B600i31432ZcS93Tx5os01" },
+  { name: "Gold", amount: 20, href: "https://donate.stripe.com/bJe8wOgRU7jf3hzblZ5os02" },
+  { name: "Platinum", amount: 50, href: "https://donate.stripe.com/4gMaEW6dg9rndWd9dR5os03" },
+  { name: "Titanium", amount: 100, href: "https://donate.stripe.com/8x29AS0SWavr5pH89N5os04" },
+  { name: "Diamond", amount: 250, href: "https://donate.stripe.com/00w4gygRU473bO50Hl5os05" },
 ];
 
 const corporateTiers = [
-  { name: "Corporate Bronze", amount: 500, href: "https://donate.stripe.com/28E6oG9rReAT3Uj83j2cg06" },
-  { name: "Corporate Silver", amount: 1000, href: "https://donate.stripe.com/8x2aEWeMbakD2Qf0AR2cg07" },
-  { name: "Corporate Gold", amount: 2000, href: "https://donate.stripe.com/00w7sK6fF1O776v1EV2cg08" },
-  { name: "Corporate Platinum", amount: 4000, href: "https://donate.stripe.com/eVq3cu5bBfEX4YnerH2cg09" },
+  { name: "Corporate Bronze", amount: 500, href: "https://donate.stripe.com/5kQbJ00SWgTP9FX89N5os06" },
+  { name: "Corporate Silver", amount: 1000, href: "https://donate.stripe.com/7sY6oGeJM6fb2dvfCf5os07" },
+  { name: "Corporate Gold", amount: 2000, href: "https://donate.stripe.com/28EfZggRU9rn3hzfCf5os08" },
+  { name: "Corporate Platinum", amount: 4000, href: "https://donate.stripe.com/4gMeVc59cavrdWdfCf5os09" },
 ];
 
 const inlineLink = "font-semibold text-pumpkin underline underline-offset-3 hover:text-fg";
