@@ -1,6 +1,7 @@
 export const DOCS_URL = "https://docs.pumpkinmc.org";
 export const GITHUB_ORG_URL = "https://github.com/Pumpkin-MC";
 export const GITHUB_URL = "https://github.com/Pumpkin-MC/Pumpkin";
+export const PPM_GITHUB_URL = "https://github.com/Pumpkin-MC/ppm";
 export const DISCORD_URL = "https://discord.com/invite/wT8XjrjKkf";
 export const X_URL = "https://x.com/pumpkinmcdev";
 export const YOUTUBE_URL = "https://www.youtube.com/@PumpkinServer";

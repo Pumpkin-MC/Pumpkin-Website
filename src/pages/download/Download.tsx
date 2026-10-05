@@ -3,10 +3,11 @@ import { ButtonLink } from "../../components/Button";
 import { DownloadIcon } from "../../components/icons";
 import { readCache, writeCache } from "../../lib/cache";
 import { useCopy } from "../../lib/useCopy";
-import { DISCORD_URL, DOCS_URL, GITHUB_URL } from "../../links";
+import { DISCORD_URL, DOCS_URL, GITHUB_URL, MARKET_URL, PPM_GITHUB_URL } from "../../links";
 
 const RELEASES_URL = `${GITHUB_URL}/releases`;
 const INSTALL_COMMAND = "curl -sSfL https://pumpkinmc.org/install.sh | sh";
+const PPM_INSTALL_COMMAND = "curl -sSfL https://pumpkinmc.org/ppm.sh | sh";
 
 const RELEASE_CACHE_KEY = "pumpkin_latest_release";
 const RELEASE_CACHE_TTL_MS = 60 * 60 * 1000;
@@ -28,9 +29,19 @@ const channelBase: Record<Channel, string> = {
   nightly: `${GITHUB_URL}/releases/download/nightly`,
 };
 
+const ppmChannelBase: Record<Channel, string> = {
+  stable: `${PPM_GITHUB_URL}/releases/latest/download`,
+  nightly: `${PPM_GITHUB_URL}/releases/download/nightly`,
+};
+
 const installCommands: Record<Channel, string> = {
   stable: INSTALL_COMMAND,
   nightly: "curl -sSfL https://pumpkinmc.org/install.sh | PUMPKIN_TAG=nightly sh",
+};
+
+const ppmInstallCommands: Record<Channel, string> = {
+  stable: PPM_INSTALL_COMMAND,
+  nightly: "curl -sSfL https://pumpkinmc.org/ppm.sh | PPM_TAG=nightly sh",
 };
 
 type Os = "windows" | "linux" | "mac" | "android";
@@ -211,6 +222,41 @@ function InstallCommand({ channel }: { channel: Channel }) {
   );
 }
 
+function PpmInstallCommand({ channel }: { channel: Channel }) {
+  const [copied, copy] = useCopy(ppmInstallCommands[channel]);
+
+  return (
+    <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-6 gap-y-1.5 border-t-2 border-white/15 bg-ink px-5 py-4 md:px-7">
+      <code className="min-w-0 overflow-x-auto font-mono text-[0.95rem] whitespace-pre">
+        <span aria-hidden="true" className="text-muted select-none">
+          ${" "}
+        </span>
+        <span className="text-[#8ab4ff]">curl</span> -sSfL{" "}
+        <span className="text-[#a8e6b0]">https://pumpkinmc.org/ppm.sh</span>{" "}
+        <span className="text-[#b8b8b8]">|</span>{" "}
+        {channel === "nightly" && (
+          <>
+            <span className="text-[#ffb38a]">PPM_TAG</span>=<span className="text-[#a8e6b0]">nightly</span>{" "}
+          </>
+        )}
+        <span className="text-[#8ab4ff]">sh</span>
+      </code>
+      <button
+        type="button"
+        onClick={copy}
+        aria-label={copied ? "Copied ppm install command" : "Copy ppm install command"}
+        className="cursor-pointer justify-self-end text-xs font-bold tracking-wider text-pumpkin uppercase hover:text-fg"
+      >
+        {copied ? "Copied" : "Copy"}
+      </button>
+      <p className="col-span-2 text-xs text-muted md:col-span-1 md:col-start-1">
+        Runs <code className="font-mono text-fg">ppm self-install</code> to automatically install the binary to{" "}
+        <code className="font-mono text-fg">~/.local/bin</code> (or <code className="font-mono text-fg">/usr/local/bin</code>).
+      </p>
+    </div>
+  );
+}
+
 function wait(ms: number) {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
@@ -330,6 +376,18 @@ const steps = [
       </>
     ),
   },
+  {
+    title: "Add plugins",
+    body: (
+      <>
+        Manage WebAssembly plugins using the official package manager. Install with{" "}
+        <a href="#ppm" className={inlineLink}>
+          ppm
+        </a>{" "}
+        or browse community creations on the <a href={MARKET_URL} target="_blank" rel="noopener" className={inlineLink}>Marketplace</a>.
+      </>
+    ),
+  },
 ];
 
 export default function Download() {
@@ -368,6 +426,12 @@ export default function Download() {
         </h1>
         <p className="mt-5 max-w-xl text-lg text-muted md:text-xl">
           Self-contained executable. No Java required. Just download, run, and play.
+        </p>
+        <p className="mt-3 text-sm text-muted">
+          Looking for the plugin manager?{" "}
+          <a href="#ppm" className={inlineLink}>
+            Install ppm (Pumpkin Package Manager) ↓
+          </a>
         </p>
 
         <div className="mt-10 border-3 border-pumpkin bg-surface">
@@ -514,7 +578,76 @@ export default function Download() {
         )}
       </section>
 
-      <section className="border-t-3 border-pumpkin bg-surface">
+      <section id="ppm" className="border-t-3 border-pumpkin bg-surface">
+        <div className="mx-auto max-w-325 px-5 py-14 md:px-8 md:py-20">
+          <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
+            <div>
+              <p className="font-mono text-xs tracking-wider text-pumpkin uppercase">Official Package Manager</p>
+              <h2 className="mt-1 text-3xl font-extrabold md:text-4xl">Pumpkin Package Manager (ppm)</h2>
+            </div>
+            <p className="text-muted">
+              <a href={PPM_GITHUB_URL} target="_blank" rel="noopener" className={inlineLink}>
+                GitHub Repository
+              </a>{" "}
+              ·{" "}
+              <a href={MARKET_URL} target="_blank" rel="noopener" className={inlineLink}>
+                Marketplace
+              </a>
+            </p>
+          </div>
+
+          <div className="border-2 border-white/15 bg-ink">
+            <div className="p-5 md:p-7">
+              <p className="max-w-2xl text-base text-muted md:text-lg">
+                <strong className="font-bold text-fg">ppm</strong> is the official CLI tool and package manager for Pumpkin Minecraft server plugins.
+                Search and install WebAssembly plugins from the marketplace, keep them updated, or scaffold new plugin projects with an interactive wizard.
+              </p>
+
+              <div className="mt-6 grid gap-3 font-mono text-xs md:grid-cols-3">
+                <div className="border border-white/10 bg-surface/70 p-3.5">
+                  <span className="font-bold text-pumpkin">$ ppm search &lt;query&gt;</span>
+                  <p className="mt-1 text-muted">Search marketplace plugins by keyword or category</p>
+                </div>
+                <div className="border border-white/10 bg-surface/70 p-3.5">
+                  <span className="font-bold text-pumpkin">$ ppm install &lt;plugin&gt;</span>
+                  <p className="mt-1 text-muted">Download & install .wasm plugin into server</p>
+                </div>
+                <div className="border border-white/10 bg-surface/70 p-3.5">
+                  <span className="font-bold text-pumpkin">$ ppm new [name]</span>
+                  <p className="mt-1 text-muted">Scaffold a new plugin in Rust, Python, Go, etc.</p>
+                </div>
+              </div>
+            </div>
+
+            <PpmInstallCommand channel={channel} />
+          </div>
+
+          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted">
+            <span>Standalone binaries:</span>
+            <a href={`${ppmChannelBase[channel]}/ppm-X64-Linux`} className={inlineLink}>
+              Linux (x64)
+            </a>
+            <span>·</span>
+            <a href={`${ppmChannelBase[channel]}/ppm-ARM64-Linux`} className={inlineLink}>
+              Linux (ARM64)
+            </a>
+            <span>·</span>
+            <a href={`${ppmChannelBase[channel]}/ppm-ARM64-macOS`} className={inlineLink}>
+              macOS (ARM64)
+            </a>
+            <span>·</span>
+            <a href={`${ppmChannelBase[channel]}/ppm-X64-Windows.exe`} className={inlineLink}>
+              Windows (x64 .exe)
+            </a>
+            <span>·</span>
+            <a href={`${PPM_GITHUB_URL}/releases`} target="_blank" rel="noopener" className="hover:text-fg">
+              All ppm releases →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t-2 border-white/15">
         <div className="mx-auto grid max-w-325 gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
           <div>
             <h2 className="text-3xl font-extrabold md:text-4xl">After downloading</h2>
