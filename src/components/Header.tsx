@@ -81,7 +81,7 @@ function LanguageSwitcher() {
       <div
         role="radiogroup"
         aria-label={t.nav.language}
-        className="grid w-full grid-cols-4 border-2 border-white/15 nav:hidden"
+        className="grid w-full grid-cols-5 border-2 border-white/15 nav:hidden"
       >
         {(Object.keys(languages) as Lang[]).map((code) => (
           <button
