@@ -44,7 +44,7 @@ export const menuPanels: MenuPanel[] = [
         links: [
           { label: "Contributing", hint: "Setup, style, how PRs get reviewed.", href: `${DOCS_URL}/developer/contributing` },
           { label: "Architecture", hint: "How the server is put together.", href: `${DOCS_URL}/developer/introduction` },
-          { label: "Networking", hint: "Packets, auth, RCON.", href: `${DOCS_URL}/developer/networking/networking` },
+          { label: "Networking", hint: "Packets, auth, MSMP.", href: `${DOCS_URL}/developer/networking/networking` },
           { label: "Source on GitHub", hint: "Issues, PRs, releases.", href: GITHUB_URL },
         ],
       },
