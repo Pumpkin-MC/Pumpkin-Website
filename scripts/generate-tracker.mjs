@@ -8,7 +8,8 @@ if (!PUMPKIN) {
   process.exit(1);
 }
 
-const SRC = path.join(PUMPKIN, "crates/pumpkin/src");
+const CORE = "crates/pumpkin-core/src";
+const SRC = path.join(PUMPKIN, CORE);
 const commit = execSync("git rev-parse --short HEAD", { cwd: PUMPKIN }).toString().trim();
 const commitDate = execSync("git log -1 --format=%cs", { cwd: PUMPKIN }).toString().trim();
 const cargo = fs.readFileSync(path.join(PUMPKIN, "Cargo.toml"), "utf8");
@@ -77,8 +78,8 @@ function entitySource(id) {
     spawner_minecart: "entity/vehicle/minecart.rs",
     experience_bottle: "item/items/experience_bottle.rs",
   };
-  if (overrides[id]) return ensureSource(id, "crates/pumpkin/src/" + overrides[id]);
-  if (/_(chest_)?(boat|raft)$/.test(id)) return ensureSource(id, "crates/pumpkin/src/entity/vehicle/boat.rs");
+  if (overrides[id]) return ensureSource(id, `${CORE}/${overrides[id]}`);
+  if (/_(chest_)?(boat|raft)$/.test(id)) return ensureSource(id, `${CORE}/entity/vehicle/boat.rs`);
   const hit = entityFiles.find((f) => path.basename(f) === `${id}.rs`);
   return hit ? rel(hit) : null;
 }
@@ -381,7 +382,7 @@ for (const file of walk(path.join(SRC, "block/blocks")).sort()) {
   const ids = blockIds(file, txt);
   const todos = todoCount(file);
   const entry = {
-    id: r.replace("crates/pumpkin/src/block/blocks/", "").replace(/\.rs$/, "").replace(/\//g, "-"),
+    id: r.replace(`${CORE}/block/blocks/`, "").replace(/\.rs$/, "").replace(/\//g, "-"),
     name: BLOCK_NAMES[base] || humanize(base),
     group,
     status: BLOCK_PARTIAL[base] || todos ? "partial" : "done",
@@ -477,9 +478,9 @@ for (const file of walk(path.join(SRC, "item/items")).sort()) {
   itemEntries.push(entry);
 }
 itemEntries.push(
-  { id: "elytra", name: "Elytra", group: "Utility", status: "partial", note: "Gliding is handled in the player logic rather than an item behaviour. Parity fixes are in review.", source: ensureSource("elytra", "crates/pumpkin/src/entity/player.rs") },
-  { id: "totem_of_undying", name: "Totem of Undying", group: "Utility", status: "done", note: "Handled in the living entity death path.", source: ensureSource("totem_of_undying", "crates/pumpkin/src/entity/living.rs") },
-  { id: "chorus_fruit", name: "Chorus Fruit", group: "Throwables", status: "done", note: "Random teleport handled in the living entity path.", source: ensureSource("chorus_fruit", "crates/pumpkin/src/entity/living.rs") },
+  { id: "elytra", name: "Elytra", group: "Utility", status: "partial", note: "Gliding is handled in the player logic rather than an item behaviour. Parity fixes are in review.", source: ensureSource("elytra", `${CORE}/entity/player.rs`) },
+  { id: "totem_of_undying", name: "Totem of Undying", group: "Utility", status: "done", note: "Handled in the living entity death path.", source: ensureSource("totem_of_undying", `${CORE}/entity/living.rs`) },
+  { id: "chorus_fruit", name: "Chorus Fruit", group: "Throwables", status: "done", note: "Random teleport handled in the living entity path.", source: ensureSource("chorus_fruit", `${CORE}/entity/living.rs`) },
 );
 const ITEM_GROUP_ORDER = ITEM_GROUPS.map((g) => g[0]);
 itemEntries.sort((a, b) => ITEM_GROUP_ORDER.indexOf(a.group) - ITEM_GROUP_ORDER.indexOf(b.group) || a.name.localeCompare(b.name));
@@ -508,13 +509,13 @@ for (const name of VANILLA_COMMANDS) {
     group: "Vanilla",
     status: exists ? "done" : "planned",
   };
-  if (exists) entry.source = `crates/pumpkin/src/command/commands/${file}.rs`;
+  if (exists) entry.source = `${CORE}/command/commands/${file}.rs`;
   if (COMMAND_ALIASES[name] && exists) entry.note = `Alias of /${COMMAND_ALIASES[name] === "pumpkin" ? "pumpkin" : COMMAND_ALIASES[name]}.`;
   commandEntries.push(entry);
 }
 for (const [name, note] of Object.entries(PUMPKIN_COMMANDS)) {
   if (!commandFiles.has(name)) continue;
-  commandEntries.push({ id: name, name: `/${name}`, group: "Pumpkin", status: "done", note, source: `crates/pumpkin/src/command/commands/${name}.rs` });
+  commandEntries.push({ id: name, name: `/${name}`, group: "Pumpkin", status: "done", note, source: `${CORE}/command/commands/${name}.rs` });
 }
 
 function checklist(rows) {
@@ -526,10 +527,10 @@ function checklist(rows) {
   });
 }
 
-const BLK = "crates/pumpkin/src/block";
+const BLK = `${CORE}/block`;
 const RED = `${BLK}/blocks/redstone`;
-const ENT = "crates/pumpkin/src/entity";
-const WLD = "crates/pumpkin/src/world";
+const ENT = `${CORE}/entity`;
+const WLD = `${CORE}/world`;
 const PW = "crates/pumpkin-world/src";
 
 const redstoneEntries = checklist([
@@ -567,14 +568,14 @@ const combatEntries = checklist([
   ["Tool-based damage calculation", "done", "Core", "", `${ENT}/player.rs`],
   ["Vanilla knockback", "done", "Core", "", `${ENT}/combat.rs`],
   ["Attack speed and cooldown indicator", "done", "Core", "", `${ENT}/player.rs`],
-  ["Bows", "done", "Equipment", "", "crates/pumpkin/src/item/items/bow.rs"],
-  ["Crossbows", "done", "Equipment", "", "crates/pumpkin/src/item/items/crossbow.rs"],
-  ["Shields", "done", "Equipment", "", "crates/pumpkin/src/item/items/shield.rs"],
-  ["Tridents", "done", "Equipment", "", "crates/pumpkin/src/item/items/trident.rs"],
+  ["Bows", "done", "Equipment", "", `${CORE}/item/items/bow.rs`],
+  ["Crossbows", "done", "Equipment", "", `${CORE}/item/items/crossbow.rs`],
+  ["Shields", "done", "Equipment", "", `${CORE}/item/items/shield.rs`],
+  ["Tridents", "done", "Equipment", "", `${CORE}/item/items/trident.rs`],
   ["Critical hits", "done", "Mechanics", "", `${ENT}/combat.rs`],
   ["Damage invulnerability frames", "done", "Mechanics", "", `${ENT}/living.rs`],
   ["Sweep attack", "done", "Mechanics", "", `${ENT}/combat.rs`],
-  ["Enchantment integration", "done", "Mechanics", "", "crates/pumpkin/src/enchantment/helper.rs"],
+  ["Enchantment integration", "done", "Mechanics", "", `${CORE}/enchantment/helper.rs`],
   ["Status effect integration", "done", "Mechanics", "", `${ENT}/effect/mod.rs`],
   ["1.8 combat mode", "planned", "Mechanics"],
 ]);
