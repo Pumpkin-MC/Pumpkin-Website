@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "developers": "Lập trình viên",
+    "docs": "Tài liệu",
+    "community": "Cộng đồng",
+    "market": "Chợ",
+
+    "tracker": "Trình theo dõi",
+    "download": "Tải xuống",
+    "language": "Ngôn ngữ",
+    "menu": "Menu"
+  },
+  "hero": {
+    "title": "Máy chủ Minecraft khởi động chỉ trong <hl>5 ms.</hl>",
+    "benchTitle": "Thời gian khởi động",
+    "benchNote": "Cùng thế giới, cùng loại máy, đo từ lúc khởi động đến lúc \"người chơi có thể tham gia\".",
+    "runAgain": "Chạy lại",
+    "loading": "đang tải",
+    "ready": "sẵn sàng",
+    "lede": "Pumpkin là 1 phần mềm máy chủ Minecraft viết bằng Rust. Không cần cài đặt Java, chạy chỉ với một tệp, người chơi Java và Bedrock trên cùng một thế giới.",
+    "download": "Tải xuống",
+    "docs": "Đọc tài liệu"
+  },
+  "facts": {
+    "title": "Pumpkin có gì <hl>hiện tại</hl>",
+    "items": [
+      {
+        "big": "Không JVM (máy ảo Java)",
+        "lead": "Một tệp thực thi bản địa. Không cần cài đặt, không cờ tùy chình, không tập lệnh khởi động.",
+        "rest": "Thả nó vào 1 thư mục và chạy."
+      },
+      {
+        "big": "~100 MB",
+        "lead": "Bộ nhớ RAM khi vừa tải 1 thế giới.",
+        "rest": "Vanilla chiếm mất 1,8 GB dù chưa có ai tham gia."
+      },
+      {
+        "big": "Toàn bộ nhân",
+        "lead": "Viết để chạy đa luồng từ commit đầu tiên,",
+        "rest": "không phải là một luồng chính được lắp thêm các luồng phụ trợ."
+      },
+      {
+        "big": "Java + Bedrock",
+        "lead": "2 phiên bản cùng trong 1 thế giới.",
+        "rest": "Có sẵn, không proxy ở trước, không cần plugin để cài đặt."
+      },
+      {
+        "big": "9 ngôn ngữ lập trình",
+        "lead": "Viết plugin bằng Rust, Kotlin, Python, Go, C#, C, D, Zig hoặc TypeScript.",
+        "rest": "API đồng nhất ở dưới, chọn ngôn ngữ lập trình bạn đã biết."
+      },
+      {
+        "big": "GPL-3.0",
+        "lead": "Toàn bộ máy chủ, không phải cái nhân với gói trả phí.",
+        "rest": "Đọc nó, rẽ nhánh nó, dùng nó."
+      }
+    ],
+    "earlyTag": "Đang phát triển ban đầu",
+    "earlyBody": "<b>Pumpkin chưa hoàn thiện.</b> Không phải tất cả các cơ chế vanilla đều có sẵn, thế giới có thể hỏng giữa các phiên bản, và cấu hình có thể di chuyển. Chạy nó trên một máy chủ thử nghiệm trước, giữ bản sao lưu, và <report>báo cáo những gì bị hỏng</report>. <docs>Tài liệu</docs> nói những gì nó hoạt động hiện tại."
+  }
+}
