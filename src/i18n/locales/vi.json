@@ -26,7 +26,7 @@
     "items": [
       {
         "big": "Không JVM (máy ảo Java)",
-        "lead": "Một tệp thực thi bản địa. Không cần cài đặt, không cờ tùy chình, không tập lệnh khởi động.",
+        "lead": "Một tệp thực thi bản địa. Không cần cài đặt, không cờ tùy chỉnh, không tập lệnh khởi động.",
         "rest": "Thả nó vào 1 thư mục và chạy."
       },
       {
@@ -56,6 +56,6 @@
       }
     ],
     "earlyTag": "Đang phát triển ban đầu",
-    "earlyBody": "<b>Pumpkin chưa hoàn thiện.</b> Không phải tất cả các cơ chế vanilla đều có sẵn, thế giới có thể hỏng giữa các phiên bản, và cấu hình có thể di chuyển. Chạy nó trên một máy chủ thử nghiệm trước, giữ bản sao lưu, và <report>báo cáo những gì bị hỏng</report>. <docs>Tài liệu</docs> nói những gì nó hoạt động hiện tại."
+    "earlyBody": "<b>Pumpkin chưa hoàn thiện.</b> Không phải tất cả các cơ chế vanilla đều có sẵn, thế giới có thể hỏng giữa các phiên bản, và cấu hình có thể di chuyển. Chạy nó trên một máy chủ thử nghiệm trước, giữ bản sao lưu, và <report>báo cáo những gì bị hỏng</report>. <docs>Tài liệu</docs> cho biết những gì hiện đang hoạt động."
   }
 }
