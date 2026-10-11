@@ -1,0 +1,4098 @@
+{
+  "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+  "updated": "2026-09-30",
+  "method": "Inherited tracker claims, including file-presence and TODO heuristics. Not current verified parity.",
+  "entries": {
+    "entities:blaze": {
+      "status": "partial",
+      "note": "Shoots fireballs but has normal gravity and ground navigation, so it cannot hover.",
+      "items": [
+        {
+          "text": "`BlazeShootFireballGoal`",
+          "done": true
+        },
+        {
+          "text": "Any-light nether spawn rules",
+          "done": true
+        },
+        {
+          "text": "Flying navigation and zero gravity",
+          "done": false
+        },
+        {
+          "text": "`MoveTowardsRestrictionGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:bogged": {
+      "status": "partial",
+      "note": "Wraps the skeleton base, so it shoots a bow like vanilla.",
+      "items": [
+        {
+          "text": "Skeleton goal set with bow attack",
+          "done": true
+        },
+        {
+          "text": "Poison tipped arrows",
+          "done": false
+        },
+        {
+          "text": "Shearing for mushrooms",
+          "done": false
+        }
+      ]
+    },
+    "entities:breeze": {
+      "status": "partial",
+      "note": "Wanders and targets players but never attacks; the wind charge projectile exists, nothing fires it.",
+      "items": [
+        {
+          "text": "Basic goal set",
+          "done": true
+        },
+        {
+          "text": "Wind charge attack",
+          "done": false
+        },
+        {
+          "text": "Jump and slide attack pattern",
+          "done": false
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:cave_spider": {
+      "status": "partial",
+      "note": "Same gaps as the spider.",
+      "items": [
+        {
+          "text": "Poison on hit, scaled by difficulty",
+          "done": true
+        },
+        {
+          "text": "Generic melee and target goals",
+          "done": true
+        },
+        {
+          "text": "`LeapAtTargetGoal`",
+          "done": false
+        },
+        {
+          "text": "`AvoidEntityGoal` for armadillos",
+          "done": false
+        },
+        {
+          "text": "Light-gated `SpiderTargetGoal`",
+          "done": false
+        },
+        {
+          "text": "Wall-climber navigation",
+          "done": false
+        }
+      ]
+    },
+    "entities:creaking": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Creaking heart binding",
+          "done": true
+        },
+        {
+          "text": "Freezes while a player looks at it",
+          "done": true
+        },
+        {
+          "text": "Tear down and death effects",
+          "done": true
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:creeper": {
+      "status": "partial",
+      "note": "Ignites and explodes like vanilla. Only the effect cloud is missing.",
+      "items": [
+        {
+          "text": "`CreeperIgniteGoal` and explosion",
+          "done": true
+        },
+        {
+          "text": "Charged by lightning",
+          "done": true
+        },
+        {
+          "text": "Revenge and player targeting",
+          "done": true
+        },
+        {
+          "text": "`AvoidEntityGoal` for cats and ocelots",
+          "done": true
+        },
+        {
+          "text": "Area effect cloud from potion effects",
+          "done": false
+        }
+      ]
+    },
+    "entities:drowned": {
+      "status": "partial",
+      "note": "Spawn rules exist, but the entity registers none of its own goals, so trident drowned never throw.",
+      "items": [
+        {
+          "text": "`DrownedGoToWaterGoal`",
+          "done": false
+        },
+        {
+          "text": "`DrownedTridentAttackGoal` and `DrownedAttackGoal`",
+          "done": false
+        },
+        {
+          "text": "`DrownedGoToBeachGoal` and `DrownedSwimUpGoal`",
+          "done": false
+        },
+        {
+          "text": "Water-bound navigation",
+          "done": false
+        },
+        {
+          "text": "Drowned conversion persistence",
+          "done": false
+        }
+      ]
+    },
+    "entities:elder_guardian": {
+      "status": "partial",
+      "note": "Mining fatigue and spikes work; the beam attack does not exist.",
+      "items": [
+        {
+          "text": "Water spawn rules",
+          "done": true
+        },
+        {
+          "text": "Mining fatigue on nearby players",
+          "done": true
+        },
+        {
+          "text": "Spike damage to attackers",
+          "done": true
+        },
+        {
+          "text": "`GuardianAttackGoal` laser beam",
+          "done": false
+        },
+        {
+          "text": "`MoveTowardsRestrictionGoal`",
+          "done": false
+        },
+        {
+          "text": "`GuardianMoveControl` and zero water malus",
+          "done": false
+        }
+      ]
+    },
+    "entities:enderman": {
+      "status": "partial",
+      "note": "Teleports, moves blocks and gets angry when stared at, but hovers in mid-air and never freezes in place.",
+      "items": [
+        {
+          "text": "Block pick up and placement",
+          "done": true
+        },
+        {
+          "text": "Anger when a player stares",
+          "done": true
+        },
+        {
+          "text": "Teleports away from projectiles and towards targets",
+          "done": true
+        },
+        {
+          "text": "`EndermanFreezeWhenLookedAtGoal`",
+          "done": false
+        },
+        {
+          "text": "Gravity and teleport target validation",
+          "done": false
+        },
+        {
+          "text": "`ResetUniversalAngerTargetGoal`",
+          "done": false
+        },
+        {
+          "text": "Sunlight avoidance",
+          "done": false
+        },
+        {
+          "text": "Carried block drop on death",
+          "done": false
+        }
+      ]
+    },
+    "entities:endermite": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Generic goal set",
+          "done": true
+        },
+        {
+          "text": "Lifetime despawn timer",
+          "done": true
+        },
+        {
+          "text": "`ClimbOnTopOfPowderSnowGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:evoker": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Fangs, vex summon and wololo spells",
+          "done": true
+        },
+        {
+          "text": "Raid goals",
+          "done": true
+        },
+        {
+          "text": "`AvoidEntityGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:ghast": {
+      "status": "done",
+      "items": [
+        {
+          "text": "Fireball shooting",
+          "done": true
+        },
+        {
+          "text": "Flying wander and look",
+          "done": true
+        },
+        {
+          "text": "Spawn chance rules",
+          "done": true
+        }
+      ]
+    },
+    "entities:giant": {
+      "status": "done",
+      "note": "Vanilla giant registers no goals at all. Pumpkin adds a small goal set on top.",
+      "items": [
+        {
+          "text": "Entity type and attributes",
+          "done": true
+        }
+      ]
+    },
+    "entities:guardian": {
+      "status": "partial",
+      "note": "Swims with the generic set and hurts attackers. The beam attack, the whole identity of the mob, does not exist.",
+      "items": [
+        {
+          "text": "Water spawn rules",
+          "done": true
+        },
+        {
+          "text": "Spike damage to attackers",
+          "done": true
+        },
+        {
+          "text": "`GuardianAttackGoal` laser beam",
+          "done": false
+        },
+        {
+          "text": "`MoveTowardsRestrictionGoal`",
+          "done": false
+        },
+        {
+          "text": "`LookAtPlayerGoal` for players and other guardians",
+          "done": false
+        },
+        {
+          "text": "`GuardianMoveControl` and zero water malus",
+          "done": false
+        }
+      ]
+    },
+    "entities:hoglin": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Melee attack with launch",
+          "done": true
+        },
+        {
+          "text": "Zombification into a zoglin",
+          "done": true
+        },
+        {
+          "text": "Nether spawn rules",
+          "done": true
+        },
+        {
+          "text": "Retreat from repellents and home",
+          "done": false
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:husk": {
+      "status": "partial",
+      "note": "Wraps the zombie base with desert spawn rules.",
+      "items": [
+        {
+          "text": "Zombie goal set",
+          "done": true
+        },
+        {
+          "text": "Surface monster spawn rules",
+          "done": true
+        },
+        {
+          "text": "Conversion to zombie when submerged",
+          "done": false
+        }
+      ]
+    },
+    "entities:illusioner": {
+      "status": "partial",
+      "note": "No spells and no bow.",
+      "items": [
+        {
+          "text": "Raider goal set",
+          "done": true
+        },
+        {
+          "text": "`IllusionerMirrorSpellGoal`",
+          "done": false
+        },
+        {
+          "text": "`IllusionerBlindnessSpellGoal`",
+          "done": false
+        },
+        {
+          "text": "`RangedBowAttackGoal`",
+          "done": false
+        },
+        {
+          "text": "`AvoidEntityGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:magma_cube": {
+      "status": "done",
+      "note": "Built on the slime entity, so it inherits the full slime goal set.",
+      "items": [
+        {
+          "text": "Slime goal set: attack, jump, split",
+          "done": true
+        },
+        {
+          "text": "Nether spawn rules",
+          "done": true
+        },
+        {
+          "text": "Player collision damage",
+          "done": true
+        }
+      ]
+    },
+    "entities:parched": {
+      "status": "partial",
+      "note": "New in 26.2, wraps the skeleton base.",
+      "items": [
+        {
+          "text": "Skeleton goal set",
+          "done": true
+        },
+        {
+          "text": "Surface monster spawn rules",
+          "done": true
+        },
+        {
+          "text": "Held item and attack parity",
+          "done": false
+        }
+      ]
+    },
+    "entities:phantom": {
+      "status": "partial",
+      "note": "Look goals only. It has no target selector and does nothing.",
+      "items": [
+        {
+          "text": "Look goals",
+          "done": true
+        },
+        {
+          "text": "`PhantomAttackStrategyGoal`",
+          "done": false
+        },
+        {
+          "text": "`PhantomSweepAttackGoal`",
+          "done": false
+        },
+        {
+          "text": "`PhantomCircleAroundAnchorGoal`",
+          "done": false
+        },
+        {
+          "text": "`PhantomAttackPlayerTargetGoal`",
+          "done": false
+        },
+        {
+          "text": "Flying navigation",
+          "done": false
+        }
+      ]
+    },
+    "entities:piglin": {
+      "status": "partial",
+      "note": "Bartering, admiring and zombification all work on a hand-rolled activity system. The vanilla brain port replaces that system rather than adding features.",
+      "items": [
+        {
+          "text": "Bartering with gold and barter loot",
+          "done": true
+        },
+        {
+          "text": "Admiring held gold and `GoToWantedItemGoal`",
+          "done": true
+        },
+        {
+          "text": "Celebrating and dancing after a hunt",
+          "done": true
+        },
+        {
+          "text": "Zombification outside the Nether",
+          "done": true
+        },
+        {
+          "text": "Crossbow and melee attack, repellent avoidance",
+          "done": true
+        },
+        {
+          "text": "Shared anger across the group",
+          "done": false
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:piglin_brute": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Melee and target goals",
+          "done": true
+        },
+        {
+          "text": "Zombification outside the Nether",
+          "done": true
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:pillager": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Crossbow attack and raid goals",
+          "done": true
+        },
+        {
+          "text": "Patrol behaviour",
+          "done": true
+        },
+        {
+          "text": "`AvoidEntityGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:ravager": {
+      "status": "done",
+      "note": "Goal set matches vanilla.",
+      "items": [
+        {
+          "text": "Goal set matches vanilla",
+          "done": true
+        },
+        {
+          "text": "Raid goals",
+          "done": true
+        }
+      ]
+    },
+    "entities:shulker": {
+      "status": "done",
+      "items": [
+        {
+          "text": "Peek and shoot goals",
+          "done": true
+        },
+        {
+          "text": "Attachment and teleport",
+          "done": true
+        },
+        {
+          "text": "Shulker bullet",
+          "done": true
+        }
+      ]
+    },
+    "entities:silverfish": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Generic goal set",
+          "done": true
+        },
+        {
+          "text": "`ClimbOnTopOfPowderSnowGoal`",
+          "done": false
+        },
+        {
+          "text": "`SilverfishWakeUpFriendsGoal`",
+          "done": false
+        },
+        {
+          "text": "`SilverfishMergeWithStoneGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:skeleton": {
+      "status": "partial",
+      "note": "Bow and melee goals are registered at the same time, so skeletons walk up and hit you with the bow.",
+      "items": [
+        {
+          "text": "`BowAttackGoal` and `MeleeAttackGoal`",
+          "done": true
+        },
+        {
+          "text": "`AvoidEntityGoal` for wolves",
+          "done": true
+        },
+        {
+          "text": "Swap bow and melee on held-item change",
+          "done": false
+        },
+        {
+          "text": "`RestrictSunGoal` and `FleeSunGoal`",
+          "done": false
+        },
+        {
+          "text": "Difficulty-scaled attack interval",
+          "done": false
+        }
+      ]
+    },
+    "entities:slime": {
+      "status": "done",
+      "note": "Goal set matches vanilla. Landing particles are still pending.",
+      "items": [
+        {
+          "text": "Size, split and jump attack",
+          "done": true
+        },
+        {
+          "text": "Slime chunk and swamp spawn rules",
+          "done": true
+        },
+        {
+          "text": "Player collision damage",
+          "done": true
+        }
+      ]
+    },
+    "entities:spider": {
+      "status": "partial",
+      "note": "Melee plus the daylight give-up. No leap, no wall climbing and no light-gated targeting.",
+      "items": [
+        {
+          "text": "Climbing flag synced to clients",
+          "done": true
+        },
+        {
+          "text": "Generic melee and target goals",
+          "done": true
+        },
+        {
+          "text": "`LeapAtTargetGoal`",
+          "done": false
+        },
+        {
+          "text": "`AvoidEntityGoal` for armadillos",
+          "done": false
+        },
+        {
+          "text": "Light-gated `SpiderTargetGoal`",
+          "done": false
+        },
+        {
+          "text": "Wall-climber navigation",
+          "done": false
+        }
+      ]
+    },
+    "entities:stray": {
+      "status": "partial",
+      "note": "Wraps the skeleton base with powder snow spawn checks.",
+      "items": [
+        {
+          "text": "Skeleton goal set",
+          "done": true
+        },
+        {
+          "text": "Sky and powder snow spawn rules",
+          "done": true
+        },
+        {
+          "text": "Slowness tipped arrows",
+          "done": false
+        },
+        {
+          "text": "Bow and melee swap",
+          "done": false
+        }
+      ]
+    },
+    "entities:sulfur_cube": {
+      "status": "planned",
+      "note": "New in 26.2. Spawn rules exist but there is no entity type or goals.",
+      "items": [
+        {
+          "text": "Entity type and sizes",
+          "done": false
+        },
+        {
+          "text": "`SulfurCubeTemptGoal`",
+          "done": false
+        },
+        {
+          "text": "`SulfurCubeSearchForItemsGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:vex": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Basic goal set",
+          "done": true
+        },
+        {
+          "text": "`VexChargeAttackGoal`",
+          "done": false
+        },
+        {
+          "text": "`VexRandomMoveGoal`",
+          "done": false
+        },
+        {
+          "text": "`VexCopyOwnerTargetGoal`",
+          "done": false
+        },
+        {
+          "text": "Flying movement",
+          "done": false
+        }
+      ]
+    },
+    "entities:vindicator": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Melee and raid goals",
+          "done": true
+        },
+        {
+          "text": "`VindicatorJohnnyAttackGoal`",
+          "done": false
+        },
+        {
+          "text": "`VindicatorBreakDoorGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:warden": {
+      "status": "partial",
+      "note": "Placeholder goals only. Sniffing, the sonic boom and anger are all brain driven in vanilla.",
+      "items": [
+        {
+          "text": "Basic goal set",
+          "done": true
+        },
+        {
+          "text": "Vibration sensing and anger",
+          "done": false
+        },
+        {
+          "text": "Sniffing",
+          "done": false
+        },
+        {
+          "text": "Sonic boom",
+          "done": false
+        },
+        {
+          "text": "Emerging and digging",
+          "done": false
+        }
+      ]
+    },
+    "entities:witch": {
+      "status": "partial",
+      "note": "Throws and drinks potions and joins raids, but never heals other raiders.",
+      "items": [
+        {
+          "text": "Potion throwing via `RangedAttackGoal`",
+          "done": true
+        },
+        {
+          "text": "Drinks potions to heal and resist",
+          "done": true
+        },
+        {
+          "text": "Magic damage reduction",
+          "done": true
+        },
+        {
+          "text": "Raid goals",
+          "done": true
+        },
+        {
+          "text": "`WitchHealRaidersGoal`",
+          "done": false
+        },
+        {
+          "text": "`WitchAttackPlayersGoal` target",
+          "done": false
+        }
+      ]
+    },
+    "entities:wither_skeleton": {
+      "status": "partial",
+      "note": "Wraps the skeleton base, which registers a bow goal the wither skeleton should not have.",
+      "items": [
+        {
+          "text": "Skeleton goal set",
+          "done": true
+        },
+        {
+          "text": "Melee-only weapon handling, inherits the bow goal",
+          "done": false
+        },
+        {
+          "text": "Wither effect on hit",
+          "done": false
+        }
+      ]
+    },
+    "entities:zoglin": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Goal approximation",
+          "done": true
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:zombie": {
+      "status": "partial",
+      "note": "Base zombie goals match vanilla, including door breaking and turtle egg raids.",
+      "items": [
+        {
+          "text": "`ZombieAttackGoal`, `BreakDoorGoal` and `DestroyEggGoal`",
+          "done": true
+        },
+        {
+          "text": "Revenge and player targeting",
+          "done": true
+        },
+        {
+          "text": "`MoveThroughVillageGoal`",
+          "done": false
+        },
+        {
+          "text": "`SpearUseGoal` (new in 26.2)",
+          "done": false
+        }
+      ]
+    },
+    "entities:zombie_villager": {
+      "status": "partial",
+      "note": "Villager profession data and curing are ported.",
+      "items": [
+        {
+          "text": "Villager profession and biome data",
+          "done": true
+        },
+        {
+          "text": "Curing with a golden apple",
+          "done": true
+        },
+        {
+          "text": "Zombie goal set",
+          "done": true
+        },
+        {
+          "text": "`MoveThroughVillageGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:zombified_piglin": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Zombie goal set and nether spawn rules",
+          "done": true
+        },
+        {
+          "text": "Anger timer when hit",
+          "done": true
+        },
+        {
+          "text": "`SpearUseGoal`",
+          "done": false
+        },
+        {
+          "text": "Group anger and `ResetUniversalAngerTargetGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:ender_dragon": {
+      "status": "partial",
+      "note": "All twelve flight phases are ported. Collision and damage still run against the main bounding box instead of the parts.",
+      "items": [
+        {
+          "text": "12-phase `PhaseManager`",
+          "done": true
+        },
+        {
+          "text": "Crystal healing and block breaking",
+          "done": true
+        },
+        {
+          "text": "Flight history",
+          "done": true
+        },
+        {
+          "text": "Part tracking, not yet registered as world entities",
+          "done": true
+        },
+        {
+          "text": "Part based knockback",
+          "done": false
+        },
+        {
+          "text": "Hurt-time gating and creative exclusion",
+          "done": false
+        },
+        {
+          "text": "Push semantics",
+          "done": false
+        },
+        {
+          "text": "Contact damage guard",
+          "done": false
+        }
+      ]
+    },
+    "entities:wither": {
+      "status": "partial",
+      "note": "Shoots skulls from all three heads and breaks blocks, but does not fly and only targets whatever hurt it.",
+      "items": [
+        {
+          "text": "Spawning from soul sand and skulls",
+          "done": true
+        },
+        {
+          "text": "Spawn invulnerability window and explosion",
+          "done": true
+        },
+        {
+          "text": "Wither skulls from all three heads",
+          "done": true
+        },
+        {
+          "text": "Half-health armour phase",
+          "done": true
+        },
+        {
+          "text": "Block breaking and boss bar",
+          "done": true
+        },
+        {
+          "text": "Player targeting, only revenge",
+          "done": false
+        },
+        {
+          "text": "Flying movement",
+          "done": false
+        }
+      ]
+    },
+    "entities:allay": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Duplication and dancing state",
+          "done": true
+        },
+        {
+          "text": "Item collection and delivery",
+          "done": false
+        },
+        {
+          "text": "Note block following",
+          "done": false
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:armadillo": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Roll up when threatened",
+          "done": true
+        },
+        {
+          "text": "Scute shedding and brushing",
+          "done": true
+        },
+        {
+          "text": "Breed and tempt",
+          "done": true
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:axolotl": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Attack, breed and tempt",
+          "done": true
+        },
+        {
+          "text": "Variants and bucket",
+          "done": true
+        },
+        {
+          "text": "Playing dead",
+          "done": true
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        },
+        {
+          "text": "Water-bound navigation",
+          "done": false
+        }
+      ]
+    },
+    "entities:bat": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Roosting under blocks",
+          "done": true
+        },
+        {
+          "text": "Random flight",
+          "done": true
+        },
+        {
+          "text": "Cave spawn rules",
+          "done": true
+        },
+        {
+          "text": "Flying navigation hook",
+          "done": false
+        }
+      ]
+    },
+    "entities:bee": {
+      "status": "partial",
+      "note": "Registers the generic animal set only, so bees never enter hives, pollinate or grow crops.",
+      "items": [
+        {
+          "text": "Generic animal goals",
+          "done": true
+        },
+        {
+          "text": "Nectar, sting and hive timer state",
+          "done": true
+        },
+        {
+          "text": "`BeeAttackGoal` and stinger damage",
+          "done": false
+        },
+        {
+          "text": "Hive goals",
+          "done": false
+        },
+        {
+          "text": "`BeePollinateGoal` and `BeeGrowCropGoal`",
+          "done": false
+        },
+        {
+          "text": "`BeeWanderGoal`",
+          "done": false
+        },
+        {
+          "text": "Anger targets",
+          "done": false
+        },
+        {
+          "text": "Flying navigation",
+          "done": false
+        }
+      ]
+    },
+    "entities:camel": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Breed and tempt",
+          "done": true
+        },
+        {
+          "text": "Saddle and dash state",
+          "done": true
+        },
+        {
+          "text": "Sitting",
+          "done": false
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:camel_husk": {
+      "status": "planned",
+      "note": "New in 26.2. Spawn rules exist but there is no entity type."
+    },
+    "entities:cat": {
+      "status": "partial",
+      "note": "Taming, following and avoidance work. Sitting, beds and pouncing are state flags without goals behind them.",
+      "items": [
+        {
+          "text": "Taming, tempt and `FollowOwnerGoal`",
+          "done": true
+        },
+        {
+          "text": "`CatAvoidEntityGoal` and `NonTameRandomTargetGoal`",
+          "done": true
+        },
+        {
+          "text": "Variants and collar colour",
+          "done": true
+        },
+        {
+          "text": "`SitWhenOrderedToGoal`, sit pose is synced but not enforced",
+          "done": false
+        },
+        {
+          "text": "`CatLieOnBedGoal` and `CatSitOnBlockGoal`",
+          "done": false
+        },
+        {
+          "text": "`CatRelaxOnOwnerGoal`",
+          "done": false
+        },
+        {
+          "text": "`LeapAtTargetGoal` and `OcelotAttackGoal`",
+          "done": false
+        },
+        {
+          "text": "Morning gifts",
+          "done": false
+        }
+      ]
+    },
+    "entities:chicken": {
+      "status": "done",
+      "items": [
+        {
+          "text": "Breed, tempt and follow parent",
+          "done": true
+        },
+        {
+          "text": "Egg laying",
+          "done": true
+        },
+        {
+          "text": "Slow fall",
+          "done": true
+        }
+      ]
+    },
+    "entities:cod": {
+      "status": "partial",
+      "note": "Bobs in place on the ground navigator.",
+      "items": [
+        {
+          "text": "Bucket pickup",
+          "done": true
+        },
+        {
+          "text": "Water-bound navigation",
+          "done": false
+        },
+        {
+          "text": "`PanicGoal` and `AvoidEntityGoal`",
+          "done": false
+        },
+        {
+          "text": "`FishSwimGoal`",
+          "done": false
+        },
+        {
+          "text": "`FollowFlockLeaderGoal` schooling",
+          "done": false
+        }
+      ]
+    },
+    "entities:copper_golem": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Oxidation states and weather",
+          "done": true
+        },
+        {
+          "text": "Lightning strike reset",
+          "done": true
+        },
+        {
+          "text": "Item transport between chests",
+          "done": false
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:cow": {
+      "status": "done",
+      "items": [
+        {
+          "text": "Breed, tempt and follow parent",
+          "done": true
+        },
+        {
+          "text": "Milking",
+          "done": true
+        }
+      ]
+    },
+    "entities:dolphin": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Generic goals with `TryFindWaterGoal`",
+          "done": true
+        },
+        {
+          "text": "`BreathAirGoal`",
+          "done": false
+        },
+        {
+          "text": "`DolphinSwimToTreasureGoal`",
+          "done": false
+        },
+        {
+          "text": "`DolphinSwimWithPlayerGoal`",
+          "done": false
+        },
+        {
+          "text": "`DolphinJumpGoal` and `PlayWithItemsGoal`",
+          "done": false
+        },
+        {
+          "text": "Water-bound navigation",
+          "done": false
+        }
+      ]
+    },
+    "entities:donkey": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Breed and tempt",
+          "done": true
+        },
+        {
+          "text": "Taming, saddle and riding",
+          "done": true
+        },
+        {
+          "text": "`RunAroundLikeCrazyGoal` when mounted untamed",
+          "done": false
+        },
+        {
+          "text": "`MountPanicGoal`",
+          "done": false
+        },
+        {
+          "text": "`RandomStandGoal`",
+          "done": false
+        },
+        {
+          "text": "Chest",
+          "done": true
+        }
+      ]
+    },
+    "entities:fox": {
+      "status": "partial",
+      "note": "State flags are synced, but every fox-specific goal is missing.",
+      "items": [
+        {
+          "text": "Breed, tempt and panic",
+          "done": true
+        },
+        {
+          "text": "Variants and pose flags",
+          "done": true
+        },
+        {
+          "text": "Prey targets",
+          "done": false
+        },
+        {
+          "text": "`StalkPreyGoal` and `FoxPounceGoal`",
+          "done": false
+        },
+        {
+          "text": "`SleepGoal` and `SeekShelterGoal`",
+          "done": false
+        },
+        {
+          "text": "`FoxEatBerriesGoal` and `FoxSearchForItemsGoal`",
+          "done": false
+        },
+        {
+          "text": "`FaceplantGoal` and `PerchAndSearchGoal`",
+          "done": false
+        },
+        {
+          "text": "`DefendTrustedTargetGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:frog": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Variants and tempt",
+          "done": true
+        },
+        {
+          "text": "Tongue attack on slimes and magma cubes",
+          "done": false
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:glow_squid": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Deep water spawn rules",
+          "done": true
+        },
+        {
+          "text": "Water-bound navigation",
+          "done": false
+        },
+        {
+          "text": "`SquidRandomMovementGoal`",
+          "done": false
+        },
+        {
+          "text": "`SquidFleeGoal`",
+          "done": false
+        },
+        {
+          "text": "Ink cloud",
+          "done": false
+        }
+      ]
+    },
+    "entities:goat": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Breed and tempt",
+          "done": true
+        },
+        {
+          "text": "Horns and screaming state",
+          "done": true
+        },
+        {
+          "text": "Ram attack",
+          "done": false
+        },
+        {
+          "text": "Horn drop on ram",
+          "done": false
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:happy_ghast": {
+      "status": "partial",
+      "note": "Tempts, leashes and holds still, approximated with goals.",
+      "items": [
+        {
+          "text": "Tempt and still timeout",
+          "done": true
+        },
+        {
+          "text": "Leash holder",
+          "done": true
+        },
+        {
+          "text": "Flying navigation",
+          "done": false
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:horse": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Breed and tempt",
+          "done": true
+        },
+        {
+          "text": "Taming, saddle and riding",
+          "done": true
+        },
+        {
+          "text": "`RunAroundLikeCrazyGoal` when mounted untamed",
+          "done": false
+        },
+        {
+          "text": "`MountPanicGoal`",
+          "done": false
+        },
+        {
+          "text": "`RandomStandGoal`",
+          "done": false
+        },
+        {
+          "text": "Variants",
+          "done": true
+        }
+      ]
+    },
+    "entities:iron_golem": {
+      "status": "partial",
+      "note": "Attacks monsters and offers flowers. Player targeting is left out until an anger memory exists, so village and reputation behaviour is missing.",
+      "items": [
+        {
+          "text": "`OfferFlowerGoal`",
+          "done": true
+        },
+        {
+          "text": "Attacks monsters, except creepers",
+          "done": true
+        },
+        {
+          "text": "`MoveTowardsTargetGoal`",
+          "done": true
+        },
+        {
+          "text": "Player targeting from anger and reputation",
+          "done": false
+        },
+        {
+          "text": "`MoveBackToVillageGoal` and `GolemRandomStrollInVillageGoal`",
+          "done": false
+        },
+        {
+          "text": "Anger memory",
+          "done": false
+        }
+      ]
+    },
+    "entities:llama": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Spits at wolves and attackers",
+          "done": true
+        },
+        {
+          "text": "Chest, strength and variants",
+          "done": true
+        },
+        {
+          "text": "Breed and tempt",
+          "done": true
+        },
+        {
+          "text": "`LlamaFollowCaravanGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:mooshroom": {
+      "status": "done",
+      "items": [
+        {
+          "text": "Breed, tempt and follow parent",
+          "done": true
+        },
+        {
+          "text": "Mushroom stew",
+          "done": true
+        },
+        {
+          "text": "Shear into a cow",
+          "done": true
+        }
+      ]
+    },
+    "entities:mule": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Tempt and follow parent",
+          "done": true
+        },
+        {
+          "text": "Taming, saddle and riding",
+          "done": true
+        },
+        {
+          "text": "Chest",
+          "done": true
+        },
+        {
+          "text": "`RunAroundLikeCrazyGoal` when mounted untamed",
+          "done": false
+        },
+        {
+          "text": "`MountPanicGoal`",
+          "done": false
+        },
+        {
+          "text": "`RandomStandGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:nautilus": {
+      "status": "partial",
+      "note": "New in 26.2. Taming, riding and dash state exist, but no goals are registered.",
+      "items": [
+        {
+          "text": "Taming, saddle and riding",
+          "done": true
+        },
+        {
+          "text": "Dash state and sounds",
+          "done": true
+        },
+        {
+          "text": "Swim and shell behaviour",
+          "done": false
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:ocelot": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Tempt and trust",
+          "done": true
+        },
+        {
+          "text": "Avoids players until trusted",
+          "done": true
+        },
+        {
+          "text": "Hunts chickens and turtles",
+          "done": true
+        },
+        {
+          "text": "`OcelotAttackGoal` and `LeapAtTargetGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:panda": {
+      "status": "partial",
+      "note": "Genes and pose flags are synced, but every panda-specific goal is missing.",
+      "items": [
+        {
+          "text": "Generic goals",
+          "done": true
+        },
+        {
+          "text": "Genes and pose flags",
+          "done": true
+        },
+        {
+          "text": "`PandaPanicGoal`, `PandaBreedGoal` and `PandaAttackGoal`",
+          "done": false
+        },
+        {
+          "text": "`PandaAvoidGoal`",
+          "done": false
+        },
+        {
+          "text": "Sit, lie on back, sneeze and roll",
+          "done": false
+        },
+        {
+          "text": "`PandaHurtByTargetGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:parrot": {
+      "status": "partial",
+      "note": "Walks everywhere because there is no flying navigation, and all tamed behaviour is missing.",
+      "items": [
+        {
+          "text": "Wander and look goals",
+          "done": true
+        },
+        {
+          "text": "Cookie poisoning",
+          "done": true
+        },
+        {
+          "text": "Taming and `SitWhenOrderedToGoal`",
+          "done": false
+        },
+        {
+          "text": "`FollowOwnerGoal` and `LandOnOwnersShoulderGoal`",
+          "done": false
+        },
+        {
+          "text": "`FollowMobGoal` mimicry",
+          "done": false
+        },
+        {
+          "text": "`ParrotWanderGoal` with flying navigation",
+          "done": false
+        }
+      ]
+    },
+    "entities:pig": {
+      "status": "done",
+      "items": [
+        {
+          "text": "Breed, tempt and follow parent",
+          "done": true
+        },
+        {
+          "text": "Saddle and carrot on a stick",
+          "done": true
+        }
+      ]
+    },
+    "entities:polar_bear": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Melee attack and revenge",
+          "done": true
+        },
+        {
+          "text": "Standing pose flag",
+          "done": true
+        },
+        {
+          "text": "`PolarBearAttackPlayersGoal` cub protection",
+          "done": false
+        },
+        {
+          "text": "`ResetUniversalAngerTargetGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:pufferfish": {
+      "status": "partial",
+      "note": "Bobs in place on the ground navigator.",
+      "items": [
+        {
+          "text": "Bucket pickup",
+          "done": true
+        },
+        {
+          "text": "Water-bound navigation",
+          "done": false
+        },
+        {
+          "text": "`PanicGoal` and `AvoidEntityGoal`",
+          "done": false
+        },
+        {
+          "text": "`FishSwimGoal`",
+          "done": false
+        },
+        {
+          "text": "`FollowFlockLeaderGoal` schooling",
+          "done": false
+        },
+        {
+          "text": "`PufferfishPuffGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:rabbit": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Generic goals with tempt",
+          "done": true
+        },
+        {
+          "text": "Variants",
+          "done": true
+        },
+        {
+          "text": "`RabbitRaidGardenGoal`",
+          "done": false
+        },
+        {
+          "text": "`ClimbOnTopOfPowderSnowGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:salmon": {
+      "status": "partial",
+      "note": "Bobs in place on the ground navigator.",
+      "items": [
+        {
+          "text": "Bucket pickup",
+          "done": true
+        },
+        {
+          "text": "Water-bound navigation",
+          "done": false
+        },
+        {
+          "text": "`PanicGoal` and `AvoidEntityGoal`",
+          "done": false
+        },
+        {
+          "text": "`FishSwimGoal`",
+          "done": false
+        },
+        {
+          "text": "`FollowFlockLeaderGoal` schooling",
+          "done": false
+        }
+      ]
+    },
+    "entities:sheep": {
+      "status": "done",
+      "items": [
+        {
+          "text": "Breed, tempt and follow parent",
+          "done": true
+        },
+        {
+          "text": "Eat grass and regrow wool",
+          "done": true
+        },
+        {
+          "text": "Shearing and dyeing",
+          "done": true
+        }
+      ]
+    },
+    "entities:skeleton_horse": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Basic goals",
+          "done": true
+        },
+        {
+          "text": "Taming and saddle",
+          "done": true
+        },
+        {
+          "text": "`SkeletonTrapGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:sniffer": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Digging and seed drops",
+          "done": true
+        },
+        {
+          "text": "Breed and tempt",
+          "done": true
+        },
+        {
+          "text": "Explored positions",
+          "done": true
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        }
+      ]
+    },
+    "entities:snow_golem": {
+      "status": "done",
+      "items": [
+        {
+          "text": "Snowball ranged attack",
+          "done": true
+        },
+        {
+          "text": "Pumpkin shearing",
+          "done": true
+        }
+      ]
+    },
+    "entities:squid": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Water spawn rules",
+          "done": true
+        },
+        {
+          "text": "Water-bound navigation",
+          "done": false
+        },
+        {
+          "text": "`SquidRandomMovementGoal`",
+          "done": false
+        },
+        {
+          "text": "`SquidFleeGoal`",
+          "done": false
+        },
+        {
+          "text": "Ink cloud",
+          "done": false
+        }
+      ]
+    },
+    "entities:strider": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Saddle and steering",
+          "done": true
+        },
+        {
+          "text": "Suffocation off lava",
+          "done": true
+        },
+        {
+          "text": "Lava spawn rules",
+          "done": true
+        },
+        {
+          "text": "`StriderGoToLavaGoal`",
+          "done": false
+        },
+        {
+          "text": "Lava walking",
+          "done": false
+        }
+      ]
+    },
+    "entities:tadpole": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Basic goals",
+          "done": true
+        },
+        {
+          "text": "Bucket pickup",
+          "done": true
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        },
+        {
+          "text": "Water-bound navigation",
+          "done": false
+        }
+      ]
+    },
+    "entities:trader_llama": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Spits at wolves and attackers",
+          "done": true
+        },
+        {
+          "text": "Chest, strength and variants",
+          "done": true
+        },
+        {
+          "text": "`LlamaFollowCaravanGoal`",
+          "done": false
+        },
+        {
+          "text": "`TraderLlamaDefendWanderingTraderGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:tropical_fish": {
+      "status": "partial",
+      "note": "Bobs in place on the ground navigator.",
+      "items": [
+        {
+          "text": "Bucket pickup",
+          "done": true
+        },
+        {
+          "text": "Water-bound navigation",
+          "done": false
+        },
+        {
+          "text": "`PanicGoal` and `AvoidEntityGoal`",
+          "done": false
+        },
+        {
+          "text": "`FishSwimGoal`",
+          "done": false
+        },
+        {
+          "text": "`FollowFlockLeaderGoal` schooling",
+          "done": false
+        }
+      ]
+    },
+    "entities:turtle": {
+      "status": "partial",
+      "note": "Never lays eggs, goes home or travels.",
+      "items": [
+        {
+          "text": "Breed, tempt and `TryFindWaterGoal`",
+          "done": true
+        },
+        {
+          "text": "Beach spawn rules and egg state flags",
+          "done": true
+        },
+        {
+          "text": "`TurtleLayEggGoal`",
+          "done": false
+        },
+        {
+          "text": "`TurtleGoHomeGoal` and `TurtleTravelGoal`",
+          "done": false
+        },
+        {
+          "text": "Amphibious navigation",
+          "done": false
+        }
+      ]
+    },
+    "entities:wolf": {
+      "status": "partial",
+      "note": "Player targeting is left out on purpose until an anger memory exists, so wolves never get angry eyes.",
+      "items": [
+        {
+          "text": "Taming, owner follow and defend",
+          "done": true
+        },
+        {
+          "text": "`BegGoal` and `TamableAnimalPanicGoal`",
+          "done": true
+        },
+        {
+          "text": "Prey targets for sheep, rabbit, fox and skeleton",
+          "done": true
+        },
+        {
+          "text": "Avoids llamas",
+          "done": true
+        },
+        {
+          "text": "`SitWhenOrderedToGoal`, sit pose is synced but not enforced",
+          "done": false
+        },
+        {
+          "text": "`LeapAtTargetGoal`",
+          "done": false
+        },
+        {
+          "text": "Anger memory and `ResetUniversalAngerTargetGoal`",
+          "done": false
+        },
+        {
+          "text": "Remaining prey: baby turtle, stray, bogged, parched, bat",
+          "done": false
+        },
+        {
+          "text": "`NonTameRandomTargetGoal`",
+          "done": false
+        }
+      ]
+    },
+    "entities:zombie_horse": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Basic goals",
+          "done": true
+        },
+        {
+          "text": "Taming and saddle",
+          "done": true
+        },
+        {
+          "text": "Horse family goals",
+          "done": false
+        }
+      ]
+    },
+    "entities:zombie_nautilus": {
+      "status": "planned",
+      "note": "New in 26.2. Not implemented."
+    },
+    "entities:mannequin": {
+      "status": "planned",
+      "note": "New in 26.x. Not implemented."
+    },
+    "entities:villager": {
+      "status": "partial",
+      "note": "Approximated with goals. Trading, work sites and hostile avoidance work; everything activity and reputation driven is missing.",
+      "items": [
+        {
+          "text": "Trading and `TradeWithPlayerGoal`",
+          "done": true
+        },
+        {
+          "text": "`WorkAtJobSiteGoal`",
+          "done": true
+        },
+        {
+          "text": "Gossip and reputation with trade discounts",
+          "done": true
+        },
+        {
+          "text": "Hostile avoidance and door use",
+          "done": true
+        },
+        {
+          "text": "Brain migration",
+          "done": false
+        },
+        {
+          "text": "Breeding",
+          "done": false
+        },
+        {
+          "text": "Sleep, work and meet activities",
+          "done": false
+        }
+      ]
+    },
+    "entities:wandering_trader": {
+      "status": "partial",
+      "note": "Trades, wanders and drinks its potions. Natural spawning and the llama escort are missing.",
+      "items": [
+        {
+          "text": "Trading screen and generated offers",
+          "done": true
+        },
+        {
+          "text": "Invisibility potion at night",
+          "done": true
+        },
+        {
+          "text": "Despawn timer and wander targets",
+          "done": true
+        },
+        {
+          "text": "Natural spawn cycle and `level.dat` persistence",
+          "done": false
+        },
+        {
+          "text": "Leashed trader llamas",
+          "done": false
+        },
+        {
+          "text": "Trade offer parity",
+          "done": false
+        }
+      ]
+    },
+    "entities:arrow": {
+      "status": "done",
+      "items": [
+        {
+          "text": "Flight, hit and pickup",
+          "done": true
+        },
+        {
+          "text": "Damage on hit",
+          "done": true
+        }
+      ]
+    },
+    "entities:breeze_wind_charge": {
+      "status": "done"
+    },
+    "entities:dragon_fireball": {
+      "status": "planned",
+      "note": "Not implemented."
+    },
+    "entities:egg": {
+      "status": "done"
+    },
+    "entities:ender_pearl": {
+      "status": "done",
+      "items": [
+        {
+          "text": "Teleport on hit",
+          "done": true
+        },
+        {
+          "text": "Damage to the thrower",
+          "done": true
+        },
+        {
+          "text": "Endermite spawn chance",
+          "done": true
+        }
+      ]
+    },
+    "entities:evoker_fangs": {
+      "status": "done"
+    },
+    "entities:experience_bottle": {
+      "status": "partial",
+      "note": "Using the item spawns the orbs at the player instead of throwing a bottle.",
+      "items": [
+        {
+          "text": "Experience orbs on use",
+          "done": true
+        },
+        {
+          "text": "Thrown projectile flight and impact",
+          "done": false
+        }
+      ]
+    },
+    "entities:eye_of_ender": {
+      "status": "done"
+    },
+    "entities:fireball": {
+      "status": "done"
+    },
+    "entities:firework_rocket": {
+      "status": "done"
+    },
+    "entities:fishing_bobber": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Casting and hooking",
+          "done": true
+        },
+        {
+          "text": "Loot tables (gives raw cod only)",
+          "done": false
+        }
+      ]
+    },
+    "entities:lingering_potion": {
+      "status": "done"
+    },
+    "entities:llama_spit": {
+      "status": "done"
+    },
+    "entities:shulker_bullet": {
+      "status": "done"
+    },
+    "entities:small_fireball": {
+      "status": "done"
+    },
+    "entities:snowball": {
+      "status": "done"
+    },
+    "entities:spectral_arrow": {
+      "status": "done",
+      "note": "Shares the arrow entity.",
+      "items": [
+        {
+          "text": "Shares the arrow entity",
+          "done": true
+        },
+        {
+          "text": "Glowing effect on hit",
+          "done": true
+        }
+      ]
+    },
+    "entities:splash_potion": {
+      "status": "done"
+    },
+    "entities:trident": {
+      "status": "done",
+      "items": [
+        {
+          "text": "Thrown trident with pickup",
+          "done": true
+        },
+        {
+          "text": "Loyalty and riptide through the item",
+          "done": true
+        }
+      ]
+    },
+    "entities:wind_charge": {
+      "status": "done"
+    },
+    "entities:wither_skull": {
+      "status": "done"
+    },
+    "entities:acacia_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        }
+      ]
+    },
+    "entities:acacia_chest_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        },
+        {
+          "text": "Chest inventory",
+          "done": false
+        }
+      ]
+    },
+    "entities:bamboo_chest_raft": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        },
+        {
+          "text": "Chest inventory",
+          "done": false
+        }
+      ]
+    },
+    "entities:bamboo_raft": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        }
+      ]
+    },
+    "entities:birch_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        }
+      ]
+    },
+    "entities:birch_chest_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        },
+        {
+          "text": "Chest inventory",
+          "done": false
+        }
+      ]
+    },
+    "entities:cherry_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        }
+      ]
+    },
+    "entities:cherry_chest_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        },
+        {
+          "text": "Chest inventory",
+          "done": false
+        }
+      ]
+    },
+    "entities:chest_minecart": {
+      "status": "done"
+    },
+    "entities:command_block_minecart": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Rides as a plain minecart",
+          "done": true
+        },
+        {
+          "text": "Command block execution",
+          "done": false
+        }
+      ]
+    },
+    "entities:dark_oak_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        }
+      ]
+    },
+    "entities:dark_oak_chest_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        },
+        {
+          "text": "Chest inventory",
+          "done": false
+        }
+      ]
+    },
+    "entities:furnace_minecart": {
+      "status": "done"
+    },
+    "entities:hopper_minecart": {
+      "status": "done"
+    },
+    "entities:jungle_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        }
+      ]
+    },
+    "entities:jungle_chest_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        },
+        {
+          "text": "Chest inventory",
+          "done": false
+        }
+      ]
+    },
+    "entities:mangrove_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        }
+      ]
+    },
+    "entities:mangrove_chest_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        },
+        {
+          "text": "Chest inventory",
+          "done": false
+        }
+      ]
+    },
+    "entities:minecart": {
+      "status": "done"
+    },
+    "entities:oak_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        }
+      ]
+    },
+    "entities:oak_chest_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        },
+        {
+          "text": "Chest inventory",
+          "done": false
+        }
+      ]
+    },
+    "entities:pale_oak_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        }
+      ]
+    },
+    "entities:pale_oak_chest_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        },
+        {
+          "text": "Chest inventory",
+          "done": false
+        }
+      ]
+    },
+    "entities:poplar_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        }
+      ]
+    },
+    "entities:poplar_chest_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        },
+        {
+          "text": "Chest inventory",
+          "done": false
+        }
+      ]
+    },
+    "entities:spawner_minecart": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Rides as a plain minecart",
+          "done": true
+        },
+        {
+          "text": "Spawner logic",
+          "done": false
+        }
+      ]
+    },
+    "entities:spruce_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        }
+      ]
+    },
+    "entities:spruce_chest_boat": {
+      "status": "partial",
+      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "items": [
+        {
+          "text": "Placement and riding",
+          "done": true
+        },
+        {
+          "text": "Paddle state sync",
+          "done": true
+        },
+        {
+          "text": "Vanilla boat physics",
+          "done": false
+        },
+        {
+          "text": "Chest inventory",
+          "done": false
+        }
+      ]
+    },
+    "entities:tnt_minecart": {
+      "status": "done"
+    },
+    "entities:armor_stand": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Placement, poses and breaking",
+          "done": true
+        },
+        {
+          "text": "Equipment slot drops on break",
+          "done": false
+        },
+        {
+          "text": "Fire damage",
+          "done": false
+        }
+      ]
+    },
+    "entities:block_display": {
+      "status": "done"
+    },
+    "entities:cushion": {
+      "status": "partial",
+      "note": "A seat: placed from cushion items, sits one player, is dyeable and drops itself when broken.",
+      "items": [
+        {
+          "text": "Placement, sitting and spawn colour metadata",
+          "done": true
+        },
+        {
+          "text": "Dye colour",
+          "done": true
+        },
+        {
+          "text": "Break drops the matching item",
+          "done": true
+        },
+        {
+          "text": "Get-up sound when standing up",
+          "done": false
+        }
+      ]
+    },
+    "entities:end_crystal": {
+      "status": "done"
+    },
+    "entities:glow_item_frame": {
+      "status": "done"
+    },
+    "entities:interaction": {
+      "status": "done"
+    },
+    "entities:item_display": {
+      "status": "done"
+    },
+    "entities:item_frame": {
+      "status": "done"
+    },
+    "entities:leash_knot": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Created when leashing to fences",
+          "done": true
+        },
+        {
+          "text": "Restored from saved chunks",
+          "done": false
+        }
+      ]
+    },
+    "entities:marker": {
+      "status": "done"
+    },
+    "entities:painting": {
+      "status": "partial",
+      "items": [
+        {
+          "text": "Placement",
+          "done": true
+        },
+        {
+          "text": "Drop on break",
+          "done": false
+        }
+      ]
+    },
+    "entities:text_display": {
+      "status": "done"
+    },
+    "entities:area_effect_cloud": {
+      "status": "done"
+    },
+    "entities:experience_orb": {
+      "status": "done"
+    },
+    "entities:falling_block": {
+      "status": "done"
+    },
+    "entities:item": {
+      "status": "done"
+    },
+    "entities:lightning_bolt": {
+      "status": "done"
+    },
+    "entities:ominous_item_spawner": {
+      "status": "planned",
+      "note": "Not implemented."
+    },
+    "entities:tnt": {
+      "status": "done"
+    },
+    "blocks:anvil": {
+      "status": "done"
+    },
+    "blocks:banners": {
+      "status": "done"
+    },
+    "blocks:barrel": {
+      "status": "done"
+    },
+    "blocks:barrier": {
+      "status": "done"
+    },
+    "blocks:beacon": {
+      "status": "done"
+    },
+    "blocks:bed": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:beehive": {
+      "status": "partial",
+      "note": "Stores bees, but bees never enter or leave it."
+    },
+    "blocks:blast_furnace": {
+      "status": "done"
+    },
+    "blocks:brewing_stand": {
+      "status": "done"
+    },
+    "blocks:bubble_column": {
+      "status": "done"
+    },
+    "blocks:amethyst": {
+      "status": "done"
+    },
+    "blocks:cake": {
+      "status": "done"
+    },
+    "blocks:campfire": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:candle_cakes": {
+      "status": "done"
+    },
+    "blocks:candles": {
+      "status": "done"
+    },
+    "blocks:carpet": {
+      "status": "done"
+    },
+    "blocks:cartography_table": {
+      "status": "done"
+    },
+    "blocks:carved_pumpkin": {
+      "status": "done"
+    },
+    "blocks:cauldron": {
+      "status": "done"
+    },
+    "blocks:chain": {
+      "status": "done"
+    },
+    "blocks:chests": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:chiseled_bookshelf": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:cobweb": {
+      "status": "done"
+    },
+    "blocks:command": {
+      "status": "done"
+    },
+    "blocks:composter": {
+      "status": "done"
+    },
+    "blocks:conduit": {
+      "status": "partial",
+      "note": "Stub. No activation or conduit power."
+    },
+    "blocks:crafting_table": {
+      "status": "done"
+    },
+    "blocks:creaking_heart": {
+      "status": "done"
+    },
+    "blocks:decorated_pot": {
+      "status": "done"
+    },
+    "blocks:dirt_path": {
+      "status": "partial",
+      "note": "2 TODOs left in the source."
+    },
+    "blocks:doors": {
+      "status": "done"
+    },
+    "blocks:dragon_egg": {
+      "status": "done"
+    },
+    "blocks:dripstone": {
+      "status": "done"
+    },
+    "blocks:enchanting_table": {
+      "status": "done"
+    },
+    "blocks:end_gateway": {
+      "status": "done"
+    },
+    "blocks:end_portal": {
+      "status": "done"
+    },
+    "blocks:end_portal_frame": {
+      "status": "done"
+    },
+    "blocks:end_rod": {
+      "status": "done"
+    },
+    "blocks:ender_chest": {
+      "status": "partial",
+      "note": "2 TODOs left in the source."
+    },
+    "blocks:falling": {
+      "status": "done"
+    },
+    "blocks:farmland": {
+      "status": "partial",
+      "note": "Several trampling and hydration TODOs remain."
+    },
+    "blocks:fence_gates": {
+      "status": "done"
+    },
+    "blocks:fences": {
+      "status": "done"
+    },
+    "blocks:fletching_table": {
+      "status": "done"
+    },
+    "blocks:flower_pots": {
+      "status": "done"
+    },
+    "blocks:frogspawn": {
+      "status": "planned",
+      "note": "Placeable, but never hatches into tadpoles."
+    },
+    "blocks:furnace": {
+      "status": "done"
+    },
+    "blocks:glass_panes": {
+      "status": "done"
+    },
+    "blocks:glazed_terracotta": {
+      "status": "done"
+    },
+    "blocks:grass_block": {
+      "status": "done"
+    },
+    "blocks:grindstone": {
+      "status": "done"
+    },
+    "blocks:hay": {
+      "status": "done"
+    },
+    "blocks:honey": {
+      "status": "done"
+    },
+    "blocks:hopper": {
+      "status": "done"
+    },
+    "blocks:ice": {
+      "status": "done"
+    },
+    "blocks:infested": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:iron_bars": {
+      "status": "done"
+    },
+    "blocks:jigsaw": {
+      "status": "done"
+    },
+    "blocks:jukebox": {
+      "status": "partial",
+      "note": "2 TODOs left in the source."
+    },
+    "blocks:ladder": {
+      "status": "done"
+    },
+    "blocks:lanterns": {
+      "status": "done"
+    },
+    "blocks:leaves": {
+      "status": "done"
+    },
+    "blocks:lectern": {
+      "status": "done"
+    },
+    "blocks:light": {
+      "status": "done"
+    },
+    "blocks:lodestone": {
+      "status": "planned",
+      "note": "Compass binding is not implemented."
+    },
+    "blocks:logs": {
+      "status": "done"
+    },
+    "blocks:loom": {
+      "status": "done"
+    },
+    "blocks:magma": {
+      "status": "done"
+    },
+    "blocks:mangrove_roots": {
+      "status": "done"
+    },
+    "blocks:spawner": {
+      "status": "done"
+    },
+    "blocks:mud": {
+      "status": "done"
+    },
+    "blocks:nether_portal": {
+      "status": "done"
+    },
+    "blocks:netherrack": {
+      "status": "done"
+    },
+    "blocks:note": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:nylium": {
+      "status": "done"
+    },
+    "blocks:powder_snow": {
+      "status": "done"
+    },
+    "blocks:pumpkin": {
+      "status": "done"
+    },
+    "blocks:respawn_anchor": {
+      "status": "done"
+    },
+    "blocks:rooted_dirt": {
+      "status": "done"
+    },
+    "blocks:scaffolding": {
+      "status": "done"
+    },
+    "blocks:shelf": {
+      "status": "done"
+    },
+    "blocks:shulker_box": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:signs": {
+      "status": "done"
+    },
+    "blocks:skull_block": {
+      "status": "done"
+    },
+    "blocks:slabs": {
+      "status": "done"
+    },
+    "blocks:slime": {
+      "status": "done"
+    },
+    "blocks:smithing_table": {
+      "status": "done"
+    },
+    "blocks:smoker": {
+      "status": "done"
+    },
+    "blocks:sniffer_egg": {
+      "status": "done"
+    },
+    "blocks:snow": {
+      "status": "done"
+    },
+    "blocks:soul_sand": {
+      "status": "done"
+    },
+    "blocks:sponge": {
+      "status": "done"
+    },
+    "blocks:stairs": {
+      "status": "done"
+    },
+    "blocks:stonecutter": {
+      "status": "done"
+    },
+    "blocks:straw_bed": {
+      "status": "done"
+    },
+    "blocks:structure_block": {
+      "status": "partial",
+      "note": "Stores settings. Loading and saving structures is not verified."
+    },
+    "blocks:structure_void": {
+      "status": "done"
+    },
+    "blocks:brushable_block": {
+      "status": "done"
+    },
+    "blocks:test_block": {
+      "status": "done"
+    },
+    "blocks:tinted_glass": {
+      "status": "done"
+    },
+    "blocks:tnt": {
+      "status": "done"
+    },
+    "blocks:torches": {
+      "status": "done"
+    },
+    "blocks:trapdoor": {
+      "status": "done"
+    },
+    "blocks:trial_spawner": {
+      "status": "done"
+    },
+    "blocks:turtle_egg": {
+      "status": "done"
+    },
+    "blocks:vault": {
+      "status": "done"
+    },
+    "blocks:vine": {
+      "status": "done"
+    },
+    "blocks:walls": {
+      "status": "done"
+    },
+    "blocks:weathering_copper": {
+      "status": "done"
+    },
+    "blocks:wither_skull": {
+      "status": "done"
+    },
+    "blocks:fire-fire": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:sculk-sculk_catalyst": {
+      "status": "partial",
+      "note": "Stub. Does not spread sculk on mob death."
+    },
+    "blocks:sculk-sculk_shrieker": {
+      "status": "done"
+    },
+    "blocks:sculk-sculk_vein": {
+      "status": "done"
+    },
+    "blocks:fire-soul_fire": {
+      "status": "done"
+    },
+    "blocks:piston-piston_extension": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:piston-piston_head": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:piston-piston": {
+      "status": "partial",
+      "note": "Pushing and block swapping are currently broken."
+    },
+    "blocks:plant-crop-gourds-attached_stem": {
+      "status": "done"
+    },
+    "blocks:plant-azalea": {
+      "status": "done"
+    },
+    "blocks:plant-bamboo": {
+      "status": "done"
+    },
+    "blocks:plant-bamboo_sapling": {
+      "status": "done"
+    },
+    "blocks:plant-crop-beetroot": {
+      "status": "done"
+    },
+    "blocks:plant-big_dripleaf": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:plant-big_dripleaf_stem": {
+      "status": "done"
+    },
+    "blocks:plant-bush": {
+      "status": "done"
+    },
+    "blocks:plant-cactus": {
+      "status": "done"
+    },
+    "blocks:plant-cactus_flower": {
+      "status": "done"
+    },
+    "blocks:plant-crop-carrot": {
+      "status": "done"
+    },
+    "blocks:plant-cave_vines": {
+      "status": "done"
+    },
+    "blocks:plant-chorus_flower": {
+      "status": "done"
+    },
+    "blocks:plant-chorus_plant": {
+      "status": "done"
+    },
+    "blocks:plant-cocoa": {
+      "status": "done"
+    },
+    "blocks:coral-coral_block": {
+      "status": "done"
+    },
+    "blocks:coral-coral_fan": {
+      "status": "done"
+    },
+    "blocks:coral-coral_plant": {
+      "status": "done"
+    },
+    "blocks:plant-dry_vegetation": {
+      "status": "done"
+    },
+    "blocks:plant-eyeblossom": {
+      "status": "done"
+    },
+    "blocks:plant-flower": {
+      "status": "done"
+    },
+    "blocks:plant-flowerbed": {
+      "status": "done"
+    },
+    "blocks:plant-fungus": {
+      "status": "done"
+    },
+    "blocks:plant-hanging_roots": {
+      "status": "done"
+    },
+    "blocks:plant-kelp": {
+      "status": "done"
+    },
+    "blocks:plant-leaf_litter": {
+      "status": "done"
+    },
+    "blocks:plant-lily_pad": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:plant-mangrove_propagule": {
+      "status": "done"
+    },
+    "blocks:plant-mushroom_plant": {
+      "status": "done"
+    },
+    "blocks:plant-nether_sprouts": {
+      "status": "done"
+    },
+    "blocks:plant-crop-nether_wart": {
+      "status": "done"
+    },
+    "blocks:plant-crop-pitcher_crop": {
+      "status": "done"
+    },
+    "blocks:plant-crop-potatoes": {
+      "status": "done"
+    },
+    "blocks:plant-crop-gourds-stem": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:plant-roots": {
+      "status": "done"
+    },
+    "blocks:plant-sapling": {
+      "status": "done"
+    },
+    "blocks:plant-sea_pickles": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:plant-seagrass": {
+      "status": "done"
+    },
+    "blocks:plant-shelf_mushroom": {
+      "status": "done"
+    },
+    "blocks:plant-short_plant": {
+      "status": "done"
+    },
+    "blocks:plant-small_dripleaf": {
+      "status": "done"
+    },
+    "blocks:plant-spore_blossom": {
+      "status": "done"
+    },
+    "blocks:plant-sugar_cane": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:plant-crop-sweet_berry_bush": {
+      "status": "done"
+    },
+    "blocks:plant-tall_plant": {
+      "status": "done"
+    },
+    "blocks:plant-tall_seagrass": {
+      "status": "done"
+    },
+    "blocks:plant-crop-torch_flower": {
+      "status": "done"
+    },
+    "blocks:plant-twisting_vines": {
+      "status": "done"
+    },
+    "blocks:plant-weeping_vines": {
+      "status": "done"
+    },
+    "blocks:plant-crop-wheat": {
+      "status": "done"
+    },
+    "blocks:plant-wither_rose": {
+      "status": "done"
+    },
+    "blocks:redstone-rails-activator_rail": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:redstone-bell": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:redstone-buttons": {
+      "status": "done"
+    },
+    "blocks:redstone-comparator": {
+      "status": "done"
+    },
+    "blocks:redstone-copper_bulb": {
+      "status": "done"
+    },
+    "blocks:redstone-crafter": {
+      "status": "done"
+    },
+    "blocks:redstone-daylight_detector": {
+      "status": "partial",
+      "note": "Present but not yet at vanilla parity."
+    },
+    "blocks:redstone-rails-detector_rail": {
+      "status": "done"
+    },
+    "blocks:redstone-dispenser": {
+      "status": "partial",
+      "note": "2 TODOs left in the source."
+    },
+    "blocks:redstone-dropper": {
+      "status": "done"
+    },
+    "blocks:redstone-lever": {
+      "status": "done"
+    },
+    "blocks:redstone-lightning_rod": {
+      "status": "done"
+    },
+    "blocks:redstone-observer": {
+      "status": "done"
+    },
+    "blocks:redstone-rails-powered_rail": {
+      "status": "partial",
+      "note": "1 TODO left in the source."
+    },
+    "blocks:redstone-pressure_plate-plate": {
+      "status": "done"
+    },
+    "blocks:redstone-rails-rail": {
+      "status": "done"
+    },
+    "blocks:redstone-redstone_block": {
+      "status": "done"
+    },
+    "blocks:redstone-redstone_lamp": {
+      "status": "done"
+    },
+    "blocks:redstone-redstone_ore": {
+      "status": "done"
+    },
+    "blocks:redstone-redstone_torch": {
+      "status": "done"
+    },
+    "blocks:redstone-redstone_wire": {
+      "status": "done"
+    },
+    "blocks:redstone-repeater": {
+      "status": "done"
+    },
+    "blocks:redstone-sculk_sensor": {
+      "status": "done"
+    },
+    "blocks:redstone-target_block": {
+      "status": "done"
+    },
+    "blocks:redstone-tripwire": {
+      "status": "partial",
+      "note": "Several TODOs remain."
+    },
+    "blocks:redstone-tripwire_hook": {
+      "status": "partial",
+      "note": "Several TODOs remain."
+    },
+    "blocks:redstone-pressure_plate-weighted": {
+      "status": "done"
+    },
+    "items:arrow": {
+      "status": "done",
+      "note": "Registration. Flight and damage live in the arrow entity."
+    },
+    "items:axe": {
+      "status": "done"
+    },
+    "items:bow": {
+      "status": "done"
+    },
+    "items:brush": {
+      "status": "done"
+    },
+    "items:crossbow": {
+      "status": "done"
+    },
+    "items:debug_stick": {
+      "status": "done"
+    },
+    "items:fishing_rod": {
+      "status": "partial",
+      "note": "Catches only raw cod. Loot tables are not wired up."
+    },
+    "items:flint_and_steel": {
+      "status": "done"
+    },
+    "items:hoe": {
+      "status": "done"
+    },
+    "items:mace": {
+      "status": "partial",
+      "note": "Registered. Smash attack not verified."
+    },
+    "items:shears": {
+      "status": "done"
+    },
+    "items:shield": {
+      "status": "done",
+      "note": "Registration. Blocking lives in the combat code."
+    },
+    "items:shovel": {
+      "status": "done"
+    },
+    "items:spear": {
+      "status": "done"
+    },
+    "items:swords": {
+      "status": "done",
+      "note": "Registration. Sweep and damage live in the combat code."
+    },
+    "items:trident": {
+      "status": "done"
+    },
+    "items:experience_bottle": {
+      "status": "done"
+    },
+    "items:chorus_fruit": {
+      "status": "done",
+      "note": "Random teleport handled in the living entity path."
+    },
+    "items:egg": {
+      "status": "done"
+    },
+    "items:ender_pearl": {
+      "status": "done"
+    },
+    "items:ender_eye": {
+      "status": "done"
+    },
+    "items:fire_charge": {
+      "status": "done"
+    },
+    "items:firework_rocket": {
+      "status": "done"
+    },
+    "items:potions": {
+      "status": "done"
+    },
+    "items:snowball": {
+      "status": "done"
+    },
+    "items:wind_charge": {
+      "status": "done"
+    },
+    "items:armor_stand": {
+      "status": "done"
+    },
+    "items:boat": {
+      "status": "done"
+    },
+    "items:bucket": {
+      "status": "done"
+    },
+    "items:end_crystal": {
+      "status": "done"
+    },
+    "items:hanging_entity": {
+      "status": "done"
+    },
+    "items:place_on_water": {
+      "status": "done"
+    },
+    "items:minecart": {
+      "status": "done"
+    },
+    "items:spawn_egg": {
+      "status": "done"
+    },
+    "items:bone_meal": {
+      "status": "done"
+    },
+    "items:writable_book": {
+      "status": "done"
+    },
+    "items:bundle": {
+      "status": "done"
+    },
+    "items:on_a_stick": {
+      "status": "done"
+    },
+    "items:clock": {
+      "status": "done"
+    },
+    "items:compass": {
+      "status": "done"
+    },
+    "items:cushion": {
+      "status": "done"
+    },
+    "items:dye": {
+      "status": "done"
+    },
+    "items:elytra": {
+      "status": "partial",
+      "note": "Gliding is handled in the player logic rather than an item behaviour. Parity fixes are in review."
+    },
+    "items:glass_bottle": {
+      "status": "done"
+    },
+    "items:glowing_ink_sac": {
+      "status": "done"
+    },
+    "items:goat_horn": {
+      "status": "done"
+    },
+    "items:honeycomb": {
+      "status": "done"
+    },
+    "items:ink_sac": {
+      "status": "done"
+    },
+    "items:knowledge_book": {
+      "status": "done"
+    },
+    "items:lead": {
+      "status": "done"
+    },
+    "items:map": {
+      "status": "done"
+    },
+    "items:name_tag": {
+      "status": "partial",
+      "note": "A TODO remains in the source."
+    },
+    "items:saddle": {
+      "status": "done"
+    },
+    "items:spyglass": {
+      "status": "done"
+    },
+    "items:totem_of_undying": {
+      "status": "done",
+      "note": "Handled in the living entity death path."
+    },
+    "commands:advancement": {
+      "status": "done"
+    },
+    "commands:attribute": {
+      "status": "done"
+    },
+    "commands:ban": {
+      "status": "done"
+    },
+    "commands:ban-ip": {
+      "status": "done",
+      "note": "Alias of /banip."
+    },
+    "commands:banlist": {
+      "status": "done"
+    },
+    "commands:bossbar": {
+      "status": "done"
+    },
+    "commands:clear": {
+      "status": "done"
+    },
+    "commands:clone": {
+      "status": "done"
+    },
+    "commands:damage": {
+      "status": "done"
+    },
+    "commands:data": {
+      "status": "done"
+    },
+    "commands:datapack": {
+      "status": "done"
+    },
+    "commands:debug": {
+      "status": "done"
+    },
+    "commands:defaultgamemode": {
+      "status": "done"
+    },
+    "commands:deop": {
+      "status": "done"
+    },
+    "commands:dialog": {
+      "status": "done"
+    },
+    "commands:difficulty": {
+      "status": "done"
+    },
+    "commands:effect": {
+      "status": "done"
+    },
+    "commands:enchant": {
+      "status": "done"
+    },
+    "commands:execute": {
+      "status": "done"
+    },
+    "commands:experience": {
+      "status": "done"
+    },
+    "commands:fetchprofile": {
+      "status": "done"
+    },
+    "commands:fill": {
+      "status": "done"
+    },
+    "commands:fillbiome": {
+      "status": "done"
+    },
+    "commands:forceload": {
+      "status": "done"
+    },
+    "commands:function": {
+      "status": "done"
+    },
+    "commands:gamemode": {
+      "status": "done"
+    },
+    "commands:gamerule": {
+      "status": "done"
+    },
+    "commands:give": {
+      "status": "done"
+    },
+    "commands:help": {
+      "status": "done"
+    },
+    "commands:item": {
+      "status": "done"
+    },
+    "commands:jfr": {
+      "status": "planned"
+    },
+    "commands:kick": {
+      "status": "done"
+    },
+    "commands:kill": {
+      "status": "done"
+    },
+    "commands:list": {
+      "status": "done"
+    },
+    "commands:locate": {
+      "status": "done"
+    },
+    "commands:loot": {
+      "status": "done"
+    },
+    "commands:me": {
+      "status": "done"
+    },
+    "commands:msg": {
+      "status": "done"
+    },
+    "commands:op": {
+      "status": "done"
+    },
+    "commands:pardon": {
+      "status": "done"
+    },
+    "commands:pardon-ip": {
+      "status": "done",
+      "note": "Alias of /pardonip."
+    },
+    "commands:particle": {
+      "status": "done"
+    },
+    "commands:perf": {
+      "status": "planned"
+    },
+    "commands:place": {
+      "status": "done"
+    },
+    "commands:playsound": {
+      "status": "done"
+    },
+    "commands:publish": {
+      "status": "planned"
+    },
+    "commands:random": {
+      "status": "done"
+    },
+    "commands:recipe": {
+      "status": "done"
+    },
+    "commands:reload": {
+      "status": "done"
+    },
+    "commands:return": {
+      "status": "done"
+    },
+    "commands:ride": {
+      "status": "done"
+    },
+    "commands:rotate": {
+      "status": "done"
+    },
+    "commands:save-all": {
+      "status": "done",
+      "note": "Alias of /saveall."
+    },
+    "commands:save-off": {
+      "status": "done",
+      "note": "Alias of /saveoff."
+    },
+    "commands:save-on": {
+      "status": "done",
+      "note": "Alias of /saveon."
+    },
+    "commands:say": {
+      "status": "done"
+    },
+    "commands:schedule": {
+      "status": "done"
+    },
+    "commands:scoreboard": {
+      "status": "done"
+    },
+    "commands:seed": {
+      "status": "done"
+    },
+    "commands:setblock": {
+      "status": "done"
+    },
+    "commands:setidletimeout": {
+      "status": "done"
+    },
+    "commands:setworldspawn": {
+      "status": "done"
+    },
+    "commands:spawnpoint": {
+      "status": "done"
+    },
+    "commands:spectate": {
+      "status": "done"
+    },
+    "commands:spreadplayers": {
+      "status": "done"
+    },
+    "commands:stop": {
+      "status": "done"
+    },
+    "commands:stopsound": {
+      "status": "done"
+    },
+    "commands:summon": {
+      "status": "done"
+    },
+    "commands:tag": {
+      "status": "done"
+    },
+    "commands:team": {
+      "status": "done"
+    },
+    "commands:teammsg": {
+      "status": "done"
+    },
+    "commands:teleport": {
+      "status": "done"
+    },
+    "commands:tell": {
+      "status": "done",
+      "note": "Alias of /msg."
+    },
+    "commands:tellraw": {
+      "status": "done"
+    },
+    "commands:test": {
+      "status": "done"
+    },
+    "commands:tick": {
+      "status": "done"
+    },
+    "commands:time": {
+      "status": "done"
+    },
+    "commands:title": {
+      "status": "done"
+    },
+    "commands:tm": {
+      "status": "done",
+      "note": "Alias of /teammsg."
+    },
+    "commands:tp": {
+      "status": "done",
+      "note": "Alias of /teleport."
+    },
+    "commands:transfer": {
+      "status": "done"
+    },
+    "commands:trigger": {
+      "status": "done"
+    },
+    "commands:unpublish": {
+      "status": "planned"
+    },
+    "commands:version": {
+      "status": "done",
+      "note": "Alias of /pumpkin."
+    },
+    "commands:w": {
+      "status": "done",
+      "note": "Alias of /msg."
+    },
+    "commands:waypoint": {
+      "status": "done"
+    },
+    "commands:weather": {
+      "status": "done"
+    },
+    "commands:whitelist": {
+      "status": "done"
+    },
+    "commands:worldborder": {
+      "status": "done"
+    },
+    "commands:xp": {
+      "status": "done",
+      "note": "Alias of /experience."
+    },
+    "commands:pumpkin": {
+      "status": "done",
+      "note": "Version and build info."
+    },
+    "commands:plugin": {
+      "status": "done",
+      "note": "Load and unload plugins."
+    },
+    "commands:plugins": {
+      "status": "done",
+      "note": "List loaded plugins."
+    },
+    "commands:tps": {
+      "status": "done",
+      "note": "Ticks per second."
+    },
+    "commands:stopwatch": {
+      "status": "done",
+      "note": "Timing helper."
+    },
+    "commands:raid": {
+      "status": "done",
+      "note": "Raid debugging."
+    },
+    "redstone:redstone-wire-signal-propagation": {
+      "status": "done"
+    },
+    "redstone:redstone-tick-system": {
+      "status": "done"
+    },
+    "redstone:hard-vs-soft-powering": {
+      "status": "done"
+    },
+    "redstone:pressure-plates": {
+      "status": "done"
+    },
+    "redstone:tripwire-hook": {
+      "status": "done"
+    },
+    "redstone:trapped-chest": {
+      "status": "done"
+    },
+    "redstone:sculk-sensors-shriekers-and-calibrated-sensors": {
+      "status": "done"
+    },
+    "redstone:daylight-detector": {
+      "status": "partial",
+      "note": "Block exists but is not yet at vanilla parity."
+    },
+    "redstone:target-block": {
+      "status": "done"
+    },
+    "redstone:redstone-torch-levers-and-buttons": {
+      "status": "done"
+    },
+    "redstone:comparator": {
+      "status": "done"
+    },
+    "redstone:repeater": {
+      "status": "done"
+    },
+    "redstone:note-block": {
+      "status": "done"
+    },
+    "redstone:hopper-item-transfer": {
+      "status": "done"
+    },
+    "redstone:observer": {
+      "status": "done"
+    },
+    "redstone:rails": {
+      "status": "done"
+    },
+    "redstone:pistons-and-block-swapping": {
+      "status": "partial",
+      "note": "Currently broken."
+    },
+    "redstone:dropper": {
+      "status": "done"
+    },
+    "redstone:dispenser": {
+      "status": "done"
+    },
+    "redstone:crafter": {
+      "status": "done"
+    },
+    "redstone:minecart-powering-and-activation": {
+      "status": "done"
+    },
+    "redstone:tnt-ignition-and-priming": {
+      "status": "done"
+    },
+    "redstone:bell": {
+      "status": "done"
+    },
+    "redstone:redstone-lamp": {
+      "status": "done"
+    },
+    "redstone:doors-gates-and-trapdoors": {
+      "status": "done"
+    },
+    "redstone:lectern-signal-strength": {
+      "status": "done"
+    },
+    "redstone:composter-signal-strength": {
+      "status": "done"
+    },
+    "combat:basic-melee-attack": {
+      "status": "done"
+    },
+    "combat:tool-based-damage-calculation": {
+      "status": "done"
+    },
+    "combat:vanilla-knockback": {
+      "status": "done"
+    },
+    "combat:attack-speed-and-cooldown-indicator": {
+      "status": "done"
+    },
+    "combat:bows": {
+      "status": "done"
+    },
+    "combat:crossbows": {
+      "status": "done"
+    },
+    "combat:shields": {
+      "status": "done"
+    },
+    "combat:tridents": {
+      "status": "done"
+    },
+    "combat:critical-hits": {
+      "status": "done"
+    },
+    "combat:damage-invulnerability-frames": {
+      "status": "done"
+    },
+    "combat:sweep-attack": {
+      "status": "done"
+    },
+    "combat:enchantment-integration": {
+      "status": "done"
+    },
+    "combat:status-effect-integration": {
+      "status": "done"
+    },
+    "combat:1-8-combat-mode": {
+      "status": "planned"
+    },
+    "world:world-loading-level-dat-dim1-dim-1": {
+      "status": "partial",
+      "note": "26.x format support is still open."
+    },
+    "world:world-saving": {
+      "status": "partial",
+      "note": "26.x format support is still open."
+    },
+    "world:chunk-loading-vanilla-linear-pump": {
+      "status": "done"
+    },
+    "world:chunk-saving": {
+      "status": "done"
+    },
+    "world:chunk-generation": {
+      "status": "done"
+    },
+    "world:flat-world-generation": {
+      "status": "done"
+    },
+    "world:redstone": {
+      "status": "partial",
+      "note": "Tracked in the Redstone tab."
+    },
+    "world:liquid-physics": {
+      "status": "done"
+    },
+    "world:lighting": {
+      "status": "done"
+    },
+    "world:world-time": {
+      "status": "done"
+    },
+    "world:world-borders": {
+      "status": "done"
+    },
+    "world:world-joining": {
+      "status": "done"
+    },
+    "world:player-tab-list": {
+      "status": "done"
+    },
+    "world:scoreboard": {
+      "status": "done"
+    },
+    "world:bossbar": {
+      "status": "done"
+    },
+    "world:entity-spawning": {
+      "status": "done"
+    }
+  }
+}

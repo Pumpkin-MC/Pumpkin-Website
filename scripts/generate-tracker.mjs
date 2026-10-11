@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
+import { assess, declaredIds, sourceRoot, STATUSES } from "./tracker-evidence.mjs";
 
 const [, , PUMPKIN, OUT = path.resolve(import.meta.dirname, "../src/pages/tracker/data.json")] = process.argv;
 if (!PUMPKIN) {
@@ -8,11 +9,14 @@ if (!PUMPKIN) {
   process.exit(1);
 }
 
-const SRC = path.join(PUMPKIN, "crates/pumpkin/src");
-const commit = execSync("git rev-parse --short HEAD", { cwd: PUMPKIN }).toString().trim();
+const ROOT = sourceRoot(PUMPKIN);
+const SRC = path.join(PUMPKIN, ROOT);
+const audits = JSON.parse(fs.readFileSync(new URL("./tracker-audits.json", import.meta.url), "utf8"));
+const baseline = JSON.parse(fs.readFileSync(new URL("./tracker-baseline.json", import.meta.url), "utf8"));
+const commit = execSync("git rev-parse HEAD", { cwd: PUMPKIN }).toString().trim();
 const commitDate = execSync("git log -1 --format=%cs", { cwd: PUMPKIN }).toString().trim();
 const cargo = fs.readFileSync(path.join(PUMPKIN, "Cargo.toml"), "utf8");
-const mcVersion = (cargo.match(/^version = "[^+"]*\+([0-9.]+)/m) || [])[1] || "";
+const mcVersion = (cargo.match(/^version = "[^+"]*\+([^"]+)"/m) || [])[1] || "";
 
 function walk(dir) {
   const out = [];
@@ -43,15 +47,6 @@ function humanize(s) {
     .join(" ");
 }
 
-function item(text) {
-  return { text: text.slice(1), done: text[0] === "+" };
-}
-
-function todoCount(file) {
-  const txt = fs.readFileSync(file, "utf8");
-  return (txt.match(/\b(TODO|FIXME|unimplemented!)/g) || []).length;
-}
-
 const entityFiles = walk(path.join(SRC, "entity"));
 function entitySource(id) {
   const overrides = {
@@ -77,203 +72,165 @@ function entitySource(id) {
     spawner_minecart: "entity/vehicle/minecart.rs",
     experience_bottle: "item/items/experience_bottle.rs",
   };
-  if (overrides[id]) return ensureSource(id, "crates/pumpkin/src/" + overrides[id]);
-  if (/_(chest_)?(boat|raft)$/.test(id)) return ensureSource(id, "crates/pumpkin/src/entity/vehicle/boat.rs");
+  if (overrides[id]) return ensureSource(id, `${ROOT}/` + overrides[id]);
+  if (/_(chest_)?(boat|raft)$/.test(id)) return ensureSource(id, `${ROOT}/entity/vehicle/boat.rs`);
   const hit = entityFiles.find((f) => path.basename(f) === `${id}.rs`);
   return hit ? rel(hit) : null;
 }
 
-const SPIDER_ITEMS = [
-  "+Generic melee and target goals",
-  "-`LeapAtTargetGoal`",
-  "-`AvoidEntityGoal` for armadillos",
-  "-Light-gated `SpiderTargetGoal`",
-  "-Wall-climber navigation",
-];
-const FISH_ITEMS = [
-  "+Bucket pickup",
-  "-Water-bound navigation",
-  "-`PanicGoal` and `AvoidEntityGoal`",
-  "-`FishSwimGoal`",
-  "-`FollowFlockLeaderGoal` schooling",
-];
-const HORSE_ITEMS = [
-  "+Breed and tempt",
-  "+Taming, saddle and riding",
-  "-`RunAroundLikeCrazyGoal` when mounted untamed",
-  "-`MountPanicGoal`",
-  "-`RandomStandGoal`",
-];
-const BOAT_ITEMS = ["+Placement and riding", "+Paddle state sync", "-Vanilla boat physics"];
-const CHEST_BOAT_ITEMS = [...BOAT_ITEMS, "-Chest inventory"];
-
-const ENTITIES = {
-  zombie: ["partial", "Hostile", "Base zombie goals match vanilla, including door breaking and turtle egg raids.", ["+`ZombieAttackGoal`, `BreakDoorGoal` and `DestroyEggGoal`", "+Revenge and player targeting", "-`MoveThroughVillageGoal`", "-`SpearUseGoal` (new in 26.2)"], [1336]],
-  husk: ["partial", "Hostile", "Wraps the zombie base with desert spawn rules.", ["+Zombie goal set", "+Surface monster spawn rules", "-Conversion to zombie when submerged"]],
-  zombie_villager: ["partial", "Hostile", "Villager profession data and curing are ported.", ["+Villager profession and biome data", "+Curing with a golden apple", "+Zombie goal set", "-`MoveThroughVillageGoal`"]],
-  drowned: ["partial", "Hostile", "Spawn rules exist, but the entity registers none of its own goals, so trident drowned never throw.", ["-`DrownedGoToWaterGoal`", "-`DrownedTridentAttackGoal` and `DrownedAttackGoal`", "-`DrownedGoToBeachGoal` and `DrownedSwimUpGoal`", "-Water-bound navigation", "-Drowned conversion persistence"], [3069, 2162]],
-  zombified_piglin: ["partial", "Hostile", "", ["+Zombie goal set and nether spawn rules", "+Anger timer when hit", "-`SpearUseGoal`", "-Group anger and `ResetUniversalAngerTargetGoal`"], []],
-  skeleton: ["partial", "Hostile", "Bow and melee goals are registered at the same time, so skeletons walk up and hit you with the bow.", ["+`BowAttackGoal` and `MeleeAttackGoal`", "+`AvoidEntityGoal` for wolves", "-Swap bow and melee on held-item change", "-`RestrictSunGoal` and `FleeSunGoal`", "-Difficulty-scaled attack interval"], [2537]],
-  stray: ["partial", "Hostile", "Wraps the skeleton base with powder snow spawn checks.", ["+Skeleton goal set", "+Sky and powder snow spawn rules", "-Slowness tipped arrows", "-Bow and melee swap"]],
-  bogged: ["partial", "Hostile", "Wraps the skeleton base, so it shoots a bow like vanilla.", ["+Skeleton goal set with bow attack", "-Poison tipped arrows", "-Shearing for mushrooms"]],
-  parched: ["partial", "Hostile", "New in 26.2, wraps the skeleton base.", ["+Skeleton goal set", "+Surface monster spawn rules", "-Held item and attack parity"]],
-  wither_skeleton: ["partial", "Hostile", "Wraps the skeleton base, which registers a bow goal the wither skeleton should not have.", ["+Skeleton goal set", "-Melee-only weapon handling, inherits the bow goal", "-Wither effect on hit"]],
-  spider: ["partial", "Hostile", "Melee plus the daylight give-up. No leap, no wall climbing and no light-gated targeting.", ["+Climbing flag synced to clients", ...SPIDER_ITEMS]],
-  cave_spider: ["partial", "Hostile", "Same gaps as the spider.", ["+Poison on hit, scaled by difficulty", ...SPIDER_ITEMS]],
-  enderman: ["partial", "Hostile", "Teleports, moves blocks and gets angry when stared at, but hovers in mid-air and never freezes in place.", ["+Block pick up and placement", "+Anger when a player stares", "+Teleports away from projectiles and towards targets", "-`EndermanFreezeWhenLookedAtGoal`", "-Gravity and teleport target validation", "-`ResetUniversalAngerTargetGoal`", "-Sunlight avoidance", "-Carried block drop on death"], [2872]],
-  creeper: ["partial", "Hostile", "Ignites and explodes like vanilla. Only the effect cloud is missing.", ["+`CreeperIgniteGoal` and explosion", "+Charged by lightning", "+Revenge and player targeting", "+`AvoidEntityGoal` for cats and ocelots", "-Area effect cloud from potion effects"]],
-  blaze: ["partial", "Hostile", "Shoots fireballs but has normal gravity and ground navigation, so it cannot hover.", ["+`BlazeShootFireballGoal`", "+Any-light nether spawn rules", "-Flying navigation and zero gravity", "-`MoveTowardsRestrictionGoal`"], [1960]],
-  vex: ["partial", "Hostile", "", ["+Basic goal set", "-`VexChargeAttackGoal`", "-`VexRandomMoveGoal`", "-`VexCopyOwnerTargetGoal`", "-Flying movement"]],
-  phantom: ["partial", "Hostile", "Look goals only. It has no target selector and does nothing.", ["+Look goals", "-`PhantomAttackStrategyGoal`", "-`PhantomSweepAttackGoal`", "-`PhantomCircleAroundAnchorGoal`", "-`PhantomAttackPlayerTargetGoal`", "-Flying navigation"]],
-  guardian: ["partial", "Hostile", "Swims with the generic set and hurts attackers. The beam attack, the whole identity of the mob, does not exist.", ["+Water spawn rules", "+Spike damage to attackers", "-`GuardianAttackGoal` laser beam", "-`MoveTowardsRestrictionGoal`", "-`LookAtPlayerGoal` for players and other guardians", "-`GuardianMoveControl` and zero water malus"]],
-  elder_guardian: ["partial", "Hostile", "Mining fatigue and spikes work; the beam attack does not exist.", ["+Water spawn rules", "+Mining fatigue on nearby players", "+Spike damage to attackers", "-`GuardianAttackGoal` laser beam", "-`MoveTowardsRestrictionGoal`", "-`GuardianMoveControl` and zero water malus"]],
-  magma_cube: ["done", "Hostile", "Built on the slime entity, so it inherits the full slime goal set.", ["+Slime goal set: attack, jump, split", "+Nether spawn rules", "+Player collision damage"]],
-  slime: ["done", "Hostile", "Goal set matches vanilla. Landing particles are still pending.", ["+Size, split and jump attack", "+Slime chunk and swamp spawn rules", "+Player collision damage"], []],
-  sulfur_cube: ["planned", "Hostile", "New in 26.2. Spawn rules exist but there is no entity type or goals.", ["-Entity type and sizes", "-`SulfurCubeTemptGoal`", "-`SulfurCubeSearchForItemsGoal`"], [3114]],
-  ghast: ["done", "Hostile", "", ["+Fireball shooting", "+Flying wander and look", "+Spawn chance rules"]],
-  happy_ghast: ["partial", "Passive", "Tempts, leashes and holds still, approximated with goals.", ["+Tempt and still timeout", "+Leash holder", "-Flying navigation", "-Brain migration"]],
-  endermite: ["partial", "Hostile", "", ["+Generic goal set", "+Lifetime despawn timer", "-`ClimbOnTopOfPowderSnowGoal`"]],
-  silverfish: ["partial", "Hostile", "", ["+Generic goal set", "-`ClimbOnTopOfPowderSnowGoal`", "-`SilverfishWakeUpFriendsGoal`", "-`SilverfishMergeWithStoneGoal`"]],
-  witch: ["partial", "Hostile", "Throws and drinks potions and joins raids, but never heals other raiders.", ["+Potion throwing via `RangedAttackGoal`", "+Drinks potions to heal and resist", "+Magic damage reduction", "+Raid goals", "-`WitchHealRaidersGoal`", "-`WitchAttackPlayersGoal` target"], [1302]],
-  illusioner: ["partial", "Hostile", "No spells and no bow.", ["+Raider goal set", "-`IllusionerMirrorSpellGoal`", "-`IllusionerBlindnessSpellGoal`", "-`RangedBowAttackGoal`", "-`AvoidEntityGoal`"]],
-  vindicator: ["partial", "Hostile", "", ["+Melee and raid goals", "-`VindicatorJohnnyAttackGoal`", "-`VindicatorBreakDoorGoal`"]],
-  pillager: ["partial", "Hostile", "", ["+Crossbow attack and raid goals", "+Patrol behaviour", "-`AvoidEntityGoal`"]],
-  evoker: ["partial", "Hostile", "", ["+Fangs, vex summon and wololo spells", "+Raid goals", "-`AvoidEntityGoal`"]],
-  ravager: ["done", "Hostile", "Goal set matches vanilla.", ["+Goal set matches vanilla", "+Raid goals"]],
-  piglin: ["partial", "Hostile", "Bartering, admiring and zombification all work on a hand-rolled activity system. The vanilla brain port replaces that system rather than adding features.", ["+Bartering with gold and barter loot", "+Admiring held gold and `GoToWantedItemGoal`", "+Celebrating and dancing after a hunt", "+Zombification outside the Nether", "+Crossbow and melee attack, repellent avoidance", "-Shared anger across the group", "-Brain migration"], [3376]],
-  piglin_brute: ["partial", "Hostile", "", ["+Melee and target goals", "+Zombification outside the Nether", "-Brain migration"]],
-  hoglin: ["partial", "Hostile", "", ["+Melee attack with launch", "+Zombification into a zoglin", "+Nether spawn rules", "-Retreat from repellents and home", "-Brain migration"]],
-  zoglin: ["partial", "Hostile", "", ["+Goal approximation", "-Brain migration"]],
-  warden: ["partial", "Hostile", "Placeholder goals only. Sniffing, the sonic boom and anger are all brain driven in vanilla.", ["+Basic goal set", "-Vibration sensing and anger", "-Sniffing", "-Sonic boom", "-Emerging and digging"]],
-  breeze: ["partial", "Hostile", "Wanders and targets players but never attacks; the wind charge projectile exists, nothing fires it.", ["+Basic goal set", "-Wind charge attack", "-Jump and slide attack pattern", "-Brain migration"]],
-  creaking: ["partial", "Hostile", "", ["+Creaking heart binding", "+Freezes while a player looks at it", "+Tear down and death effects", "-Brain migration"]],
-  shulker: ["done", "Hostile", "", ["+Peek and shoot goals", "+Attachment and teleport", "+Shulker bullet"]],
-  giant: ["done", "Hostile", "Vanilla giant registers no goals at all. Pumpkin adds a small goal set on top.", ["+Entity type and attributes"]],
-  bat: ["partial", "Passive", "", ["+Roosting under blocks", "+Random flight", "+Cave spawn rules", "-Flying navigation hook"]],
-
-  wither: ["partial", "Boss", "Shoots skulls from all three heads and breaks blocks, but does not fly and only targets whatever hurt it.", ["+Spawning from soul sand and skulls", "+Spawn invulnerability window and explosion", "+Wither skulls from all three heads", "+Half-health armour phase", "+Block breaking and boss bar", "-Player targeting, only revenge", "-Flying movement"], []],
-  ender_dragon: ["partial", "Boss", "All twelve flight phases are ported. Collision and damage still run against the main bounding box instead of the parts.", ["+12-phase `PhaseManager`", "+Crystal healing and block breaking", "+Flight history", "+Part tracking, not yet registered as world entities", "-Part based knockback", "-Hurt-time gating and creative exclusion", "-Push semantics", "-Contact damage guard"], []],
-
-  cow: ["done", "Passive", "", ["+Breed, tempt and follow parent", "+Milking"]],
-  pig: ["done", "Passive", "", ["+Breed, tempt and follow parent", "+Saddle and carrot on a stick"]],
-  sheep: ["done", "Passive", "", ["+Breed, tempt and follow parent", "+Eat grass and regrow wool", "+Shearing and dyeing"]],
-  chicken: ["done", "Passive", "", ["+Breed, tempt and follow parent", "+Egg laying", "+Slow fall"]],
-  mooshroom: ["done", "Passive", "", ["+Breed, tempt and follow parent", "+Mushroom stew", "+Shear into a cow"], []],
-  wolf: ["partial", "Passive", "Player targeting is left out on purpose until an anger memory exists, so wolves never get angry eyes.", ["+Taming, owner follow and defend", "+`BegGoal` and `TamableAnimalPanicGoal`", "+Prey targets for sheep, rabbit, fox and skeleton", "+Avoids llamas", "-`SitWhenOrderedToGoal`, sit pose is synced but not enforced", "-`LeapAtTargetGoal`", "-Anger memory and `ResetUniversalAngerTargetGoal`", "-Remaining prey: baby turtle, stray, bogged, parched, bat", "-`NonTameRandomTargetGoal`"], [2998, 2789]],
-  cat: ["partial", "Passive", "Taming, following and avoidance work. Sitting, beds and pouncing are state flags without goals behind them.", ["+Taming, tempt and `FollowOwnerGoal`", "+`CatAvoidEntityGoal` and `NonTameRandomTargetGoal`", "+Variants and collar colour", "-`SitWhenOrderedToGoal`, sit pose is synced but not enforced", "-`CatLieOnBedGoal` and `CatSitOnBlockGoal`", "-`CatRelaxOnOwnerGoal`", "-`LeapAtTargetGoal` and `OcelotAttackGoal`", "-Morning gifts"], []],
-  ocelot: ["partial", "Passive", "", ["+Tempt and trust", "+Avoids players until trusted", "+Hunts chickens and turtles", "-`OcelotAttackGoal` and `LeapAtTargetGoal`"]],
-  parrot: ["partial", "Passive", "Walks everywhere because there is no flying navigation, and all tamed behaviour is missing.", ["+Wander and look goals", "+Cookie poisoning", "-Taming and `SitWhenOrderedToGoal`", "-`FollowOwnerGoal` and `LandOnOwnersShoulderGoal`", "-`FollowMobGoal` mimicry", "-`ParrotWanderGoal` with flying navigation"]],
-  rabbit: ["partial", "Passive", "", ["+Generic goals with tempt", "+Variants", "-`RabbitRaidGardenGoal`", "-`ClimbOnTopOfPowderSnowGoal`"]],
-  polar_bear: ["partial", "Passive", "", ["+Melee attack and revenge", "+Standing pose flag", "-`PolarBearAttackPlayersGoal` cub protection", "-`ResetUniversalAngerTargetGoal`"]],
-  fox: ["partial", "Passive", "State flags are synced, but every fox-specific goal is missing.", ["+Breed, tempt and panic", "+Variants and pose flags", "-Prey targets", "-`StalkPreyGoal` and `FoxPounceGoal`", "-`SleepGoal` and `SeekShelterGoal`", "-`FoxEatBerriesGoal` and `FoxSearchForItemsGoal`", "-`FaceplantGoal` and `PerchAndSearchGoal`", "-`DefendTrustedTargetGoal`"], []],
-  panda: ["partial", "Passive", "Genes and pose flags are synced, but every panda-specific goal is missing.", ["+Generic goals", "+Genes and pose flags", "-`PandaPanicGoal`, `PandaBreedGoal` and `PandaAttackGoal`", "-`PandaAvoidGoal`", "-Sit, lie on back, sneeze and roll", "-`PandaHurtByTargetGoal`"]],
-  horse: ["partial", "Passive", "", [...HORSE_ITEMS, "+Variants"]],
-  donkey: ["partial", "Passive", "", [...HORSE_ITEMS, "+Chest"]],
-  mule: ["partial", "Passive", "", ["+Tempt and follow parent", "+Taming, saddle and riding", "+Chest", "-`RunAroundLikeCrazyGoal` when mounted untamed", "-`MountPanicGoal`", "-`RandomStandGoal`"]],
-  skeleton_horse: ["partial", "Passive", "", ["+Basic goals", "+Taming and saddle", "-`SkeletonTrapGoal`"]],
-  zombie_horse: ["partial", "Passive", "", ["+Basic goals", "+Taming and saddle", "-Horse family goals"]],
-  llama: ["partial", "Passive", "", ["+Spits at wolves and attackers", "+Chest, strength and variants", "+Breed and tempt", "-`LlamaFollowCaravanGoal`"], []],
-  trader_llama: ["partial", "Passive", "", ["+Spits at wolves and attackers", "+Chest, strength and variants", "-`LlamaFollowCaravanGoal`", "-`TraderLlamaDefendWanderingTraderGoal`"]],
-  turtle: ["partial", "Passive", "Never lays eggs, goes home or travels.", ["+Breed, tempt and `TryFindWaterGoal`", "+Beach spawn rules and egg state flags", "-`TurtleLayEggGoal`", "-`TurtleGoHomeGoal` and `TurtleTravelGoal`", "-Amphibious navigation"]],
-  strider: ["partial", "Passive", "", ["+Saddle and steering", "+Suffocation off lava", "+Lava spawn rules", "-`StriderGoToLavaGoal`", "-Lava walking"]],
-  cod: ["partial", "Passive", "Bobs in place on the ground navigator.", FISH_ITEMS],
-  salmon: ["partial", "Passive", "Bobs in place on the ground navigator.", FISH_ITEMS],
-  tropical_fish: ["partial", "Passive", "Bobs in place on the ground navigator.", FISH_ITEMS],
-  pufferfish: ["partial", "Passive", "Bobs in place on the ground navigator.", [...FISH_ITEMS, "-`PufferfishPuffGoal`"], []],
-  squid: ["partial", "Passive", "", ["+Water spawn rules", "-Water-bound navigation", "-`SquidRandomMovementGoal`", "-`SquidFleeGoal`", "-Ink cloud"]],
-  glow_squid: ["partial", "Passive", "", ["+Deep water spawn rules", "-Water-bound navigation", "-`SquidRandomMovementGoal`", "-`SquidFleeGoal`", "-Ink cloud"]],
-  dolphin: ["partial", "Passive", "", ["+Generic goals with `TryFindWaterGoal`", "-`BreathAirGoal`", "-`DolphinSwimToTreasureGoal`", "-`DolphinSwimWithPlayerGoal`", "-`DolphinJumpGoal` and `PlayWithItemsGoal`", "-Water-bound navigation"]],
-  tadpole: ["partial", "Passive", "", ["+Basic goals", "+Bucket pickup", "-Brain migration", "-Water-bound navigation"]],
-  axolotl: ["partial", "Passive", "", ["+Attack, breed and tempt", "+Variants and bucket", "+Playing dead", "-Brain migration", "-Water-bound navigation"]],
-  frog: ["partial", "Passive", "", ["+Variants and tempt", "-Tongue attack on slimes and magma cubes", "-Brain migration"], []],
-  bee: ["partial", "Passive", "Registers the generic animal set only, so bees never enter hives, pollinate or grow crops.", ["+Generic animal goals", "+Nectar, sting and hive timer state", "-`BeeAttackGoal` and stinger damage", "-Hive goals", "-`BeePollinateGoal` and `BeeGrowCropGoal`", "-`BeeWanderGoal`", "-Anger targets", "-Flying navigation"], []],
-  allay: ["partial", "Passive", "", ["+Duplication and dancing state", "-Item collection and delivery", "-Note block following", "-Brain migration"]],
-  armadillo: ["partial", "Passive", "", ["+Roll up when threatened", "+Scute shedding and brushing", "+Breed and tempt", "-Brain migration"]],
-  camel: ["partial", "Passive", "", ["+Breed and tempt", "+Saddle and dash state", "-Sitting", "-Brain migration"]],
-  copper_golem: ["partial", "Passive", "", ["+Oxidation states and weather", "+Lightning strike reset", "-Item transport between chests", "-Brain migration"]],
-  goat: ["partial", "Passive", "", ["+Breed and tempt", "+Horns and screaming state", "-Ram attack", "-Horn drop on ram", "-Brain migration"]],
-  sniffer: ["partial", "Passive", "", ["+Digging and seed drops", "+Breed and tempt", "+Explored positions", "-Brain migration"]],
-  nautilus: ["partial", "Passive", "New in 26.2. Taming, riding and dash state exist, but no goals are registered.", ["+Taming, saddle and riding", "+Dash state and sounds", "-Swim and shell behaviour", "-Brain migration"]],
-  zombie_nautilus: ["planned", "Passive", "New in 26.2. Not implemented."],
-  camel_husk: ["planned", "Passive", "New in 26.2. Spawn rules exist but there is no entity type."],
-  iron_golem: ["partial", "Passive", "Attacks monsters and offers flowers. Player targeting is left out until an anger memory exists, so village and reputation behaviour is missing.", ["+`OfferFlowerGoal`", "+Attacks monsters, except creepers", "+`MoveTowardsTargetGoal`", "-Player targeting from anger and reputation", "-`MoveBackToVillageGoal` and `GolemRandomStrollInVillageGoal`", "-Anger memory"], [3430]],
-  snow_golem: ["done", "Passive", "", ["+Snowball ranged attack", "+Pumpkin shearing"]],
-  villager: ["partial", "Villager", "Approximated with goals. Trading, work sites and hostile avoidance work; everything activity and reputation driven is missing.", ["+Trading and `TradeWithPlayerGoal`", "+`WorkAtJobSiteGoal`", "+Gossip and reputation with trade discounts", "+Hostile avoidance and door use", "-Brain migration", "-Breeding", "-Sleep, work and meet activities"], []],
-  wandering_trader: ["partial", "Villager", "Trades, wanders and drinks its potions. Natural spawning and the llama escort are missing.", ["+Trading screen and generated offers", "+Invisibility potion at night", "+Despawn timer and wander targets", "-Natural spawn cycle and `level.dat` persistence", "-Leashed trader llamas", "-Trade offer parity"], [3364, 3083]],
-  mannequin: ["planned", "Villager", "New in 26.x. Not implemented."],
-
-  arrow: ["done", "Projectile", "", ["+Flight, hit and pickup", "+Damage on hit"], []],
-  spectral_arrow: ["done", "Projectile", "Shares the arrow entity.", ["+Shares the arrow entity", "+Glowing effect on hit"]],
-  trident: ["done", "Projectile", "", ["+Thrown trident with pickup", "+Loyalty and riptide through the item"]],
-  snowball: ["done", "Projectile"],
-  egg: ["done", "Projectile", "", [], []],
-  ender_pearl: ["done", "Projectile", "", ["+Teleport on hit", "+Damage to the thrower", "+Endermite spawn chance"]],
-  experience_bottle: ["partial", "Projectile", "Using the item spawns the orbs at the player instead of throwing a bottle.", ["+Experience orbs on use", "-Thrown projectile flight and impact"]],
-  fireball: ["done", "Projectile", "", [], []],
-  small_fireball: ["done", "Projectile"],
-  dragon_fireball: ["planned", "Projectile", "Not implemented."],
-  wither_skull: ["done", "Projectile"],
-  shulker_bullet: ["done", "Projectile"],
-  llama_spit: ["done", "Projectile"],
-  evoker_fangs: ["done", "Projectile"],
-  eye_of_ender: ["done", "Projectile", "", [], []],
-  wind_charge: ["done", "Projectile"],
-  breeze_wind_charge: ["done", "Projectile"],
-  splash_potion: ["done", "Projectile"],
-  lingering_potion: ["done", "Projectile"],
-  firework_rocket: ["done", "Projectile", "", [], []],
-  fishing_bobber: ["partial", "Projectile", "", ["+Casting and hooking", "-Loot tables (gives raw cod only)"], []],
-
-  armor_stand: ["partial", "Decoration", "", ["+Placement, poses and breaking", "-Equipment slot drops on break", "-Fire damage"]],
-  item_frame: ["done", "Decoration"],
-  glow_item_frame: ["done", "Decoration"],
-  painting: ["partial", "Decoration", "", ["+Placement", "-Drop on break"]],
-  block_display: ["done", "Decoration"],
-  cushion: ["partial", "Decoration", "A seat: placed from cushion items, sits one player, is dyeable and drops itself when broken.", ["+Placement, sitting and spawn colour metadata", "+Dye colour", "+Break drops the matching item", "-Get-up sound when standing up"], []],
-  item_display: ["done", "Decoration"],
-  text_display: ["done", "Decoration"],
-  end_crystal: ["done", "Decoration"],
-  leash_knot: ["partial", "Decoration", "", ["+Created when leashing to fences", "-Restored from saved chunks"], []],
-  marker: ["done", "Decoration", "", [], []],
-  interaction: ["done", "Decoration", "", [], []],
-
-  item: ["done", "Misc", "", [], []],
-  experience_orb: ["done", "Misc", "", [], []],
-  falling_block: ["done", "Misc", "", [], []],
-  tnt: ["done", "Misc", "", [], []],
-  lightning_bolt: ["done", "Misc", "", [], []],
-  area_effect_cloud: ["done", "Misc", "", [], []],
-  ominous_item_spawner: ["planned", "Misc", "Not implemented."],
+// Discovery metadata only. Behaviour assessments live in tracker-audits.json.
+const ENTITY_METADATA = {
+  "zombie": {"group": "Hostile", "issues": [1336]},
+  "husk": {"group": "Hostile"},
+  "zombie_villager": {"group": "Hostile"},
+  "drowned": {"group": "Hostile", "issues": [3069, 2162]},
+  "zombified_piglin": {"group": "Hostile"},
+  "skeleton": {"group": "Hostile", "issues": [2537]},
+  "stray": {"group": "Hostile"},
+  "bogged": {"group": "Hostile"},
+  "parched": {"group": "Hostile"},
+  "wither_skeleton": {"group": "Hostile"},
+  "spider": {"group": "Hostile"},
+  "cave_spider": {"group": "Hostile"},
+  "enderman": {"group": "Hostile", "issues": [2872]},
+  "creeper": {"group": "Hostile"},
+  "blaze": {"group": "Hostile", "issues": [1960]},
+  "vex": {"group": "Hostile"},
+  "phantom": {"group": "Hostile"},
+  "guardian": {"group": "Hostile"},
+  "elder_guardian": {"group": "Hostile"},
+  "magma_cube": {"group": "Hostile"},
+  "slime": {"group": "Hostile"},
+  "sulfur_cube": {"group": "Hostile", "issues": [3114]},
+  "ghast": {"group": "Hostile"},
+  "happy_ghast": {"group": "Passive"},
+  "endermite": {"group": "Hostile"},
+  "silverfish": {"group": "Hostile"},
+  "witch": {"group": "Hostile", "issues": [1302]},
+  "illusioner": {"group": "Hostile"},
+  "vindicator": {"group": "Hostile"},
+  "pillager": {"group": "Hostile"},
+  "evoker": {"group": "Hostile"},
+  "ravager": {"group": "Hostile"},
+  "piglin": {"group": "Hostile", "issues": [3376]},
+  "piglin_brute": {"group": "Hostile"},
+  "hoglin": {"group": "Hostile"},
+  "zoglin": {"group": "Hostile"},
+  "warden": {"group": "Hostile"},
+  "breeze": {"group": "Hostile"},
+  "creaking": {"group": "Hostile"},
+  "shulker": {"group": "Hostile"},
+  "giant": {"group": "Hostile"},
+  "bat": {"group": "Passive"},
+  "wither": {"group": "Boss"},
+  "ender_dragon": {"group": "Boss"},
+  "cow": {"group": "Passive"},
+  "pig": {"group": "Passive"},
+  "sheep": {"group": "Passive"},
+  "chicken": {"group": "Passive"},
+  "mooshroom": {"group": "Passive"},
+  "wolf": {"group": "Passive", "issues": [2998, 2789]},
+  "cat": {"group": "Passive"},
+  "ocelot": {"group": "Passive"},
+  "parrot": {"group": "Passive"},
+  "rabbit": {"group": "Passive"},
+  "polar_bear": {"group": "Passive"},
+  "fox": {"group": "Passive"},
+  "panda": {"group": "Passive"},
+  "horse": {"group": "Passive"},
+  "donkey": {"group": "Passive"},
+  "mule": {"group": "Passive"},
+  "skeleton_horse": {"group": "Passive"},
+  "zombie_horse": {"group": "Passive"},
+  "llama": {"group": "Passive"},
+  "trader_llama": {"group": "Passive"},
+  "turtle": {"group": "Passive"},
+  "strider": {"group": "Passive"},
+  "cod": {"group": "Passive"},
+  "salmon": {"group": "Passive"},
+  "tropical_fish": {"group": "Passive"},
+  "pufferfish": {"group": "Passive"},
+  "squid": {"group": "Passive"},
+  "glow_squid": {"group": "Passive"},
+  "dolphin": {"group": "Passive"},
+  "tadpole": {"group": "Passive"},
+  "axolotl": {"group": "Passive"},
+  "frog": {"group": "Passive"},
+  "bee": {"group": "Passive"},
+  "allay": {"group": "Passive"},
+  "armadillo": {"group": "Passive"},
+  "camel": {"group": "Passive"},
+  "copper_golem": {"group": "Passive"},
+  "goat": {"group": "Passive"},
+  "sniffer": {"group": "Passive"},
+  "nautilus": {"group": "Passive"},
+  "zombie_nautilus": {"group": "Passive"},
+  "camel_husk": {"group": "Passive"},
+  "iron_golem": {"group": "Passive", "issues": [3430]},
+  "snow_golem": {"group": "Passive"},
+  "villager": {"group": "Villager"},
+  "wandering_trader": {"group": "Villager", "issues": [3364, 3083]},
+  "mannequin": {"group": "Villager"},
+  "arrow": {"group": "Projectile"},
+  "spectral_arrow": {"group": "Projectile"},
+  "trident": {"group": "Projectile"},
+  "snowball": {"group": "Projectile"},
+  "egg": {"group": "Projectile"},
+  "ender_pearl": {"group": "Projectile"},
+  "experience_bottle": {"group": "Projectile"},
+  "fireball": {"group": "Projectile"},
+  "small_fireball": {"group": "Projectile"},
+  "dragon_fireball": {"group": "Projectile"},
+  "wither_skull": {"group": "Projectile"},
+  "shulker_bullet": {"group": "Projectile"},
+  "llama_spit": {"group": "Projectile"},
+  "evoker_fangs": {"group": "Projectile"},
+  "eye_of_ender": {"group": "Projectile"},
+  "wind_charge": {"group": "Projectile"},
+  "breeze_wind_charge": {"group": "Projectile"},
+  "splash_potion": {"group": "Projectile"},
+  "lingering_potion": {"group": "Projectile"},
+  "firework_rocket": {"group": "Projectile"},
+  "fishing_bobber": {"group": "Projectile"},
+  "armor_stand": {"group": "Decoration"},
+  "item_frame": {"group": "Decoration"},
+  "glow_item_frame": {"group": "Decoration"},
+  "painting": {"group": "Decoration"},
+  "block_display": {"group": "Decoration"},
+  "cushion": {"group": "Decoration"},
+  "item_display": {"group": "Decoration"},
+  "text_display": {"group": "Decoration"},
+  "end_crystal": {"group": "Decoration"},
+  "leash_knot": {"group": "Decoration"},
+  "marker": {"group": "Decoration"},
+  "interaction": {"group": "Decoration"},
+  "item": {"group": "Misc"},
+  "experience_orb": {"group": "Misc"},
+  "falling_block": {"group": "Misc"},
+  "tnt": {"group": "Misc"},
+  "lightning_bolt": {"group": "Misc"},
+  "area_effect_cloud": {"group": "Misc"},
+  "ominous_item_spawner": {"group": "Misc"},
+  "minecart": {"group": "Vehicle"},
+  "chest_minecart": {"group": "Vehicle"},
+  "furnace_minecart": {"group": "Vehicle"},
+  "hopper_minecart": {"group": "Vehicle"},
+  "tnt_minecart": {"group": "Vehicle"},
+  "command_block_minecart": {"group": "Vehicle"},
+  "spawner_minecart": {"group": "Vehicle"},
 };
-
-for (const id of ["minecart", "chest_minecart", "furnace_minecart", "hopper_minecart", "tnt_minecart"]) {
-  ENTITIES[id] = ["done", "Vehicle", "", []];
-}
-ENTITIES.command_block_minecart = ["partial", "Vehicle", "", ["+Rides as a plain minecart", "-Command block execution"]];
-ENTITIES.spawner_minecart = ["partial", "Vehicle", "", ["+Rides as a plain minecart", "-Spawner logic"]];
 
 const vanilla = JSON.parse(fs.readFileSync(path.join(PUMPKIN, "assets/entities.json"), "utf8"));
 const entityIds = Object.keys(vanilla).filter((id) => id !== "player");
 for (const id of entityIds) {
-  if (/_(chest_)?(boat|raft)$/.test(id)) {
-    const chest = id.includes("chest");
-    ENTITIES[id] = ["partial", "Vehicle", "Placement, riding and paddle sync work. Vanilla water physics are not ported.", chest ? CHEST_BOAT_ITEMS : BOAT_ITEMS];
-  }
-}
-
-const missing = entityIds.filter((id) => !ENTITIES[id]);
-if (missing.length) {
-  console.warn("Entities without an audit entry, listed as planned:", missing.join(", "));
-  for (const id of missing) ENTITIES[id] = ["planned", "Misc", "New in the registry and not audited yet."];
+  if (/_(chest_)?(boat|raft)$/.test(id)) ENTITY_METADATA[id] = { group: "Vehicle" };
 }
 
 const GROUP_ORDER = ["Hostile", "Boss", "Passive", "Villager", "Projectile", "Vehicle", "Decoration", "Misc"];
 const entityEntries = entityIds
   .map((id) => {
-    const [status, group, note = "", items = [], issues = []] = ENTITIES[id];
-    const entry = { id, name: humanize(id), group, status };
-    if (note) entry.note = note;
-    if (items.length) entry.items = items.map(item);
+    const { group = "Misc", issues = [] } = ENTITY_METADATA[id] ?? {};
+    const entry = { id, name: humanize(id), group, status: "unknown" };
     const source = entitySource(id);
     if (source) entry.source = source;
     if (issues.length) entry.issues = issues;
@@ -342,17 +299,6 @@ const BLOCK_NAMES = {
   beehive: "Beehive & Bee Nest",
   bed: "Beds",
 };
-const BLOCK_PARTIAL = {
-  piston: "Pushing and block swapping are currently broken.",
-  daylight_detector: "Present but not yet at vanilla parity.",
-  farmland: "Several trampling and hydration TODOs remain.",
-  tripwire: "Several TODOs remain.",
-  tripwire_hook: "Several TODOs remain.",
-  beehive: "Stores bees, but bees never enter or leave it.",
-  sculk_catalyst: "Stub. Does not spread sculk on mob death.",
-  conduit: "Stub. No activation or conduit power.",
-  structure_block: "Stores settings. Loading and saving structures is not verified.",
-};
 const BLOCK_GROUPS = [
   ["Redstone", (p) => p.includes("/redstone/")],
   ["Plants & Crops", (p) => p.includes("/plant/") || p.includes("/coral/")],
@@ -360,15 +306,6 @@ const BLOCK_GROUPS = [
   ["Pistons", (p) => p.includes("/piston/")],
   ["Blocks", () => true],
 ];
-
-function blockIds(file, txt) {
-  const macro = [...txt.matchAll(/pumpkin_block(?:_from_tag)?\("([^"]+)"\)/g)].map((m) => m[1]);
-  if (macro.length) return macro;
-  const idsFn = txt.indexOf("fn ids()");
-  if (idsFn === -1) return [];
-  const body = txt.slice(idsFn, idsFn + 1500);
-  return [...new Set([...body.matchAll(/Block::([A-Z0-9_]+)/g)].map((m) => "minecraft:" + m[1].toLowerCase()))].slice(0, 12);
-}
 
 const blockEntries = [];
 for (const file of walk(path.join(SRC, "block/blocks")).sort()) {
@@ -378,23 +315,20 @@ for (const file of walk(path.join(SRC, "block/blocks")).sort()) {
   if (!/impl BlockBehaviour for/.test(txt) && !/pumpkin_block/.test(txt)) continue;
   const r = rel(file);
   const group = BLOCK_GROUPS.find(([, test]) => test(r))[0];
-  const ids = blockIds(file, txt);
-  const todos = todoCount(file);
+  const ids = declaredIds(txt, "Block");
   const entry = {
-    id: r.replace("crates/pumpkin/src/block/blocks/", "").replace(/\.rs$/, "").replace(/\//g, "-"),
+    id: path.relative(path.join(SRC, "block/blocks"), file).replace(/\\/g, "/").replace(/\.rs$/, "").replace(/\//g, "-"),
     name: BLOCK_NAMES[base] || humanize(base),
     group,
-    status: BLOCK_PARTIAL[base] || todos ? "partial" : "done",
+    status: "unknown",
     source: r,
   };
-  if (BLOCK_PARTIAL[base]) entry.note = BLOCK_PARTIAL[base];
-  else if (todos) entry.note = `${todos} TODO${todos > 1 ? "s" : ""} left in the source.`;
   if (ids.length) entry.ids = ids;
   blockEntries.push(entry);
 }
 blockEntries.push(
-  { id: "lodestone", name: "Lodestone", group: "Blocks", status: "planned", note: "Compass binding is not implemented." },
-  { id: "frogspawn", name: "Frogspawn", group: "Blocks", status: "planned", note: "Placeable, but never hatches into tadpoles." },
+  { id: "lodestone", name: "Lodestone", group: "Blocks", status: "unknown" },
+  { id: "frogspawn", name: "Frogspawn", group: "Blocks", status: "unknown" },
 );
 blockEntries.sort((a, b) => a.group.localeCompare(b.group) || a.name.localeCompare(b.name));
 
@@ -437,16 +371,6 @@ const ITEM_NAMES = {
   map: "Maps",
   compass: "Compass & Recovery Compass",
 };
-const ITEM_PARTIAL = {
-  fishing_rod: "Catches only raw cod. Loot tables are not wired up.",
-  name_tag: "A TODO remains in the source.",
-  mace: "Registered. Smash attack not verified.",
-};
-const ITEM_NOTES = {
-  shield: "Registration. Blocking lives in the combat code.",
-  arrow: "Registration. Flight and damage live in the arrow entity.",
-  swords: "Registration. Sweep and damage live in the combat code.",
-};
 const ITEM_GROUPS = [
   ["Tools & Weapons", new Set(["axe", "hoe", "shovel", "swords", "mace", "spear", "bow", "crossbow", "arrow", "trident", "shield", "shears", "brush", "fishing_rod", "flint_and_steel", "debug_stick"])],
   ["Throwables", new Set(["egg", "snowball", "ender_pearl", "ender_eye", "experience_bottle", "wind_charge", "fire_charge", "firework_rocket", "potions"])],
@@ -460,26 +384,22 @@ for (const file of walk(path.join(SRC, "item/items")).sort()) {
   if (ITEM_SKIP.has(base)) continue;
   const txt = fs.readFileSync(file, "utf8");
   if (!/impl ItemBehaviour for/.test(txt)) continue;
-  const ids = [...new Set([...txt.matchAll(/Item::([A-Z0-9_]+)/g)].map((m) => m[1]))]
-    .filter((i) => !/_SPEED|MULTIPLIER|SHERD|SCUTE|SEEDS|WOOL$|^DISC_/.test(i))
-    .map((i) => "minecraft:" + i.toLowerCase().replace(/^minecraft_|^c_/, ""))
-    .slice(0, 12);
+  const ids = declaredIds(txt, "Item");
   const group = (ITEM_GROUPS.find(([, set]) => set.has(base)) || ITEM_GROUPS[ITEM_GROUPS.length - 1])[0];
   const entry = {
     id: base,
     name: ITEM_NAMES[base] || humanize(base),
     group,
-    status: ITEM_PARTIAL[base] ? "partial" : "done",
+    status: "unknown",
     source: rel(file),
   };
-  if (ITEM_PARTIAL[base] || ITEM_NOTES[base]) entry.note = ITEM_PARTIAL[base] || ITEM_NOTES[base];
   if (ids.length) entry.ids = ids;
   itemEntries.push(entry);
 }
 itemEntries.push(
-  { id: "elytra", name: "Elytra", group: "Utility", status: "partial", note: "Gliding is handled in the player logic rather than an item behaviour. Parity fixes are in review.", source: ensureSource("elytra", "crates/pumpkin/src/entity/player.rs") },
-  { id: "totem_of_undying", name: "Totem of Undying", group: "Utility", status: "done", note: "Handled in the living entity death path.", source: ensureSource("totem_of_undying", "crates/pumpkin/src/entity/living.rs") },
-  { id: "chorus_fruit", name: "Chorus Fruit", group: "Throwables", status: "done", note: "Random teleport handled in the living entity path.", source: ensureSource("chorus_fruit", "crates/pumpkin/src/entity/living.rs") },
+  { id: "elytra", name: "Elytra", group: "Utility", status: "unknown", source: ensureSource("elytra", `${ROOT}/entity/player.rs`) },
+  { id: "totem_of_undying", name: "Totem of Undying", group: "Utility", status: "unknown", source: ensureSource("totem_of_undying", `${ROOT}/entity/living.rs`) },
+  { id: "chorus_fruit", name: "Chorus Fruit", group: "Throwables", status: "unknown", source: ensureSource("chorus_fruit", `${ROOT}/entity/living.rs`) },
 );
 const ITEM_GROUP_ORDER = ITEM_GROUPS.map((g) => g[0]);
 itemEntries.sort((a, b) => ITEM_GROUP_ORDER.indexOf(a.group) - ITEM_GROUP_ORDER.indexOf(b.group) || a.name.localeCompare(b.name));
@@ -506,96 +426,95 @@ for (const name of VANILLA_COMMANDS) {
     id: name,
     name: `/${name}`,
     group: "Vanilla",
-    status: exists ? "done" : "planned",
+    status: "unknown",
   };
-  if (exists) entry.source = `crates/pumpkin/src/command/commands/${file}.rs`;
+  if (exists) entry.source = `${ROOT}/command/commands/${file}.rs`;
   if (COMMAND_ALIASES[name] && exists) entry.note = `Alias of /${COMMAND_ALIASES[name] === "pumpkin" ? "pumpkin" : COMMAND_ALIASES[name]}.`;
   commandEntries.push(entry);
 }
-for (const [name, note] of Object.entries(PUMPKIN_COMMANDS)) {
+for (const name of Object.keys(PUMPKIN_COMMANDS)) {
   if (!commandFiles.has(name)) continue;
-  commandEntries.push({ id: name, name: `/${name}`, group: "Pumpkin", status: "done", note, source: `crates/pumpkin/src/command/commands/${name}.rs` });
+  commandEntries.push({ id: name, name: `/${name}`, group: "Pumpkin", status: "unknown", source: `${ROOT}/command/commands/${name}.rs` });
 }
 
 function checklist(rows) {
-  return rows.map(([name, status, group, note, source]) => {
-    const e = { id: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""), name, group, status };
-    if (note) e.note = note;
+  return rows.map(([name, group, source]) => {
+    const e = { id: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""), name, group, status: "unknown" };
     if (source) e.source = ensureSource(name, source);
     return e;
   });
 }
 
-const BLK = "crates/pumpkin/src/block";
+const BLK = `${ROOT}/block`;
 const RED = `${BLK}/blocks/redstone`;
-const ENT = "crates/pumpkin/src/entity";
-const WLD = "crates/pumpkin/src/world";
+const ENT = `${ROOT}/entity`;
+const WLD = `${ROOT}/world`;
 const PW = "crates/pumpkin-world/src";
 
 const redstoneEntries = checklist([
-  ["Redstone wire signal propagation", "done", "Core", "", `${RED}/redstone_wire.rs`],
-  ["Redstone tick system", "done", "Core", "", `${PW}/tick/scheduler.rs`],
-  ["Hard vs. soft powering", "done", "Core", "", `${RED}/mod.rs`],
-  ["Pressure plates", "done", "Power & Sensors", "", `${RED}/pressure_plate`],
-  ["Tripwire hook", "done", "Power & Sensors", "", `${RED}/tripwire_hook.rs`],
-  ["Trapped chest", "done", "Power & Sensors", "", `${BLK}/entities/trapped_chest.rs`],
-  ["Sculk sensors, shriekers and calibrated sensors", "done", "Power & Sensors", "", `${RED}/sculk_sensor.rs`],
-  ["Daylight detector", "partial", "Power & Sensors", "Block exists but is not yet at vanilla parity.", `${RED}/daylight_detector.rs`],
-  ["Target block", "done", "Power & Sensors", "", `${RED}/target_block.rs`],
-  ["Redstone torch, levers and buttons", "done", "Power & Sensors", "", `${RED}/redstone_torch.rs`],
-  ["Comparator", "done", "Logic & Timing", "", `${RED}/comparator.rs`],
-  ["Repeater", "done", "Logic & Timing", "", `${RED}/repeater.rs`],
-  ["Note block", "done", "Logic & Timing", "", `${BLK}/blocks/note.rs`],
-  ["Hopper item transfer", "done", "Logic & Timing", "", `${BLK}/entities/hopper.rs`],
-  ["Observer", "done", "Logic & Timing", "", `${RED}/observer.rs`],
-  ["Rails", "done", "Logic & Timing", "", `${RED}/rails`],
-  ["Pistons and block swapping", "partial", "Mechanisms", "Currently broken.", `${BLK}/blocks/piston`],
-  ["Dropper", "done", "Mechanisms", "", `${RED}/dropper.rs`],
-  ["Dispenser", "done", "Mechanisms", "", `${RED}/dispenser.rs`],
-  ["Crafter", "done", "Mechanisms", "", `${RED}/crafter.rs`],
-  ["Minecart powering and activation", "done", "Mechanisms", "", `${ENT}/vehicle/minecart.rs`],
-  ["TNT ignition and priming", "done", "Mechanisms", "", `${BLK}/blocks/tnt.rs`],
-  ["Bell", "done", "Interactive", "", `${RED}/bell.rs`],
-  ["Redstone lamp", "done", "Interactive", "", `${RED}/redstone_lamp.rs`],
-  ["Doors, gates and trapdoors", "done", "Interactive", "", `${BLK}/blocks/doors.rs`],
-  ["Lectern signal strength", "done", "Interactive", "", `${BLK}/blocks/lectern.rs`],
-  ["Composter signal strength", "done", "Interactive", "", `${BLK}/blocks/composter.rs`],
+  ["Redstone wire signal propagation", "Core", `${RED}/redstone_wire.rs`],
+  ["Redstone tick system", "Core", `${PW}/tick/scheduler.rs`],
+  ["Hard vs. soft powering", "Core", `${RED}/mod.rs`],
+  ["Pressure plates", "Power & Sensors", `${RED}/pressure_plate`],
+  ["Tripwire hook", "Power & Sensors", `${RED}/tripwire_hook.rs`],
+  ["Trapped chest", "Power & Sensors", `${BLK}/entities/trapped_chest.rs`],
+  ["Sculk sensors, shriekers and calibrated sensors", "Power & Sensors", `${RED}/sculk_sensor.rs`],
+  ["Daylight detector", "Power & Sensors", `${RED}/daylight_detector.rs`],
+  ["Target block", "Power & Sensors", `${RED}/target_block.rs`],
+  ["Redstone torch, levers and buttons", "Power & Sensors", `${RED}/redstone_torch.rs`],
+  ["Comparator", "Logic & Timing", `${RED}/comparator.rs`],
+  ["Repeater", "Logic & Timing", `${RED}/repeater.rs`],
+  ["Note block", "Logic & Timing", `${BLK}/blocks/note.rs`],
+  ["Hopper item transfer", "Logic & Timing", `${BLK}/entities/hopper.rs`],
+  ["Observer", "Logic & Timing", `${RED}/observer.rs`],
+  ["Rails", "Logic & Timing", `${RED}/rails`],
+  ["Pistons and block swapping", "Mechanisms", `${BLK}/blocks/piston`],
+  ["Dropper", "Mechanisms", `${RED}/dropper.rs`],
+  ["Dispenser", "Mechanisms", `${RED}/dispenser.rs`],
+  ["Crafter", "Mechanisms", `${RED}/crafter.rs`],
+  ["Minecart powering and activation", "Mechanisms", `${ENT}/vehicle/minecart.rs`],
+  ["TNT ignition and priming", "Mechanisms", `${BLK}/blocks/tnt.rs`],
+  ["Bell", "Interactive", `${RED}/bell.rs`],
+  ["Redstone lamp", "Interactive", `${RED}/redstone_lamp.rs`],
+  ["Doors, gates and trapdoors", "Interactive", `${BLK}/blocks/doors.rs`],
+  ["Lectern signal strength", "Interactive", `${BLK}/blocks/lectern.rs`],
+  ["Composter signal strength", "Interactive", `${BLK}/blocks/composter.rs`],
 ]);
 
 const combatEntries = checklist([
-  ["Basic melee attack", "done", "Core", "", `${ENT}/player.rs`],
-  ["Tool-based damage calculation", "done", "Core", "", `${ENT}/player.rs`],
-  ["Vanilla knockback", "done", "Core", "", `${ENT}/combat.rs`],
-  ["Attack speed and cooldown indicator", "done", "Core", "", `${ENT}/player.rs`],
-  ["Bows", "done", "Equipment", "", "crates/pumpkin/src/item/items/bow.rs"],
-  ["Crossbows", "done", "Equipment", "", "crates/pumpkin/src/item/items/crossbow.rs"],
-  ["Shields", "done", "Equipment", "", "crates/pumpkin/src/item/items/shield.rs"],
-  ["Tridents", "done", "Equipment", "", "crates/pumpkin/src/item/items/trident.rs"],
-  ["Critical hits", "done", "Mechanics", "", `${ENT}/combat.rs`],
-  ["Damage invulnerability frames", "done", "Mechanics", "", `${ENT}/living.rs`],
-  ["Sweep attack", "done", "Mechanics", "", `${ENT}/combat.rs`],
-  ["Enchantment integration", "done", "Mechanics", "", "crates/pumpkin/src/enchantment/helper.rs"],
-  ["Status effect integration", "done", "Mechanics", "", `${ENT}/effect/mod.rs`],
-  ["1.8 combat mode", "planned", "Mechanics"],
+  ["Basic melee attack", "Core", `${ENT}/player.rs`],
+  ["Tool-based damage calculation", "Core", `${ENT}/player.rs`],
+  ["Vanilla knockback", "Core", `${ENT}/combat.rs`],
+  ["Attack speed and cooldown indicator", "Core", `${ENT}/player.rs`],
+  ["Bows", "Equipment", `${ROOT}/item/items/bow.rs`],
+  ["Crossbows", "Equipment", `${ROOT}/item/items/crossbow.rs`],
+  ["Shields", "Equipment", `${ROOT}/item/items/shield.rs`],
+  ["Tridents", "Equipment", `${ROOT}/item/items/trident.rs`],
+  ["Critical hits", "Mechanics", `${ENT}/combat.rs`],
+  ["Damage invulnerability frames", "Mechanics", `${ENT}/living.rs`],
+  ["Sweep attack", "Mechanics", `${ENT}/combat.rs`],
+  ["Enchantment integration", "Mechanics", `${ROOT}/enchantment/helper.rs`],
+  ["Status effect integration", "Mechanics", `${ENT}/effect/mod.rs`],
+  ["1.8 combat mode", "Mechanics"],
 ]);
 
 const worldEntries = checklist([
-  ["World loading (level.dat, DIM1, DIM-1)", "partial", "Persistence", "26.x format support is still open.", `${PW}/world_info/anvil.rs`],
-  ["World saving", "partial", "Persistence", "26.x format support is still open.", `${PW}/level.rs`],
-  ["Chunk loading (vanilla, linear, pump)", "done", "Persistence", "", `${PW}/chunk/format`],
-  ["Chunk saving", "done", "Persistence", "", `${PW}/chunk/io/file_manager.rs`],
-  ["Chunk generation", "done", "Persistence", "", `${PW}/generation/generator/mod.rs`],
-  ["Flat world generation", "done", "Persistence", "", `${PW}/generation/generator/flat.rs`],
-  ["Redstone", "partial", "Logic & Physics", "Tracked in the Redstone tab.", RED],
-  ["Liquid physics", "done", "Logic & Physics", "", `${BLK}/fluid`],
-  ["Lighting", "done", "Logic & Physics", "", `${PW}/lighting/engine.rs`],
-  ["World time", "done", "Logic & Physics", "", `${WLD}/time.rs`],
-  ["World borders", "done", "Logic & Physics", "", `${WLD}/border.rs`],
-  ["World joining", "done", "Logic & Physics", "", `${WLD}/mod.rs`],
-  ["Player tab list", "done", "Logic & Physics", "", `${WLD}/mod.rs`],
-  ["Scoreboard", "done", "Logic & Physics", "", `${WLD}/scoreboard.rs`],
-  ["Bossbar", "done", "Logic & Physics", "", `${WLD}/bossbar.rs`],
-  ["Entity spawning", "done", "Logic & Physics", "", `${WLD}/natural_spawner.rs`],
+  ["World loading (level.dat, DIM1, DIM-1)", "Persistence", `${PW}/world_info/anvil.rs`],
+  ["World saving", "Persistence", `${PW}/level.rs`],
+  ["Chunk loading (vanilla, linear, pump)", "Persistence", `${PW}/chunk/format`],
+  ["Chunk saving", "Persistence", `${PW}/chunk/io/file_manager.rs`],
+  ["Chunk generation", "Persistence", `${PW}/generation/generator/mod.rs`],
+  ["Flat world generation", "Persistence", `${PW}/generation/generator/flat.rs`],
+  ["Redstone", "Logic & Physics", RED],
+  ["Liquid physics", "Logic & Physics", `${BLK}/fluid`],
+  ["Lighting", "Logic & Physics", `${PW}/lighting/engine.rs`],
+  ["World time", "Logic & Physics", `${WLD}/time.rs`],
+  ["World borders", "Logic & Physics", `${WLD}/border.rs`],
+  ["World joining", "Logic & Physics", `${WLD}/mod.rs`],
+  ["Player tab list", "Logic & Physics", `${WLD}/mod.rs`],
+  ["Scoreboard", "Logic & Physics", `${WLD}/scoreboard.rs`],
+  ["Bossbar", "Logic & Physics", `${WLD}/bossbar.rs`],
+  ["Entity spawning", "Logic & Physics", `${WLD}/natural_spawner.rs`],
 ]);
 
 const knownIssues = new Map();
@@ -606,6 +525,7 @@ if (fs.existsSync(OUT)) {
 }
 
 async function issueInfo(number) {
+  if (process.env.TRACKER_OFFLINE === "1") return knownIssues.get(number) ?? { number };
   const headers = { accept: "application/vnd.github+json" };
   if (process.env.GITHUB_TOKEN) headers.authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
   try {
@@ -631,20 +551,31 @@ const out = {
   commit,
   updated: commitDate,
   categories: [
-    { id: "entities", label: "Entities", unit: "entities", tracking: 3468, description: `All ${entityEntries.length} entity types in the ${mcVersion} registry, compared with the goal sets vanilla registers for each one.`, entries: entityEntries },
-    { id: "blocks", label: "Blocks", unit: "block behaviours", description: "Every block behaviour class in the server. Most vanilla blocks need no behaviour, so this tracks the interactive ones.", entries: blockEntries },
-    { id: "items", label: "Items", unit: "item behaviours", description: "Every item behaviour class in the server. Plain items and food need no behaviour of their own.", entries: itemEntries },
-    { id: "commands", label: "Commands", unit: "commands", tracking: 15, description: "Every command listed on the Minecraft wiki for Java Edition, plus the Pumpkin extras.", entries: commandEntries },
-    { id: "redstone", label: "Redstone", unit: "components", tracking: 1402, description: "Signal, timing and mechanism parity, from the maintainers' redstone tracking issue.", entries: redstoneEntries },
-    { id: "combat", label: "Combat", unit: "mechanics", tracking: 1404, description: "Melee, ranged and damage mechanics, from the combat tracking issue.", entries: combatEntries },
-    { id: "world", label: "World", unit: "systems", tracking: 1403, description: "Persistence, physics and world systems, from the world engine tracking issue.", entries: worldEntries },
+    { id: "entities", label: "Entities", unit: "entities", tracking: 3468, description: `All ${entityEntries.length} entity types in the ${mcVersion} registry, with source reviews where available. Registry presence alone does not establish behaviour parity.`, entries: entityEntries },
+    { id: "blocks", label: "Blocks", unit: "block behaviours", description: "Block behaviour files discovered in the server source, plus explicitly tracked gaps. File discovery is not a complete vanilla block audit.", entries: blockEntries },
+    { id: "items", label: "Items", unit: "item behaviours", description: "Item behaviour files discovered in the server source, plus selected shared mechanics. File discovery is not a complete vanilla item audit.", entries: itemEntries },
+    { id: "commands", label: "Commands", unit: "commands", tracking: 15, description: "Curated Java command inventory and Pumpkin extras. A matching filename does not establish command or alias parity.", entries: commandEntries },
+    { id: "redstone", label: "Redstone", unit: "components", tracking: 1402, description: "Inventory of redstone components and mechanics; assessments require a source review.", entries: redstoneEntries },
+    { id: "combat", label: "Combat", unit: "mechanics", tracking: 1404, description: "Inventory of melee, ranged and damage mechanics; assessments require a source review.", entries: combatEntries },
+    { id: "world", label: "World", unit: "systems", tracking: 1403, description: "Inventory of persistence, physics and world systems; assessments require a source review.", entries: worldEntries },
   ],
 };
+
+for (const category of out.categories) {
+  category.entries = category.entries.map((entry) => {
+    const key = `${category.id}:${entry.id}`;
+    const result = assess(entry, audits.entries[key], PUMPKIN, baseline.entries[key], baseline.commit);
+    // The existing tracker renders three statuses. An unreviewed change is
+    // incomplete evidence, not proof that a feature is absent or planned.
+    if (result.status === "unknown") result.status = "partial";
+    return result;
+  });
+}
 
 fs.writeFileSync(OUT, JSON.stringify(out, null, 2) + "\n");
 
 for (const c of out.categories) {
-  const n = { done: 0, partial: 0, planned: 0 };
+  const n = Object.fromEntries(STATUSES.map((status) => [status, 0]));
   for (const e of c.entries) n[e.status]++;
-  console.log(`${c.label.padEnd(10)} ${String(c.entries.length).padStart(4)} total  ${String(n.done).padStart(4)} done  ${String(n.partial).padStart(4)} partial  ${String(n.planned).padStart(4)} planned`);
+  console.log(`${c.label.padEnd(10)} ${String(c.entries.length).padStart(4)} total  ${String(n.done).padStart(4)} done  ${String(n.partial).padStart(4)} partial  ${String(n.planned).padStart(4)} planned  ${String(n.unknown).padStart(4)} needs audit`);
 }

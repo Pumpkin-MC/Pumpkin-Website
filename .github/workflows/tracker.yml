@@ -30,7 +30,10 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: node scripts/generate-tracker.mjs pumpkin
+      - name: Check tracker evidence rules
+        run: node --test scripts/tracker-*.test.mjs
+      - name: Generate tracker from Pumpkin source
+        run: node scripts/generate-tracker.mjs pumpkin
         env:
           GITHUB_TOKEN: ${{ github.token }}
       - run: npm ci
