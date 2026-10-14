@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "developers": "Programiści",
+    "docs": "Dokumentacja",
+    "community": "Społeczność",
+    "market": "Rynek",
+
+    "tracker": "Tracker",
+    "download": "Pobierz",
+    "language": "Język",
+    "menu": "Menu"
+  },
+  "hero": {
+    "title": "Serwer Minecraft, który startuje w <hl>5 ms.</hl>",
+    "benchTitle": "Czas startu",
+    "benchNote": "Ten sam świat, ta sama maszyna, mierzone od uruchomienia do „gracze mogą dołączyć”.",
+    "runAgain": "Uruchom ponownie",
+    "loading": "ładowanie",
+    "ready": "gotowy",
+    "lede": "Pumpkin to serwer Minecraft napisany w Rust. Bez instalowania Javy, jeden plik do uruchomienia, gracze Java i Bedrock na tym samym świecie.",
+    "download": "Pobierz",
+    "docs": "Przeczytaj dokumentację"
+  },
+  "facts": {
+    "title": "Czym Pumpkin jest <hl>dzisiaj</hl>",
+    "items": [
+      {
+        "big": "Bez JVM",
+        "lead": "Jeden natywny plik wykonywalny. Nic do instalowania, żadnych flag do strojenia, żadnego skryptu startowego.",
+        "rest": "Wrzuć do folderu i uruchom."
+      },
+      {
+        "big": "~100 MB",
+        "lead": "Pamięć w spoczynku przy wczytanym świecie.",
+        "rest": "Vanilla zajmuje prawie 1,8 GB, zanim ktokolwiek dołączy."
+      },
+      {
+        "big": "Wszystkie rdzenie",
+        "lead": "Napisany do pracy równoległej od pierwszego commita,",
+        "rest": "nie jeden główny wątek z doklejonymi pomocnikami."
+      },
+      {
+        "big": "Java + Bedrock",
+        "lead": "Obie edycje grają na tym samym świecie.",
+        "rest": "Wbudowane, bez proxy z przodu, bez pluginu do instalacji."
+      },
+      {
+        "big": "9 języków",
+        "lead": "Pisz pluginy w Rust, Kotlin, Python, Go, C#, C, D, Zig lub TypeScript.",
+        "rest": "Jedno API pod spodem, wybierz język, który już znasz."
+      },
+      {
+        "big": "GPL-3.0",
+        "lead": "Cały serwer, nie rdzeń z płatną wersją.",
+        "rest": "Czytaj, forkuj, publikuj."
+      }
+    ],
+    "earlyTag": "Wczesny rozwój",
+    "earlyBody": "<b>Pumpkin nie jest jeszcze gotowy.</b> Nie każda mechanika vanilla jest już dostępna, światy mogą się psuć między wersjami, a klucze konfiguracji wciąż się zmieniają. Najpierw uruchom go na serwerze testowym, rób kopie zapasowe i <report>zgłaszaj, co nie działa</report>. <docs>dokumentacja</docs> mówi, co działa dzisiaj."
+  }
+}
