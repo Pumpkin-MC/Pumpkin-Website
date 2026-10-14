@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.51",
-  "commit": "b0c48b2d7688bbfa09956adf530b8bc56dcc0c56",
-  "updated": "2026-10-12",
+  "commit": "36f9341f27b8af3414ca9a33f203ac274360490c",
+  "updated": "2026-10-13",
   "categories": [
     {
       "id": "entities",
@@ -4963,34 +4963,12 @@
           "ids": [
             "minecraft:conduit"
           ],
-          "note": "The block and block entity store placement/NBT state but have no ticking activation or conduit-power/attack implementation.",
-          "items": [
-            {
-              "text": "Waterlogged placement and block-entity NBT",
-              "done": true
-            },
-            {
-              "text": "Frame activation, conduit-power application and hostile targeting",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/conduit.rs",
-              "line": 11
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/entities/conduit.rs",
-              "line": 14
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "crafting_table",
@@ -5253,29 +5231,12 @@
           "ids": [
             "minecraft:farmland"
           ],
-          "note": "Rain hydration is implemented. Remaining differences are entity displacement on dirt conversion, the fence-gate exception and checking water blocks instead of fluid states.",
-          "items": [
-            {
-              "text": "Rain/water hydration, drying and dirt conversion",
-              "done": true
-            },
-            {
-              "text": "Entity displacement, fence-gate exception and fluid-aware water checks",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/farmland.rs",
-              "line": 25
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "fence_gates",
@@ -7134,29 +7095,12 @@
           "group": "Plants & Crops",
           "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/plant/crop/gourds/stem.rs",
-          "note": "Growth and fruit placement exist, but random_tick omits the vanilla light check.",
-          "items": [
-            {
-              "text": "Growth, fruit placement and bonemeal",
-              "done": true
-            },
-            {
-              "text": "Light-level gating of random growth",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/plant/crop/gourds/stem.rs",
-              "line": 26
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "plant-roots",
