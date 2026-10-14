@@ -100,16 +100,19 @@ export function HeroPumpkin({ className }: { className: string }) {
     let cancelled = false;
     const cancelWait = whenWanted(el, (initialAim) => {
       import("./pumpkinScene")
-        .then(({ mountPumpkin }) =>
-          mountPumpkin({
+        .then(({ mountPumpkin }) => {
+          // Unmounted while the module was loading: don't create a renderer for a detached canvas.
+          if (cancelled) return undefined;
+          return mountPumpkin({
             canvas: el,
             modelUrl: withBase("/assets/pumpkin/pumpkin.glb"),
             onReady: () => !cancelled && setLive(true),
             onLost: () => setLive(false),
             initialAim,
-          }),
-        )
+          });
+        })
         .then((teardown) => {
+          if (!teardown) return;
           if (cancelled) teardown();
           else dispose = teardown;
         })
