@@ -13,7 +13,7 @@ interface NetworkInformation {
   saveData?: boolean;
 }
 
-/** The live 3D pumpkin costs ~370 kB gzipped and a GPU context, so skip it where it isn't wanted. */
+/** The live 3D pumpkin costs ~515 kB gzipped and a GPU context, so skip it where it isn't wanted. */
 function wants3D(): boolean {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
   const connection = (navigator as Navigator & { connection?: NetworkInformation }).connection;

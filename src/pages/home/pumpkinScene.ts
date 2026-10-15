@@ -128,9 +128,12 @@ export async function mountPumpkin({ canvas, modelUrl, onReady, onLost, initialA
     await yieldToMain();
     if (disposed) return dispose;
     await renderer.compileAsync(scene, camera);
+    // Anisotropic filtering keeps the cel edges crisp as the sides turn away from the camera.
+    const anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
     for (const texture of texturesOf(pivot)) {
       await yieldToMain();
       if (disposed) return dispose;
+      texture.anisotropy = anisotropy;
       renderer.initTexture(texture);
     }
     await yieldToMain();

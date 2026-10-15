@@ -52,6 +52,7 @@ function fixture(t) {
     setPixelRatio: mock.fn(), setSize: mock.fn(), render: mock.fn(),
     compileAsync: mock.fn(async () => {}), initTexture: mock.fn(),
     dispose: mock.fn(), forceContextLoss: mock.fn(),
+    capabilities: { getMaxAnisotropy: () => 16 },
   };
   decoder = { setDecoderPath() { return this; }, dispose: mock.fn() };
   loadModel = async () => ({ scene: new Group() });
