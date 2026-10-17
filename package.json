@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "node --experimental-strip-types --experimental-test-module-mocks --test scripts/*.test.mjs",
     "typecheck": "tsc --noEmit",
     "build": "npm run typecheck && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "preview": "vite preview"
@@ -11,13 +12,15 @@
   "dependencies": {
     "jsvectormap": "^1.7.0",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react-dom": "^19.3.0",
+    "three": "^0.186.1"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^24.0.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.186.0",
     "@vitejs/plugin-react": "^6.1.1",
     "shiki": "^4.4.3",
     "tailwindcss": "^4.3.3",
