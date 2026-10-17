@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.51",
-  "commit": "5b53f064af8708ba33fcaa533b81ca29a53a3310",
-  "updated": "2026-10-14",
+  "commit": "924e627d5a77eab5a2b473a4ebbd8b6176395cab",
+  "updated": "2026-10-16",
   "categories": [
     {
       "id": "entities",
@@ -53,44 +53,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/skeleton/bogged.rs",
-          "note": "The shared bow attack always constructs a plain ARROW payload; the wrapper supplies neither poison arrows nor shearing.",
-          "items": [
-            {
-              "text": "Inherited skeleton ranged attacks and equipment",
-              "done": true
-            },
-            {
-              "text": "Poison arrow payload and shearing interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/bogged.rs",
-              "line": 12
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/mod.rs",
-              "line": 33
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/bow_attack.rs",
-              "line": 40
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/equipment.rs",
-              "line": 485
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "breeze",
@@ -168,34 +136,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/creaking.rs",
-          "note": "Gaze changes call stop_in_place once. Shared AI continues ticking goals/navigation without a can_move gate, so the frozen flag does not continuously suppress movement/attacks. Brain migration alone was a misleading gap.",
-          "items": [
-            {
-              "text": "Heart binding, gaze detection and teardown effects",
-              "done": true
-            },
-            {
-              "text": "Keep navigation and attacks disabled throughout the frozen state",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/creaking.rs",
-              "line": 60
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "creeper",
@@ -280,34 +226,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/elder_guardian.rs",
-          "note": "The source has targets and retaliation, but no beam attack or guardian swimming controller. Elder guardian also applies mining fatigue; the two entities are not look-only scaffolds.",
-          "items": [
-            {
-              "text": "Targeting and retaliation damage",
-              "done": true
-            },
-            {
-              "text": "Beam attack and water-specific swimming",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/elder_guardian.rs",
-              "line": 25
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "enderman",
@@ -335,34 +259,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/endermite.rs",
-          "note": "The goal list omits powder-snow escape and revenge. The lifetime counter removes the entity at 2400 ticks without the vanilla persistence-required guard.",
-          "items": [
-            {
-              "text": "Melee, player targeting and lifetime persistence",
-              "done": true
-            },
-            {
-              "text": "Powder-snow escape, revenge targeting and persistence-aware lifetime",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/endermite.rs",
-              "line": 23
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "evoker",
@@ -446,34 +348,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/guardian.rs",
-          "note": "The source has targets and retaliation, but no beam attack or guardian swimming controller. Elder guardian also applies mining fatigue; the two entities are not look-only scaffolds.",
-          "items": [
-            {
-              "text": "Targeting and retaliation damage",
-              "done": true
-            },
-            {
-              "text": "Beam attack and water-specific swimming",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/guardian.rs",
-              "line": 22
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "hoglin",
@@ -603,34 +483,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/skeleton/parched.rs",
-          "note": "The shared bow attack uses a plain ARROW rather than the variant-specific payload. This was previously only marked unverified.",
-          "items": [
-            {
-              "text": "Inherited skeleton ranged attacks",
-              "done": true
-            },
-            {
-              "text": "Variant-specific arrow payload",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/parched.rs",
-              "line": 13
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/bow_attack.rs",
-              "line": 40
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "phantom",
@@ -847,39 +705,12 @@
               "state": "closed"
             }
           ],
-          "note": "The shared bow interval is fixed at 20 ticks. Vanilla reassesses the bow goal using difficulty-dependent intervals.",
-          "items": [
-            {
-              "text": "Held-bow-gated ranged attacks and default equipment",
-              "done": true
-            },
-            {
-              "text": "Difficulty-scaled bow interval",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/skeleton.rs",
-              "line": 14
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/mod.rs",
-              "line": 33
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/bow_attack.rs",
-              "line": 40
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "slime",
@@ -954,34 +785,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/skeleton/stray.rs",
-          "note": "The shared bow attack constructs a plain ARROW item, and the wrapper does not override it with slowness.",
-          "items": [
-            {
-              "text": "Inherited skeleton ranged attacks and equipment",
-              "done": true
-            },
-            {
-              "text": "Slowness arrow payload",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/stray.rs",
-              "line": 13
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/bow_attack.rs",
-              "line": 40
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "sulfur_cube",
@@ -1135,34 +944,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/skeleton/wither.rs",
-          "note": "The wrapper has no on_attack hook to apply the vanilla 200-tick Wither effect. Equipment is handled by the shared equipment registry, so a missing wrapper equipment override was not proof of missing swords.",
-          "items": [
-            {
-              "text": "Inherited skeleton movement and shared equipment spawning",
-              "done": true
-            },
-            {
-              "text": "Apply Wither after a successful melee attack",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/wither.rs",
-              "line": 13
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/equipment.rs",
-              "line": 485
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "zoglin",
@@ -1437,34 +1224,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/axolotl.rs",
-          "note": "The play-dead state/timer exists, but no damage hook selects it. The shared mob uses ground navigation rather than axolotl water movement.",
-          "items": [
-            {
-              "text": "Melee, breeding, bucket state and play-dead timer",
-              "done": true
-            },
-            {
-              "text": "Water navigation and trigger playing dead on damage",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/axolotl.rs",
-              "line": 45
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "bat",
@@ -1472,34 +1237,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/bat.rs",
-          "note": "Custom airborne velocity steering is implemented; a missing FlyingNavigation class was a misleading reason. Shared ticking still calls its AI before the NoAI guard.",
-          "items": [
-            {
-              "text": "Roosting, airborne steering, wakeup and sound handling",
-              "done": true
-            },
-            {
-              "text": "Honour NoAI for flying/roosting AI",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/bat.rs",
-              "line": 32
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "bee",
@@ -1641,39 +1384,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/cod.rs",
-          "note": "These fish use the shared ground navigator and generic wander/float goals. They have no schooling state or follower behaviour.",
-          "items": [
-            {
-              "text": "Generic water escape/float and wander goals",
-              "done": true
-            },
-            {
-              "text": "Water-bound swimming and school/follower behaviour",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/cod.rs",
-              "line": 22
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/pathfinder/mod.rs",
-              "line": 48
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "copper_golem",
@@ -1734,34 +1450,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/dolphin.rs",
-          "note": "Food sets got_fish, but no treasure navigation consumes it. Air-seeking and play behaviours are also missing.",
-          "items": [
-            {
-              "text": "Food interaction, melee and revenge",
-              "done": true
-            },
-            {
-              "text": "Air seeking, fish-guided treasure search and item play",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/dolphin.rs",
-              "line": 35
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "donkey",
@@ -1859,34 +1553,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/glow_squid.rs",
-          "note": "The source has no squid-specific swimming controller, flee behaviour or damage ink response. Glow squid does not inherit squid behaviour from its own wrapper.",
-          "items": [
-            {
-              "text": "Generic movement/look goals",
-              "done": true
-            },
-            {
-              "text": "Squid swimming/fleeing and ink response",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/glow_squid.rs",
-              "line": 22
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "goat",
@@ -1924,34 +1596,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/happy_ghast.rs",
-          "note": "The entity uses generic ground navigation, and its interaction only delegates feeding. Harness riding/passenger handling is not implemented here.",
-          "items": [
-            {
-              "text": "Temptation, leash/still-state sync and feeding",
-              "done": true
-            },
-            {
-              "text": "Flying navigation and harness passenger riding",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/happy_ghast.rs",
-              "line": 40
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "horse",
@@ -2123,34 +1773,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/nautilus.rs",
-          "note": "The constructor has no goals and the runtime only handles passenger effects/cooldowns/particles. Riding state exists but does not supply autonomous nautilus AI.",
-          "items": [
-            {
-              "text": "Taming, saddling, dash cooldown and passenger breathing effect",
-              "done": true
-            },
-            {
-              "text": "Autonomous underwater movement and target/tempt AI",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/nautilus.rs",
-              "line": 38
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "ocelot",
@@ -2306,34 +1934,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/pufferfish.rs",
-          "note": "There is no puff state, threat detector or collision sting handler. The shared navigator also does not provide fish-specific swimming.",
-          "items": [
-            {
-              "text": "Generic movement goals",
-              "done": true
-            },
-            {
-              "text": "Puff-up threat detection, puff metadata and sting damage",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/pufferfish.rs",
-              "line": 22
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "rabbit",
@@ -2371,39 +1977,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/salmon.rs",
-          "note": "These fish use the shared ground navigator and generic wander/float goals. They have no schooling state or follower behaviour.",
-          "items": [
-            {
-              "text": "Generic water escape/float and wander goals",
-              "done": true
-            },
-            {
-              "text": "Water-bound swimming and school/follower behaviour",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/salmon.rs",
-              "line": 19
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/pathfinder/mod.rs",
-              "line": 48
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "sheep",
@@ -2521,34 +2100,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/squid.rs",
-          "note": "The source has no squid-specific swimming controller, flee behaviour or damage ink response. Glow squid does not inherit squid behaviour from its own wrapper.",
-          "items": [
-            {
-              "text": "Generic movement/look goals",
-              "done": true
-            },
-            {
-              "text": "Squid swimming/fleeing and ink response",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/squid.rs",
-              "line": 19
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "strider",
@@ -2586,39 +2143,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/tadpole.rs",
-          "note": "mob_tick only runs ageable_ai_step. No age-to-frog replacement is wired, and navigation remains generic ground navigation.",
-          "items": [
-            {
-              "text": "Food growth acceleration and generic water-finding",
-              "done": true
-            },
-            {
-              "text": "Water-bound swimming and conversion into a frog",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/tadpole.rs",
-              "line": 32
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ageable.rs",
-              "line": 17
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "trader_llama",
@@ -2661,39 +2191,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/tropical_fish.rs",
-          "note": "These fish use the shared ground navigator and generic wander/float goals. They have no schooling state or follower behaviour.",
-          "items": [
-            {
-              "text": "Generic water escape/float and wander goals",
-              "done": true
-            },
-            {
-              "text": "Water-bound swimming and school/follower behaviour",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/tropical_fish.rs",
-              "line": 19
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/pathfinder/mod.rs",
-              "line": 48
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "turtle",
@@ -2879,39 +2382,12 @@
               "state": "open"
             }
           ],
-          "note": "Trading is generated from trade sets and dynamic entries. There is no natural spawning/llama escort scheduler. The world writes trader data from existing/default values rather than active scheduler state.",
-          "items": [
-            {
-              "text": "Trades, potion use, wandering and entity NBT",
-              "done": true
-            },
-            {
-              "text": "Natural spawning, llama escort and active spawn-state persistence",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/wandering_trader.rs",
-              "line": 53
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-world/src/world_info/anvil.rs",
-              "line": 40
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-world/src/world_info/data_files.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "arrow",
@@ -10746,34 +10222,12 @@
           "group": "Persistence",
           "status": "partial",
           "source": "crates/pumpkin-world/src/world_info/anvil.rs",
-          "note": "26.x split-file reading is implemented. read_world_info reads weather.dat but transfers only clear_weather_time into LevelData, omitting rain/thunder state.",
-          "items": [
-            {
-              "text": "Legacy level.dat and split data-file reading",
-              "done": true
-            },
-            {
-              "text": "Restore rain/thunder state from weather.dat",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-world/src/world_info/anvil.rs",
-              "line": 40
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-world/src/world_info/data_files.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "world-saving",
@@ -10781,39 +10235,12 @@
           "group": "Persistence",
           "status": "partial",
           "source": "crates/pumpkin-world/src/level.rs",
-          "note": "26.x split-file output is implemented. Weather output reuses stored rain/thunder values, while boss events, scheduled events, random sequences, scoreboard and stopwatches use create-if-missing stubs rather than serialising active state.",
-          "items": [
-            {
-              "text": "Chunk/level saving and split data-file output",
-              "done": true
-            },
-            {
-              "text": "Persist live weather and supported world subsystem state",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-world/src/level.rs",
-              "line": 151
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-world/src/world_info/anvil.rs",
-              "line": 40
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-world/src/world_info/data_files.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "chunk-loading-vanilla-linear-pump",
