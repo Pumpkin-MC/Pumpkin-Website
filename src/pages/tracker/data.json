@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.51",
-  "commit": "998c3f872c39bb68167c6f2a47799730a23aa751",
-  "updated": "2026-10-17",
+  "commit": "c7a234ab8a3b3296d68a5f40411995920e11528a",
+  "updated": "2026-10-18",
   "categories": [
     {
       "id": "entities",
@@ -1327,29 +1327,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/cat.rs",
-          "note": "Generic player avoidance and target selection already exist. Sitting/lying-on-block and leap/attack execution are not wired; merely missing CatAvoidEntityGoal was not proof that avoidance was absent.",
-          "items": [
-            {
-              "text": "Taming, breeding, owner following and prey selection",
-              "done": true
-            },
-            {
-              "text": "Sit/lie-on-block behaviour, leaping and executing prey attacks",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/cat.rs",
-              "line": 38
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "chicken",
@@ -8792,41 +8775,14 @@
           "id": "locate",
           "name": "/locate",
           "group": "Vanilla",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/command/commands/locate.rs",
-          "note": "Structure lookup resolves the requested structure inside its placement set, so fortress and bastion queries no longer return the other structure. Upstream tests cover shared sets, tags and invalid set names.",
-          "items": [
-            {
-              "text": "Individual structure lookup within shared sets",
-              "done": true
-            },
-            {
-              "text": "Structure tags and invalid-name rejection",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "fn wanted_structures",
-              "source": "crates/pumpkin-core/src/command/commands/locate.rs",
-              "line": 116
-            },
-            {
-              "label": "StructurePlacementType::RandomSpread",
-              "source": "crates/pumpkin-core/src/command/commands/locate.rs",
-              "line": 246
-            },
-            {
-              "label": "fn nether_structures_resolve_separately",
-              "source": "crates/pumpkin-core/src/command/commands/locate.rs",
-              "line": 451
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "loot",
