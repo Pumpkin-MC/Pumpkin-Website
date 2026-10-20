@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { checklist, columns, type Support } from "./checklist";
+import { checklist, columns, type Support } from "./checklistData";
 
 const marks: Record<Support, { glyph: string; label: string; background: string }> = {
   yes: { glyph: "✓", label: "Yes", background: "bg-success" },
