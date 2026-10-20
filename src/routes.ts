@@ -47,12 +47,12 @@ export const routes: Route[] = [
   },
   {
     id: "donate",
-    breadcrumb: "Donate",
+    breadcrumb: "Sponsor",
     path: "/donate/",
     html: "donate/index.html",
-    title: "Donate - Pumpkin",
+    title: "Sponsor - Pumpkin",
     description: "Support Pumpkin, the fastest Minecraft server, by becoming a sponsor.",
-    ogTitle: "Donate - Pumpkin",
+    ogTitle: "Sponsor - Pumpkin",
     ogDescription: "Support Pumpkin, the fastest Minecraft server, by becoming a sponsor.",
   },
   {

@@ -30,22 +30,23 @@ const tierOrder = [
   { slug: "tier-bronze", name: "Bronze" },
 ];
 
-const ONE_TIME_DONATION_URL = "https://donate.stripe.com/00w3cudFIfPL7xPeyb5os0a";
+const ONE_TIME_SPONSOR_URL = "https://buy.stripe.com/00w3cudFIfPL7xPeyb5os0a";
+const CUSTOMER_PORTAL_URL = "https://billing.stripe.com/p/login/8x23cueJM7jfaK14XB5os00";
 
 const monthlyTiers = [
-  { name: "Bronze", amount: 5, href: "https://donate.stripe.com/8x23cueJM7jfaK14XB5os00" },
-  { name: "Silver", amount: 10, href: "https://donate.stripe.com/9B600i31432ZcS93Tx5os01" },
-  { name: "Gold", amount: 20, href: "https://donate.stripe.com/bJe8wOgRU7jf3hzblZ5os02" },
-  { name: "Platinum", amount: 50, href: "https://donate.stripe.com/4gMaEW6dg9rndWd9dR5os03" },
-  { name: "Titanium", amount: 100, href: "https://donate.stripe.com/8x29AS0SWavr5pH89N5os04" },
-  { name: "Diamond", amount: 250, href: "https://donate.stripe.com/00w4gygRU473bO50Hl5os05" },
+  { name: "Bronze", amount: 5, perk: "Credits listing & Discord role", href: "https://buy.stripe.com/8x23cueJM7jfaK14XB5os00" },
+  { name: "Silver", amount: 10, perk: "Credits listing, link & Discord role", href: "https://buy.stripe.com/9B600i31432ZcS93Tx5os01" },
+  { name: "Gold", amount: 20, perk: "Gold credits, link & Discord role", href: "https://buy.stripe.com/bJe8wOgRU7jf3hzblZ5os02" },
+  { name: "Platinum", amount: 50, perk: "Priority credits, avatar & link", href: "https://buy.stripe.com/4gMaEW6dg9rndWd9dR5os03" },
+  { name: "Titanium", amount: 100, perk: "Featured credits, avatar & link", href: "https://buy.stripe.com/8x29AS0SWavr5pH89N5os04" },
+  { name: "Diamond", amount: 250, perk: "Top-tier credits, avatar & link", href: "https://buy.stripe.com/00w4gygRU473bO50Hl5os05" },
 ];
 
 const corporateTiers = [
-  { name: "Corporate Bronze", amount: 500, href: "https://donate.stripe.com/5kQbJ00SWgTP9FX89N5os06" },
-  { name: "Corporate Silver", amount: 1000, href: "https://donate.stripe.com/7sY6oGeJM6fb2dvfCf5os07" },
-  { name: "Corporate Gold", amount: 2000, href: "https://donate.stripe.com/28EfZggRU9rn3hzfCf5os08" },
-  { name: "Corporate Platinum", amount: 4000, href: "https://donate.stripe.com/4gMeVc59cavrdWdfCf5os09" },
+  { name: "Corporate Bronze", amount: 500, perk: "Logo & link in credits", href: "https://buy.stripe.com/5kQbJ00SWgTP9FX89N5os06" },
+  { name: "Corporate Silver", amount: 1000, perk: "Priority logo & link in credits", href: "https://buy.stripe.com/7sY6oGeJM6fb2dvfCf5os07" },
+  { name: "Corporate Gold", amount: 2000, perk: "Featured logo & link in credits", href: "https://buy.stripe.com/28EfZggRU9rn3hzfCf5os08" },
+  { name: "Corporate Platinum", amount: 4000, perk: "Top-tier logo & link in credits", href: "https://buy.stripe.com/4gMeVc59cavrdWdfCf5os09" },
 ];
 
 const inlineLink = "font-semibold text-pumpkin underline underline-offset-3 hover:text-fg";
@@ -158,12 +159,25 @@ export default function Donate() {
   return (
     <>
       <section className="mx-auto max-w-325 px-5 pt-14 md:px-8 md:pt-20">
-        <h1 className="text-[clamp(2.6rem,6vw,5rem)] leading-[0.98] font-extrabold tracking-[-0.015em]">
-          Support Pumpkin<span className="text-pumpkin">.</span>
-        </h1>
-        <p className="mt-5 max-w-xl text-lg text-muted md:text-xl">
-          Help us fund development and infrastructure for the fastest Minecraft server ever.
-        </p>
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <h1 className="text-[clamp(2.6rem,6vw,5rem)] leading-[0.98] font-extrabold tracking-[-0.015em]">
+              Support Pumpkin<span className="text-pumpkin">.</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-lg text-muted md:text-xl">
+              Become a sponsor to support the fastest Minecraft server and get your name, link, or logo featured in our
+              credits and Discord community.
+            </p>
+          </div>
+          <a
+            href={CUSTOMER_PORTAL_URL}
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center border-2 border-white/20 bg-surface px-4 py-2.5 text-sm font-bold text-fg transition-colors hover:border-pumpkin hover:text-pumpkin"
+          >
+            Manage sponsorship →
+          </a>
+        </div>
       </section>
 
       <section className="mx-auto max-w-325 px-5 pt-12 md:px-8 md:pt-16">
@@ -172,7 +186,7 @@ export default function Donate() {
           <p className="text-muted">
             Pick an amount. Prefer a{" "}
             <a href="#one-time" className={inlineLink}>
-              one-time donation
+              one-time sponsorship
             </a>
             ?
           </p>
@@ -190,7 +204,8 @@ export default function Donate() {
                 </span>
                 <span className="mt-3 text-4xl font-extrabold tracking-[-0.02em]">{dollars(tier.amount)}</span>
                 <span className="text-sm text-muted group-hover:text-black/70">per month</span>
-                <span className="mt-6 text-sm font-bold text-pumpkin group-hover:text-black">Sponsor</span>
+                <span className="mt-3 text-xs text-muted group-hover:text-black/80">{tier.perk}</span>
+                <span className="mt-auto pt-5 text-sm font-bold text-pumpkin group-hover:text-black">Sponsor</span>
               </a>
             </li>
           ))}
@@ -200,24 +215,25 @@ export default function Donate() {
       <section id="one-time" className="mx-auto max-w-325 px-5 pt-12 md:px-8 md:pt-16">
         <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
           <h2 className="text-3xl font-extrabold md:text-4xl">One-time</h2>
-          <p className="text-muted">Give any amount you like to support the project.</p>
+          <p className="text-muted">Support the project with a single sponsorship of any amount.</p>
         </div>
         <a
-          href={ONE_TIME_DONATION_URL}
-          aria-label="Make a one-time donation"
+          href={ONE_TIME_SPONSOR_URL}
+          aria-label="Become a one-time sponsor"
           className="group flex flex-col items-start justify-between gap-6 border-2 border-white/15 bg-surface p-6 transition-colors hover:border-pumpkin sm:p-8 md:flex-row md:items-center focus-visible:border-pumpkin focus-visible:outline-none"
         >
           <div className="max-w-xl">
             <span className="font-mono text-xs tracking-wider text-muted uppercase group-hover:text-pumpkin">
               Any amount
             </span>
-            <h3 className="mt-1 text-2xl font-extrabold md:text-3xl">Single contribution</h3>
+            <h3 className="mt-1 text-2xl font-extrabold md:text-3xl">Single sponsorship</h3>
             <p className="mt-2 text-muted">
-              Prefer not to commit to a monthly subscription? You can support Pumpkin with a one-time donation of any amount.
+              Prefer not to commit to a monthly plan? Support Pumpkin with a one-time sponsorship and get listed in our
+              One-Time Sponsors credits.
             </p>
           </div>
           <span className="inline-flex shrink-0 items-center justify-center border-3 border-pumpkin bg-pumpkin px-8 py-3.5 text-base font-bold text-black transition duration-100 brutal-3 group-hover:brutal-6 group-hover:-translate-0.5">
-            Donate once
+            Sponsor once
           </span>
         </a>
       </section>
@@ -225,16 +241,16 @@ export default function Donate() {
       <section className="mx-auto max-w-325 px-5 py-12 md:px-8 md:py-16">
         <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
           <h2 className="text-3xl font-extrabold md:text-4xl">Corporate</h2>
-          <p className="text-muted">Perfect for companies looking to support open source development.</p>
+          <p className="text-muted">Perfect for companies looking to support open source and showcase their brand.</p>
         </div>
         <ul className="border-t-3 border-pumpkin">
           {corporateTiers.map((tier) => (
             <li
               key={tier.name}
-              className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-6 gap-y-1 border-b border-white/10 py-4 md:grid-cols-[minmax(0,1fr)_14rem_10rem_6rem]"
+              className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-6 gap-y-1 border-b border-white/10 py-4 md:grid-cols-[minmax(0,1fr)_16rem_10rem_6rem]"
             >
               <span className="font-extrabold">{tier.name}</span>
-              <span className="col-start-1 text-sm text-muted md:col-start-auto md:text-base">Logo & link in credits</span>
+              <span className="col-start-1 text-sm text-muted md:col-start-auto md:text-base">{tier.perk}</span>
               <span className="col-start-1 font-mono text-sm text-muted md:col-start-auto">
                 <span className="text-fg">{dollars(tier.amount)}</span> / month
               </span>
@@ -255,7 +271,7 @@ export default function Donate() {
           <div className="mb-8 flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
             <div>
               <h2 className="text-3xl font-extrabold md:text-4xl">Sponsors</h2>
-              <p className="mt-2 text-muted">These amazing people help fund Pumpkin's development.</p>
+              <p className="mt-2 text-muted">These amazing people and companies support Pumpkin.</p>
             </div>
             <div role="tablist" aria-label="Sponsor list" className="inline-grid grid-cols-2 border-2 border-white/20 font-mono text-sm">
               {(["current", "past"] as const).map((id) => (
@@ -308,8 +324,17 @@ export default function Donate() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-325 px-5 py-10 md:px-8">
-        <p className="max-w-3xl text-sm text-muted">
+      <section className="mx-auto grid max-w-325 gap-4 px-5 py-10 text-sm text-muted md:px-8">
+        <p className="max-w-3xl">
+          <span className="font-bold text-fg">Sponsorship perks & billing.</span> Sponsor credits, links, and Discord
+          roles are activated automatically upon payment. Monthly sponsorships can be managed or canceled at any time via
+          the{" "}
+          <a href={CUSTOMER_PORTAL_URL} target="_blank" rel="noopener" className={inlineLink}>
+            Stripe Customer Portal
+          </a>
+          .
+        </p>
+        <p className="max-w-3xl">
           <span className="font-bold text-fg">Code signing.</span> Free code signing provided by{" "}
           <a href="https://signpath.io/" target="_blank" rel="noopener" className={inlineLink}>
             SignPath.io
