@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.51",
-  "commit": "8ea2b7d1c81e977443de85d60a54155a43e9453b",
-  "updated": "2026-10-21",
+  "commit": "9c04f714bb7eb26579c652f9744895d465ee902b",
+  "updated": "2026-10-22",
   "categories": [
     {
       "id": "entities",
@@ -23,29 +23,12 @@
               "state": "open"
             }
           ],
-          "note": "Fireball attacks and airborne handling exist. The constructor has no movement towards the restricted area used by the vanilla goal set.",
-          "items": [
-            {
-              "text": "Fireball attacks, player targeting and airborne descent damping",
-              "done": true
-            },
-            {
-              "text": "Return towards a restricted/home area",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/blaze.rs",
-              "line": 23
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "bogged",
@@ -66,29 +49,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/breeze.rs",
-          "note": "The runtime has basic goals but no wind-charge attack, combat jump or slide behaviour.",
-          "items": [
-            {
-              "text": "Basic movement and player targeting",
-              "done": true
-            },
-            {
-              "text": "Wind-charge combat, jumping and sliding",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/breeze.rs",
-              "line": 19
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "cave_spider",
@@ -96,39 +62,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/cave_spider.rs",
-          "note": "Targeting is daylight-gated. The runtime registers no leap or armadillo avoidance behaviour; these are actual missing interactions, not a Brain migration requirement.",
-          "items": [
-            {
-              "text": "Melee and daylight-gated player/iron-golem targeting",
-              "done": true
-            },
-            {
-              "text": "Leaping and armadillo avoidance",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/cave_spider.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/active_target.rs",
-              "line": 35
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/spider_attack.rs",
-              "line": 14
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "creaking",
@@ -149,29 +88,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/creeper.rs",
-          "note": "Explosion handling explicitly omits the area-effect cloud for active potion effects.",
-          "items": [
-            {
-              "text": "Fuse, ignition, charged state and explosion",
-              "done": true
-            },
-            {
-              "text": "Spawn a potion-effect cloud after exploding",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/creeper.rs",
-              "line": 42
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "drowned",
@@ -191,34 +113,12 @@
               "state": "open"
             }
           ],
-          "note": "The wrapper inherits zombie goals but adds neither the ranged trident attack nor water/land navigation switching.",
-          "items": [
-            {
-              "text": "Inherited zombie melee and targeting",
-              "done": true
-            },
-            {
-              "text": "Trident attacks and underwater-specific movement",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombie/drowned.rs",
-              "line": 15
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombie/mod.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "elder_guardian",
@@ -272,29 +172,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/evoker.rs",
-          "note": "Spell implementations are present; the previous raid-only checklist hid them. The constructor lacks player avoidance and revenge targeting.",
-          "items": [
-            {
-              "text": "Fang/summon/wololo spell goals and raid movement",
-              "done": true
-            },
-            {
-              "text": "Avoid nearby players and retaliate against attackers",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/evoker.rs",
-              "line": 42
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "ghast",
@@ -361,29 +244,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/hoglin.rs",
-          "note": "Conversion and attack launch exist. The goal/runtime paths do not implement the repellent/retreat activities shown by the vanilla AI.",
-          "items": [
-            {
-              "text": "Melee launch and conversion to zoglin",
-              "done": true
-            },
-            {
-              "text": "Repellent avoidance and retreat behaviour",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/hoglin.rs",
-              "line": 33
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "husk",
@@ -391,34 +257,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/zombie/husk.rs",
-          "note": "The wrapper has no hunger attack hook or submerged conversion timer; inheriting zombie melee does not provide these husk-specific behaviours.",
-          "items": [
-            {
-              "text": "Inherited zombie behaviour and baby/NBT handling",
-              "done": true
-            },
-            {
-              "text": "Hunger on attacks and submerged conversion to zombie",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombie/husk.rs",
-              "line": 15
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombie/mod.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "illusioner",
@@ -426,29 +270,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/illusioner.rs",
-          "note": "The source has no ranged-bow goal, spell state or spell handlers. Raid movement does not establish illusioner combat.",
-          "items": [
-            {
-              "text": "Patrol, raid movement and target selection",
-              "done": true
-            },
-            {
-              "text": "Bow attacks, blindness and invisibility spells",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/illusioner.rs",
-              "line": 30
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "magma_cube",
@@ -496,29 +323,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/phantom.rs",
-          "note": "The source explicitly leaves circling/sweeping goals unimplemented. Zero gravity is present but does not provide flight AI.",
-          "items": [
-            {
-              "text": "Look behaviour and zero gravity",
-              "done": true
-            },
-            {
-              "text": "Circling flight and sweeping attacks",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/phantom.rs",
-              "line": 16
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "piglin",
@@ -546,29 +356,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/piglin_brute.rs",
-          "note": "The implementation has targeting and conversion but no stored home or return-to-home behaviour corresponding to vanilla PiglinBruteAi.",
-          "items": [
-            {
-              "text": "Melee, player targeting and zombification",
-              "done": true
-            },
-            {
-              "text": "Remember and return to the bastion home location",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/piglin_brute.rs",
-              "line": 34
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "pillager",
@@ -576,34 +369,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/pillager.rs",
-          "note": "Crossbow combat is implemented. The constructor lacks the vanilla creaking-avoidance and revenge target behaviours.",
-          "items": [
-            {
-              "text": "Crossbow charging/shooting, patrol and raid movement",
-              "done": true
-            },
-            {
-              "text": "Avoid creaking entities and retaliate against attackers",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/pillager.rs",
-              "line": 42
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/ranged_crossbow_attack.rs",
-              "line": 44
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "ravager",
@@ -611,29 +382,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/ravager.rs",
-          "note": "The source registers normal raid combat but has no stun/roar state or handlers.",
-          "items": [
-            {
-              "text": "Melee, targeting and raid/patrol movement",
-              "done": true
-            },
-            {
-              "text": "Shield-stun and roar state/attack",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/ravager.rs",
-              "line": 31
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "shulker",
@@ -668,29 +422,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/silverfish.rs",
-          "note": "The countdown decreases but does not scan/break infested blocks on expiry. No stone-merging behaviour is wired.",
-          "items": [
-            {
-              "text": "Melee, revenge and damage-triggered countdown",
-              "done": true
-            },
-            {
-              "text": "Wake infested-block silverfish and merge with stone",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/silverfish.rs",
-              "line": 23
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "skeleton",
@@ -745,39 +482,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/spider.rs",
-          "note": "Targeting is daylight-gated. The runtime registers no leap or armadillo avoidance behaviour; these are actual missing interactions, not a Brain migration requirement.",
-          "items": [
-            {
-              "text": "Melee and daylight-gated player/iron-golem targeting",
-              "done": true
-            },
-            {
-              "text": "Leaping and armadillo avoidance",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/spider.rs",
-              "line": 37
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/active_target.rs",
-              "line": 35
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/spider_attack.rs",
-              "line": 14
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "stray",
@@ -817,29 +527,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/vex.rs",
-          "note": "Only generic ground goals are present. Flying charge, owner-target copying and summoned lifetime management are not implemented.",
-          "items": [
-            {
-              "text": "Generic melee and targeting",
-              "done": true
-            },
-            {
-              "text": "Flying charge movement, owner target copying and limited lifetime",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/vex.rs",
-              "line": 20
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "vindicator",
@@ -847,29 +540,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/vindicator.rs",
-          "note": "The constructor implements melee/raid movement but contains neither Johnny-name targeting nor a revenge goal.",
-          "items": [
-            {
-              "text": "Melee, doors and raid/patrol movement",
-              "done": true
-            },
-            {
-              "text": "Johnny targeting and revenge targeting",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/vindicator.rs",
-              "line": 31
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "warden",
@@ -877,29 +553,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/warden.rs",
-          "note": "Emergence and direct melee exist. Vibration listening, sniffing, anger-based target selection and sonic-boom combat are absent.",
-          "items": [
-            {
-              "text": "Emergence, darkness, melee and direct player targeting",
-              "done": true
-            },
-            {
-              "text": "Vibration/anger-driven targeting, sniffing and sonic boom",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/warden.rs",
-              "line": 39
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "witch",
@@ -914,29 +573,12 @@
               "state": "open"
             }
           ],
-          "note": "Potion combat exists. Target selection only has revenge/player targets, lacking vanilla injured-raider healing selection.",
-          "items": [
-            {
-              "text": "Potion drinking/throwing and raid movement",
-              "done": true
-            },
-            {
-              "text": "Select and heal injured raiders",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/witch.rs",
-              "line": 33
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "wither_skeleton",
@@ -957,34 +599,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/zoglin.rs",
-          "note": "The active target constructor is scoped to PLAYER. Excluding creepers/zoglins in a predicate does not broaden that target type.",
-          "items": [
-            {
-              "text": "Melee, revenge and adult attack launch",
-              "done": true
-            },
-            {
-              "text": "Select living targets beyond players",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zoglin.rs",
-              "line": 37
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/active_target.rs",
-              "line": 35
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "zombie",
@@ -999,34 +619,12 @@
               "state": "open"
             }
           ],
-          "note": "The shared base explicitly lacks baby speed/experience modifiers. Existing zombie attack goals are preserved.",
-          "items": [
-            {
-              "text": "Melee, conditional door breaking and turtle-egg destruction",
-              "done": true
-            },
-            {
-              "text": "Baby speed and experience modifiers",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombie/zombie.rs",
-              "line": 14
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombie/mod.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "zombie_villager",
@@ -1034,34 +632,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/zombie/zombie_villager.rs",
-          "note": "Curing and profession state exist. The inherited zombie base still lacks the village movement behaviour.",
-          "items": [
-            {
-              "text": "Villager data, curing and conversion acceleration",
-              "done": true
-            },
-            {
-              "text": "Movement through villages",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombie/zombie_villager.rs",
-              "line": 30
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombie/mod.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "zombified_piglin",
@@ -1069,34 +645,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/zombified_piglin.rs",
-          "note": "Group alert code is present, so the previous unverified-alert note was too vague. The constructor has generic melee without the spear-use behaviour in the vanilla reference.",
-          "items": [
-            {
-              "text": "Anger targeting, universal reset, revenge and group alerts",
-              "done": true
-            },
-            {
-              "text": "Spear-specific attack behaviour",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombified_piglin.rs",
-              "line": 40
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/behavior/neutral.rs",
-              "line": 12
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "ender_dragon",
@@ -1134,29 +688,12 @@
           "group": "Boss",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/boss/wither.rs",
-          "note": "Movement explicitly accelerates towards a target in the air, so saying the wither does not fly was wrong. Primary targeting only registers revenge; side heads do have autonomous target selection.",
-          "items": [
-            {
-              "text": "Skull attacks, aerial target-following, side-head targets and block breaking",
-              "done": true
-            },
-            {
-              "text": "Autonomous primary-head target acquisition",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/boss/wither.rs",
-              "line": 58
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "allay",
@@ -1164,29 +701,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/allay.rs",
-          "note": "The source implements duplication/state handling but lacks collection, delivery and note-block following AI.",
-          "items": [
-            {
-              "text": "Duplication and dance/cooldown state",
-              "done": true
-            },
-            {
-              "text": "Collect and deliver matching items, note-block following and flying movement",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/allay.rs",
-              "line": 35
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "armadillo",
@@ -1233,34 +753,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/bee.rs",
-          "note": "Combat exists. Hive/pollination/crop behaviour is not wired; the absence of a Brain framework is not the issue.",
-          "items": [
-            {
-              "text": "Angry melee, sting gating, neutral targeting and sting death",
-              "done": true
-            },
-            {
-              "text": "Hive entry/exit, pollination and crop growth",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/bee.rs",
-              "line": 40
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/behavior/neutral.rs",
-              "line": 12
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "camel",
@@ -1268,29 +766,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/camel.rs",
-          "note": "Camel state/feeding exists, but no sitting/standing transition or pose-timing logic is implemented. The gap is behavioural, not Brain migration.",
-          "items": [
-            {
-              "text": "Breed/tempt goals and saddle/dash state",
-              "done": true
-            },
-            {
-              "text": "Sitting/standing transitions and pose timing",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/camel.rs",
-              "line": 42
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "camel_husk",
@@ -1363,29 +844,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/copper_golem.rs",
-          "note": "The constructor only has generic movement/look goals. No sorting/chest transport or autonomous oxidation tick is wired.",
-          "items": [
-            {
-              "text": "Oxidation state, axe/honeycomb interaction and lightning handling",
-              "done": true
-            },
-            {
-              "text": "Chest-to-chest item sorting and oxidation ticking",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/copper_golem.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "cow",
@@ -1429,29 +893,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/donkey.rs",
-          "note": "Chest attachment only sets a flag. There is no chest inventory/screen or the vanilla taming/temper cycle; riding interaction alone is not complete horse behaviour.",
-          "items": [
-            {
-              "text": "Mounting, saddle/chest flags and feeding",
-              "done": true
-            },
-            {
-              "text": "Untamed-riding taming cycle, chest inventory and ridden movement control",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/donkey.rs",
-              "line": 51
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "fox",
@@ -1459,29 +906,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/fox.rs",
-          "note": "Fox state/feeding exists, but its goal list and runtime do not execute prey pounces, sleeping or berry foraging.",
-          "items": [
-            {
-              "text": "Feeding, breeding, variants and generic movement",
-              "done": true
-            },
-            {
-              "text": "Pouncing/prey combat, sleeping and berry foraging",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/fox.rs",
-              "line": 39
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "frog",
@@ -1489,29 +919,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/frog.rs",
-          "note": "There is no tongue attack or egg-laying path. Feeding can enter the generic animal interaction, but there is no breed goal to complete reproduction.",
-          "items": [
-            {
-              "text": "Variants, feeding and generic movement",
-              "done": true
-            },
-            {
-              "text": "Tongue attack, breeding/egg laying and frog-specific jumping",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/frog.rs",
-              "line": 41
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "glow_squid",
@@ -1532,29 +945,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/goat.rs",
-          "note": "The source has no ram/long-jump behaviour. The bucket branch consumes the empty bucket and plays a sound but does not return a milk bucket.",
-          "items": [
-            {
-              "text": "Breeding, temptation and screaming/horn state",
-              "done": true
-            },
-            {
-              "text": "Ramming, long jumps and return a milk bucket when milked",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/goat.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "happy_ghast",
@@ -1575,29 +971,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/horse.rs",
-          "note": "Mounting exists but there is no taming/temper cycle or specialised ridden movement handling. Tame metadata alone does not provide the vanilla taming process.",
-          "items": [
-            {
-              "text": "Mounting, saddle state, feeding and breeding",
-              "done": true
-            },
-            {
-              "text": "Untamed-riding taming cycle and ridden movement control",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/horse.rs",
-              "line": 53
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "iron_golem",
@@ -1612,34 +991,12 @@
               "state": "closed"
             }
           ],
-          "note": "Attack animation sends StartAttacking and counts down for 10 ticks. Village-defence targeting remains an explicit missing behaviour; neutral anger is already wired.",
-          "items": [
-            {
-              "text": "Melee, neutral anger, flower offering and attack animation",
-              "done": true
-            },
-            {
-              "text": "Village-defence targeting",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/iron_golem.rs",
-              "line": 41
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/behavior/neutral.rs",
-              "line": 12
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "llama",
@@ -1647,34 +1004,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/llama.rs",
-          "note": "Spit attacks exist. Chest state has no inventory/screen, and no caravan-following path is wired. Trader llamas additionally lack trader-defence targeting.",
-          "items": [
-            {
-              "text": "Spit attacks, taming/chest state, feeding and breeding",
-              "done": true
-            },
-            {
-              "text": "Caravan following and functional chest inventory",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/llama.rs",
-              "line": 52
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/ranged_attack.rs",
-              "line": 26
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "mooshroom",
@@ -1709,29 +1044,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/mule.rs",
-          "note": "Chest attachment only sets a flag. There is no chest inventory/screen or the vanilla taming/temper cycle; riding interaction alone is not complete horse behaviour.",
-          "items": [
-            {
-              "text": "Mounting, saddle/chest flags and feeding",
-              "done": true
-            },
-            {
-              "text": "Untamed-riding taming cycle, chest inventory and ridden movement control",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/mule.rs",
-              "line": 51
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "nautilus",
@@ -1752,29 +1070,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/ocelot.rs",
-          "note": "Generic avoidance is already present. Target selection is not paired with an attack/leap goal, and the interaction only uses generic animal feeding.",
-          "items": [
-            {
-              "text": "Temptation, player avoidance, breeding and chicken targets",
-              "done": true
-            },
-            {
-              "text": "Leap/prey attack execution and trusting interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/ocelot.rs",
-              "line": 38
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "panda",
@@ -1782,29 +1083,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/panda.rs",
-          "note": "Gene/animation fields exist, but mob_tick only ages the animal. Generic BreedGoal does not implement the vanilla panda bamboo requirement or specialised state behaviours.",
-          "items": [
-            {
-              "text": "Genes, flags, feeding and generic breeding",
-              "done": true
-            },
-            {
-              "text": "Gene-driven eating, rolling, sneezing and bamboo-gated breeding",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/panda.rs",
-              "line": 50
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "parrot",
@@ -1812,29 +1096,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/parrot.rs",
-          "note": "The interaction explicitly says taming is not implemented. There are also no owner/shoulder/flying behaviour paths.",
-          "items": [
-            {
-              "text": "Poisonous-food interaction and generic movement",
-              "done": true
-            },
-            {
-              "text": "Taming, owner following, shoulder landing and flying movement",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/parrot.rs",
-              "line": 31
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "pig",
@@ -1865,34 +1132,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/polar_bear.rs",
-          "note": "The constructor explicitly omits cub-protection player targeting; anger/reset behaviours are present.",
-          "items": [
-            {
-              "text": "Adult fox targets, melee and neutral anger",
-              "done": true
-            },
-            {
-              "text": "Protect nearby cubs from players",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/polar_bear.rs",
-              "line": 34
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/behavior/neutral.rs",
-              "line": 12
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "pufferfish",
@@ -1913,29 +1158,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/rabbit.rs",
-          "note": "The runtime has generic movement and no crop-raiding or rabbit hop controller. The actual gap is not just the absence of a named goal.",
-          "items": [
-            {
-              "text": "Feeding, breeding, variants and avoidance",
-              "done": true
-            },
-            {
-              "text": "Crop raiding and rabbit hopping control",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/rabbit.rs",
-              "line": 47
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "salmon",
@@ -1983,29 +1211,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/skeleton_horse.rs",
-          "note": "The source has no trap timer/trigger or skeleton riders and uses generic movement rather than the horse ridden controller.",
-          "items": [
-            {
-              "text": "Mounting, saddle and age/NBT state",
-              "done": true
-            },
-            {
-              "text": "Skeleton trap activation and horse riding control",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/skeleton_horse.rs",
-              "line": 41
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "sniffer",
@@ -2013,29 +1224,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/sniffer.rs",
-          "note": "Digging-state methods exist, but no behaviour invokes transition_to/can_dig to start autonomous foraging.",
-          "items": [
-            {
-              "text": "Breeding, digging-state effects and explored-position storage",
-              "done": true
-            },
-            {
-              "text": "Automatic sniff/search/dig cycle",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/sniffer.rs",
-              "line": 49
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "snow_golem",
@@ -2079,29 +1273,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/strider.rs",
-          "note": "The constructor/runtime do not implement lava navigation/walking or update the cold/suffocating state from the environment.",
-          "items": [
-            {
-              "text": "Feeding, breeding, saddling and boost state",
-              "done": true
-            },
-            {
-              "text": "Lava seeking, lava-surface walking and cold-state updates",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/strider.rs",
-              "line": 36
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "tadpole",
@@ -2122,34 +1299,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/trader_llama.rs",
-          "note": "Spit attacks exist. Chest state has no inventory/screen, and no caravan-following path is wired. Trader llamas additionally lack trader-defence targeting.",
-          "items": [
-            {
-              "text": "Spit attacks, taming/chest state, feeding and breeding",
-              "done": true
-            },
-            {
-              "text": "Caravan following and functional chest inventory",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/trader_llama.rs",
-              "line": 52
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/ranged_attack.rs",
-              "line": 26
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "tropical_fish",
@@ -2170,29 +1325,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/turtle.rs",
-          "note": "Egg flags exist but no egg-laying/home/travel behaviour consumes them. Generic breeding does not implement the vanilla return-home egg cycle.",
-          "items": [
-            {
-              "text": "Feeding, breeding and egg state fields",
-              "done": true
-            },
-            {
-              "text": "Egg laying, home return and long-distance swimming",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/turtle.rs",
-              "line": 36
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "wolf",
@@ -2225,29 +1363,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/zombie_horse.rs",
-          "note": "The source stores horse state and permits mounting, but lacks horse-specific ridden movement. This replaces the vague missing-goal-registration claim.",
-          "items": [
-            {
-              "text": "Mounting, saddle and sun-protection slot",
-              "done": true
-            },
-            {
-              "text": "Horse riding control and vanilla horse-specific movement",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/zombie_horse.rs",
-              "line": 41
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "zombie_nautilus",
@@ -3782,45 +2903,14 @@
           "id": "item",
           "name": "Item",
           "group": "Misc",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/item.rs",
-          "note": "Dropped items now have component-aware stack merging, pickup delays, despawn handling, damage-type resistance and container-content spills on destruction. Source includes regression tests for component mismatches and damage-resistant items.",
-          "items": [
-            {
-              "text": "Component-aware merging and stack limits",
-              "done": true
-            },
-            {
-              "text": "Pickup delay and despawn handling",
-              "done": true
-            },
-            {
-              "text": "Damage-type resistance and container-content spills",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "fn process_age_and_merge",
-              "source": "crates/pumpkin-core/src/entity/item.rs",
-              "line": 504
-            },
-            {
-              "label": "fn on_destroyed",
-              "source": "crates/pumpkin-core/src/entity/item.rs",
-              "line": 359
-            },
-            {
-              "label": "fn damage_resistant_items",
-              "source": "crates/pumpkin-core/src/entity/item.rs",
-              "line": 917
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "lightning_bolt",
