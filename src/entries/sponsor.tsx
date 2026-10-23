@@ -1,5 +1,5 @@
 import "../styles/main.css";
 import { mount } from "../client";
-import Donate from "../pages/donate/Donate";
+import Sponsor from "../pages/sponsor/Sponsor";
 
-mount(Donate);
+mount(Sponsor);

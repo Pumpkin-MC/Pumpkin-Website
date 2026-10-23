@@ -39,7 +39,7 @@ const columns: { heading: string; links: NamedLink[] }[] = [
       { label: "Stats", href: "/stats/" },
       { label: "Vanilla parity", href: "/tracker/" },
       { label: "Benchmarks", href: `${DOCS_URL}/about/benchmarks` },
-      { label: "Sponsor", href: "/donate/" },
+      { label: "Sponsorship", href: "/sponsor/" },
     ],
   },
   {

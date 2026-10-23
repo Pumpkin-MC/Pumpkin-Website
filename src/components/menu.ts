@@ -105,7 +105,7 @@ export const menuPanels: MenuPanel[] = [
           { label: "Stats", hint: "Servers running Pumpkin right now.", href: "/stats/" },
           { label: "Vanilla parity", hint: "What is implemented, partial or planned.", href: "/tracker/" },
           { label: "Contributors", hint: "The people who build Pumpkin.", href: "/contributors/" },
-          { label: "Sponsor", hint: "Support the project and get perks.", href: "/donate/" },
+          { label: "Sponsor", hint: "Sponsorship tiers and community perks.", href: "/sponsor/" },
         ],
       },
     ],

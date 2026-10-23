@@ -5,7 +5,7 @@ import type { PageId } from "./routes";
 import Home from "./pages/home/Home";
 import Download from "./pages/download/Download";
 import Developers from "./pages/developers/Developers";
-import Donate from "./pages/donate/Donate";
+import Sponsor from "./pages/sponsor/Sponsor";
 import Contributors from "./pages/contributors/Contributors";
 import Stats from "./pages/stats/Stats";
 import Tracker from "./pages/tracker/Tracker";
@@ -17,7 +17,7 @@ const pages: Record<PageId, ComponentType> = {
   home: Home,
   download: Download,
   developers: Developers,
-  donate: Donate,
+  sponsor: Sponsor,
   contributors: Contributors,
   stats: Stats,
   tracker: Tracker,

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { MARKET_API_URL } from "../../lib/marketApi";
 
-interface Donator {
+interface SponsorItem {
   name: string;
   tier?: string | null;
   tier_slug?: string | null;
@@ -10,9 +10,9 @@ interface Donator {
   is_private?: boolean;
 }
 
-interface DonatorList {
-  current?: Donator[];
-  past?: Donator[];
+interface SponsorList {
+  current?: SponsorItem[];
+  past?: SponsorItem[];
 }
 
 type Tab = "current" | "past";
@@ -62,8 +62,8 @@ function hasSafeUrl(url: string | null | undefined): url is string {
   }
 }
 
-function named(donators: Donator[] | undefined): Donator[] {
-  return (donators ?? []).filter((donator) => donator.is_private || donator.name?.trim());
+function named(sponsors: SponsorItem[] | undefined): SponsorItem[] {
+  return (sponsors ?? []).filter((sponsor) => sponsor.is_private || sponsor.name?.trim());
 }
 
 function initials(name: string): string {
@@ -72,8 +72,8 @@ function initials(name: string): string {
   return letters.toUpperCase();
 }
 
-function SponsorCard({ donator, showTier }: { donator: Donator; showTier: boolean }) {
-  if (donator.is_private) {
+function SponsorCard({ sponsor, showTier }: { sponsor: SponsorItem; showTier: boolean }) {
+  if (sponsor.is_private) {
     return (
       <div className="flex items-center gap-3 border-2 border-dashed border-white/15 px-4 py-3">
         <span aria-hidden="true" className="grid size-10 shrink-0 place-items-center bg-white/5 font-mono text-sm text-muted">
@@ -86,27 +86,27 @@ function SponsorCard({ donator, showTier }: { donator: Donator; showTier: boolea
 
   const body = (
     <>
-      {hasSafeUrl(donator.avatar_url) ? (
-        <img src={donator.avatar_url} alt="" width={40} height={40} className="size-10 shrink-0 bg-surface" />
+      {hasSafeUrl(sponsor.avatar_url) ? (
+        <img src={sponsor.avatar_url} alt="" width={40} height={40} className="size-10 shrink-0 bg-surface" />
       ) : (
         <span
           aria-hidden="true"
           className="grid size-10 shrink-0 place-items-center bg-pumpkin/15 font-mono text-sm font-bold text-pumpkin"
         >
-          {initials(donator.name)}
+          {initials(sponsor.name)}
         </span>
       )}
       <span className="min-w-0">
-        <span className="block truncate font-bold">{donator.name}</span>
-        {showTier && donator.tier && <span className="block text-xs text-muted">{donator.tier}</span>}
+        <span className="block truncate font-bold">{sponsor.name}</span>
+        {showTier && sponsor.tier && <span className="block text-xs text-muted">{sponsor.tier}</span>}
       </span>
     </>
   );
 
   const shape = "flex items-center gap-3 border-2 border-white/15 bg-ink px-4 py-3";
 
-  return hasSafeUrl(donator.url) ? (
-    <a href={donator.url} target="_blank" rel="noopener" className={`${shape} transition-colors hover:border-pumpkin`}>
+  return hasSafeUrl(sponsor.url) ? (
+    <a href={sponsor.url} target="_blank" rel="noopener" className={`${shape} transition-colors hover:border-pumpkin`}>
       {body}
     </a>
   ) : (
@@ -114,35 +114,35 @@ function SponsorCard({ donator, showTier }: { donator: Donator; showTier: boolea
   );
 }
 
-function SponsorGrid({ donators, showTier }: { donators: Donator[]; showTier: boolean }) {
+function SponsorGrid({ sponsors, showTier }: { sponsors: SponsorItem[]; showTier: boolean }) {
   return (
     <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      {donators.map((donator, index) => (
-        <li key={`${donator.name}-${index}`}>
-          <SponsorCard donator={donator} showTier={showTier} />
+      {sponsors.map((sponsor, index) => (
+        <li key={`${sponsor.name}-${index}`}>
+          <SponsorCard sponsor={sponsor} showTier={showTier} />
         </li>
       ))}
     </ul>
   );
 }
 
-export default function Donate() {
+export default function Sponsor() {
   const [tab, setTab] = useState<Tab>("current");
-  const [donators, setDonators] = useState<DonatorList | null>(null);
+  const [sponsors, setSponsors] = useState<SponsorList | null>(null);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     fetch(`${MARKET_API_URL}/donators`)
       .then((response) => {
-        if (!response.ok) throw new Error("Failed to fetch donators");
-        return response.json() as Promise<DonatorList>;
+        if (!response.ok) throw new Error("Failed to fetch sponsors");
+        return response.json() as Promise<SponsorList>;
       })
       .then((data) => {
-        if (!cancelled) setDonators({ ...data, current: named(data.current), past: named(data.past) });
+        if (!cancelled) setSponsors({ ...data, current: named(data.current), past: named(data.past) });
       })
       .catch((error: unknown) => {
-        console.error("Error loading donators from API:", error);
+        console.error("Error loading sponsors from API:", error);
         if (!cancelled) setFailed(true);
       });
     return () => {
@@ -150,11 +150,11 @@ export default function Donate() {
     };
   }, []);
 
-  const current = donators?.current ?? [];
-  const past = donators?.past ?? [];
+  const current = sponsors?.current ?? [];
+  const past = sponsors?.past ?? [];
   const groups = tierOrder
-    .map((tier) => ({ ...tier, donators: current.filter((donator) => (donator.tier_slug || "tier-bronze") === tier.slug) }))
-    .filter((group) => group.donators.length > 0);
+    .map((tier) => ({ ...tier, sponsors: current.filter((sponsor) => (sponsor.tier_slug || "tier-bronze") === tier.slug) }))
+    .filter((group) => group.sponsors.length > 0);
 
   return (
     <>
@@ -162,11 +162,10 @@ export default function Donate() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <h1 className="text-[clamp(2.6rem,6vw,5rem)] leading-[0.98] font-extrabold tracking-[-0.015em]">
-              Support Pumpkin<span className="text-pumpkin">.</span>
+              Sponsorship<span className="text-pumpkin">.</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg text-muted md:text-xl">
-              Become a sponsor to support the fastest Minecraft server and get your name, link, or logo featured in our
-              credits and Discord community.
+              Partner with Pumpkin. Select a sponsorship package for project credits, community perks, or corporate brand placement.
             </p>
           </div>
           <a
@@ -182,11 +181,11 @@ export default function Donate() {
 
       <section className="mx-auto max-w-325 px-5 pt-12 md:px-8 md:pt-16">
         <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-          <h2 className="text-3xl font-extrabold md:text-4xl">Monthly</h2>
+          <h2 className="text-3xl font-extrabold md:text-4xl">Community Supporter Tiers</h2>
           <p className="text-muted">
-            Pick an amount. Prefer a{" "}
+            Monthly membership with digital perks and directory recognition. Prefer a{" "}
             <a href="#one-time" className={inlineLink}>
-              one-time sponsorship
+              one-time package
             </a>
             ?
           </p>
@@ -196,7 +195,7 @@ export default function Donate() {
             <li key={tier.name}>
               <a
                 href={tier.href}
-                aria-label={`Become a ${tier.name} sponsor for ${dollars(tier.amount)} per month`}
+                aria-label={`Select ${tier.name} tier for ${dollars(tier.amount)} per month`}
                 className="group flex h-full flex-col border-2 border-white/15 bg-surface p-5 transition-colors hover:border-pumpkin hover:bg-pumpkin hover:text-black focus-visible:border-pumpkin focus-visible:outline-none"
               >
                 <span className="font-mono text-xs tracking-wider text-muted uppercase group-hover:text-black/70">
@@ -205,7 +204,7 @@ export default function Donate() {
                 <span className="mt-3 text-4xl font-extrabold tracking-[-0.02em]">{dollars(tier.amount)}</span>
                 <span className="text-sm text-muted group-hover:text-black/70">per month</span>
                 <span className="mt-3 text-xs text-muted group-hover:text-black/80">{tier.perk}</span>
-                <span className="mt-auto pt-5 text-sm font-bold text-pumpkin group-hover:text-black">Sponsor</span>
+                <span className="mt-auto pt-5 text-sm font-bold text-pumpkin group-hover:text-black">Select tier</span>
               </a>
             </li>
           ))}
@@ -214,34 +213,36 @@ export default function Donate() {
 
       <section id="one-time" className="mx-auto max-w-325 px-5 pt-12 md:px-8 md:pt-16">
         <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-          <h2 className="text-3xl font-extrabold md:text-4xl">One-time</h2>
-          <p className="text-muted">Support the project with a single sponsorship of any amount.</p>
+          <h2 className="text-3xl font-extrabold md:text-4xl">One-Time Supporter Package</h2>
+          <p className="text-muted">Permanent credits recognition and digital perks without a recurring subscription.</p>
         </div>
         <a
           href={ONE_TIME_SPONSOR_URL}
-          aria-label="Become a one-time sponsor"
+          aria-label="Purchase One-Time Supporter Package"
           className="group flex flex-col items-start justify-between gap-6 border-2 border-white/15 bg-surface p-6 transition-colors hover:border-pumpkin sm:p-8 md:flex-row md:items-center focus-visible:border-pumpkin focus-visible:outline-none"
         >
           <div className="max-w-xl">
             <span className="font-mono text-xs tracking-wider text-muted uppercase group-hover:text-pumpkin">
-              Any amount
+              Supporter Package
             </span>
-            <h3 className="mt-1 text-2xl font-extrabold md:text-3xl">Single sponsorship</h3>
+            <h3 className="mt-1 text-2xl font-extrabold md:text-3xl">One-Time Credit Placement</h3>
             <p className="mt-2 text-muted">
-              Prefer not to commit to a monthly plan? Support Pumpkin with a one-time sponsorship and get listed in our
-              One-Time Sponsors credits.
+              Get your name permanently featured in our project credits directory, receive the Discord Supporter role,
+              and support ongoing open-source development.
             </p>
           </div>
           <span className="inline-flex shrink-0 items-center justify-center border-3 border-pumpkin bg-pumpkin px-8 py-3.5 text-base font-bold text-black transition duration-100 brutal-3 group-hover:brutal-6 group-hover:-translate-0.5">
-            Sponsor once
+            Select package
           </span>
         </a>
       </section>
 
       <section className="mx-auto max-w-325 px-5 py-12 md:px-8 md:py-16">
         <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-          <h2 className="text-3xl font-extrabold md:text-4xl">Corporate</h2>
-          <p className="text-muted">Perfect for companies looking to support open source and showcase their brand.</p>
+          <h2 className="text-3xl font-extrabold md:text-4xl">Corporate Sponsorship</h2>
+          <p className="text-muted">
+            Promote your company, hosting service, or developer tools with logo placement and outbound links in our credits.
+          </p>
         </div>
         <ul className="border-t-3 border-pumpkin">
           {corporateTiers.map((tier) => (
@@ -256,10 +257,10 @@ export default function Donate() {
               </span>
               <a
                 href={tier.href}
-                aria-label={`Become a ${tier.name} sponsor for ${dollars(tier.amount)} per month`}
+                aria-label={`Select ${tier.name} package for ${dollars(tier.amount)} per month`}
                 className="col-start-2 row-span-3 row-start-1 font-bold text-pumpkin hover:text-fg md:col-start-auto md:row-span-1 md:row-start-auto md:text-right"
               >
-                Sponsor
+                Select package
               </a>
             </li>
           ))}
@@ -270,8 +271,8 @@ export default function Donate() {
         <div className="mx-auto max-w-325 px-5 py-12 md:px-8 md:py-16">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
             <div>
-              <h2 className="text-3xl font-extrabold md:text-4xl">Sponsors</h2>
-              <p className="mt-2 text-muted">These amazing people and companies support Pumpkin.</p>
+              <h2 className="text-3xl font-extrabold md:text-4xl">Partners & Sponsors</h2>
+              <p className="mt-2 text-muted">These companies and community members actively support Pumpkin development.</p>
             </div>
             <div role="tablist" aria-label="Sponsor list" className="inline-grid grid-cols-2 border-2 border-white/20 font-mono text-sm">
               {(["current", "past"] as const).map((id) => (
@@ -285,7 +286,7 @@ export default function Donate() {
                   onClick={() => setTab(id)}
                   className={`cursor-pointer px-4 py-2 transition-colors ${tab === id ? "bg-fg text-black" : "text-muted hover:text-fg"}`}
                 >
-                  {id === "current" ? `Current${donators ? ` · ${current.length}` : ""}` : `Past / One-time${donators ? ` · ${past.length}` : ""}`}
+                  {id === "current" ? `Active${sponsors ? ` · ${current.length}` : ""}` : `Past / One-time${sponsors ? ` · ${past.length}` : ""}`}
                 </button>
               ))}
             </div>
@@ -295,7 +296,7 @@ export default function Donate() {
             <p className="border-l-3 border-danger bg-danger/10 px-4 py-3 text-danger">
               Unable to load sponsors from the server at this time. Please try again later.
             </p>
-          ) : !donators ? (
+          ) : !sponsors ? (
             <p className="text-muted">Loading sponsors...</p>
           ) : (
             <>
@@ -308,43 +309,62 @@ export default function Donate() {
                       <div key={group.slug}>
                         <h3 className="mb-3 flex items-baseline gap-3 text-lg font-extrabold">
                           {group.name}
-                          <span className="font-mono text-sm font-normal text-muted">{group.donators.length}</span>
+                          <span className="font-mono text-sm font-normal text-muted">{group.sponsors.length}</span>
                         </h3>
-                        <SponsorGrid donators={group.donators} showTier={false} />
+                        <SponsorGrid sponsors={group.sponsors} showTier={false} />
                       </div>
                     ))}
                   </div>
                 )}
               </div>
               <div id="sponsors-panel-past" role="tabpanel" aria-labelledby="sponsors-tab-past" hidden={tab !== "past"}>
-                {past.length === 0 ? <p className="text-muted">No past or one-time sponsors.</p> : <SponsorGrid donators={past} showTier />}
+                {past.length === 0 ? <p className="text-muted">No past or one-time sponsors.</p> : <SponsorGrid sponsors={past} showTier />}
               </div>
             </>
           )}
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-325 gap-4 px-5 py-10 text-sm text-muted md:px-8">
-        <p className="max-w-3xl">
-          <span className="font-bold text-fg">Sponsorship perks & billing.</span> Sponsor credits, links, and Discord
-          roles are activated automatically upon payment. Monthly sponsorships can be managed or canceled at any time via
-          the{" "}
-          <a href={CUSTOMER_PORTAL_URL} target="_blank" rel="noopener" className={inlineLink}>
-            Stripe Customer Portal
-          </a>
-          .
-        </p>
-        <p className="max-w-3xl">
-          <span className="font-bold text-fg">Code signing.</span> Free code signing provided by{" "}
-          <a href="https://signpath.io/" target="_blank" rel="noopener" className={inlineLink}>
-            SignPath.io
-          </a>
-          , certificate by{" "}
-          <a href="https://signpath.org/" target="_blank" rel="noopener" className={inlineLink}>
-            SignPath Foundation
-          </a>
-          . Pumpkin releases are digitally signed using SignPath.
-        </p>
+      <section className="mx-auto grid max-w-325 gap-6 px-5 py-12 text-sm text-muted md:px-8">
+        <div className="grid gap-4 border-t border-white/10 pt-8 max-w-4xl">
+          <h3 className="text-lg font-bold text-fg">Terms of Sale, Billing & Fulfillment Policy</h3>
+          <p>
+            <span className="font-bold text-fg">Digital Fulfillment:</span> Digital perks—including Discord community
+            supporter roles, website credit listings, and corporate logo/link placements—are provisioned digitally upon
+            successful payment completion. If your digital perks require manual setup or Discord sync, access is confirmed
+            within 24 hours.
+          </p>
+          <p>
+            <span className="font-bold text-fg">Corporate Sponsorship Guidelines:</span> Corporate sponsorship tiers
+            include logo placement and outbound link credits on pumpkinmc.org. All brand assets and links are subject to
+            review for community guidelines. Pumpkin reserves the right to decline or request modification of assets
+            that violate these standards.
+          </p>
+          <p>
+            <span className="font-bold text-fg">Billing & Cancellation:</span> Monthly sponsorships are billed on a
+            recurring cycle and can be modified or cancelled at any time through the{" "}
+            <a href={CUSTOMER_PORTAL_URL} target="_blank" rel="noopener" className={inlineLink}>
+              Stripe Customer Portal
+            </a>
+            . Cancellations take effect at the conclusion of the active billing period.
+          </p>
+          <p>
+            <span className="font-bold text-fg">Refund Policy:</span> Due to the immediate delivery of digital perks,
+            community roles, and directory placement, payments are non-refundable once activated, except as required
+            by applicable law.
+          </p>
+          <p>
+            <span className="font-bold text-fg">Code signing:</span> Free code signing provided by{" "}
+            <a href="https://signpath.io/" target="_blank" rel="noopener" className={inlineLink}>
+              SignPath.io
+            </a>
+            , certificate by{" "}
+            <a href="https://signpath.org/" target="_blank" rel="noopener" className={inlineLink}>
+              SignPath Foundation
+            </a>
+            . Pumpkin releases are digitally signed using SignPath.
+          </p>
+        </div>
       </section>
     </>
   );
