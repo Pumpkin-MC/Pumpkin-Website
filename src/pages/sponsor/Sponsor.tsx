@@ -30,7 +30,6 @@ const tierOrder = [
   { slug: "tier-bronze", name: "Bronze" },
 ];
 
-const ONE_TIME_SPONSOR_URL = "https://buy.stripe.com/00w3cudFIfPL7xPeyb5os0a";
 const CUSTOMER_PORTAL_URL = "https://billing.stripe.com/p/login/8x23cueJM7jfaK14XB5os00";
 
 const monthlyTiers = [
@@ -182,13 +181,7 @@ export default function Sponsor() {
       <section className="mx-auto max-w-325 px-5 pt-12 md:px-8 md:pt-16">
         <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
           <h2 className="text-3xl font-extrabold md:text-4xl">Community Supporter Tiers</h2>
-          <p className="text-muted">
-            Monthly membership with digital perks and directory recognition. Prefer a{" "}
-            <a href="#one-time" className={inlineLink}>
-              one-time package
-            </a>
-            ?
-          </p>
+          <p className="text-muted">Monthly membership with digital perks and directory recognition.</p>
         </div>
         <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
           {monthlyTiers.map((tier) => (
@@ -209,32 +202,6 @@ export default function Sponsor() {
             </li>
           ))}
         </ul>
-      </section>
-
-      <section id="one-time" className="mx-auto max-w-325 px-5 pt-12 md:px-8 md:pt-16">
-        <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-          <h2 className="text-3xl font-extrabold md:text-4xl">One-Time Supporter Package</h2>
-          <p className="text-muted">Permanent credits recognition and digital perks without a recurring subscription.</p>
-        </div>
-        <a
-          href={ONE_TIME_SPONSOR_URL}
-          aria-label="Purchase One-Time Supporter Package"
-          className="group flex flex-col items-start justify-between gap-6 border-2 border-white/15 bg-surface p-6 transition-colors hover:border-pumpkin sm:p-8 md:flex-row md:items-center focus-visible:border-pumpkin focus-visible:outline-none"
-        >
-          <div className="max-w-xl">
-            <span className="font-mono text-xs tracking-wider text-muted uppercase group-hover:text-pumpkin">
-              Supporter Package
-            </span>
-            <h3 className="mt-1 text-2xl font-extrabold md:text-3xl">One-Time Credit Placement</h3>
-            <p className="mt-2 text-muted">
-              Get your name permanently featured in our project credits directory, receive the Discord Supporter role,
-              and support ongoing open-source development.
-            </p>
-          </div>
-          <span className="inline-flex shrink-0 items-center justify-center border-3 border-pumpkin bg-pumpkin px-8 py-3.5 text-base font-bold text-black transition duration-100 brutal-3 group-hover:brutal-6 group-hover:-translate-0.5">
-            Select package
-          </span>
-        </a>
       </section>
 
       <section className="mx-auto max-w-325 px-5 py-12 md:px-8 md:py-16">
@@ -286,7 +253,7 @@ export default function Sponsor() {
                   onClick={() => setTab(id)}
                   className={`cursor-pointer px-4 py-2 transition-colors ${tab === id ? "bg-fg text-black" : "text-muted hover:text-fg"}`}
                 >
-                  {id === "current" ? `Active${sponsors ? ` · ${current.length}` : ""}` : `Past / One-time${sponsors ? ` · ${past.length}` : ""}`}
+                  {id === "current" ? `Active${sponsors ? ` · ${current.length}` : ""}` : `Past Sponsors${sponsors ? ` · ${past.length}` : ""}`}
                 </button>
               ))}
             </div>
@@ -318,7 +285,7 @@ export default function Sponsor() {
                 )}
               </div>
               <div id="sponsors-panel-past" role="tabpanel" aria-labelledby="sponsors-tab-past" hidden={tab !== "past"}>
-                {past.length === 0 ? <p className="text-muted">No past or one-time sponsors.</p> : <SponsorGrid sponsors={past} showTier />}
+                {past.length === 0 ? <p className="text-muted">No past sponsors.</p> : <SponsorGrid sponsors={past} showTier />}
               </div>
             </>
           )}
