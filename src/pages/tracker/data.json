@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.51",
-  "commit": "ac98a5d2d2f36fa8e2ce18783c109a28e106a10a",
-  "updated": "2026-10-26",
+  "commit": "59eecff28af6657f799d3764eb99cfcc0ffd7aa8",
+  "updated": "2026-10-27",
   "categories": [
     {
       "id": "entities",
@@ -2476,29 +2476,12 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/bed.rs",
-          "note": "Sleeping and occupied-bed checks exist. The occupied-bed path still sends the occupied message without waking the villager.",
-          "items": [
-            {
-              "text": "Placement, occupation and player sleeping",
-              "done": true
-            },
-            {
-              "text": "Wake a villager occupying the bed",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/bed.rs",
-              "line": 68
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "beehive",
@@ -2726,29 +2709,12 @@
           "ids": [
             "minecraft:chiseled_bookshelf"
           ],
-          "note": "Book storage and last-interacted-slot comparator handling exist. try_add_book does not increment the player used-block statistic.",
-          "items": [
-            {
-              "text": "Slot-based book insertion/removal and comparator output",
-              "done": true
-            },
-            {
-              "text": "Increment the used-block statistic on inserting a book",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/chiseled_bookshelf.rs",
-              "line": 30
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "cobweb",
@@ -2865,29 +2831,12 @@
           "ids": [
             "minecraft:dirt_path"
           ],
-          "note": "Obstructed paths turn to dirt on a scheduled tick. Conversion does not push entities up, and the placement predicate lacks the vanilla fence-gate exception.",
-          "items": [
-            {
-              "text": "Conversion to dirt when obstructed",
-              "done": true
-            },
-            {
-              "text": "Displace entities when converting and allow fence gates above",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/dirt_path.rs",
-              "line": 16
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "doors",
@@ -3031,29 +2980,12 @@
           "ids": [
             "minecraft:ender_chest"
           ],
-          "note": "Personal inventory works. The opening path lacks the guarded-block interaction that angers piglins. Sitting cats do not obstruct vanilla ender chests, so that is not a parity gap.",
-          "items": [
-            {
-              "text": "Personal inventory and opening animation",
-              "done": true
-            },
-            {
-              "text": "Piglin guarded-block reaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/ender_chest.rs",
-              "line": 29
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "falling",
@@ -4157,9 +4089,6 @@
           "group": "Blocks",
           "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/wither_skull.rs",
-          "ids": [
-            "wither_skeleton_skull"
-          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
@@ -4176,29 +4105,12 @@
           "ids": [
             "minecraft:fire"
           ],
-          "note": "Fire spread exists. Increased burnout is hardcoded to biome IDs, whereas the Lantern reference reads the environment attribute at the position.",
-          "items": [
-            {
-              "text": "Scheduled spread, rain extinguishing and burning",
-              "done": true
-            },
-            {
-              "text": "Environment-attribute driven increased fire burnout",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/fire/fire.rs",
-              "line": 33
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "sculk-sculk_catalyst",
@@ -4206,29 +4118,12 @@
           "group": "Fire & Sculk",
           "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/sculk/sculk_catalyst.rs",
-          "note": "Only the placement state is implemented; no death listener or sculk-spreading block entity is present.",
-          "items": [
-            {
-              "text": "Placement state",
-              "done": true
-            },
-            {
-              "text": "Mob-death listener, experience absorption and sculk spreading",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/sculk/sculk_catalyst.rs",
-              "line": 7
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "sculk-sculk_shrieker",
@@ -4314,29 +4209,12 @@
           "ids": [
             "minecraft:piston_head"
           ],
-          "note": "Head/base removal exists. break_block receives no player, losing the player context; the piston system also has separate movement/persistence gaps.",
-          "items": [
-            {
-              "text": "Remove an extended piston base when its head is broken",
-              "done": true
-            },
-            {
-              "text": "Pass the breaking player through to base removal",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/piston/piston_head.rs",
-              "line": 17
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "piston-piston",
@@ -4348,34 +4226,12 @@
             "minecraft:piston",
             "minecraft:sticky_piston"
           ],
-          "note": "Pushing and retraction code exist, so calling the whole system broken is too broad. Movement checks and rapid retraction remain incomplete; moving-piston NBT read/write still omit the moved block state.",
-          "items": [
-            {
-              "text": "Extension/retraction, block movement and block-event handling",
-              "done": true
-            },
-            {
-              "text": "Complete movement checks and moving-piston state persistence",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/piston/piston.rs",
-              "line": 33
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/entities/piston.rs",
-              "line": 26
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "plant-crop-gourds-attached_stem",
@@ -4460,29 +4316,12 @@
           "ids": [
             "minecraft:big_dripleaf"
           ],
-          "note": "Step-triggered tilt and timed/reset behaviour exist. The block has no projectile-hit tilt handler.",
-          "items": [
-            {
-              "text": "Entity-triggered tilt, reset and redstone handling",
-              "done": true
-            },
-            {
-              "text": "Projectile-triggered tilt",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/plant/big_dripleaf.rs",
-              "line": 31
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "plant-big_dripleaf_stem",
@@ -4789,29 +4628,12 @@
           "ids": [
             "minecraft:lily_pad"
           ],
-          "note": "Placement checks block IDs instead of fluid states. Collision recognises names ending in _boat, excluding bamboo rafts that vanilla treats as AbstractBoat.",
-          "items": [
-            {
-              "text": "Water/ice support and boat collision breakage",
-              "done": true
-            },
-            {
-              "text": "Fluid-state support and raft collision breakage",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/plant/lily_pad.rs",
-              "line": 15
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "plant-mangrove_propagule",
@@ -5058,29 +4880,12 @@
           "ids": [
             "minecraft:sugar_cane"
           ],
-          "note": "Growth works, but support tests block tags rather than the adjacent fluid state. Waterlogged support is not covered by the current predicate.",
-          "items": [
-            {
-              "text": "Age-based growth, height limit and support updates",
-              "done": true
-            },
-            {
-              "text": "Fluid-aware adjacent water support",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/plant/sugar_cane.rs",
-              "line": 19
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "plant-crop-sweet_berry_bush",
@@ -5210,29 +5015,12 @@
           "ids": [
             "minecraft:activator_rail"
           ],
-          "note": "Rail propagation exists. Both implementations document incorrect extension when a redstone source is placed at intermediate powered positions.",
-          "items": [
-            {
-              "text": "Connected-rail power propagation and neighbour updates",
-              "done": true
-            },
-            {
-              "text": "Vanilla rail power-extension boundary",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/redstone/rails/activator_rail.rs",
-              "line": 41
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "redstone-bell",
@@ -5243,34 +5031,12 @@
           "ids": [
             "minecraft:bell"
           ],
-          "note": "Ringing paths exist, but ring_bell does not emit the required game event.",
-          "items": [
-            {
-              "text": "Interaction/projectile/redstone ringing",
-              "done": true
-            },
-            {
-              "text": "Activation game events",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/redstone/bell.rs",
-              "line": 22
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/entities/bell.rs",
-              "line": 23
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "redstone-buttons",
@@ -5448,29 +5214,12 @@
           "ids": [
             "minecraft:powered_rail"
           ],
-          "note": "Rail propagation exists. Both implementations document incorrect extension when a redstone source is placed at intermediate powered positions.",
-          "items": [
-            {
-              "text": "Connected-rail power propagation and neighbour updates",
-              "done": true
-            },
-            {
-              "text": "Vanilla rail power-extension boundary",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/redstone/rails/powered_rail.rs",
-              "line": 41
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "redstone-pressure_plate-plate",
@@ -5633,29 +5382,12 @@
           "ids": [
             "minecraft:tripwire"
           ],
-          "note": "Detection and hook updates exist. Disarming omits shears durability/game events, and scheduled collision checks do not filter entities that avoid traps.",
-          "items": [
-            {
-              "text": "Entity detection, hook connection and disarming",
-              "done": true
-            },
-            {
-              "text": "Shears durability/game event and trap-avoidance filtering",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/redstone/tripwire.rs",
-              "line": 26
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "redstone-tripwire_hook",
@@ -5666,29 +5398,12 @@
           "ids": [
             "minecraft:tripwire_hook"
           ],
-          "note": "Wire scanning, attachment and signal output exist. Transition sounds lack the matching game events.",
-          "items": [
-            {
-              "text": "Attachment, redstone output and transition sounds",
-              "done": true
-            },
-            {
-              "text": "Activation/deactivation/attachment game events",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/redstone/tripwire_hook.rs",
-              "line": 31
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "redstone-pressure_plate-weighted",
@@ -7949,31 +7664,14 @@
           "id": "pressure-plates",
           "name": "Pressure plates",
           "group": "Power & Sensors",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/redstone/pressure_plate",
-          "note": "Weighted plates calculate signal from the capped entity count, using ceiling(count / capacity × 15), rather than treating every non-empty plate as full power.",
-          "items": [
-            {
-              "text": "Weighted signal based on entity count",
-              "done": true
-            },
-            {
-              "text": "Capacity clamping and zero-count handling",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "fn signal_strength",
-              "source": "crates/pumpkin-core/src/block/blocks/redstone/pressure_plate/weighted.rs",
-              "line": 19
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "tripwire-hook",
@@ -8137,34 +7835,12 @@
           "group": "Mechanisms",
           "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/piston",
-          "note": "Pushing and retraction code exist, so calling the whole system broken is too broad. Movement checks and rapid retraction remain incomplete; moving-piston NBT read/write still omit the moved block state.",
-          "items": [
-            {
-              "text": "Extension/retraction, block movement and block-event handling",
-              "done": true
-            },
-            {
-              "text": "Complete movement checks and moving-piston state persistence",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/piston/piston.rs",
-              "line": 33
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/entities/piston.rs",
-              "line": 26
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "dropper",
@@ -8579,34 +8255,12 @@
           "group": "Logic & Physics",
           "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/redstone",
-          "note": "This aggregate is partial because the piston movement/state-persistence gaps remain, rather than merely because there is a separate Redstone tab.",
-          "items": [
-            {
-              "text": "Implemented redstone components and piston block events",
-              "done": true
-            },
-            {
-              "text": "Complete piston movement and moved-block persistence",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/piston/piston.rs",
-              "line": 33
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/entities/piston.rs",
-              "line": 26
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "liquid-physics",
