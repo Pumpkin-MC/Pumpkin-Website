@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.51",
-  "commit": "59eecff28af6657f799d3764eb99cfcc0ffd7aa8",
-  "updated": "2026-10-27",
+  "commit": "86f36e01fbf13f7dc1d9fd05698966e7c7d61078",
+  "updated": "2026-10-28",
   "categories": [
     {
       "id": "entities",
@@ -2131,29 +2131,12 @@
           "group": "Decoration",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/decoration/armor_stand.rs",
-          "note": "Break handling explicitly omits equipment drops. Igniting/burning armor-stand damage tags are also not implemented.",
-          "items": [
-            {
-              "text": "Placement/state and damage/break handling",
-              "done": true
-            },
-            {
-              "text": "Equipment drops and fire-specific damage handling",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/decoration/armor_stand.rs",
-              "line": 29
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "block_display",
