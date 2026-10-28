@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "developers": "开发者",
+    "docs": "文档",
+    "community": "社区",
+    "market": "市场",
+
+    "tracker": "进度追踪",
+    "download": "下载",
+    "language": "语言",
+    "menu": "菜单"
+  },
+  "hero": {
+    "title": "一个能在 <hl>5 毫秒</hl> 内启动的 Minecraft 服务器。",
+    "benchTitle": "启动时间",
+    "benchNote": "相同世界、相同机器，从启动到“玩家可以加入”的实测时间。",
+    "runAgain": "再运行一次",
+    "loading": "加载中",
+    "ready": "就绪",
+    "lede": "Pumpkin 是一个用 Rust 编写的 Minecraft 服务器。无需安装 Java，单个文件即可运行，Java 版和基岩版玩家可以在同一个世界中游玩。",
+    "download": "下载",
+    "docs": "阅读文档"
+  },
+  "facts": {
+    "title": "Pumpkin <hl>如今</hl> 的样子",
+    "items": [
+      {
+        "big": "无 JVM",
+        "lead": "单个原生可执行文件。无需安装任何东西，无需调优参数，无需启动脚本。",
+        "rest": "放进文件夹就能运行。"
+      },
+      {
+        "big": "约 100 MB",
+        "lead": "加载世界后的空闲内存占用。",
+        "rest": "原版在无人加入前就接近 1.8 GB。"
+      },
+      {
+        "big": "全核心利用",
+        "lead": "从第一次提交起就为并行工作而编写，",
+        "rest": "而不是一个主线程外挂一些辅助线程。"
+      },
+      {
+        "big": "Java + 基岩版",
+        "lead": "两个版本加入同一个世界。",
+        "rest": "内置支持，无需前置代理，无需安装插件。"
+      },
+      {
+        "big": "9 种语言",
+        "lead": "用 Rust、Kotlin、Python、Go、C#、C、D、Zig 或 TypeScript 编写插件。",
+        "rest": "底层统一 API，选你已掌握的语言即可。"
+      },
+      {
+        "big": "GPL-3.0",
+        "lead": "整个服务器开源，而非核心开源加付费版本。",
+        "rest": "阅读它、分叉它、发布它。"
+      }
+    ],
+    "earlyTag": "早期开发阶段",
+    "earlyBody": "<b>Pumpkin 尚未完成。</b>并非所有原版机制都已实现，存档可能在版本间损坏，配置键仍会变动。请先在测试服务器上运行，保留备份，并<report>报告发现的问题</report>。<docs>文档</docs>说明了当前已支持的功能。"
+  }
+}
