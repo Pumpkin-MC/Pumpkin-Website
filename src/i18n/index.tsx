@@ -7,7 +7,7 @@ export const languages = {
   fr: "Français",
   es: "Español",
   vi: "Tiếng Việt",
-  zh_cn: "简体中文",
+  "zh-Hans": "简体中文",
 } as const;
 
 export type Lang = keyof typeof languages;
