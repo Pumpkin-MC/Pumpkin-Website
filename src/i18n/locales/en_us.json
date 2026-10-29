@@ -1,0 +1,315 @@
+{
+  "nav": {
+    "developers": "Developers",
+    "docs": "Docs",
+    "community": "Community",
+    "market": "Market",
+
+    "tracker": "Tracker",
+    "download": "Download",
+    "language": "Language",
+    "menu": "Menu",
+    "main": "Main",
+    "docsTranslations": "Docs are also available in <de>Deutsch</de>, <ja>日本語</ja>, <nl>Nederlands</nl> and <pt>Português</pt>.",
+    "panels": {
+      "developers": {
+        "writePlugins": "Write plugins",
+        "pickLanguage": "Pick a language",
+        "hackServer": "Hack on the server",
+        "howPluginsWork": {
+          "label": "How plugins work",
+          "hint": "The API, the runtime, the packaging."
+        },
+        "fromBukkit": {
+          "label": "Coming from Bukkit",
+          "hint": "Events, commands, inventories mapped."
+        },
+        "examples": {
+          "label": "Example plugins",
+          "hint": "Small, complete, copyable."
+        },
+        "contributing": {
+          "label": "Contributing",
+          "hint": "Setup, style, how PRs get reviewed."
+        },
+        "architecture": {
+          "label": "Architecture",
+          "hint": "How the server is put together."
+        },
+        "networking": {
+          "label": "Networking",
+          "hint": "Packets, auth, MSMP."
+        },
+        "source": {
+          "label": "Source on GitHub",
+          "hint": "Issues, PRs, releases."
+        }
+      },
+      "docs": {
+        "runServer": "Run a server",
+        "configure": "Configure",
+        "about": "About",
+        "gettingStarted": {
+          "label": "Getting started",
+          "hint": "Download, first run, first player."
+        },
+        "migration": {
+          "label": "Moving from Paper or Spigot",
+          "hint": "What carries over and what doesn't."
+        },
+        "patchBukkit": {
+          "label": "PatchBukkit",
+          "hint": "Keep running your Bukkit and Paper plugins."
+        },
+        "troubleshooting": {
+          "label": "Troubleshooting",
+          "hint": "Common issues and what they mean."
+        },
+        "basicSettings": {
+          "label": "Basic settings",
+          "hint": "Port, MOTD, view distance, whitelist."
+        },
+        "world": {
+          "label": "World",
+          "hint": "Generation, saving, spawn."
+        },
+        "bedrock": {
+          "label": "Bedrock players",
+          "hint": "Let Bedrock clients join."
+        },
+        "proxy": {
+          "label": "Behind a proxy",
+          "hint": "Velocity and BungeeCord forwarding."
+        },
+        "configReference": {
+          "label": "Every config key",
+          "hint": "The full reference."
+        },
+        "benchmarks": {
+          "label": "Benchmarks",
+          "hint": "How the numbers were measured."
+        },
+        "helping": {
+          "label": "Helping out",
+          "hint": "Ways to contribute without code."
+        }
+      },
+      "community": {
+        "talk": "Talk",
+        "follow": "Follow along",
+        "discord": {
+          "label": "Discord",
+          "hint": "Help, dev chat, announcements."
+        },
+        "x": {
+          "label": "X",
+          "hint": "Short updates."
+        },
+        "youtube": {
+          "label": "YouTube",
+          "hint": "Demos and talks."
+        },
+        "blog": {
+          "label": "Blog",
+          "hint": "Release notes and longer posts."
+        },
+        "stats": {
+          "label": "Stats",
+          "hint": "Servers running Pumpkin right now."
+        },
+        "parity": {
+          "label": "Vanilla parity",
+          "hint": "What is implemented, partial or planned."
+        },
+        "contributors": {
+          "label": "Contributors",
+          "hint": "The people who build Pumpkin."
+        },
+        "sponsor": {
+          "label": "Sponsor",
+          "hint": "Sponsorship tiers and community perks."
+        }
+      }
+    }
+  },
+  "hero": {
+    "title": "A Minecraft server that boots in <hl>5 ms.</hl>",
+    "benchTitle": "Startup time",
+    "benchNote": "Same world, same machine, measured from launch to \"players can join\".",
+    "runAgain": "Run it again",
+    "loading": "loading",
+    "ready": "ready",
+    "lede": "Pumpkin is a Minecraft server written in Rust. No Java to install, one file to run, Java and Bedrock players on the same world.",
+    "download": "Download",
+    "docs": "Read the docs",
+    "secondsUnit": "s"
+  },
+  "facts": {
+    "title": "What Pumpkin is <hl>today</hl>",
+    "items": [
+      {
+        "big": "No JVM",
+        "lead": "One native executable. Nothing to install, no flags to tune, no start script.",
+        "rest": "Drop it in a folder and run it."
+      },
+      {
+        "big": "~100 MB",
+        "lead": "Memory at idle with a world loaded.",
+        "rest": "Vanilla sits near 1.8 GB before anyone has joined."
+      },
+      {
+        "big": "All cores",
+        "lead": "Written for parallel work from the first commit,",
+        "rest": "not one main thread with helpers bolted on."
+      },
+      {
+        "big": "Java + Bedrock",
+        "lead": "Both editions join the same world.",
+        "rest": "Built in, no proxy in front, no plugin to install."
+      },
+      {
+        "big": "9 languages",
+        "lead": "Write plugins in Rust, Kotlin, Python, Go, C#, C, D, Zig or TypeScript.",
+        "rest": "One API underneath, pick the language you already know."
+      },
+      {
+        "big": "GPL-3.0",
+        "lead": "The whole server, not a core with a paid tier.",
+        "rest": "Read it, fork it, ship it."
+      }
+    ],
+    "earlyTag": "Early development",
+    "earlyBody": "<b>Pumpkin is not finished.</b> Not every vanilla mechanic is in yet, worlds can break between versions, and config keys still move. Run it on a test server first, keep backups, and <report>report what breaks</report>. The <docs>docs</docs> say what works today."
+  },
+  "checklist": {
+    "title": "Feature <hl>checklist</hl>",
+    "description": "Pumpkin next to Vanilla, Paper and Folia, as they ship today. Marks with a dot have a note.",
+    "feature": "Feature",
+    "support": {
+      "yes": "Yes",
+      "partial": "Partly",
+      "no": "No"
+    },
+    "noteLabel": "{status}, has a note",
+    "items": {
+      "startup": {
+        "feature": "Starts in under a second",
+        "detail": "Ready before a JVM has finished warming up.",
+        "notes": {
+          "1": "Vanilla waits on JVM start-up and world loading.",
+          "3": "Often slower than Paper, there is more to initialize."
+        }
+      },
+      "idleCpu": {
+        "feature": "Low CPU at idle",
+        "detail": "Sits near zero when nobody is online.",
+        "notes": {}
+      },
+      "memory": {
+        "feature": "Low memory",
+        "detail": "About 100 MB with a world loaded.",
+        "notes": {}
+      },
+      "parallel": {
+        "feature": "Uses every core",
+        "detail": "Parallel by design, not one main thread.",
+        "notes": {
+          "0": "Game logic and background tasks run across threads, not only chunk loading.",
+          "3": "Only ticking is parallel."
+        }
+      },
+      "bukkitPlugins": {
+        "feature": "Bukkit and Paper plugins",
+        "detail": "Early, through PatchBukkit. Expect gaps.",
+        "notes": {
+          "0": "Pumpkin has its own API. Bukkit and Paper plugins can run through PatchBukkit, which is early.",
+          "2": "Native.",
+          "3": "Varies. Many plugins need updates for Folia's threading."
+        }
+      },
+      "editions": {
+        "feature": "Java and Bedrock players",
+        "detail": "Both editions on one world, no proxy.",
+        "notes": {
+          "0": "Built in.",
+          "2": "Through an external plugin such as Geyser.",
+          "3": "Through external plugins, and Folia's threading makes setup harder."
+        }
+      },
+      "pluginLanguages": {
+        "feature": "Plugin API in 9 languages",
+        "detail": "Rust, Kotlin, Python, Go, C#, C, D, Zig, TypeScript.",
+        "notes": {}
+      },
+      "configuration": {
+        "feature": "Fine-grained configuration",
+        "detail": "Every subsystem has its own config file.",
+        "notes": {}
+      },
+      "openSource": {
+        "feature": "Open source",
+        "detail": "GPL-3.0, the whole server.",
+        "notes": {
+          "2": "Only the patches are open source.",
+          "3": "Only the patches are open source."
+        }
+      },
+      "worldFormats": {
+        "feature": "Multiple world formats",
+        "detail": "Anvil and more efficient alternatives.",
+        "notes": {
+          "3": "Anvil only."
+        }
+      },
+      "executable": {
+        "feature": "Single executable, no Java",
+        "detail": "Download, run, done.",
+        "notes": {}
+      }
+    }
+  },
+  "pluginLanguages": {
+    "title": "Write plugins in",
+    "market": "Or install one from the Market"
+  },
+  "tryIt": {
+    "title": "Try it on a spare machine.",
+    "body": "It's one file. Run it next to your current server, point a client at it, and see what works for your world before you commit.",
+    "github": "Star on GitHub",
+    "contributors": "Meet the contributors"
+  },
+  "footer": {
+    "description": "A Minecraft server written in Rust. Fast to start, light to run, free to change.",
+    "useIt": {
+      "heading": "Use it",
+      "gettingStarted": "Getting started",
+      "configuration": "Configuration",
+      "troubleshooting": "Troubleshooting"
+    },
+    "buildOnIt": {
+      "heading": "Build on it",
+      "pluginDocs": "Plugin docs",
+      "developers": "For developers",
+      "examples": "Examples",
+      "contributing": "Contributing"
+    },
+    "follow": {
+      "heading": "Follow",
+      "blog": "Blog",
+      "stats": "Stats",
+      "parity": "Vanilla parity",
+      "benchmarks": "Benchmarks",
+      "sponsorship": "Sponsorship"
+    },
+    "project": {
+      "heading": "Project",
+      "releases": "Releases",
+      "reportBug": "Report a bug",
+      "contributors": "Contributors",
+      "license": "License",
+      "repositories": "All repositories"
+    },
+    "credit": "Made with ❤️ by <purdze>purdze</purdze>, <megalith>MegalithOfficial</megalith> and contributors · GPL-3.0",
+    "disclaimer": "Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft."
+  }
+}

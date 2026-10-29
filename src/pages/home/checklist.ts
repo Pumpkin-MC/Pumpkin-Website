@@ -1,98 +1,73 @@
+import type { Messages } from "../../i18n";
+
 export type Support = "yes" | "partial" | "no";
 
 export const columns = ["Pumpkin", "Vanilla", "Spigot/Paper", "Folia"] as const;
 
 export interface ChecklistRow {
+  id: keyof Messages["checklist"]["items"];
   feature: string;
   detail: string;
   support: [Support, Support, Support, Support];
   notes: Partial<Record<number, string>>;
 }
 
-export const checklist: ChecklistRow[] = [
-  {
-    feature: "Starts in under a second",
-    detail: "Ready before a JVM has finished warming up.",
-    support: ["yes", "no", "no", "no"],
-    notes: {
-      1: "Vanilla waits on JVM start-up and world loading.",
-      3: "Often slower than Paper, there is more to initialize.",
+export function getChecklist(t: Messages): ChecklistRow[] {
+  return [
+    {
+      id: "startup",
+      ...t.checklist.items.startup,
+      support: ["yes", "no", "no", "no"],
     },
-  },
-  {
-    feature: "Low CPU at idle",
-    detail: "Sits near zero when nobody is online.",
-    support: ["yes", "no", "no", "no"],
-    notes: {},
-  },
-  {
-    feature: "Low memory",
-    detail: "About 100 MB with a world loaded.",
-    support: ["yes", "no", "no", "no"],
-    notes: {},
-  },
-  {
-    feature: "Uses every core",
-    detail: "Parallel by design, not one main thread.",
-    support: ["yes", "no", "no", "partial"],
-    notes: {
-      0: "Game logic and background tasks run across threads, not only chunk loading.",
-      3: "Only ticking is parallel.",
+    {
+      id: "idleCpu",
+      ...t.checklist.items.idleCpu,
+      support: ["yes", "no", "no", "no"],
     },
-  },
-  {
-    feature: "Bukkit and Paper plugins",
-    detail: "Early, through PatchBukkit. Expect gaps.",
-    support: ["partial", "no", "yes", "partial"],
-    notes: {
-      0: "Pumpkin has its own API. Bukkit and Paper plugins can run through PatchBukkit, which is early.",
-      2: "Native.",
-      3: "Varies. Many plugins need updates for Folia's threading.",
+    {
+      id: "memory",
+      ...t.checklist.items.memory,
+      support: ["yes", "no", "no", "no"],
     },
-  },
-  {
-    feature: "Java and Bedrock players",
-    detail: "Both editions on one world, no proxy.",
-    support: ["yes", "no", "partial", "partial"],
-    notes: {
-      0: "Built in.",
-      2: "Through an external plugin such as Geyser.",
-      3: "Through external plugins, and Folia's threading makes setup harder.",
+    {
+      id: "parallel",
+      ...t.checklist.items.parallel,
+      support: ["yes", "no", "no", "partial"],
     },
-  },
-  {
-    feature: "Plugin API in 9 languages",
-    detail: "Rust, Kotlin, Python, Go, C#, C, D, Zig, TypeScript.",
-    support: ["yes", "no", "no", "no"],
-    notes: {},
-  },
-  {
-    feature: "Fine-grained configuration",
-    detail: "Every subsystem has its own config file.",
-    support: ["yes", "no", "no", "no"],
-    notes: {},
-  },
-  {
-    feature: "Open source",
-    detail: "GPL-3.0, the whole server.",
-    support: ["yes", "no", "partial", "partial"],
-    notes: {
-      2: "Only the patches are open source.",
-      3: "Only the patches are open source.",
+    {
+      id: "bukkitPlugins",
+      ...t.checklist.items.bukkitPlugins,
+      support: ["partial", "no", "yes", "partial"],
     },
-  },
-  {
-    feature: "Multiple world formats",
-    detail: "Anvil and more efficient alternatives.",
-    support: ["yes", "no", "no", "no"],
-    notes: {
-      3: "Anvil only.",
+    {
+      id: "editions",
+      ...t.checklist.items.editions,
+      support: ["yes", "no", "partial", "partial"],
     },
-  },
-  {
-    feature: "Single executable, no Java",
-    detail: "Download, run, done.",
-    support: ["yes", "no", "no", "no"],
-    notes: {},
-  },
-];
+    {
+      id: "pluginLanguages",
+      ...t.checklist.items.pluginLanguages,
+      support: ["yes", "no", "no", "no"],
+    },
+    {
+      id: "configuration",
+      ...t.checklist.items.configuration,
+      support: ["yes", "no", "no", "no"],
+    },
+    {
+      id: "openSource",
+      ...t.checklist.items.openSource,
+      support: ["yes", "no", "partial", "partial"],
+    },
+    {
+      id: "worldFormats",
+      ...t.checklist.items.worldFormats,
+      support: ["yes", "no", "no", "no"],
+    },
+    {
+      id: "executable",
+      ...t.checklist.items.executable,
+      support: ["yes", "no", "no", "no"],
+    },
+  ];
+}

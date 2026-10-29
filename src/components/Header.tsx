@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
-import { languages, useI18n, type Lang } from "../i18n";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { languages, languageTag, useI18n, type Lang } from "../i18n";
+import { rich } from "../i18n/rich";
 import { GITHUB_URL, MARKET_URL } from "../links";
 import { withBase } from "../lib/url";
-import { menuPanels, type MenuPanel } from "./menu";
+import { getMenuPanels, type MenuPanel } from "./menu";
 import { ChevronDownIcon, CloseIcon, ExternalIcon, GitHubIcon, GlobeIcon, MenuIcon } from "./icons";
 
 const DESKTOP_QUERY = "(min-width: 60rem)";
@@ -19,6 +20,8 @@ function isDesktop(): boolean {
 }
 
 function Panel({ panel, open }: { panel: MenuPanel; open: boolean }) {
+  const { t } = useI18n();
+
   return (
     <div
       className={`${open ? "grid" : "hidden"} gap-4 px-1 pb-4 nav:absolute nav:top-[calc(100%+10px)] nav:left-0 nav:auto-cols-[minmax(200px,max-content)] nav:grid-flow-col nav:gap-x-10 nav:gap-y-0 nav:border-3 nav:border-pumpkin nav:bg-surface nav:px-6 nav:py-6 nav:brutal-6 nav:before:absolute nav:before:inset-x-0 nav:before:-top-3.25 nav:before:h-3.25`}
@@ -47,14 +50,12 @@ function Panel({ panel, open }: { panel: MenuPanel; open: boolean }) {
       ))}
       {panel.translations && (
         <p className="col-span-full mt-1 border-t border-white/15 pt-3.5 text-[0.85rem] text-muted nav:mt-4">
-          Docs are also available in{" "}
-          {panel.translations.map((link, index) => (
-            <span key={link.href}>
-              <a href={link.href} className="font-semibold text-pumpkin underline underline-offset-3 hover:text-fg">
-                {link.label}
+          {rich(t.nav.docsTranslations, Object.fromEntries(
+            Object.entries(panel.translations).map(([tag, href]) => [tag, (text: string) => (
+              <a href={href} className="font-semibold text-pumpkin underline underline-offset-3 hover:text-fg">
+                {text}
               </a>
-              {index < panel.translations!.length - 2 ? ", " : index === panel.translations!.length - 2 ? " and " : "."}
-            </span>
+            )]),
           ))}
         </p>
       )}
@@ -88,7 +89,7 @@ function LanguageSwitcher() {
             key={code}
             type="button"
             role="radio"
-            lang={code}
+            lang={languageTag(code)}
             title={languages[code]}
             aria-checked={code === lang}
             onClick={() => setLang(code)}
@@ -96,7 +97,7 @@ function LanguageSwitcher() {
               code === lang ? "bg-pumpkin text-black" : "text-muted hover:text-fg"
             }`}
           >
-            {code}
+            {code.split("_")[0]}
           </button>
         ))}
       </div>
@@ -110,7 +111,7 @@ function LanguageSwitcher() {
         className={`${squareButton} cursor-pointer gap-1.5 px-2.5 text-[0.85rem] font-bold uppercase`}
       >
         <GlobeIcon className="size-4" />
-        {lang}
+        {lang.split("_")[0]}
       </button>
       {open && (
         <ul
@@ -129,7 +130,7 @@ function LanguageSwitcher() {
                 }}
                 className={`block w-full cursor-pointer border-b border-white/10 px-4 py-2.5 text-left text-[0.9rem] font-semibold last:border-b-0 hover:bg-pumpkin hover:text-black ${code === lang ? "bg-pumpkin text-black" : "text-fg"}`}
               >
-                {languages[code]} ({code.toUpperCase()})
+                {languages[code]} ({code.split("_")[0].toUpperCase()})
               </button>
             </li>
           ))}
@@ -142,6 +143,7 @@ function LanguageSwitcher() {
 
 export function Header() {
   const { t } = useI18n();
+  const menuPanels = useMemo(() => getMenuPanels(t), [t]);
   const [openId, setOpenId] = useState<MenuPanel["id"] | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
@@ -209,7 +211,7 @@ export function Header() {
           id="site-drawer"
           className={`${drawerOpen ? "block" : "hidden"} absolute inset-x-0 top-full max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b-3 border-pumpkin bg-surface px-4 pb-4 shadow-[0_12px_0_rgb(0_0_0/0.35)] nav:contents`}
         >
-          <nav aria-label="Main" className="flex w-full flex-col nav:w-auto nav:flex-row nav:items-stretch nav:gap-1">
+          <nav aria-label={t.nav.main} className="flex w-full flex-col nav:w-auto nav:flex-row nav:items-stretch nav:gap-1">
             {menuPanels.map((panel) => {
               const open = openId === panel.id;
               return (

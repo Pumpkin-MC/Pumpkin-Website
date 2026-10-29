@@ -1,16 +1,22 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import en from "./locales/en.json";
+import en from "./locales/en_us.json";
 
 export const languages = {
-  en: "English",
-  de: "Deutsch",
-  fr: "Français",
-  es: "Español",
-  vi: "Tiếng Việt",
+  en_us: "English",
+  de_de: "Deutsch",
+  fr_fr: "Français",
+  es_es: "Español",
+  vi_vn: "Tiếng Việt",
+  zh_cn: "简体中文",
 } as const;
 
 export type Lang = keyof typeof languages;
 export type Messages = typeof en;
+
+export function languageTag(lang: Lang): string {
+  const [language, region] = lang.split("_");
+  return `${language}-${region.toUpperCase()}`;
+}
 
 interface I18nValue {
   lang: Lang;
@@ -20,25 +26,36 @@ interface I18nValue {
 
 const STORAGE_KEY = "pumpkin_lang";
 
-const loaders = import.meta.glob<unknown>(["./locales/*.json", "!./locales/en.json"], { import: "default" });
+const loaders = import.meta.glob<unknown>(["./locales/*.json", "!./locales/en_us.json"], { import: "default" });
 
-const I18nContext = createContext<I18nValue>({ lang: "en", t: en, setLang: () => {} });
+const I18nContext = createContext<I18nValue>({ lang: "en_us", t: en, setLang: () => {} });
 
 function isLang(value: string | null | undefined): value is Lang {
   return value != null && Object.hasOwn(languages, value);
 }
 
+function resolveLang(value: string | null | undefined): Lang | undefined {
+  const code = value?.toLowerCase().replaceAll("-", "_");
+  if (isLang(code)) return code;
+  const language = code?.split("_")[0];
+  return (Object.keys(languages) as Lang[]).find((lang) => lang.split("_")[0] === language);
+}
+
 function detectLang(): Lang {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (isLang(saved)) return saved;
+    const lang = resolveLang(saved);
+    if (lang) {
+      if (saved !== lang) saveLang(lang);
+      return lang;
+    }
   } catch {}
   const preferred = navigator.languages?.length ? navigator.languages : [navigator.language];
   for (const tag of preferred) {
-    const code = tag?.toLowerCase().split("-")[0];
-    if (isLang(code)) return code;
+    const lang = resolveLang(tag);
+    if (lang) return lang;
   }
-  return "en";
+  return "en_us";
 }
 
 function saveLang(lang: Lang): boolean {
@@ -66,7 +83,7 @@ function merge(base: unknown, override: unknown): unknown {
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
+  const [lang, setLangState] = useState<Lang>("en_us");
   const [t, setT] = useState<Messages>(en);
 
   useEffect(() => {
@@ -74,8 +91,8 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    document.documentElement.lang = lang;
-    if (lang === "en") {
+    document.documentElement.lang = languageTag(lang);
+    if (lang === "en_us") {
       setT(en);
       return;
     }
@@ -85,7 +102,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
         if (!cancelled) setT(merge(en, messages) as Messages);
       })
       .catch(() => {
-        if (!cancelled) setLangState("en");
+        if (!cancelled) setLangState("en_us");
       });
     return () => {
       cancelled = true;

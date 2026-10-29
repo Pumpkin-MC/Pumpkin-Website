@@ -1,0 +1,315 @@
+{
+  "nav": {
+    "developers": "开发者",
+    "docs": "文档",
+    "community": "社区",
+    "market": "插件市场",
+
+    "tracker": "进度",
+    "download": "下载",
+    "language": "语言",
+    "menu": "菜单",
+    "main": "主导航",
+    "docsTranslations": "文档还提供<de>德语</de>、<ja>日语</ja>、<nl>荷兰语</nl>和<pt>葡萄牙语</pt>版本。",
+    "panels": {
+      "developers": {
+        "writePlugins": "编写插件",
+        "pickLanguage": "选择语言",
+        "hackServer": "参与服务端开发",
+        "howPluginsWork": {
+          "label": "插件如何工作",
+          "hint": "API、运行时和打包方式。"
+        },
+        "fromBukkit": {
+          "label": "从 Bukkit 迁移",
+          "hint": "事件、命令和物品栏的对应关系。"
+        },
+        "examples": {
+          "label": "示例插件",
+          "hint": "简短、完整，可直接复制使用。"
+        },
+        "contributing": {
+          "label": "参与贡献",
+          "hint": "环境配置、代码风格和 PR 审核流程。"
+        },
+        "architecture": {
+          "label": "架构",
+          "hint": "服务端的整体结构。"
+        },
+        "networking": {
+          "label": "网络通信",
+          "hint": "数据包、身份验证和 MSMP。"
+        },
+        "source": {
+          "label": "GitHub 源码",
+          "hint": "议题、PR 和发布版本。"
+        }
+      },
+      "docs": {
+        "runServer": "运行服务器",
+        "configure": "配置",
+        "about": "关于",
+        "gettingStarted": {
+          "label": "快速开始",
+          "hint": "下载、首次运行和迎接第一位玩家。"
+        },
+        "migration": {
+          "label": "从 Paper 或 Spigot 迁移",
+          "hint": "哪些内容可以沿用，哪些不能。"
+        },
+        "patchBukkit": {
+          "label": "PatchBukkit",
+          "hint": "继续运行现有的 Bukkit 和 Paper 插件。"
+        },
+        "troubleshooting": {
+          "label": "故障排查",
+          "hint": "常见问题及其含义。"
+        },
+        "basicSettings": {
+          "label": "基本设置",
+          "hint": "端口、MOTD、视距和白名单。"
+        },
+        "world": {
+          "label": "世界",
+          "hint": "生成、保存和出生点。"
+        },
+        "bedrock": {
+          "label": "基岩版玩家",
+          "hint": "让基岩版客户端加入服务器。"
+        },
+        "proxy": {
+          "label": "通过代理连接",
+          "hint": "Velocity 和 BungeeCord 转发。"
+        },
+        "configReference": {
+          "label": "全部配置项",
+          "hint": "完整的配置参考。"
+        },
+        "benchmarks": {
+          "label": "性能测试",
+          "hint": "这些数据是如何测得的。"
+        },
+        "helping": {
+          "label": "提供帮助",
+          "hint": "无需编写代码也能参与贡献。"
+        }
+      },
+      "community": {
+        "talk": "交流",
+        "follow": "关注进展",
+        "discord": {
+          "label": "Discord",
+          "hint": "寻求帮助、开发交流和公告。"
+        },
+        "x": {
+          "label": "X",
+          "hint": "简短动态。"
+        },
+        "youtube": {
+          "label": "YouTube",
+          "hint": "演示和分享。"
+        },
+        "blog": {
+          "label": "博客",
+          "hint": "版本说明和长篇文章。"
+        },
+        "stats": {
+          "label": "统计",
+          "hint": "当前正在运行 Pumpkin 的服务器。"
+        },
+        "parity": {
+          "label": "原版功能进度",
+          "hint": "哪些功能已实现、部分实现或仍在计划中。"
+        },
+        "contributors": {
+          "label": "贡献者",
+          "hint": "共同开发 Pumpkin 的人们。"
+        },
+        "sponsor": {
+          "label": "赞助",
+          "hint": "赞助档位和社区权益。"
+        }
+      }
+    }
+  },
+  "hero": {
+    "title": "只需 <hl>5 毫秒</hl> 即可启动的 Minecraft 服务器。",
+    "benchTitle": "启动时间",
+    "benchNote": "同一个世界、同一台机器，从启动开始计时，直到玩家可以加入。",
+    "runAgain": "再运行一次",
+    "loading": "加载中",
+    "ready": "已就绪",
+    "lede": "Pumpkin 是用 Rust 编写的 Minecraft 服务器。无需安装 Java，只需运行一个文件，Java版和基岩版玩家便能加入同一个世界。",
+    "download": "下载",
+    "docs": "阅读文档",
+    "secondsUnit": "秒"
+  },
+  "facts": {
+    "title": "<hl>如今</hl>的 Pumpkin",
+    "items": [
+      {
+        "big": "无需 JVM",
+        "lead": "一个原生可执行文件，无需安装、调整启动参数或编写启动脚本。",
+        "rest": "放进文件夹即可运行。"
+      },
+      {
+        "big": "~100 MB",
+        "lead": "加载世界后空闲时的内存占用。",
+        "rest": "原版在尚无玩家加入时就已占用约 1.8 GB。"
+      },
+      {
+        "big": "用上所有核心",
+        "lead": "从第一次提交起就为并行处理而设计，",
+        "rest": "而非在单一主线程上附加辅助线程。"
+      },
+      {
+        "big": "Java版 + 基岩版",
+        "lead": "两个版本的玩家加入同一个世界。",
+        "rest": "内置支持，无需前置代理，也无需安装插件。"
+      },
+      {
+        "big": "9 种语言",
+        "lead": "用 Rust、Kotlin、Python、Go、C#、C、D、Zig 或 TypeScript 编写插件。",
+        "rest": "底层使用同一套 API，选择你熟悉的语言即可。"
+      },
+      {
+        "big": "GPL-3.0",
+        "lead": "整个服务端都采用这一许可，不设付费功能层级。",
+        "rest": "自由阅读、分叉和分发。"
+      }
+    ],
+    "earlyTag": "开发早期",
+    "earlyBody": "<b>Pumpkin 尚未完成。</b>部分原版机制仍未实现，版本之间的变更可能导致世界损坏，配置项也仍在调整。请先在测试服务器上运行，保留备份，并<report>报告遇到的问题</report>。当前已支持的功能请参阅<docs>文档</docs>。"
+  },
+  "checklist": {
+    "title": "功能<hl>对照表</hl>",
+    "description": "对比 Pumpkin、原版、Paper 和 Folia 当前提供的功能。带圆点的标记附有说明。",
+    "feature": "功能",
+    "support": {
+      "yes": "支持",
+      "partial": "部分支持",
+      "no": "不支持"
+    },
+    "noteLabel": "{status}，附有说明",
+    "items": {
+      "startup": {
+        "feature": "不到一秒即可启动",
+        "detail": "JVM 还没预热完，就已经准备就绪。",
+        "notes": {
+          "1": "原版需要等待 JVM 启动和世界加载。",
+          "3": "需要初始化的内容更多，通常比 Paper 更慢。"
+        }
+      },
+      "idleCpu": {
+        "feature": "空闲时 CPU 占用低",
+        "detail": "无人在线时，CPU 占用接近零。",
+        "notes": {}
+      },
+      "memory": {
+        "feature": "内存占用低",
+        "detail": "加载世界后约占用 100 MB。",
+        "notes": {}
+      },
+      "parallel": {
+        "feature": "利用所有核心",
+        "detail": "从设计之初就采用并行处理，不依赖单一主线程。",
+        "notes": {
+          "0": "游戏逻辑和后台任务都跨线程运行，不仅限于区块加载。",
+          "3": "仅 Tick 处理支持并行。"
+        }
+      },
+      "bukkitPlugins": {
+        "feature": "Bukkit 和 Paper 插件",
+        "detail": "通过尚处早期阶段的 PatchBukkit 支持，仍有缺失。",
+        "notes": {
+          "0": "Pumpkin 有自己的 API。Bukkit 和 Paper 插件可通过尚处早期阶段的 PatchBukkit 运行。",
+          "2": "原生支持。",
+          "3": "情况各异。许多插件需要更新才能适配 Folia 的线程模型。"
+        }
+      },
+      "editions": {
+        "feature": "Java版和基岩版玩家",
+        "detail": "两个版本的玩家共用一个世界，无需代理。",
+        "notes": {
+          "0": "内置支持。",
+          "2": "通过 Geyser 等外部插件实现。",
+          "3": "通过外部插件实现，且 Folia 的线程模型会增加配置难度。"
+        }
+      },
+      "pluginLanguages": {
+        "feature": "支持 9 种语言的插件 API",
+        "detail": "Rust、Kotlin、Python、Go、C#、C、D、Zig、TypeScript。",
+        "notes": {}
+      },
+      "configuration": {
+        "feature": "精细的配置选项",
+        "detail": "每个子系统都有独立的配置文件。",
+        "notes": {}
+      },
+      "openSource": {
+        "feature": "开源",
+        "detail": "整个服务端采用 GPL-3.0 许可。",
+        "notes": {
+          "2": "仅补丁开源。",
+          "3": "仅补丁开源。"
+        }
+      },
+      "worldFormats": {
+        "feature": "多种世界格式",
+        "detail": "支持 Anvil 及其他更高效的格式。",
+        "notes": {
+          "3": "仅支持 Anvil。"
+        }
+      },
+      "executable": {
+        "feature": "单个可执行文件，无需 Java",
+        "detail": "下载、运行，即可使用。",
+        "notes": {}
+      }
+    }
+  },
+  "pluginLanguages": {
+    "title": "使用这些语言编写插件",
+    "market": "或从插件市场安装现成插件"
+  },
+  "tryIt": {
+    "title": "找台备用机器试试。",
+    "body": "只需一个文件。让它与你现有的服务器并行运行，用客户端连接，在正式采用前看看它能否满足你的世界所需。",
+    "github": "在 GitHub 上加星",
+    "contributors": "认识贡献者"
+  },
+  "footer": {
+    "description": "用 Rust 编写的 Minecraft 服务器。启动快、运行轻巧、可自由修改。",
+    "useIt": {
+      "heading": "使用",
+      "gettingStarted": "快速开始",
+      "configuration": "配置",
+      "troubleshooting": "故障排查"
+    },
+    "buildOnIt": {
+      "heading": "开发",
+      "pluginDocs": "插件文档",
+      "developers": "开发者指南",
+      "examples": "示例",
+      "contributing": "参与贡献"
+    },
+    "follow": {
+      "heading": "关注",
+      "blog": "博客",
+      "stats": "统计",
+      "parity": "原版功能进度",
+      "benchmarks": "性能测试",
+      "sponsorship": "赞助"
+    },
+    "project": {
+      "heading": "项目",
+      "releases": "发布版本",
+      "reportBug": "报告问题",
+      "contributors": "贡献者",
+      "license": "许可证",
+      "repositories": "所有仓库"
+    },
+    "credit": "由 <purdze>purdze</purdze>、<megalith>MegalithOfficial</megalith> 和贡献者用 ❤️ 制作 · GPL-3.0",
+    "disclaimer": "这不是 Minecraft 官方产品，未经 Mojang 或 Microsoft 批准，也与两家公司无关。"
+  }
+}
