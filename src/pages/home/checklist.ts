@@ -12,6 +12,7 @@ export interface ChecklistRow {
   notes: Partial<Record<number, string>>;
 }
 
+/** Builds the feature comparison checklist rows for the current language. */
 export function getChecklist(t: Messages): ChecklistRow[] {
   return [
     {

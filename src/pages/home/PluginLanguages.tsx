@@ -1,6 +1,7 @@
 import { useI18n } from "../../i18n";
 import { MARKET_URL, pluginLanguages } from "../../links";
 
+/** Section listing the languages plugins can be written in, linking to the market. */
 export function PluginLanguages() {
   const { t } = useI18n();
 

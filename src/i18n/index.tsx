@@ -13,6 +13,7 @@ export const languages = {
 export type Lang = keyof typeof languages;
 export type Messages = typeof en;
 
+/** Converts an internal language key such as "zh_cn" to a BCP-47 tag such as "zh-CN". */
 export function languageTag(lang: Lang): string {
   const [language, region] = lang.split("_");
   return `${language}-${region.toUpperCase()}`;
@@ -34,6 +35,11 @@ function isLang(value: string | null | undefined): value is Lang {
   return value != null && Object.hasOwn(languages, value);
 }
 
+/**
+ * Resolves a stored or browser language tag to a supported language.
+ * Accepts full tags ("zh-CN"), bare language names ("zh") and legacy
+ * short codes, falling back to the closest matching language.
+ */
 function resolveLang(value: string | null | undefined): Lang | undefined {
   const code = value?.toLowerCase().replaceAll("-", "_");
   if (isLang(code)) return code;
@@ -41,6 +47,7 @@ function resolveLang(value: string | null | undefined): Lang | undefined {
   return (Object.keys(languages) as Lang[]).find((lang) => lang.split("_")[0] === language);
 }
 
+/** Detects the initial language from the saved preference or the browser, defaulting to English. */
 function detectLang(): Lang {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -82,6 +89,7 @@ function merge(base: unknown, override: unknown): unknown {
   return typeof override === typeof base ? override : base;
 }
 
+/** Provides the active language, its messages and a setter to the whole app. */
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en_us");
   const [t, setT] = useState<Messages>(en);

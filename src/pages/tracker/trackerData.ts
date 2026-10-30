@@ -11,6 +11,7 @@ function toStatus(value: string): Status {
   return (STATUS_ORDER as string[]).includes(value) ? (value as Status) : "planned";
 }
 
+/** Annotates raw tracker data: normalizes statuses and fills the "all" pseudo-category. */
 function annotate(data: RawData): TrackerData {
   const categories: Category[] = data.categories.map((category) => ({
     ...category,
@@ -29,11 +30,21 @@ function annotate(data: RawData): TrackerData {
 
 export const trackerData: TrackerData = annotate(raw as RawData);
 
+/**
+ * Creates a lookup that maps English source texts to their translations for
+ * one message group, keeping the source text when no translation exists.
+ */
 function textLookup(source: Record<string, string>, messages: Record<string, string>): (text: string) => string {
   const translations = new Map(Object.entries(source).map(([key, text]) => [text, messages[key] ?? text]));
   return (text) => translations.get(text) ?? text;
 }
 
+/**
+ * Returns the tracker data with every user-facing text translated into the
+ * current language. Strings are matched against the English source text, so
+ * entries the catalog does not know yet stay in English instead of being
+ * mistranslated.
+ */
 export function getTrackerData(t: Messages): TrackerData {
   const source = en.tracker;
   const messages = t.tracker;

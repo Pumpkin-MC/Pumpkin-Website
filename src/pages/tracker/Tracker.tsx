@@ -57,6 +57,7 @@ function inline(text: string): ReactNode[] {
   );
 }
 
+/** Status glyph with an accessible label in the current language. */
 function Mark({ status, small = false }: { status: Status; small?: boolean }) {
   const { t } = useI18n();
   const { glyph, bg } = STATUS[status];
@@ -73,6 +74,7 @@ function Mark({ status, small = false }: { status: Status; small?: boolean }) {
   );
 }
 
+/** Legend explaining the done / partial / planned status marks. */
 function Legend() {
   const { t } = useI18n();
   return (
@@ -117,6 +119,7 @@ interface StatProps {
   className: string;
 }
 
+/** Animated percentage stat card for one status, counting up to the target value. */
 function Stat({ status, count, total, className }: StatProps) {
   const { t } = useI18n();
   const { text, bg } = STATUS[status];
@@ -140,6 +143,7 @@ function Stat({ status, count, total, className }: StatProps) {
   );
 }
 
+/** Progress bar split into status-colored segments for a set of entries. */
 function Bar({ entries, className }: { entries: Entry[]; className: string }) {
   const { t } = useI18n();
   const c = counts(entries);
@@ -165,6 +169,7 @@ interface RowProps {
 
 const term = "text-[0.7rem] font-extrabold tracking-[0.08em] text-muted uppercase sm:pt-0.5";
 
+/** Link to a tracked GitHub issue or pull request with its state badge. */
 function IssueLink({ issue }: { issue: Issue }) {
   const { t } = useI18n();
   const open = issue.state === "open";
@@ -190,6 +195,7 @@ function IssueLink({ issue }: { issue: Issue }) {
   );
 }
 
+/** One tracker entry row with expandable details (note, items, source, issues). */
 function Row({ entry, open, onToggle }: RowProps) {
   const { t } = useI18n();
   const status = STATUS[entry.status];
@@ -277,6 +283,7 @@ function readHash(): { category: string; entry: string | null } {
 const VIEWS: Category[] = [trackerData.all, ...trackerData.categories];
 const ENTRIES = new Map(trackerData.all.entries.map((entry) => [entryKey(entry), entry]));
 
+/** Vanilla parity tracker page: browse, filter and search the tracked entries. */
 export default function Tracker() {
   const { t } = useI18n();
   const data = useMemo(() => getTrackerData(t), [t]);

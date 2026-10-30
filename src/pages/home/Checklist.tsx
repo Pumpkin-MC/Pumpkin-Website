@@ -25,6 +25,7 @@ interface MarkProps {
   onToggle?: () => void;
 }
 
+/** Support mark cell: a glyph that opens the note tooltip when a note exists. */
 function Mark({ support, note, noteId, expanded, onToggle }: MarkProps) {
   const { t } = useI18n();
   const { glyph, background } = marks[support];
@@ -54,6 +55,7 @@ function Mark({ support, note, noteId, expanded, onToggle }: MarkProps) {
   );
 }
 
+/** Legend explaining the yes / partial / no support marks. */
 function Legend() {
   const { t } = useI18n();
 
@@ -74,6 +76,7 @@ function Legend() {
   );
 }
 
+/** Feature comparison checklist rendered as a table on desktop and cards on mobile. */
 export function Checklist() {
   const { t } = useI18n();
   const checklist = getChecklist(t);

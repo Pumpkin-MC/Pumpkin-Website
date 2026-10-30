@@ -19,6 +19,7 @@ function isDesktop(): boolean {
   return window.matchMedia(DESKTOP_QUERY).matches;
 }
 
+/** One dropdown panel of the navigation menu. */
 function Panel({ panel, open }: { panel: MenuPanel; open: boolean }) {
   const { t } = useI18n();
 
@@ -63,6 +64,7 @@ function Panel({ panel, open }: { panel: MenuPanel; open: boolean }) {
   );
 }
 
+/** Mobile radio buttons and desktop dropdown for switching the site language. */
 function LanguageSwitcher() {
   const { t, lang, setLang } = useI18n();
   const [open, setOpen] = useState(false);
@@ -141,6 +143,7 @@ function LanguageSwitcher() {
   );
 }
 
+/** Sticky site header with the navigation menu, language switcher and download button. */
 export function Header() {
   const { t } = useI18n();
   const menuPanels = useMemo(() => getMenuPanels(t), [t]);

@@ -31,6 +31,7 @@ interface ClockProps {
   className: string;
 }
 
+/** Startup time clock with a tone chip for one server implementation. */
 function Clock({ name, seconds, tone, label, className }: ClockProps) {
   const { t } = useI18n();
 

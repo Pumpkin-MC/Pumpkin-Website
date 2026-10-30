@@ -2,6 +2,7 @@ import { useI18n } from "../../i18n";
 import { ButtonLink } from "../../components/Button";
 import { GITHUB_URL } from "../../links";
 
+/** Call-to-action section inviting visitors to try Pumpkin on a spare machine. */
 export function TryIt() {
   const { t } = useI18n();
 

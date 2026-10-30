@@ -26,6 +26,7 @@ export interface MenuPanel {
   translations?: Record<string, string>;
 }
 
+/** Builds the navigation menu panels for the current language. */
 export function getMenuPanels(t: Messages): MenuPanel[] {
   const { developers, docs, community } = t.nav.panels;
 

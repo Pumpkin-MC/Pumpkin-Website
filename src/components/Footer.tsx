@@ -14,6 +14,7 @@ import {
 import { withBase } from "../lib/url";
 import { DiscordIcon, GitHubIcon, XIcon, YouTubeIcon } from "./icons";
 
+/** Builds the footer link columns for the current language. */
 function getColumns(t: Messages): { heading: string; links: NamedLink[] }[] {
   const { footer } = t;
 
@@ -69,6 +70,7 @@ const socials = [
   { label: "YouTube", href: YOUTUBE_URL, Icon: YouTubeIcon },
 ];
 
+/** Site footer with link columns, credits and the legal disclaimer. */
 export function Footer() {
   const { t } = useI18n();
   const columns = getColumns(t);
