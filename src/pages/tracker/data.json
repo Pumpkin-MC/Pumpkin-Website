@@ -1,6 +1,6 @@
 {
-  "version": "26.3-26.51",
-  "commit": "eba538f284c5af0b7a3e0c701c7ded3435858f59",
+  "version": "26.3-26.60",
+  "commit": "90ac8d8253a099174e0504ebc4a4aa2499bf3780",
   "updated": "2026-10-29",
   "categories": [
     {
@@ -8,7 +8,7 @@
       "label": "Entities",
       "unit": "entities",
       "tracking": 3468,
-      "description": "All 160 entity types in the 26.3-26.51 registry, with source reviews where available. Registry presence alone does not establish behaviour parity.",
+      "description": "All 160 entity types in the 26.3-26.60 registry, with source reviews where available. Registry presence alone does not establish behaviour parity.",
       "entries": [
         {
           "id": "blaze",
@@ -905,7 +905,6 @@
           "name": "Fox",
           "group": "Passive",
           "status": "partial",
-          "source": "crates/pumpkin-core/src/entity/passive/fox.rs",
           "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
