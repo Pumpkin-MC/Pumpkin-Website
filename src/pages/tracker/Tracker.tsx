@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { GITHUB_ORG_URL, GITHUB_URL } from "../../links";
 import { ChevronDownIcon, ExternalIcon } from "../../components/icons";
+import { useI18n } from "../../i18n";
+import { rich } from "../../i18n/rich";
 import { withBase } from "../../lib/url";
 import {
   BoltIcon,
@@ -17,7 +19,7 @@ import {
   TerminalIcon,
   WandIcon,
 } from "./icons";
-import { trackerData } from "./trackerData";
+import { getTrackerData, trackerData } from "./trackerData";
 import { STATUS, STATUS_ORDER, counts, entryKey, pct, type Category, type Entry, type Filter, type Issue, type Status } from "./types";
 
 const WEBSITE_DATA_URL = `${GITHUB_ORG_URL}/Pumpkin-Website/blob/master/src/pages/tracker/data.json`;
@@ -56,11 +58,12 @@ function inline(text: string): ReactNode[] {
 }
 
 function Mark({ status, small = false }: { status: Status; small?: boolean }) {
-  const { glyph, label, bg } = STATUS[status];
+  const { t } = useI18n();
+  const { glyph, bg } = STATUS[status];
   return (
     <span
       role="img"
-      aria-label={label}
+      aria-label={t.tracker.status[status]}
       className={`inline-flex shrink-0 items-center justify-center leading-none font-extrabold text-black ${bg} ${
         small ? "size-4 text-[0.65rem]" : "size-6 text-[0.9rem]"
       }`}
@@ -71,12 +74,13 @@ function Mark({ status, small = false }: { status: Status; small?: boolean }) {
 }
 
 function Legend() {
+  const { t } = useI18n();
   return (
     <div className="flex flex-wrap gap-5 text-[0.85rem] text-muted md:ml-auto">
       {STATUS_ORDER.map((status) => (
         <span key={status} className="inline-flex items-center gap-1.5">
           <Mark status={status} />
-          {STATUS[status].label}
+          {t.tracker.status[status]}
         </span>
       ))}
     </div>
@@ -114,13 +118,14 @@ interface StatProps {
 }
 
 function Stat({ status, count, total, className }: StatProps) {
-  const { label, text, bg } = STATUS[status];
+  const { t } = useI18n();
+  const { text, bg } = STATUS[status];
   const value = useCountUp(count);
   return (
     <div className={`tabular-nums ${className}`}>
       <div className="mb-1 flex flex-wrap items-center gap-2 text-[0.85rem] font-extrabold tracking-[0.06em] uppercase md:gap-3 md:text-[1rem]">
         <Mark status={status} />
-        {label}
+        {t.tracker.status[status]}
         <span className={`inline-flex items-center border-2 border-transparent px-1.5 py-px text-[0.6rem] tracking-[0.08em] text-black md:px-2 md:text-[0.7rem] ${bg}`}>
           {value}
         </span>
@@ -136,13 +141,14 @@ function Stat({ status, count, total, className }: StatProps) {
 }
 
 function Bar({ entries, className }: { entries: Entry[]; className: string }) {
+  const { t } = useI18n();
   const c = counts(entries);
   const total = entries.length;
   return (
     <div
       className={`flex overflow-hidden outline outline-black/30 ${className}`}
       role="img"
-      aria-label="Share of implemented, partial and planned entries"
+      aria-label={t.tracker.progressLabel}
     >
       {STATUS_ORDER.map((status) => (
         <div key={status} className={`${STATUS[status].bg} transition-[width] duration-500`} style={{ width: `${pct(c[status], total)}%` }} />
@@ -160,6 +166,7 @@ interface RowProps {
 const term = "text-[0.7rem] font-extrabold tracking-[0.08em] text-muted uppercase sm:pt-0.5";
 
 function IssueLink({ issue }: { issue: Issue }) {
+  const { t } = useI18n();
   const open = issue.state === "open";
   const Icon = issue.pr ? PullRequestIcon : BugIcon;
   return (
@@ -176,7 +183,7 @@ function IssueLink({ issue }: { issue: Issue }) {
         <span
           className={`inline-flex border px-1.5 text-[0.6rem] font-extrabold tracking-[0.08em] uppercase ${open ? "border-pumpkin text-pumpkin" : "border-muted"}`}
         >
-          {issue.state}
+          {t.tracker.issueState[issue.state]}
         </span>
       )}
     </a>
@@ -184,6 +191,7 @@ function IssueLink({ issue }: { issue: Issue }) {
 }
 
 function Row({ entry, open, onToggle }: RowProps) {
+  const { t } = useI18n();
   const status = STATUS[entry.status];
   const items = entry.items ?? [];
   const issues = entry.issues ?? [];
@@ -199,7 +207,7 @@ function Row({ entry, open, onToggle }: RowProps) {
       >
         <Mark status={entry.status} />
         <span className="min-w-0 flex-1 font-bold">{entry.name}</span>
-        <span className={`hidden text-[0.7rem] font-extrabold tracking-[0.08em] uppercase sm:inline ${status.text}`}>{status.label}</span>
+        <span className={`hidden text-[0.7rem] font-extrabold tracking-[0.08em] uppercase sm:inline ${status.text}`}>{t.tracker.status[entry.status]}</span>
         <ChevronDownIcon className={`size-3.5 shrink-0 text-muted transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
@@ -221,7 +229,7 @@ function Row({ entry, open, onToggle }: RowProps) {
             <dl className="grid gap-x-8 gap-y-1.5 text-[0.85rem] sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-y-2.5">
               {source && (
                 <>
-                  <dt className={term}>Source</dt>
+                  <dt className={term}>{t.tracker.source}</dt>
                   <dd>
                     <a href={`${GITHUB_URL}/blob/master/${entry.source}`} target="_blank" rel="noopener" className={`${inlineLink} inline-flex items-center gap-1.5`}>
                       <FileCodeIcon className="size-3.5" />
@@ -233,7 +241,7 @@ function Row({ entry, open, onToggle }: RowProps) {
               )}
               {issues.length > 0 && (
                 <>
-                  <dt className={term}>{issues.some((issue) => issue.pr) ? "Issues and PRs" : "Issues"}</dt>
+                  <dt className={term}>{issues.some((issue) => issue.pr) ? t.tracker.issuesAndPrs : t.tracker.issues}</dt>
                   <dd className="grid gap-1.5">
                     {issues.map((issue) => (
                       <IssueLink key={issue.number} issue={issue} />
@@ -243,7 +251,7 @@ function Row({ entry, open, onToggle }: RowProps) {
               )}
               {ids.length > 0 && (
                 <>
-                  <dt className={term}>Registered</dt>
+                  <dt className={term}>{t.tracker.registered}</dt>
                   <dd className="flex flex-wrap gap-1.5">
                     {ids.map((id) => (
                       <code key={id} className="border border-white/15 bg-ink px-1.5 py-0.5 font-mono text-[0.8rem] text-fg">
@@ -267,8 +275,12 @@ function readHash(): { category: string; entry: string | null } {
 }
 
 const VIEWS: Category[] = [trackerData.all, ...trackerData.categories];
+const ENTRIES = new Map(trackerData.all.entries.map((entry) => [entryKey(entry), entry]));
 
 export default function Tracker() {
+  const { t } = useI18n();
+  const data = useMemo(() => getTrackerData(t), [t]);
+  const views: Category[] = [data.all, ...data.categories];
   const [category, setCategory] = useState("all");
   const [filter, setFilter] = useState<Filter>("all");
   const [query, setQuery] = useState("");
@@ -276,7 +288,7 @@ export default function Tracker() {
   const [scrollTarget, setScrollTarget] = useState<string | null>(null);
   const hashApplied = useRef(false);
 
-  const current = VIEWS.find((view) => view.id === category) ?? trackerData.all;
+  const current = views.find((view) => view.id === category) ?? data.all;
 
   useEffect(() => {
     function apply() {
@@ -313,11 +325,16 @@ export default function Tracker() {
     return current.entries.filter((entry) => {
       if (filter !== "all" && entry.status !== filter) return false;
       if (!tokens.length) return true;
+      const original = ENTRIES.get(entryKey(entry));
       const haystack = [
         entry.name,
+        original?.name ?? "",
         entry.group ?? "",
+        entry.groupLabel ?? "",
         entry.note ?? "",
+        original?.note ?? "",
         ...(entry.items ?? []).map((item) => item.text),
+        ...(original?.items ?? []).map((item) => item.text),
         ...(entry.issues ?? []).map((issue) => `#${issue.number} ${issue.title ?? ""}`),
         ...(entry.ids ?? []),
       ]
@@ -349,9 +366,9 @@ export default function Tracker() {
     });
   }
 
-  const overall = counts(trackerData.all.entries);
+  const overall = counts(data.all.entries);
   const total = current.entries.length;
-  const unit = current.unit ?? "entries";
+  const unit = current.unit ?? t.tracker.categories.all.unit;
 
   const groups: { key: string; label: string; entries: Entry[] }[] = [];
   for (const entry of visible) {
@@ -360,7 +377,8 @@ export default function Tracker() {
     if (last?.key === key) {
       last.entries.push(entry);
     } else {
-      const label = current.id === "all" ? `${entry.catLabel} · ${entry.group ?? "Other"}` : (entry.group ?? "Other");
+      const group = entry.groupLabel ?? t.tracker.other;
+      const label = current.id === "all" ? `${entry.catLabel} · ${group}` : group;
       groups.push({ key, label, entries: [entry] });
     }
   }
@@ -371,18 +389,21 @@ export default function Tracker() {
         <div className="mx-auto grid max-w-325 grid-cols-1 px-5 pt-10 md:px-8 md:pt-16 xl:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] xl:gap-8 xl:pb-16">
           <div className="min-w-0">
             <h1 className="max-w-[16ch] text-[clamp(2.4rem,5vw,4.2rem)] leading-[1.02] font-extrabold tracking-[-0.01em] text-balance">
-              Vanilla <span className={highlight}>parity</span>
+              {rich(t.tracker.title, { hl: (text) => <span className={highlight}>{text}</span> })}
             </h1>
             <p className="mt-6 max-w-120 text-[1.15rem] text-muted">
-              What Pumpkin already does like vanilla, what is half way there, and what is still on the list.
+              {t.tracker.description}
             </p>
 
             <div className="mt-8 md:mt-10">
               <div className="mb-5 flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-white/15 pb-2.5 text-sm text-muted md:text-[0.9rem]">
-                <span className="font-extrabold tracking-[0.08em] text-fg uppercase">Overall progress</span>
+                <span className="font-extrabold tracking-[0.08em] text-fg uppercase">{t.tracker.overallProgress}</span>
                 <span>
-                  {trackerData.all.entries.length} entries read from Pumpkin {trackerData.commit} for Minecraft {trackerData.version},{" "}
-                  {trackerData.updated}
+                  {t.tracker.summary
+                    .replace("{count}", () => String(data.all.entries.length))
+                    .replace("{commit}", () => data.commit)
+                    .replace("{version}", () => data.version)
+                    .replace("{updated}", () => data.updated)}
                 </span>
               </div>
               <div className="grid gap-6 sm:grid-cols-3 sm:gap-0">
@@ -391,7 +412,7 @@ export default function Tracker() {
                     key={status}
                     status={status}
                     count={overall[status]}
-                    total={trackerData.all.entries.length}
+                    total={data.all.entries.length}
                     className={index === 0 ? "sm:pr-6 md:pr-10" : "sm:border-l-3 sm:border-pumpkin sm:pl-6 md:pl-10"}
                   />
                 ))}
@@ -413,14 +434,14 @@ export default function Tracker() {
         <div className="mx-auto max-w-325 px-5 py-14 md:px-8 md:py-20">
           <div className="mb-8 flex flex-wrap items-baseline gap-x-8 gap-y-2">
             <h2 className="text-[clamp(2rem,4vw,3rem)] leading-[1.05] font-extrabold tracking-[-0.01em]">
-              Piece by <span className={highlight}>piece</span>
+              {rich(t.tracker.browseTitle, { hl: (text) => <span className={highlight}>{text}</span> })}
             </h2>
-            <p className="text-muted">Pick a category, then narrow it down by status or search.</p>
+            <p className="text-muted">{t.tracker.browseDescription}</p>
             <Legend />
           </div>
 
-          <div role="radiogroup" aria-label="Category" className="grid grid-cols-2 gap-0.5 border-3 border-pumpkin bg-pumpkin md:grid-cols-4">
-            {VIEWS.map((view) => {
+          <div role="radiogroup" aria-label={t.tracker.category} className="grid grid-cols-2 gap-0.5 border-3 border-pumpkin bg-pumpkin md:grid-cols-4">
+            {views.map((view) => {
               const vc = counts(view.entries);
               const active = view.id === current.id;
               return (
@@ -441,7 +462,7 @@ export default function Tracker() {
                   </span>
                   <Bar entries={view.entries} className={`mt-2.5 h-1.5 ${active ? "bg-black/10" : "bg-white/10"}`} />
                   <span className={`mt-1.5 block text-[0.8rem] ${active ? "text-black/60" : "text-muted"}`}>
-                    {view.entries.length} {view.unit ?? "entries"}
+                    {view.entries.length} {view.unit ?? t.tracker.categories.all.unit}
                   </span>
                 </button>
               );
@@ -449,8 +470,8 @@ export default function Tracker() {
           </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <div role="radiogroup" aria-label="Status" className="flex flex-wrap gap-2">
-              {[{ id: "all" as Filter, label: "Any" }, ...STATUS_ORDER.map((status) => ({ id: status as Filter, label: STATUS[status].label }))].map(
+            <div role="radiogroup" aria-label={t.tracker.statusLabel} className="flex flex-wrap gap-2">
+              {[{ id: "all" as Filter, label: t.tracker.any }, ...STATUS_ORDER.map((status) => ({ id: status as Filter, label: t.tracker.status[status] }))].map(
                 (option) => (
                   <button
                     key={option.id}
@@ -471,8 +492,8 @@ export default function Tracker() {
                 type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search entries, goals, keywords..."
-                aria-label="Search entries"
+                placeholder={t.tracker.searchPlaceholder}
+                aria-label={t.tracker.searchLabel}
                 className="w-full border-2 border-fg bg-ink py-1.5 pr-3.5 pl-9.5 text-[0.95rem] font-bold text-fg placeholder:font-normal placeholder:text-muted focus:border-pumpkin focus:outline-none"
               />
             </label>
@@ -480,23 +501,26 @@ export default function Tracker() {
 
           <div className="mt-8 flex flex-wrap items-center justify-between gap-2 text-[0.85rem] text-muted">
             <span className="flex flex-wrap items-center gap-x-5 gap-y-1">
-              Showing {visible.length} of {total} {unit}
+              {t.tracker.showing
+                .replace("{visible}", () => String(visible.length))
+                .replace("{total}", () => String(total))
+                .replace("{unit}", () => unit)}
               {current.tracking && (
                 <a href={`${GITHUB_URL}/issues/${current.tracking}`} target="_blank" rel="noopener" className={`${inlineLink} inline-flex items-center gap-1.5`}>
                   <ClipboardCheckIcon className="size-3.5" />
-                  Tracking issue #{current.tracking}
+                  {t.tracker.trackingIssue.replace("{number}", () => String(current.tracking))}
                 </a>
               )}
             </span>
             {visible.length > 0 && (
               <button type="button" onClick={toggleAll} className={`${inlineLink} cursor-pointer`}>
-                {anyVisibleOpen ? "Collapse all" : "Expand all"}
+                {anyVisibleOpen ? t.tracker.collapseAll : t.tracker.expandAll}
               </button>
             )}
           </div>
 
           {visible.length === 0 && (
-            <p className="mt-4 border-3 border-dashed border-muted px-5 py-10 text-center text-muted">Nothing matches these filters.</p>
+            <p className="mt-4 border-3 border-dashed border-muted px-5 py-10 text-center text-muted">{t.tracker.empty}</p>
           )}
 
           <div className="mt-4 grid gap-6">
@@ -517,17 +541,15 @@ export default function Tracker() {
 
           <div className="mt-12 grid grid-cols-1 items-start gap-4 border-3 border-fg bg-ink px-5 py-6 brutal-4 brutal-color-fg md:grid-cols-[auto_minmax(0,1fr)] md:gap-x-8 md:px-8 md:py-7 md:brutal-6">
             <span className="inline-block -rotate-2 justify-self-start border-3 border-success bg-success px-3 py-1.5 text-[0.85rem] font-extrabold tracking-[0.08em] text-black uppercase">
-              From the source
+              {t.tracker.sourceTag}
             </span>
             <p className="text-[1.1rem] leading-normal">
-              <strong className="font-extrabold">Where the statuses come from.</strong> Entities, redstone, combat and world were checked
-              by hand against the maintainers' tracking issues. Blocks, items and commands come from the source tree: if Pumpkin has a file
-              for it, it counts as implemented, and a TODO inside that file knocks it down to partial. Nobody compared behaviour against
-              vanilla line by line, so green means the code exists, not that every edge case matches. The whole list lives in one file. Fix{" "}
-              <a href={WEBSITE_DATA_URL} target="_blank" rel="noopener" className={inlineLink}>
-                data.json
-              </a>{" "}
-              and open a pull request.
+              {rich(t.tracker.sourceBody, {
+                b: (text) => <strong className="font-extrabold">{text}</strong>,
+                data: (text) => (
+                  <a href={WEBSITE_DATA_URL} target="_blank" rel="noopener" className={inlineLink}>{text}</a>
+                ),
+              })}
             </p>
           </div>
         </div>
