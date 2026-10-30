@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { checklist, columns, type Support } from "./checklist";
+import { useI18n } from "../../i18n";
+import { rich } from "../../i18n/rich";
+import { getChecklist, columns, type Support } from "./checklist";
 
-const marks: Record<Support, { glyph: string; label: string; background: string }> = {
-  yes: { glyph: "✓", label: "Yes", background: "bg-success" },
-  partial: { glyph: "!", label: "Partly", background: "bg-warning" },
-  no: { glyph: "✕", label: "No", background: "bg-danger" },
+const marks: Record<Support, { glyph: string; background: string }> = {
+  yes: { glyph: "✓", background: "bg-success" },
+  partial: { glyph: "!", background: "bg-warning" },
+  no: { glyph: "✕", background: "bg-danger" },
 };
 
 type View = "table" | "cards";
@@ -23,8 +25,11 @@ interface MarkProps {
   onToggle?: () => void;
 }
 
+/** Support mark cell: a glyph that opens the note tooltip when a note exists. */
 function Mark({ support, note, noteId, expanded, onToggle }: MarkProps) {
-  const { glyph, label, background } = marks[support];
+  const { t } = useI18n();
+  const { glyph, background } = marks[support];
+  const label = t.checklist.support[support];
   const shape = `inline-flex size-6 items-center justify-center text-[0.9rem] leading-none font-extrabold text-black ${background}`;
 
   if (!note) {
@@ -39,7 +44,7 @@ function Mark({ support, note, noteId, expanded, onToggle }: MarkProps) {
     <button
       type="button"
       data-note-toggle=""
-      aria-label={`${label}, has a note`}
+      aria-label={t.checklist.noteLabel.replace("{status}", () => label)}
       aria-describedby={noteId}
       aria-expanded={expanded}
       onClick={onToggle}
@@ -50,7 +55,10 @@ function Mark({ support, note, noteId, expanded, onToggle }: MarkProps) {
   );
 }
 
+/** Legend explaining the yes / partial / no support marks. */
 function Legend() {
+  const { t } = useI18n();
+
   return (
     <div className="flex gap-5 text-[0.85rem] text-muted md:ml-auto">
       {(["yes", "partial", "no"] as const).map((support) => (
@@ -61,14 +69,17 @@ function Legend() {
           >
             {marks[support].glyph}
           </span>
-          {marks[support].label}
+          {t.checklist.support[support]}
         </span>
       ))}
     </div>
   );
 }
 
+/** Feature comparison checklist rendered as a table on desktop and cards on mobile. */
 export function Checklist() {
+  const { t } = useI18n();
+  const checklist = getChecklist(t);
   const [open, setOpen] = useState<OpenNote | null>(null);
 
   useEffect(() => {
@@ -102,10 +113,14 @@ export function Checklist() {
       <div className="mx-auto max-w-325 px-5 md:px-8">
         <div className="mb-8 flex flex-wrap items-baseline gap-x-8 gap-y-2">
           <h2 className="text-[clamp(2rem,4vw,3rem)] leading-[1.05] font-extrabold tracking-[-0.01em]">
-            Feature <span className="inline-block border-2 border-pumpkin bg-pumpkin px-[0.2em] text-black">checklist</span>
+            {rich(t.checklist.title, {
+              hl: (text) => (
+                <span className="inline-block border-2 border-pumpkin bg-pumpkin px-[0.2em] text-black">{text}</span>
+              ),
+            })}
           </h2>
           <p className="text-muted">
-            Pumpkin next to Vanilla, Paper and Folia, as they ship today. Marks with a dot have a note.
+            {t.checklist.description}
           </p>
           <Legend />
         </div>
@@ -114,7 +129,7 @@ export function Checklist() {
           <thead>
             <tr>
               <th className="w-2/5 border-2 border-pumpkin bg-pumpkin px-4 py-3.5 text-left text-[0.95rem] font-extrabold text-black">
-                Feature
+                {t.checklist.feature}
               </th>
               {columns.map((column, index) => (
                 <th
@@ -128,7 +143,7 @@ export function Checklist() {
           </thead>
           <tbody>
             {checklist.map((row, rowIndex) => (
-              <tr key={row.feature}>
+              <tr key={row.id}>
                 <td className="border-2 border-pumpkin px-4 py-3.5 text-left">
                   <strong className="block font-bold">{row.feature}</strong>
                   <small className="mt-0.5 block text-[0.8rem] text-muted">{row.detail}</small>
@@ -170,7 +185,7 @@ export function Checklist() {
           {checklist.map((row, rowIndex) => {
             const openColumn = open?.view === "cards" && open.row === rowIndex ? open.column : null;
             return (
-              <li key={row.feature} className="border-3 border-pumpkin bg-ink">
+              <li key={row.id} className="border-3 border-pumpkin bg-ink">
                 <div className="border-b border-white/12 px-4 pt-3.5 pb-2">
                   <strong className="block font-bold">{row.feature}</strong>
                   <small className="mt-0.5 block text-[0.8rem] text-muted">{row.detail}</small>

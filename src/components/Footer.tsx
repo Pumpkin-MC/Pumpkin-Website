@@ -1,3 +1,5 @@
+import { useI18n, type Messages } from "../i18n";
+import { rich } from "../i18n/rich";
 import {
   BLOG_URL,
   DISCORD_URL,
@@ -12,47 +14,52 @@ import {
 import { withBase } from "../lib/url";
 import { DiscordIcon, GitHubIcon, XIcon, YouTubeIcon } from "./icons";
 
-const columns: { heading: string; links: NamedLink[] }[] = [
-  {
-    heading: "Use it",
-    links: [
-      { label: "Download", href: "/download/" },
-      { label: "Getting started", href: `${DOCS_URL}/admin/introduction` },
-      { label: "Configuration", href: `${DOCS_URL}/config/introduction` },
-      { label: "Troubleshooting", href: `${DOCS_URL}/troubleshooting/common_issues` },
-    ],
-  },
-  {
-    heading: "Build on it",
-    links: [
-      { label: "Plugin docs", href: `${DOCS_URL}/plugin-dev/introduction` },
-      { label: "For developers", href: "/developers/" },
-      { label: "Examples", href: "https://github.com/Pumpkin-MC/pumpkin-plugin-examples" },
-      { label: "Market", href: MARKET_URL },
-      { label: "Contributing", href: `${DOCS_URL}/developer/contributing` },
-    ],
-  },
-  {
-    heading: "Follow",
-    links: [
-      { label: "Blog", href: BLOG_URL },
-      { label: "Stats", href: "/stats/" },
-      { label: "Vanilla parity", href: "/tracker/" },
-      { label: "Benchmarks", href: `${DOCS_URL}/about/benchmarks` },
-      { label: "Sponsorship", href: "/sponsor/" },
-    ],
-  },
-  {
-    heading: "Project",
-    links: [
-      { label: "Releases", href: `${GITHUB_URL}/releases` },
-      { label: "Report a bug", href: `${GITHUB_URL}/issues` },
-      { label: "Contributors", href: "/contributors/" },
-      { label: "License", href: `${GITHUB_URL}/blob/master/LICENSE` },
-      { label: "All repositories", href: GITHUB_ORG_URL },
-    ],
-  },
-];
+/** Builds the footer link columns for the current language. */
+function getColumns(t: Messages): { heading: string; links: NamedLink[] }[] {
+  const { footer } = t;
+
+  return [
+    {
+      heading: footer.useIt.heading,
+      links: [
+        { label: t.nav.download, href: "/download/" },
+        { label: footer.useIt.gettingStarted, href: `${DOCS_URL}/admin/introduction` },
+        { label: footer.useIt.configuration, href: `${DOCS_URL}/config/introduction` },
+        { label: footer.useIt.troubleshooting, href: `${DOCS_URL}/troubleshooting/common_issues` },
+      ],
+    },
+    {
+      heading: footer.buildOnIt.heading,
+      links: [
+        { label: footer.buildOnIt.pluginDocs, href: `${DOCS_URL}/plugin-dev/introduction` },
+        { label: footer.buildOnIt.developers, href: "/developers/" },
+        { label: footer.buildOnIt.examples, href: "https://github.com/Pumpkin-MC/pumpkin-plugin-examples" },
+        { label: t.nav.market, href: MARKET_URL },
+        { label: footer.buildOnIt.contributing, href: `${DOCS_URL}/developer/contributing` },
+      ],
+    },
+    {
+      heading: footer.follow.heading,
+      links: [
+        { label: footer.follow.blog, href: BLOG_URL },
+        { label: footer.follow.stats, href: "/stats/" },
+        { label: footer.follow.parity, href: "/tracker/" },
+        { label: footer.follow.benchmarks, href: `${DOCS_URL}/about/benchmarks` },
+        { label: footer.follow.sponsorship, href: "/sponsor/" },
+      ],
+    },
+    {
+      heading: footer.project.heading,
+      links: [
+        { label: footer.project.releases, href: `${GITHUB_URL}/releases` },
+        { label: footer.project.reportBug, href: `${GITHUB_URL}/issues` },
+        { label: footer.project.contributors, href: "/contributors/" },
+        { label: footer.project.license, href: `${GITHUB_URL}/blob/master/LICENSE` },
+        { label: footer.project.repositories, href: GITHUB_ORG_URL },
+      ],
+    },
+  ];
+}
 
 const creditLink = "underline underline-offset-3 hover:text-pumpkin";
 
@@ -63,7 +70,11 @@ const socials = [
   { label: "YouTube", href: YOUTUBE_URL, Icon: YouTubeIcon },
 ];
 
+/** Site footer with link columns, credits and the legal disclaimer. */
 export function Footer() {
+  const { t } = useI18n();
+  const columns = getColumns(t);
+
   return (
     <footer className="border-t-3 border-pumpkin bg-surface text-fg">
       <div className="mx-auto max-w-325 px-5 pt-10 pb-6 md:px-8 md:pt-14 md:pb-8">
@@ -74,7 +85,7 @@ export function Footer() {
               Pumpkin
             </div>
             <p className="mt-3 max-w-96 text-[0.95rem] text-muted">
-              A Minecraft server written in Rust. Fast to start, light to run, free to change.
+              {t.footer.description}
             </p>
             <div className="mt-5 flex gap-2">
               {socials.map(({ label, href, Icon }) => (
@@ -106,17 +117,20 @@ export function Footer() {
         </div>
         <div className="flex flex-col justify-between gap-x-8 gap-y-2 pt-6 text-[0.85rem] text-muted md:flex-row md:flex-wrap">
           <span>
-            Made with ❤️ by{" "}
-            <a href="https://marshall.dev" target="_blank" rel="noopener" className={creditLink}>
-              purdze
-            </a>
-            ,{" "}
-            <a href="https://github.com/MegalithOfficial" target="_blank" rel="noopener" className={creditLink}>
-              MegalithOfficial
-            </a>{" "}
-            and contributors · GPL-3.0
+            {rich(t.footer.credit, {
+              purdze: (text) => (
+                <a href="https://marshall.dev" target="_blank" rel="noopener" className={creditLink}>
+                  {text}
+                </a>
+              ),
+              megalith: (text) => (
+                <a href="https://github.com/MegalithOfficial" target="_blank" rel="noopener" className={creditLink}>
+                  {text}
+                </a>
+              ),
+            })}
           </span>
-          <span>Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</span>
+          <span>{t.footer.disclaimer}</span>
         </div>
       </div>
     </footer>

@@ -17,6 +17,7 @@ export interface Entry {
   id: string;
   name: string;
   group?: string;
+  groupLabel?: string;
   status: Status;
   note?: string;
   items?: Item[];
@@ -44,10 +45,10 @@ export interface TrackerData {
   all: Category;
 }
 
-export const STATUS: Record<Status, { label: string; glyph: string; text: string; bg: string }> = {
-  done: { label: "Implemented", glyph: "✓", text: "text-success", bg: "bg-success" },
-  partial: { label: "Partial", glyph: "!", text: "text-warning", bg: "bg-warning" },
-  planned: { label: "Planned", glyph: "✕", text: "text-fg", bg: "bg-fg" },
+export const STATUS: Record<Status, { glyph: string; text: string; bg: string }> = {
+  done: { glyph: "✓", text: "text-success", bg: "bg-success" },
+  partial: { glyph: "!", text: "text-warning", bg: "bg-warning" },
+  planned: { glyph: "✕", text: "text-fg", bg: "bg-fg" },
 };
 
 export const STATUS_ORDER: Status[] = ["done", "partial", "planned"];
