@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.60",
-  "commit": "90ac8d8253a099174e0504ebc4a4aa2499bf3780",
-  "updated": "2026-10-29",
+  "commit": "919cac17f50dd654223154abf4374a8903975a13",
+  "updated": "2026-10-31",
   "categories": [
     {
       "id": "entities",
@@ -570,7 +570,7 @@
             {
               "number": 1302,
               "title": "Witch loot incorrect",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "The reviewed source has changed. The previous assessment needs a new review.",
