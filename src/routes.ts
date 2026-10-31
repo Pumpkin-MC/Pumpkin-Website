@@ -1,4 +1,4 @@
-export type PageId = "home" | "download" | "developers" | "donate" | "contributors" | "stats" | "tracker" | "notFound";
+export type PageId = "home" | "download" | "developers" | "sponsor" | "contributors" | "stats" | "tracker" | "notFound";
 
 export interface Route {
   id: PageId;
@@ -46,14 +46,15 @@ export const routes: Route[] = [
     ogDescription: "No NMS. No reflection. No version-specific hacks. Just clean, type-safe APIs.",
   },
   {
-    id: "donate",
-    breadcrumb: "Donate",
-    path: "/donate/",
-    html: "donate/index.html",
-    title: "Donate - Pumpkin",
-    description: "Support Pumpkin, the fastest Minecraft server, by becoming a sponsor.",
-    ogTitle: "Donate - Pumpkin",
-    ogDescription: "Support Pumpkin, the fastest Minecraft server, by becoming a sponsor.",
+    id: "sponsor",
+    breadcrumb: "Sponsor",
+    path: "/sponsor/",
+    html: "sponsor/index.html",
+    title: "Sponsorship - Pumpkin",
+    description:
+      "Become a sponsor to support Pumpkin development and unlock community perks and brand placement.",
+    ogTitle: "Sponsorship - Pumpkin",
+    ogDescription: "Become a sponsor to support Pumpkin development and unlock community perks and brand placement.",
   },
   {
     id: "contributors",

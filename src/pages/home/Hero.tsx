@@ -31,7 +31,10 @@ interface ClockProps {
   className: string;
 }
 
+/** Startup time clock with a tone chip for one server implementation. */
 function Clock({ name, seconds, tone, label, className }: ClockProps) {
+  const { t } = useI18n();
+
   return (
     <div className={`tabular-nums ${className}`}>
       <div className="mb-1 flex items-center gap-2 text-[0.85rem] font-extrabold tracking-[0.06em] uppercase md:gap-3 md:text-[1.1rem]">
@@ -47,7 +50,7 @@ function Clock({ name, seconds, tone, label, className }: ClockProps) {
         className={`text-[clamp(1.9rem,10vw,4.5rem)] leading-[0.95] font-extrabold tracking-[-0.04em] whitespace-nowrap md:text-[clamp(3.2rem,8vw,7.5rem)] md:tracking-[-0.03em] ${timeTone[tone]}`}
       >
         {seconds.toFixed(3)}
-        <small className="ml-[0.08em] text-[0.45em] font-extrabold tracking-normal md:text-[0.4em]">s</small>
+        <small className="ml-[0.08em] text-[0.45em] font-extrabold tracking-normal md:text-[0.4em]">{t.hero.secondsUnit}</small>
       </div>
     </div>
   );
