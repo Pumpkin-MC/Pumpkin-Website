@@ -6934,18 +6934,6 @@
           }
         },
         {
-          "id": "jfr",
-          "name": "/jfr",
-          "group": "Vanilla",
-          "status": "planned",
-          "note": "No dedicated implementation source identified. This does not establish that the feature is missing.",
-          "review": {
-            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
-            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
-            "current": false
-          }
-        },
-        {
           "id": "kick",
           "name": "/kick",
           "group": "Vanilla",
@@ -6988,12 +6976,12 @@
           "id": "locate",
           "name": "/locate",
           "group": "Vanilla",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-core/src/command/commands/locate.rs",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -7089,18 +7077,6 @@
           }
         },
         {
-          "id": "perf",
-          "name": "/perf",
-          "group": "Vanilla",
-          "status": "planned",
-          "note": "No dedicated implementation source identified. This does not establish that the feature is missing.",
-          "review": {
-            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
-            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
-            "current": false
-          }
-        },
-        {
           "id": "place",
           "name": "/place",
           "group": "Vanilla",
@@ -7120,18 +7096,6 @@
           "status": "done",
           "source": "crates/pumpkin-core/src/command/commands/playsound.rs",
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
-          "review": {
-            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
-            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
-            "current": false
-          }
-        },
-        {
-          "id": "publish",
-          "name": "/publish",
-          "group": "Vanilla",
-          "status": "planned",
-          "note": "No dedicated implementation source identified. This does not establish that the feature is missing.",
           "review": {
             "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
             "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
@@ -7600,18 +7564,6 @@
           "status": "done",
           "source": "crates/pumpkin-core/src/command/commands/trigger.rs",
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
-          "review": {
-            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
-            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
-            "current": false
-          }
-        },
-        {
-          "id": "unpublish",
-          "name": "/unpublish",
-          "group": "Vanilla",
-          "status": "planned",
-          "note": "No dedicated implementation source identified. This does not establish that the feature is missing.",
           "review": {
             "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
             "scope": "Previous tracker assessment; not revalidated against the current snapshot.",

@@ -3700,9 +3700,6 @@
     "commands:item": {
       "status": "done"
     },
-    "commands:jfr": {
-      "status": "planned"
-    },
     "commands:kick": {
       "status": "done"
     },
@@ -3736,9 +3733,6 @@
     },
     "commands:particle": {
       "status": "done"
-    },
-    "commands:perf": {
-      "status": "planned"
     },
     "commands:place": {
       "status": "done"
@@ -3862,9 +3856,6 @@
     },
     "commands:trigger": {
       "status": "done"
-    },
-    "commands:unpublish": {
-      "status": "planned"
     },
     "commands:version": {
       "status": "done",

@@ -2248,45 +2248,6 @@
         }
       ]
     },
-    "commands:locate": {
-      "status": "done",
-      "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-      "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
-      "note": "Structure lookup resolves the requested structure inside its placement set, so fortress and bastion queries no longer return the other structure. Upstream tests cover shared sets, tags and invalid set names.",
-      "items": [
-        {
-          "text": "Individual structure lookup within shared sets",
-          "done": true
-        },
-        {
-          "text": "Structure tags and invalid-name rejection",
-          "done": true
-        }
-      ],
-      "files": [
-        {
-          "source": "crates/pumpkin-core/src/command/commands/locate.rs",
-          "sha256": "ca6676c2641ff8a588331d12fbb18866d05ca69f3a59e2364832ed6cf417a486"
-        }
-      ],
-      "evidence": [
-        {
-          "label": "fn wanted_structures",
-          "source": "crates/pumpkin-core/src/command/commands/locate.rs",
-          "line": 116
-        },
-        {
-          "label": "StructurePlacementType::RandomSpread",
-          "source": "crates/pumpkin-core/src/command/commands/locate.rs",
-          "line": 246
-        },
-        {
-          "label": "fn nether_structures_resolve_separately",
-          "source": "crates/pumpkin-core/src/command/commands/locate.rs",
-          "line": 451
-        }
-      ]
-    },
     "entities:sniffer": {
       "status": "partial",
       "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
