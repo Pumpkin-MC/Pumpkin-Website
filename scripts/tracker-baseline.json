@@ -963,7 +963,7 @@
       ]
     },
     "entities:allay": {
-      "status": "partial",
+      "status": "done",
       "items": [
         {
           "text": "Duplication and dancing state",
@@ -971,15 +971,15 @@
         },
         {
           "text": "Item collection and delivery",
-          "done": false
+          "done": true
         },
         {
           "text": "Note block following",
-          "done": false
+          "done": true
         },
         {
           "text": "Brain migration",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -1169,8 +1169,7 @@
       ]
     },
     "entities:cod": {
-      "status": "partial",
-      "note": "Bobs in place on the ground navigator.",
+      "status": "done",
       "items": [
         {
           "text": "Bucket pickup",
@@ -1178,19 +1177,19 @@
         },
         {
           "text": "Water-bound navigation",
-          "done": false
+          "done": true
         },
         {
           "text": "`PanicGoal` and `AvoidEntityGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`FishSwimGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`FollowFlockLeaderGoal` schooling",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -1342,7 +1341,7 @@
       ]
     },
     "entities:glow_squid": {
-      "status": "partial",
+      "status": "done",
       "items": [
         {
           "text": "Deep water spawn rules",
@@ -1350,19 +1349,19 @@
         },
         {
           "text": "Water-bound navigation",
-          "done": false
+          "done": true
         },
         {
           "text": "`SquidRandomMovementGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`SquidFleeGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "Ink cloud",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -1677,8 +1676,7 @@
       ]
     },
     "entities:pufferfish": {
-      "status": "partial",
-      "note": "Bobs in place on the ground navigator.",
+      "status": "done",
       "items": [
         {
           "text": "Bucket pickup",
@@ -1686,23 +1684,23 @@
         },
         {
           "text": "Water-bound navigation",
-          "done": false
+          "done": true
         },
         {
           "text": "`PanicGoal` and `AvoidEntityGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`FishSwimGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`FollowFlockLeaderGoal` schooling",
-          "done": false
+          "done": true
         },
         {
           "text": "`PufferfishPuffGoal`",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -1728,8 +1726,7 @@
       ]
     },
     "entities:salmon": {
-      "status": "partial",
-      "note": "Bobs in place on the ground navigator.",
+      "status": "done",
       "items": [
         {
           "text": "Bucket pickup",
@@ -1737,19 +1734,19 @@
         },
         {
           "text": "Water-bound navigation",
-          "done": false
+          "done": true
         },
         {
           "text": "`PanicGoal` and `AvoidEntityGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`FishSwimGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`FollowFlockLeaderGoal` schooling",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -1822,7 +1819,7 @@
       ]
     },
     "entities:squid": {
-      "status": "partial",
+      "status": "done",
       "items": [
         {
           "text": "Water spawn rules",
@@ -1830,19 +1827,19 @@
         },
         {
           "text": "Water-bound navigation",
-          "done": false
+          "done": true
         },
         {
           "text": "`SquidRandomMovementGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`SquidFleeGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "Ink cloud",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -1914,8 +1911,7 @@
       ]
     },
     "entities:tropical_fish": {
-      "status": "partial",
-      "note": "Bobs in place on the ground navigator.",
+      "status": "done",
       "items": [
         {
           "text": "Bucket pickup",
@@ -1923,19 +1919,19 @@
         },
         {
           "text": "Water-bound navigation",
-          "done": false
+          "done": true
         },
         {
           "text": "`PanicGoal` and `AvoidEntityGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`FishSwimGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`FollowFlockLeaderGoal` schooling",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -3940,8 +3936,7 @@
       "status": "done"
     },
     "redstone:daylight-detector": {
-      "status": "partial",
-      "note": "Block exists but is not yet at vanilla parity."
+      "status": "done"
     },
     "redstone:target-block": {
       "status": "done"
@@ -3968,8 +3963,7 @@
       "status": "done"
     },
     "redstone:pistons-and-block-swapping": {
-      "status": "partial",
-      "note": "Currently broken."
+      "status": "done"
     },
     "redstone:dropper": {
       "status": "done"
@@ -4044,12 +4038,10 @@
       "status": "planned"
     },
     "world:world-loading-level-dat-dim1-dim-1": {
-      "status": "partial",
-      "note": "26.x format support is still open."
+      "status": "done"
     },
     "world:world-saving": {
-      "status": "partial",
-      "note": "26.x format support is still open."
+      "status": "done"
     },
     "world:chunk-loading-vanilla-linear-pump": {
       "status": "done"
@@ -4064,8 +4056,7 @@
       "status": "done"
     },
     "world:redstone": {
-      "status": "partial",
-      "note": "Tracked in the Redstone tab."
+      "status": "done"
     },
     "world:liquid-physics": {
       "status": "done"

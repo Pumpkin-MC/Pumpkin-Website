@@ -682,12 +682,37 @@
           "id": "allay",
           "name": "Allay",
           "group": "Passive",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-core/src/entity/passive/allay.rs",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "issues": [
+            {
+              "number": 4189,
+              "title": "[TRACKER] Allay: Vanilla Parity",
+              "state": "closed"
+            }
+          ],
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "items": [
+            {
+              "text": "Duplication and dancing state",
+              "done": true
+            },
+            {
+              "text": "Item collection and delivery",
+              "done": true
+            },
+            {
+              "text": "Note block following",
+              "done": true
+            },
+            {
+              "text": "Brain migration",
+              "done": true
+            }
+          ],
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -812,12 +837,41 @@
           "id": "cod",
           "name": "Cod",
           "group": "Passive",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-core/src/entity/passive/cod.rs",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "issues": [
+            {
+              "number": 4200,
+              "title": "[TRACKER] Mob Vanilla Parity: Cod",
+              "state": "closed"
+            }
+          ],
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "items": [
+            {
+              "text": "Bucket pickup",
+              "done": true
+            },
+            {
+              "text": "Water-bound navigation",
+              "done": true
+            },
+            {
+              "text": "`PanicGoal` and `AvoidEntityGoal`",
+              "done": true
+            },
+            {
+              "text": "`FishSwimGoal`",
+              "done": true
+            },
+            {
+              "text": "`FollowFlockLeaderGoal` schooling",
+              "done": true
+            }
+          ],
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -912,12 +966,41 @@
           "id": "glow_squid",
           "name": "Glow Squid",
           "group": "Passive",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-core/src/entity/passive/glow_squid.rs",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "issues": [
+            {
+              "number": 4205,
+              "title": "[TRACKER] Mob Vanilla Parity: Glow Squid",
+              "state": "closed"
+            }
+          ],
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "items": [
+            {
+              "text": "Deep water spawn rules",
+              "done": true
+            },
+            {
+              "text": "Water-bound navigation",
+              "done": true
+            },
+            {
+              "text": "`SquidRandomMovementGoal`",
+              "done": true
+            },
+            {
+              "text": "`SquidFleeGoal`",
+              "done": true
+            },
+            {
+              "text": "Ink cloud",
+              "done": true
+            }
+          ],
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -1125,12 +1208,45 @@
           "id": "pufferfish",
           "name": "Pufferfish",
           "group": "Passive",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-core/src/entity/passive/pufferfish.rs",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "issues": [
+            {
+              "number": 4240,
+              "title": "[TRACKER] Mob Vanilla Parity: Pufferfish",
+              "state": "closed"
+            }
+          ],
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "items": [
+            {
+              "text": "Bucket pickup",
+              "done": true
+            },
+            {
+              "text": "Water-bound navigation",
+              "done": true
+            },
+            {
+              "text": "`PanicGoal` and `AvoidEntityGoal`",
+              "done": true
+            },
+            {
+              "text": "`FishSwimGoal`",
+              "done": true
+            },
+            {
+              "text": "`FollowFlockLeaderGoal` schooling",
+              "done": true
+            },
+            {
+              "text": "`PufferfishPuffGoal`",
+              "done": true
+            }
+          ],
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -1151,12 +1267,41 @@
           "id": "salmon",
           "name": "Salmon",
           "group": "Passive",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-core/src/entity/passive/salmon.rs",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "issues": [
+            {
+              "number": 4213,
+              "title": "[TRACKER] Mob Vanilla Parity: Salmon",
+              "state": "closed"
+            }
+          ],
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "items": [
+            {
+              "text": "Bucket pickup",
+              "done": true
+            },
+            {
+              "text": "Water-bound navigation",
+              "done": true
+            },
+            {
+              "text": "`PanicGoal` and `AvoidEntityGoal`",
+              "done": true
+            },
+            {
+              "text": "`FishSwimGoal`",
+              "done": true
+            },
+            {
+              "text": "`FollowFlockLeaderGoal` schooling",
+              "done": true
+            }
+          ],
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -1166,6 +1311,13 @@
           "group": "Passive",
           "status": "done",
           "source": "crates/pumpkin-core/src/entity/passive/sheep.rs",
+          "issues": [
+            {
+              "number": 4214,
+              "title": "[TRACKER] Mob Vanilla Parity: Sheep",
+              "state": "closed"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "items": [
             {
@@ -1240,12 +1392,41 @@
           "id": "squid",
           "name": "Squid",
           "group": "Passive",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-core/src/entity/passive/squid.rs",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "issues": [
+            {
+              "number": 4218,
+              "title": "[TRACKER] Mob Vanilla Parity: Squid",
+              "state": "closed"
+            }
+          ],
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "items": [
+            {
+              "text": "Water spawn rules",
+              "done": true
+            },
+            {
+              "text": "Water-bound navigation",
+              "done": true
+            },
+            {
+              "text": "`SquidRandomMovementGoal`",
+              "done": true
+            },
+            {
+              "text": "`SquidFleeGoal`",
+              "done": true
+            },
+            {
+              "text": "Ink cloud",
+              "done": true
+            }
+          ],
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -1292,12 +1473,41 @@
           "id": "tropical_fish",
           "name": "Tropical Fish",
           "group": "Passive",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-core/src/entity/passive/tropical_fish.rs",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "issues": [
+            {
+              "number": 4222,
+              "title": "[TRACKER] Mob Vanilla Parity: Tropical Fish",
+              "state": "closed"
+            }
+          ],
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "items": [
+            {
+              "text": "Bucket pickup",
+              "done": true
+            },
+            {
+              "text": "Water-bound navigation",
+              "done": true
+            },
+            {
+              "text": "`PanicGoal` and `AvoidEntityGoal`",
+              "done": true
+            },
+            {
+              "text": "`FishSwimGoal`",
+              "done": true
+            },
+            {
+              "text": "`FollowFlockLeaderGoal` schooling",
+              "done": true
+            }
+          ],
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -7629,12 +7839,12 @@
           "id": "pressure-plates",
           "name": "Pressure plates",
           "group": "Power & Sensors",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/redstone/pressure_plate",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -7681,12 +7891,12 @@
           "id": "daylight-detector",
           "name": "Daylight detector",
           "group": "Power & Sensors",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/redstone/daylight_detector.rs",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -7746,12 +7956,12 @@
           "id": "note-block",
           "name": "Note block",
           "group": "Logic & Timing",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/note.rs",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -7798,12 +8008,12 @@
           "id": "pistons-and-block-swapping",
           "name": "Pistons and block swapping",
           "group": "Mechanisms",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/piston",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -8140,12 +8350,12 @@
           "id": "world-loading-level-dat-dim1-dim-1",
           "name": "World loading (level.dat, DIM1, DIM-1)",
           "group": "Persistence",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-world/src/world_info/anvil.rs",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -8153,12 +8363,12 @@
           "id": "world-saving",
           "name": "World saving",
           "group": "Persistence",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-world/src/level.rs",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
@@ -8218,12 +8428,12 @@
           "id": "redstone",
           "name": "Redstone",
           "group": "Logic & Physics",
-          "status": "partial",
+          "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/redstone",
-          "note": "The reviewed source has changed. The previous assessment needs a new review.",
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
-            "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
-            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
+            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
