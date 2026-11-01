@@ -1,6 +1,6 @@
 {
   "version": "26.3-26.60",
-  "commit": "919cac17f50dd654223154abf4374a8903975a13",
+  "commit": "645895098fcea9fcfc6fb21445520491d364dcb0",
   "updated": "2026-10-31",
   "categories": [
     {
@@ -658,29 +658,12 @@
           "group": "Boss",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/boss/ender_dragon.rs",
-          "note": "Dragon parts are constructed but not registered in the world. Main-box collision handling does not implement the full part-based damage/contact semantics.",
-          "items": [
-            {
-              "text": "Flight phases, crystals, multipart positions and block breaking",
-              "done": true
-            },
-            {
-              "text": "Register hit-testable parts and apply part-based contact/knockback checks",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/boss/ender_dragon.rs",
-              "line": 48
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "wither",
