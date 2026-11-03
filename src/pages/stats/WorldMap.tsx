@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import "jsvectormap/dist/jsvectormap.css";
 import "./map.css";
-import { formatNumber, type GeoEntry, type GeoMetric } from "./types";
+import { countryName, formatNumber, type GeoEntry, type GeoMetric } from "./types";
+import { languageTag, useI18n } from "../../i18n";
+import { formatMessage } from "../../i18n/format";
 
 const MAP_ID = "telemetry-map";
 export const MAP_RAMP = ["#4a2410", "#ff6b2c"] as const;
@@ -25,12 +27,17 @@ interface WorldMapProps {
 }
 
 export function WorldMap({ geo, metric, onSelect }: WorldMapProps) {
+  const { t, lang } = useI18n();
+  const s = t.statsPage;
+  const locale = languageTag(lang);
   const [engine, setEngine] = useState<MapEngine | null>(null);
   const [failed, setFailed] = useState(false);
   const onSelectRef = useRef(onSelect);
+  const translationRef = useRef({ locale, s });
 
   useEffect(() => {
     onSelectRef.current = onSelect;
+    translationRef.current = { locale, s };
   });
 
   useEffect(() => {
@@ -72,14 +79,15 @@ export function WorldMap({ geo, metric, onSelect }: WorldMapProps) {
       },
       ...(hasData ? { visualizeData: { scale: [...MAP_RAMP], values } } : {}),
       onRegionTooltipShow(_event: unknown, tooltip: MapTooltip, code: string) {
+        const { locale, s } = translationRef.current;
         const entry = byCode.get(code);
         if (entry) {
           tooltip.text(
-            `<strong>${escapeHtml(entry.country_name)}</strong><br>${formatNumber(entry.servers)} servers · ${formatNumber(entry.players)} players`,
+            `<strong>${escapeHtml(countryName(code, entry.country_name, locale))}</strong><br>${escapeHtml(formatMessage(s.mapTooltip, { servers: formatNumber(entry.servers, locale), players: formatNumber(entry.players, locale) }))}`,
             true,
           );
         } else {
-          tooltip.text(`<strong>${escapeHtml(tooltip.text())}</strong><br>No reporting servers`, true);
+          tooltip.text(`<strong>${escapeHtml(countryName(code, tooltip.text(), locale))}</strong><br>${escapeHtml(s.noReportingServers)}`, true);
         }
       },
       onRegionClick(_event: unknown, code: string) {
@@ -96,14 +104,24 @@ export function WorldMap({ geo, metric, onSelect }: WorldMapProps) {
     };
   }, [engine, geo, metric]);
 
+  useEffect(() => {
+    const container = document.getElementById(MAP_ID);
+    if (!container) return;
+    for (const [selector, label] of [[".jvm-zoomin", s.zoomIn], [".jvm-zoomout", s.zoomOut]]) {
+      const button = container.querySelector(selector);
+      button?.setAttribute("aria-label", label);
+      button?.setAttribute("title", label);
+    }
+  }, [engine, geo, metric, s.zoomIn, s.zoomOut]);
+
   return (
     <div className="relative h-72 md:h-104">
       <div id={MAP_ID} className="size-full" />
       {!engine && !failed && (
-        <p className="absolute inset-0 grid place-items-center text-sm text-muted">Loading map...</p>
+        <p className="absolute inset-0 grid place-items-center text-sm text-muted">{s.mapLoading}</p>
       )}
       {failed && (
-        <p className="absolute inset-0 grid place-items-center text-sm text-muted">The map could not be loaded.</p>
+        <p className="absolute inset-0 grid place-items-center text-sm text-muted">{s.mapError}</p>
       )}
     </div>
   );

@@ -1,5 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { formatNumber, formatPercent } from "./types";
+import { languageTag, useI18n } from "../../i18n";
+import { formatMessage } from "../../i18n/format";
 
 export interface DistributionItem {
   key: string;
@@ -18,6 +20,8 @@ interface DistributionListProps {
 }
 
 export function DistributionList({ items, limit, empty, idPrefix, highlight }: DistributionListProps) {
+  const { t, lang } = useI18n();
+  const locale = languageTag(lang);
   const [expanded, setExpanded] = useState(false);
 
   if (items.length === 0) return <p className="py-2 text-sm text-muted">{empty}</p>;
@@ -43,7 +47,7 @@ export function DistributionList({ items, limit, empty, idPrefix, highlight }: D
               <span className="shrink-0 text-right font-mono text-xs text-muted tabular-nums">
                 {item.detail ?? (
                   <>
-                    <span className="text-fg">{formatNumber(item.value)}</span> · {formatPercent(item.share)}
+                    <span className="text-fg">{formatNumber(item.value, locale)}</span> · {formatPercent(item.share, locale)}
                   </>
                 )}
               </span>
@@ -64,7 +68,7 @@ export function DistributionList({ items, limit, empty, idPrefix, highlight }: D
           onClick={() => setExpanded((value) => !value)}
           className="mt-4 cursor-pointer text-sm font-bold text-pumpkin hover:text-fg"
         >
-          {showAll ? "Show less" : `Show ${items.length - (limit ?? 0)} more`}
+          {showAll ? t.statsPage.showLess : formatMessage(t.statsPage.showMore, { count: formatNumber(items.length - (limit ?? 0), locale) })}
         </button>
       )}
     </div>

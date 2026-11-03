@@ -4,7 +4,6 @@
     "docs": "Docs",
     "community": "Community",
     "market": "Market",
-
     "tracker": "Tracker",
     "download": "Download",
     "language": "Language",
@@ -980,5 +979,515 @@
     },
     "credit": "Made with ❤️ by <purdze>purdze</purdze>, <megalith>MegalithOfficial</megalith> and contributors · GPL-3.0",
     "disclaimer": "Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft."
+  },
+  "downloadPage": {
+    "title": "Download Pumpkin",
+    "lede": "Self-contained executable. No Java required. Just download, run, and play.",
+    "ppmPrompt": "Looking for the plugin manager?",
+    "installPpm": "Install ppm (Pumpkin Package Manager) ↓",
+    "releaseChannel": "Release channel",
+    "channels": {
+      "stable": "Stable",
+      "nightly": "Nightly"
+    },
+    "nightlyWarning": "Nightly builds come straight from recent commits and skip the release process. Expect bugs and back up your world first.",
+    "generated": "Generated {date}.",
+    "detected": "Detected on this device",
+    "mostCommon": "Most common download",
+    "downloadFor": "Download for {system}",
+    "downloadNightlyFor": "Download nightly for {system}",
+    "allFiles": "All files",
+    "nightlyRelease": "Nightly release page",
+    "releaseNotes": "Release notes",
+    "allReleases": "All releases",
+    "olderVersions": "Older versions",
+    "releaseFiles": "Release files",
+    "system": "System",
+    "architecture": "Architecture",
+    "file": "File",
+    "download": "Download",
+    "thisDevice": "This device",
+    "downloadFile": "Download {file}",
+    "downloadNightlyFile": "Download nightly {file}",
+    "signing": "Releases are digitally signed using SignPath. Free code signing provided by <signpath>SignPath.io</signpath>, certificate by <foundation>SignPath Foundation</foundation>.",
+    "ppmHeading": "Official Package Manager",
+    "ppmTitle": "Pumpkin Package Manager (ppm)",
+    "githubRepository": "GitHub Repository",
+    "marketplace": "Marketplace",
+    "ppmDescription": "<strong>ppm</strong> is the official CLI tool and package manager for Pumpkin Minecraft server plugins. Search and install WebAssembly plugins from the marketplace, keep them updated, or scaffold new plugin projects with an interactive wizard.",
+    "ppmSearch": "Search marketplace plugins by keyword or category",
+    "ppmInstall": "Download & install .wasm plugin into server",
+    "ppmNew": "Scaffold a new plugin in Rust, Python, Go, etc.",
+    "standalone": "Standalone binaries:",
+    "allPpmReleases": "All ppm releases →",
+    "afterDownloading": "After downloading",
+    "quickStart": "Quick start guide",
+    "discordHelp": "Get help on Discord",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyInstall": "Copy install command",
+    "copiedInstall": "Copied install command",
+    "copyPpmInstall": "Copy ppm install command",
+    "copiedPpmInstall": "Copied ppm install command",
+    "installHint": "For macOS, Linux and other Unix-like systems. Installs into <code>./pumpkin-server</code>.",
+    "ppmInstallHint": "Runs <code>ppm self-install</code> to automatically install the binary to <code>~/.local/bin</code> (or <code>/usr/local/bin</code>).",
+    "terminalLabel": "Animated Pumpkin startup demo",
+    "running": "running",
+    "idle": "idle",
+    "steps": [
+      {
+        "title": "Download the file",
+        "body": "Grab the file for your system above, or use the install script on macOS and Linux. It's a single executable, there is no installer and no Java to set up."
+      },
+      {
+        "title": "Run it",
+        "body": "Double-click the executable, or start it from a terminal. Your server is running a few milliseconds later."
+      },
+      {
+        "title": "Connect",
+        "body": "Java Edition players join on port <code>25565</code>, Bedrock Edition players on port <code>19132</code>. Both can be in the same world."
+      },
+      {
+        "title": "Configure",
+        "body": "Check the <docs>configuration docs</docs> for every option, or ask on <discord>Discord</discord> if something doesn't start."
+      },
+      {
+        "title": "Add plugins",
+        "body": "Manage WebAssembly plugins using the official package manager. Install with <ppm>ppm</ppm> or browse community creations on the <market>Marketplace</market>."
+      }
+    ]
+  },
+  "statsPage": {
+    "liveTelemetry": "Live telemetry",
+    "title": "Ecosystem telemetry",
+    "description": "Real-time network telemetry, global node distribution, hardware infrastructure, and community server analytics across Pumpkin and Vine deployments.",
+    "timeRange": "Time range",
+    "lastPolled": "Last polled",
+    "connecting": "connecting...",
+    "refresh": "Refresh",
+    "apiDocs": "API docs",
+    "unavailable": "Telemetry is unreachable right now. The page retries every minute.",
+    "loading": "Loading...",
+    "ranges": {
+      "24h": {
+        "label": "24H",
+        "long": "last 24 hours"
+      },
+      "7d": {
+        "label": "7D",
+        "long": "last 7 days"
+      },
+      "30d": {
+        "label": "30D",
+        "long": "last 30 days"
+      },
+      "90d": {
+        "label": "90D",
+        "long": "last 90 days"
+      },
+      "all": {
+        "label": "All",
+        "long": "all time"
+      }
+    },
+    "servers": "Servers",
+    "players": "Players",
+    "serverUnit": "servers",
+    "playerUnit": "players",
+    "market": "Market",
+    "activeServers": "Active servers · {range}",
+    "peakPlayers": "Peak players · {range}",
+    "liveNow": "<count>{count}</count> live now · Pumpkin {pumpkin} · Vine {vine}",
+    "onlineNow": "<count>{count}</count> online now",
+    "countries": "Countries",
+    "mostServers": "Most servers in {country}",
+    "trackedPlugins": "Tracked plugins",
+    "mostUsed": "Most used: {plugin}",
+    "activityTitle": "Activity over time",
+    "activityDescription": "Concurrent players and online servers, {range}.",
+    "metric": "Metric",
+    "series": {
+      "online_players": "Online players",
+      "peak_players": "Peak players",
+      "pumpkin_servers": "Pumpkin servers",
+      "vine_servers": "Vine servers"
+    },
+    "noTrends": "No telemetry trend data available.",
+    "summary": {
+      "peak": "Peak",
+      "average": "Average",
+      "low": "Low",
+      "latest": "Latest"
+    },
+    "hideTable": "Hide data table",
+    "showTable": "Show data table",
+    "time": "Time",
+    "chartAria": "{series}, {range}. Use the arrow keys to read values.",
+    "seriesJoiner": " and ",
+    "mapTitle": "Where servers run",
+    "mapDescription": "Geographic distribution of active servers and player traffic. Click a country to find it in the list.",
+    "mapMetric": "Map metric",
+    "fewer": "Fewer",
+    "moreServers": "More servers",
+    "morePlayers": "More players",
+    "topLocation": "Top location",
+    "regions": "Regions",
+    "reportedPlayers": "Reported players",
+    "playersPerServer": "Players per server",
+    "countriesDescription": "Servers and player traffic by host country.",
+    "sortCountries": "Sort countries by",
+    "noGeo": "No geolocation data reported.",
+    "popularPlugins": "Popular plugins",
+    "pluginsDescription": "Most adopted plugins across reporting servers.",
+    "noPlugins": "No plugin telemetry reported.",
+    "systemsTitle": "Systems & hardware",
+    "systemsDescription": "Operating systems, CPU architectures, software versions, and memory footprints reported by server hosts.",
+    "operatingSystems": "Operating systems",
+    "cpuArchitecture": "CPU architecture",
+    "softwareVersions": "Software versions",
+    "minecraftVersions": "Minecraft versions",
+    "serverMemory": "Allocated server memory",
+    "hostMemory": "Host machine memory",
+    "noData": "No data reported.",
+    "serverCpus": "Server CPUs",
+    "cpusDescription": "The processors reported most often.",
+    "privacyTitle": "Privacy-preserving open telemetry",
+    "privacyBody": "Pumpkin and Vine telemetry is completely transparent, non-identifying, and privacy-first. We collect aggregated system metrics (OS, CPU architecture, memory range, software versions, and player counts) to help benchmark performance, optimize multi-threading, and prioritize Minecraft version compatibility. To learn more or integrate your own tools, visit our <apiDocs>Telemetry API documentation</apiDocs> or inspect the telemetry modules in our <github>GitHub repository</github>.",
+    "showLess": "Show less",
+    "showMore": "Show {count} more",
+    "mapLoading": "Loading map...",
+    "mapError": "The map could not be loaded.",
+    "mapTooltip": "{servers} servers · {players} players",
+    "noReportingServers": "No reporting servers",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out"
+  },
+  "sponsorPage": {
+    "title": "Sponsorship",
+    "description": "Partner with Pumpkin. Select a sponsorship package for project credits, community perks, or corporate brand placement.",
+    "manage": "Manage sponsorship →",
+    "communityTitle": "Community Supporter Tiers",
+    "communityDescription": "Monthly membership with digital perks and directory recognition.",
+    "perMonth": "per month",
+    "month": "month",
+    "selectTier": "Select tier",
+    "selectTierLabel": "Select {tier} tier for {amount} per month",
+    "monthlyPerks": {
+      "bronze": "Credits listing & Discord role",
+      "silver": "Credits listing, link & Discord role",
+      "gold": "Gold credits, link & Discord role",
+      "platinum": "Priority credits, avatar & link",
+      "titanium": "Featured credits, avatar & link",
+      "diamond": "Top-tier credits, avatar & link"
+    },
+    "corporateTitle": "Corporate Sponsorship",
+    "corporateDescription": "Promote your company, hosting service, or developer tools with logo placement and outbound links in our credits.",
+    "selectPackage": "Select package",
+    "selectPackageLabel": "Select {tier} package for {amount} per month",
+    "corporatePerks": {
+      "bronze": "Logo & link in credits",
+      "silver": "Priority logo & link in credits",
+      "gold": "Featured logo & link in credits",
+      "platinum": "Top-tier logo & link in credits"
+    },
+    "sponsorsTitle": "Partners & Sponsors",
+    "sponsorsDescription": "These companies and community members actively support Pumpkin development.",
+    "sponsorList": "Sponsor list",
+    "activeTab": "Active",
+    "pastTab": "Past Sponsors",
+    "privateSponsor": "Private sponsor",
+    "loadError": "Unable to load sponsors from the server at this time. Please try again later.",
+    "loading": "Loading sponsors...",
+    "noCurrent": "No current sponsors yet. You could be the first.",
+    "noPast": "No past sponsors.",
+    "termsTitle": "Terms of Sale, Billing & Fulfillment Policy",
+    "terms": {
+      "digital": "<b>Digital Fulfillment:</b> Digital perks—including Discord community supporter roles, website credit listings, and corporate logo/link placements—are provisioned digitally upon successful payment completion. If your digital perks require manual setup or Discord sync, access is confirmed within 24 hours.",
+      "corporate": "<b>Corporate Sponsorship Guidelines:</b> Corporate sponsorship tiers include logo placement and outbound link credits on pumpkinmc.org. All brand assets and links are subject to review for community guidelines. Pumpkin reserves the right to decline or request modification of assets that violate these standards.",
+      "billing": "<b>Billing & Cancellation:</b> Monthly sponsorships are billed on a recurring cycle and can be modified or cancelled at any time through the <portal>Stripe Customer Portal</portal>. Cancellations take effect at the conclusion of the active billing period.",
+      "refund": "<b>Refund Policy:</b> Due to the immediate delivery of digital perks, community roles, and directory placement, payments are non-refundable once activated, except as required by applicable law.",
+      "signing": "<b>Code signing:</b> Free code signing provided by <signpath>SignPath.io</signpath>, certificate by <foundation>SignPath Foundation</foundation>. Pumpkin releases are digitally signed using SignPath."
+    }
+  },
+  "contributorsPage": {
+    "title": "Built by its contributors",
+    "description": "Pumpkin is built by an amazing community of open source contributors. Every commit below is someone's spare time.",
+    "contributors": "contributors",
+    "commits": "commits",
+    "contributorLabel": "{name}, {count} commits",
+    "mostCommits": "Most commits",
+    "everyoneElse": "Everyone else",
+    "peopleCount": "{count} people",
+    "loading": "Loading contributors...",
+    "loadError": "Failed to load contributors. Please try again later.",
+    "rateLimitReset": "GitHub API rate limit reached. Resets at {time}. Please try again later.",
+    "rateLimitSoon": "GitHub API rate limit reached. Resets soon. Please try again later.",
+    "fullList": "The full list is always on <github>GitHub</github>.",
+    "contributeTitle": "Want to contribute?",
+    "contributeDescription": "Join our community and help build the fastest Minecraft server ever.",
+    "guide": "Contributing guide",
+    "github": "View on GitHub",
+    "discord": "Join Discord"
+  },
+  "notFoundPage": {
+    "title": "This page does not exist.",
+    "description": "The link may be old, or the page moved when the site was rebuilt. These are the places most people are looking for.",
+    "home": "Back to the homepage",
+    "download": "Download Pumpkin",
+    "docs": "Read the docs"
+  },
+  "pageMetadata": {
+    "home": {
+      "title": "Pumpkin - Blazingly Fast Minecraft Server",
+      "description": "Pumpkin: The fastest, most efficient Minecraft server software. Written in Rust."
+    },
+    "download": {
+      "title": "Download Pumpkin - Blazingly Fast Minecraft Server",
+      "description": "Download the latest release of Pumpkin, the fastest Minecraft server."
+    },
+    "developers": {
+      "title": "For Developers - Pumpkin",
+      "description": "Why developers love building on Pumpkin. Typed commands, mutable events, Java + Bedrock support, and more."
+    },
+    "sponsor": {
+      "title": "Sponsorship - Pumpkin",
+      "description": "Become a sponsor to support Pumpkin development and unlock community perks and brand placement."
+    },
+    "contributors": {
+      "title": "Contributors - Pumpkin",
+      "description": "Meet the amazing people who contribute to Pumpkin, the fastest Minecraft server."
+    },
+    "stats": {
+      "title": "Telemetry & Stats - Pumpkin",
+      "description": "Live ecosystem telemetry, server health, hardware distribution, global world map, and community statistics for Pumpkin and Vine."
+    },
+    "tracker": {
+      "title": "Vanilla Parity - Pumpkin",
+      "description": "How close Pumpkin is to vanilla: which entities, blocks, items and commands are implemented, which are partial, and which are still on the list."
+    },
+    "notFound": {
+      "title": "Page not found - Pumpkin",
+      "description": "This page does not exist on pumpkinmc.org."
+    }
+  },
+  "developersPage": {
+    "code": {
+      "copy": "Copy",
+      "copied": "Copied",
+      "copyCommand": "Copy command",
+      "commandCopied": "Copied command",
+      "copyLabel": "Copy {label}",
+      "copiedLabel": "Copied {label}",
+      "terminal": "Terminal",
+      "projectLayout": "Project layout"
+    },
+    "firstSteps": {
+      "c": "Start by downloading the <sdk>wasi-sdk</sdk>, then compile with its clang.",
+      "d": "Install <ldc>LDC</ldc> 1.43 or later with the addon-wasi package, plus <dub>DUB</dub>.",
+      "typescript": "No written guide yet. The API lives in <api>pumpkin-api-ts</api>."
+    },
+    "picker": {
+      "title": "Pick your language",
+      "languageLabel": "Plugin language",
+      "firstStep": "First step of {count} in the {language} guide.",
+      "noGuide": "{language} has no written guide yet.",
+      "openGuide": "Open the guide"
+    },
+    "hero": {
+      "overline": "No NMS. No reflection. No version-specific hacks.",
+      "title": "Build plugins without the pain",
+      "description": "Just clean, type-safe APIs. Write in the language you already use, and Pumpkin loads the result as a WebAssembly plugin.",
+      "docs": "Plugin docs",
+      "source": "Source on GitHub"
+    },
+    "comparison": {
+      "title": "Same feature, <hl>two APIs</hl>",
+      "description": "Send a welcome message, then ask for confirmation with a Java dialog or a Bedrock form. On Spigot that means reflection into NMS and a second plugin. On Pumpkin it's one branch.",
+      "chooseApi": "Choose an API",
+      "reflectionCalls": "{count} reflection calls",
+      "spigot": {
+        "badge": "Spigot + Reflection NMS + Geyser API (Java)",
+        "facts": [
+          "Needs the Geyser API",
+          "Breaks on version bumps"
+        ]
+      },
+      "pumpkin": {
+        "badge": "Pumpkin Native API (Rust)",
+        "facts": [
+          "No extra dependencies",
+          "Checked at compile time"
+        ]
+      }
+    },
+    "featuresTitle": "What the API gives you",
+    "features": [
+      {
+        "title": "Every player, one plugin",
+        "body": "Native Java + Bedrock support. Multi-version built in.",
+        "rest": "Write once, reach everyone."
+      },
+      {
+        "title": "Typed commands and events",
+        "body": "Register commands and hook typed plugin events",
+        "rest": "without reflection, NMS, or version-specific hacks."
+      },
+      {
+        "title": "Async by default",
+        "body": "Built on Tokio. No main thread bottleneck.",
+        "rest": "Heavy tasks don't freeze the server."
+      },
+      {
+        "title": "Memory safe",
+        "body": "Rust guarantees.",
+        "rest": "No null pointers, no memory leaks, no data races."
+      }
+    ],
+    "quickStart": {
+      "title": "Quick <hl>start</hl>",
+      "description": "Pick a language. Each guide goes from an empty folder to a plugin file Pumpkin can load.",
+      "walkthrough": "The full walkthrough is in <docs>{documentation}</docs>."
+    },
+    "ready": {
+      "title": "Ready to build?",
+      "description": "The docs cover events, commands and the rest of the API. Discord is where to ask when they don't.",
+      "getStarted": "Get started",
+      "discord": "Ask on Discord"
+    },
+    "guides": {
+      "rust": {
+        "docsLabel": "the Rust documentation",
+        "titles": [
+          "Creating a new project",
+          "Installing the toolchain",
+          "Initializing a new crate",
+          "Configuring the crate"
+        ],
+        "text": {
+          "build": "Pumpkin plugins use the Cargo build system.",
+          "template": "The complete code for this plugin can be found as a <link0>template on GitHub</link0>.",
+          "target": "Before we can compile a plugin, we have to have the <code0>wasm32-wasip2</code0> target installed. You can install the target by running:",
+          "folder": "First we need to create a new project folder. You can do this by running this command in the folder you created:",
+          "cargo": "After adding this, we want to create a new directory called <code0>.cargo</code0> and add in a <code1>config.toml</code1> file with the following contents:",
+          "tree": "Altogether your new folder structure should look like this:",
+          "cdylib": "Since Pumpkin plugins are loaded at runtime as dynamic libraries, we need to tell Cargo to build this crate as one.",
+          "deps": "Next we need to add some basic dependencies. Since Pumpkin is still in early development, the internal crates aren't published to crates.io, so we need to tell Cargo to download the dependencies directly from GitHub."
+        }
+      },
+      "python": {
+        "docsLabel": "the Python documentation",
+        "titles": [
+          "Installation",
+          "Creating your first plugin",
+          "Building the plugin"
+        ],
+        "text": {
+          "install": "First, you need to install the <code0>pumpkin-api-py</code0> library:",
+          "file": "Create a file named <code0>main.py</code0> and add the following content:",
+          "build": "Build your plugin into a WebAssembly component using the provided build tool:",
+          "output": "This will generate a <code0>my_plugin.wasm</code0> file that you can place in the plugins folder of your Pumpkin server."
+        }
+      },
+      "csharp": {
+        "docsLabel": "the C# documentation",
+        "titles": [
+          "Installation",
+          "Creating your first plugin",
+          "Building the plugin"
+        ],
+        "text": {
+          "sdk": "You will need the <code0>.NET SDK</code0> and the WASI workload to compile C# plugins for Pumpkin.",
+          "library": "Create a new class library and add the following code:",
+          "build": "Compile the plugin to WebAssembly using the WASI runtime identifier:",
+          "output": "This will generate a <code0>.wasm</code0> file in your output directory that can be loaded by Pumpkin."
+        }
+      },
+      "c": {
+        "docsLabel": "the GitHub repository",
+        "titles": [
+          "Installation",
+          "Creating your first plugin",
+          "Building the plugin"
+        ],
+        "text": {
+          "sdk": "You will need the <code0>wasi-sdk</code0> to compile C/C++ plugins for Pumpkin. Download the latest release from the <link1>wasi-sdk repository</link1>.",
+          "repo": "The complete code for this plugin can be found in the <link0>pumpkin-api-c repository</link0>.",
+          "file": "Create a file named <code0>main.c</code0> and add the following content:",
+          "clang": "To compile this plugin into a WebAssembly component, use <code0>clang</code0> from the <code1>wasi-sdk</code1>:",
+          "output": "This will generate a <code0>my_plugin.wasm</code0> file that can be loaded by Pumpkin."
+        }
+      },
+      "go": {
+        "docsLabel": "the Go documentation",
+        "titles": [
+          "Installation",
+          "Creating your first plugin",
+          "Building the plugin"
+        ],
+        "text": {
+          "tools": "You will need <link0>Go 1.23 or later</link0> and <code1>tinygo</code1> to compile Go plugins for Pumpkin.",
+          "file": "Create a file named <code0>main.go</code0> and add the following content:",
+          "build": "Compile the plugin to WebAssembly using <code0>tinygo</code0>:",
+          "output": "This will generate a <code0>my_plugin.wasm</code0> file that can be loaded by Pumpkin."
+        }
+      },
+      "kotlin": {
+        "docsLabel": "the Kotlin documentation",
+        "titles": [
+          "Installation",
+          "Creating your first plugin",
+          "Building the plugin"
+        ],
+        "text": {
+          "needs": "You will need a number of things installed.",
+          "item0": "<link0>Rust</link0> (only default/host toolchain)",
+          "item1": "<code0>make</code0> (e.g. <link1>GNU Make</link1>)",
+          "template": "Unlike most of the other APIs, this one is actually a template instead. Clone it and rename.",
+          "rename": "Then change the <code0>rootProject.name</code0> in <code1>settings.gradle.kts</code1>, and the <code2>PROJECT_NAME</code2> in <code3>Makefile</code3>. They must both match. Whatever you name the project is going to be the filename of the Wasm produced.",
+          "prepared": "The template already has some code prepared. <code0>src/wasmWasiMain/kotlin/plugin/Plugin.kt</code0> contains:",
+          "make": "Compile the plugin to WebAssembly by running the <code0>Makefile</code0>:",
+          "slow": "This will take a while the first time as it builds some Rust dependencies from source.",
+          "output": "Once it is done, <code0>my_kotlin_plugin.wasm</code0> (or whatever your Gradle project name is) will appear in <code1>build</code1>, ready to load into Pumpkin."
+        }
+      },
+      "d": {
+        "docsLabel": "the D documentation",
+        "titles": [
+          "Installation",
+          "Creating your first plugin",
+          "Building the plugin"
+        ],
+        "text": {
+          "needs": "You will need <link0>LDC</link0> 1.43 or later with the <code1>addon-wasi</code1> package installed, and <link2>DUB</link2>.",
+          "package": "The bindings come from the <link0>pumpkin-api-d</link0> package. Declare it in a <code1>dub.json</code1> next to your plugin:",
+          "source": "Then put the plugin itself in <code0>source/app.d</code0>:",
+          "dub": "Compile the plugin into a WebAssembly component targeting <code0>wasm32-wasip2</code0> with DUB:",
+          "output": "<code0>my-d-plugin.wasm</code0> appears in the project root, ready to load into Pumpkin."
+        }
+      },
+      "zig": {
+        "docsLabel": "the Zig documentation",
+        "titles": [
+          "Setting up the project",
+          "Creating your first plugin",
+          "Building the plugin"
+        ],
+        "text": {
+          "needs": "You will need <link0>Zig</link0> 0.16.0 or later and <link1>wasm-tools</link1> in your <code2>PATH</code2>.",
+          "fetch": "Fetch and add the <link0>pumpkin-api-zig</link0> package as a dependency:",
+          "build-zig": "Create a <code0>build.zig</code0> file in the root of your project:",
+          "source": "Create your plugin source code in <code0>src/main.zig</code0>:",
+          "build": "Compile the plugin into a WebAssembly component:",
+          "output": "This will produce <code0>zig-out/my-zig-plugin.wasm</code0> ready to be loaded into Pumpkin."
+        }
+      },
+      "typescript": {
+        "docsLabel": "the pumpkin-api-ts repository",
+        "titles": [],
+        "text": {
+          "intro": "There is no written quick start for TypeScript yet. The API and its setup instructions live in the <link0>pumpkin-api-ts repository</link0>."
+        }
+      }
+    }
   }
 }

@@ -1,3 +1,5 @@
+import { useI18n } from "../../i18n";
+import { formatMessage } from "../../i18n/format";
 import { snippetTokens, type SnippetToken } from "virtual:snippet-tokens";
 import { useCopy } from "../../lib/useCopy";
 import type { SnippetName } from "./snippet-languages";
@@ -41,6 +43,8 @@ export function TokenLine({ tokens }: { tokens: SnippetToken[] }) {
 }
 
 export function CodeBlock({ snippet, label, lineNumbers = false, tone, className = "" }: CodeBlockProps) {
+  const { t } = useI18n();
+  const labels = t.developersPage.code;
   const [copied, copy] = useCopy(snippets[snippet]);
   const lines = tokensFor(snippet);
 
@@ -54,10 +58,10 @@ export function CodeBlock({ snippet, label, lineNumbers = false, tone, className
         <button
           type="button"
           onClick={copy}
-          aria-label={copied ? `Copied ${label}` : `Copy ${label}`}
+          aria-label={formatMessage(copied ? labels.copiedLabel : labels.copyLabel, { label })}
           className="cursor-pointer font-bold tracking-wider text-pumpkin uppercase hover:text-fg"
         >
-          {copied ? "Copied" : "Copy"}
+          {copied ? labels.copied : labels.copy}
         </button>
       </figcaption>
       <pre className="flex-1 overflow-x-auto p-4 font-mono text-[0.82rem] leading-relaxed">
