@@ -6,6 +6,7 @@ export const languages = {
   de_de: "Deutsch",
   fr_fr: "Français",
   es_es: "Español",
+  tr_tr: "Türkçe",
   vi_vn: "Tiếng Việt",
   zh_cn: "简体中文",
 } as const;
