@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.60",
-  "commit": "83efbd3a1661840279e8f38e5606c17884c22d89",
-  "updated": "2026-11-01",
+  "commit": "678891bbc9d485369939fc9ea4739de5b132fd09",
+  "updated": "2026-11-03",
   "categories": [
     {
       "id": "entities",
@@ -1609,7 +1609,7 @@
             {
               "number": 3364,
               "title": "[Feature] Implement vanilla Wandering Trader spawning and lifecycle",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3083,
@@ -2686,6 +2686,14 @@
             "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
+        },
+        {
+          "id": "bonemealable_feature_placer",
+          "name": "Bonemealable Feature Placer",
+          "group": "Blocks",
+          "status": "partial",
+          "source": "crates/pumpkin-core/src/block/blocks/bonemealable_feature_placer.rs",
+          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot."
         },
         {
           "id": "brewing_stand",
@@ -6486,22 +6494,6 @@
           "review": {
             "commit": "e0cb7c01fbab5892d9dbbed0ef574c59c977d07f",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": false
-          }
-        },
-        {
-          "id": "saddle",
-          "name": "Saddle",
-          "group": "Utility",
-          "status": "done",
-          "source": "crates/pumpkin-core/src/item/items/saddle.rs",
-          "ids": [
-            "minecraft:saddle"
-          ],
-          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
-          "review": {
-            "commit": "742beaf6f9f84fb99a04402434f6c6feb86667d1",
-            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
             "current": false
           }
         },
