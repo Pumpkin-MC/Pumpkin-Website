@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { useI18n } from "../../i18n";
+import { rich } from "../../i18n/rich";
+import { formatMessage } from "../../i18n/format";
 import { ButtonLink } from "../../components/Button";
 import { DownloadIcon } from "../../components/icons";
 import { readCache, writeCache } from "../../lib/cache";
@@ -19,9 +22,9 @@ type Channel = "stable" | "nightly";
 const NIGHTLY_URL = `${GITHUB_URL}/releases/tag/nightly`;
 const NIGHTLY_CACHE_KEY = "pumpkin_nightly_build";
 
-const channels: { id: Channel; label: string }[] = [
-  { id: "stable", label: "Stable" },
-  { id: "nightly", label: "Nightly" },
+const channels: { id: Channel }[] = [
+  { id: "stable" },
+  { id: "nightly" },
 ];
 
 const channelBase: Record<Channel, string> = {
@@ -189,6 +192,7 @@ function useNightlyBuild(enabled: boolean): NightlyBuild | null {
 const inlineLink = "font-semibold text-pumpkin underline underline-offset-3 hover:text-fg";
 
 function InstallCommand({ channel }: { channel: Channel }) {
+  const t = useI18n().t.downloadPage;
   const [copied, copy] = useCopy(installCommands[channel]);
 
   return (
@@ -210,19 +214,20 @@ function InstallCommand({ channel }: { channel: Channel }) {
       <button
         type="button"
         onClick={copy}
-        aria-label={copied ? "Copied install command" : "Copy install command"}
+        aria-label={copied ? t.copiedInstall : t.copyInstall}
         className="cursor-pointer justify-self-end text-xs font-bold tracking-wider text-pumpkin uppercase hover:text-fg"
       >
-        {copied ? "Copied" : "Copy"}
+        {copied ? t.copied : t.copy}
       </button>
       <p className="col-span-2 text-xs text-muted md:col-span-1 md:col-start-1">
-        For macOS, Linux and other Unix-like systems. Installs into <code className="font-mono text-fg">./pumpkin-server</code>.
+        {rich(t.installHint, { code: (text) => <code className="font-mono text-fg">{text}</code> })}
       </p>
     </div>
   );
 }
 
 function PpmInstallCommand({ channel }: { channel: Channel }) {
+  const t = useI18n().t.downloadPage;
   const [copied, copy] = useCopy(ppmInstallCommands[channel]);
 
   return (
@@ -244,14 +249,13 @@ function PpmInstallCommand({ channel }: { channel: Channel }) {
       <button
         type="button"
         onClick={copy}
-        aria-label={copied ? "Copied ppm install command" : "Copy ppm install command"}
+        aria-label={copied ? t.copiedPpmInstall : t.copyPpmInstall}
         className="cursor-pointer justify-self-end text-xs font-bold tracking-wider text-pumpkin uppercase hover:text-fg"
       >
-        {copied ? "Copied" : "Copy"}
+        {copied ? t.copied : t.copy}
       </button>
       <p className="col-span-2 text-xs text-muted md:col-span-1 md:col-start-1">
-        Runs <code className="font-mono text-fg">ppm self-install</code> to automatically install the binary to{" "}
-        <code className="font-mono text-fg">~/.local/bin</code> (or <code className="font-mono text-fg">/usr/local/bin</code>).
+        {rich(t.ppmInstallHint, { code: (text) => <code className="font-mono text-fg">{text}</code> })}
       </p>
     </div>
   );
@@ -262,6 +266,7 @@ function wait(ms: number) {
 }
 
 function TerminalDemo() {
+  const t = useI18n().t.downloadPage;
   const rootRef = useRef<HTMLDivElement>(null);
   const [command, setCommand] = useState("");
   const [complete, setComplete] = useState(false);
@@ -313,12 +318,12 @@ function TerminalDemo() {
   return (
     <div
       ref={rootRef}
-      aria-label="Animated Pumpkin startup demo"
+      aria-label={t.terminalLabel}
       className="min-w-0 border-2 border-white/15 bg-ink lg:sticky lg:top-28 lg:self-start"
     >
       <div className="flex items-center justify-between border-b-2 border-white/15 px-4 py-2 font-mono text-xs text-muted">
         <span>~/pumpkin-server</span>
-        <span className={complete ? "text-success" : undefined}>{complete ? "running" : "idle"}</span>
+        <span className={complete ? "text-success" : undefined}>{complete ? t.running : t.idle}</span>
       </div>
       <div className="min-h-80 overflow-x-auto p-4 font-mono text-[0.8rem] leading-relaxed">
         <div className="whitespace-pre">
@@ -344,53 +349,9 @@ function TerminalDemo() {
   );
 }
 
-const steps = [
-  {
-    title: "Download the file",
-    body: (
-      <>
-        Grab the file for your system above, or use the install script on macOS and Linux. It's a single executable,
-        there is no installer and no Java to set up.
-      </>
-    ),
-  },
-  {
-    title: "Run it",
-    body: <>Double-click the executable, or start it from a terminal. Your server is running a few milliseconds later.</>,
-  },
-  {
-    title: "Connect",
-    body: (
-      <>
-        Java Edition players join on port <code className="font-mono text-fg">25565</code>, Bedrock Edition players on
-        port <code className="font-mono text-fg">19132</code>. Both can be in the same world.
-      </>
-    ),
-  },
-  {
-    title: "Configure",
-    body: (
-      <>
-        Check the <a href={`${DOCS_URL}/config/introduction`} className={inlineLink}>configuration docs</a> for every
-        option, or ask on <a href={DISCORD_URL} className={inlineLink}>Discord</a> if something doesn't start.
-      </>
-    ),
-  },
-  {
-    title: "Add plugins",
-    body: (
-      <>
-        Manage WebAssembly plugins using the official package manager. Install with{" "}
-        <a href="#ppm" className={inlineLink}>
-          ppm
-        </a>{" "}
-        or browse community creations on the <a href={MARKET_URL} target="_blank" rel="noopener" className={inlineLink}>Marketplace</a>.
-      </>
-    ),
-  },
-];
-
 export default function Download() {
+  const t = useI18n().t.downloadPage;
+  const steps = t.steps;
   const [recommended, setRecommended] = useState<ReleaseFile>(files[0]);
   const [detected, setDetected] = useState(false);
   const [channel, setChannel] = useState<Channel>("stable");
@@ -422,21 +383,21 @@ export default function Download() {
     <>
       <section className="mx-auto max-w-325 px-5 pt-14 md:px-8 md:pt-20">
         <h1 className="text-[clamp(2.6rem,6vw,5rem)] leading-[0.98] font-extrabold tracking-[-0.015em]">
-          Download Pumpkin<span className="text-pumpkin">.</span>
+          {t.title}<span className="text-pumpkin">.</span>
         </h1>
         <p className="mt-5 max-w-xl text-lg text-muted md:text-xl">
-          Self-contained executable. No Java required. Just download, run, and play.
+          {t.lede}
         </p>
         <p className="mt-3 text-sm text-muted">
-          Looking for the plugin manager?{" "}
+          {t.ppmPrompt}{" "}
           <a href="#ppm" className={inlineLink}>
-            Install ppm (Pumpkin Package Manager) ↓
+            {t.installPpm}
           </a>
         </p>
 
         <div className="mt-10 border-3 border-pumpkin bg-surface">
           <div className="flex flex-wrap items-stretch justify-between border-b-2 border-white/15">
-            <div role="radiogroup" aria-label="Release channel" className="grid w-full grid-cols-2 md:flex md:w-auto">
+            <div role="radiogroup" aria-label={t.releaseChannel} className="grid w-full grid-cols-2 md:flex md:w-auto">
               {channels.map((option) => {
                 const checked = channel === option.id;
                 return (
@@ -450,7 +411,7 @@ export default function Download() {
                       checked ? (option.id === "nightly" ? "bg-warning text-black" : "bg-fg text-black") : "text-muted hover:text-fg"
                     }`}
                   >
-                    {option.label}
+                    {t.channels[option.id]}
                   </button>
                 );
               })}
@@ -467,16 +428,15 @@ export default function Download() {
 
           {isNightly && (
             <p className="animate-fade-up border-b-2 border-white/15 bg-warning/10 px-5 py-2.5 text-sm text-warning motion-reduce:animate-none md:px-7">
-              Nightly builds come straight from recent commits and skip the release process. Expect bugs and back up
-              your world first.
-              {nightly?.builtAt && <span className="text-muted"> Generated {nightly.builtAt}.</span>}
+              {t.nightlyWarning}
+              {nightly?.builtAt && <span className="text-muted"> {formatMessage(t.generated, { date: nightly.builtAt })}</span>}
             </p>
           )}
 
           <div className="grid gap-5 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:p-7">
             <div className="min-w-0">
               <p className="font-mono text-xs tracking-wider text-muted uppercase">
-                {detected ? "Detected on this device" : "Most common download"}
+                {detected ? t.detected : t.mostCommon}
               </p>
               <p className="mt-2 text-2xl font-extrabold md:text-3xl">
                 {recommended.system}{" "}
@@ -488,7 +448,7 @@ export default function Download() {
               <p className="mt-1 truncate font-mono text-sm text-muted">{recommended.file}</p>
             </div>
             <ButtonLink href={fileUrl(recommended, channel)} className="w-full md:w-auto">
-              Download {isNightly ? "nightly " : ""}for {recommended.system}
+              {formatMessage(isNightly ? t.downloadNightlyFor : t.downloadFor, { system: recommended.system })}
               <DownloadIcon className="size-4" />
             </ButtonLink>
           </div>
@@ -499,28 +459,28 @@ export default function Download() {
 
       <section id="all-files" className="mx-auto max-w-325 px-5 py-14 md:px-8 md:py-20">
         <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-          <h2 className="text-3xl font-extrabold md:text-4xl">All files</h2>
+          <h2 className="text-3xl font-extrabold md:text-4xl">{t.allFiles}</h2>
           <p className="text-muted">
             <a href={isNightly ? NIGHTLY_URL : release.html_url} target="_blank" rel="noopener" className={inlineLink}>
-              {isNightly ? "Nightly release page" : "Release notes"}
+              {isNightly ? t.nightlyRelease : t.releaseNotes}
             </a>{" "}
             ·{" "}
             <a href={RELEASES_URL} target="_blank" rel="noopener" className={inlineLink}>
-              {isNightly ? "All releases" : "Older versions"}
+              {isNightly ? t.allReleases : t.olderVersions}
             </a>
           </p>
         </div>
 
-        <div role="table" aria-label="Release files" className="border-t-3 border-pumpkin">
+        <div role="table" aria-label={t.releaseFiles} className="border-t-3 border-pumpkin">
           <div
             role="row"
             className="hidden grid-cols-[9rem_14rem_minmax(0,1fr)_8rem] gap-4 border-b-2 border-white/15 py-3 text-xs font-extrabold tracking-wider text-muted uppercase md:grid"
           >
-            <span role="columnheader">System</span>
-            <span role="columnheader">Architecture</span>
-            <span role="columnheader">File</span>
+            <span role="columnheader">{t.system}</span>
+            <span role="columnheader">{t.architecture}</span>
+            <span role="columnheader">{t.file}</span>
             <span role="columnheader" className="sr-only">
-              Download
+              {t.download}
             </span>
           </div>
           {files.map((file) => {
@@ -537,7 +497,7 @@ export default function Download() {
                   {file.system}
                   {current && (
                     <span className="bg-pumpkin px-1.5 py-0.5 text-[0.65rem] tracking-wider text-black uppercase">
-                      This device
+                      {t.thisDevice}
                     </span>
                   )}
                 </span>
@@ -551,11 +511,11 @@ export default function Download() {
                 <span role="cell" className="col-start-2 row-span-3 row-start-1 md:col-start-auto md:row-span-1 md:row-start-auto md:text-right">
                   <a
                     href={fileUrl(file, channel)}
-                    aria-label={`Download ${isNightly ? "nightly " : ""}${file.file}`}
+                    aria-label={formatMessage(isNightly ? t.downloadNightlyFile : t.downloadFile, { file: file.file })}
                     className="inline-flex items-center gap-2 font-bold text-pumpkin hover:text-fg"
                   >
                     <DownloadIcon className="size-4" />
-                    <span className="hidden md:inline">Download</span>
+                    <span className="hidden md:inline">{t.download}</span>
                   </a>
                 </span>
               </div>
@@ -565,15 +525,10 @@ export default function Download() {
 
         {!isNightly && (
         <p className="mt-5 max-w-3xl text-sm text-muted">
-          Releases are digitally signed using SignPath. Free code signing provided by{" "}
-          <a href="https://signpath.io/" target="_blank" rel="noopener" className={inlineLink}>
-            SignPath.io
-          </a>
-          , certificate by{" "}
-          <a href="https://signpath.org/" target="_blank" rel="noopener" className={inlineLink}>
-            SignPath Foundation
-          </a>
-          .
+          {rich(t.signing, {
+            signpath: (text) => <a href="https://signpath.io/" target="_blank" rel="noopener" className={inlineLink}>{text}</a>,
+            foundation: (text) => <a href="https://signpath.org/" target="_blank" rel="noopener" className={inlineLink}>{text}</a>,
+          })}
         </p>
         )}
       </section>
@@ -582,16 +537,16 @@ export default function Download() {
         <div className="mx-auto max-w-325 px-5 py-14 md:px-8 md:py-20">
           <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
             <div>
-              <p className="font-mono text-xs tracking-wider text-pumpkin uppercase">Official Package Manager</p>
-              <h2 className="mt-1 text-3xl font-extrabold md:text-4xl">Pumpkin Package Manager (ppm)</h2>
+              <p className="font-mono text-xs tracking-wider text-pumpkin uppercase">{t.ppmHeading}</p>
+              <h2 className="mt-1 text-3xl font-extrabold md:text-4xl">{t.ppmTitle}</h2>
             </div>
             <p className="text-muted">
               <a href={PPM_GITHUB_URL} target="_blank" rel="noopener" className={inlineLink}>
-                GitHub Repository
+                {t.githubRepository}
               </a>{" "}
               ·{" "}
               <a href={MARKET_URL} target="_blank" rel="noopener" className={inlineLink}>
-                Marketplace
+                {t.marketplace}
               </a>
             </p>
           </div>
@@ -599,22 +554,21 @@ export default function Download() {
           <div className="border-2 border-white/15 bg-ink">
             <div className="p-5 md:p-7">
               <p className="max-w-2xl text-base text-muted md:text-lg">
-                <strong className="font-bold text-fg">ppm</strong> is the official CLI tool and package manager for Pumpkin Minecraft server plugins.
-                Search and install WebAssembly plugins from the marketplace, keep them updated, or scaffold new plugin projects with an interactive wizard.
+                {rich(t.ppmDescription, { strong: (text) => <strong className="font-bold text-fg">{text}</strong> })}
               </p>
 
               <div className="mt-6 grid gap-3 font-mono text-xs md:grid-cols-3">
                 <div className="border border-white/10 bg-surface/70 p-3.5">
                   <span className="font-bold text-pumpkin">$ ppm search &lt;query&gt;</span>
-                  <p className="mt-1 text-muted">Search marketplace plugins by keyword or category</p>
+                  <p className="mt-1 text-muted">{t.ppmSearch}</p>
                 </div>
                 <div className="border border-white/10 bg-surface/70 p-3.5">
                   <span className="font-bold text-pumpkin">$ ppm install &lt;plugin&gt;</span>
-                  <p className="mt-1 text-muted">Download & install .wasm plugin into server</p>
+                  <p className="mt-1 text-muted">{t.ppmInstall}</p>
                 </div>
                 <div className="border border-white/10 bg-surface/70 p-3.5">
                   <span className="font-bold text-pumpkin">$ ppm new [name]</span>
-                  <p className="mt-1 text-muted">Scaffold a new plugin in Rust, Python, Go, etc.</p>
+                  <p className="mt-1 text-muted">{t.ppmNew}</p>
                 </div>
               </div>
             </div>
@@ -623,7 +577,7 @@ export default function Download() {
           </div>
 
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted">
-            <span>Standalone binaries:</span>
+            <span>{t.standalone}</span>
             <a href={`${ppmChannelBase[channel]}/ppm-X64-Linux`} className={inlineLink}>
               Linux (x64)
             </a>
@@ -641,7 +595,7 @@ export default function Download() {
             </a>
             <span>·</span>
             <a href={`${PPM_GITHUB_URL}/releases`} target="_blank" rel="noopener" className="hover:text-fg">
-              All ppm releases →
+              {t.allPpmReleases}
             </a>
           </div>
         </div>
@@ -650,7 +604,7 @@ export default function Download() {
       <section className="border-t-2 border-white/15">
         <div className="mx-auto grid max-w-325 gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
           <div>
-            <h2 className="text-3xl font-extrabold md:text-4xl">After downloading</h2>
+            <h2 className="text-3xl font-extrabold md:text-4xl">{t.afterDownloading}</h2>
             <ol className="mt-8 grid gap-8">
               {steps.map((step, index) => (
                 <li key={step.title} className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-5">
@@ -659,17 +613,23 @@ export default function Download() {
                   </span>
                   <div>
                     <h3 className="pt-1 text-xl/tight font-extrabold">{step.title}</h3>
-                    <p className="mt-2 text-muted">{step.body}</p>
+                    <p className="mt-2 text-muted">{rich(step.body, {
+                      code: (text) => <code className="font-mono text-fg">{text}</code>,
+                      docs: (text) => <a href={`${DOCS_URL}/config/introduction`} className={inlineLink}>{text}</a>,
+                      discord: (text) => <a href={DISCORD_URL} className={inlineLink}>{text}</a>,
+                      ppm: (text) => <a href="#ppm" className={inlineLink}>{text}</a>,
+                      market: (text) => <a href={MARKET_URL} target="_blank" rel="noopener" className={inlineLink}>{text}</a>,
+                    })}</p>
                   </div>
                 </li>
               ))}
             </ol>
             <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
               <ButtonLink href={`${DOCS_URL}/`} variant="ghost" className="w-full md:w-auto">
-                Quick start guide
+                {t.quickStart}
               </ButtonLink>
               <a href={DISCORD_URL} className={inlineLink}>
-                Get help on Discord
+                {t.discordHelp}
               </a>
             </div>
           </div>
