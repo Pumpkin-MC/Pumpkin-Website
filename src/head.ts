@@ -18,11 +18,15 @@ const GOOGLE_ANALYTICS_CONNECT = [
 
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
+  // The hero pumpkin needs wasm-unsafe-eval and blob: workers for its Draco mesh decoder, and
+  // blob: URLs for the textures embedded in its .glb: fetched where createImageBitmap is used,
+  // loaded as <img> where GLTFLoader falls back to TextureLoader (Safari < 17, Firefox < 98).
+  "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://www.googletagmanager.com",
+  "worker-src 'self' blob:",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",
   "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com",
-  `img-src 'self' https://avatars.githubusercontent.com https://market.pumpkinmc.org data: ${GOOGLE_ANALYTICS_IMAGES}`,
-  `connect-src 'self' https://api.github.com https://market.pumpkinmc.org http://localhost:5000 http://127.0.0.1:5000 ${GOOGLE_ANALYTICS_CONNECT}`,
+  `img-src 'self' https://avatars.githubusercontent.com https://market.pumpkinmc.org data: blob: ${GOOGLE_ANALYTICS_IMAGES}`,
+  `connect-src 'self' blob: https://api.github.com https://market.pumpkinmc.org http://localhost:5000 http://127.0.0.1:5000 ${GOOGLE_ANALYTICS_CONNECT}`,
   "frame-src https://www.googletagmanager.com",
 ].join("; ");
 
