@@ -45,7 +45,7 @@ const ppmInstallCommands: Record<Channel, string> = {
 };
 
 type Os = "windows" | "linux" | "mac" | "android";
-type Arch = "x64" | "arm64";
+type Arch = "x64" | "x64-v3" | "arm64";
 
 interface ReleaseFile {
   os: Os;
@@ -58,8 +58,10 @@ interface ReleaseFile {
 
 const files: ReleaseFile[] = [
   { os: "windows", arch: "x64", system: "Windows", archLabel: "x86-64", archNote: "Intel / AMD", file: "pumpkin-X64-Windows.exe" },
+  { os: "windows", arch: "x64-v3", system: "Windows", archLabel: "x86-64-v3", archNote: "AVX2", file: "pumpkin-X64-v3-Windows.exe" },
   { os: "windows", arch: "arm64", system: "Windows", archLabel: "ARM64", file: "pumpkin-ARM64-Windows.exe" },
   { os: "linux", arch: "x64", system: "Linux", archLabel: "x86-64", archNote: "Intel / AMD", file: "pumpkin-X64-Linux" },
+  { os: "linux", arch: "x64-v3", system: "Linux", archLabel: "x86-64-v3", archNote: "AVX2", file: "pumpkin-X64-v3-Linux" },
   { os: "linux", arch: "arm64", system: "Linux", archLabel: "ARM64", file: "pumpkin-ARM64-Linux" },
   { os: "mac", arch: "arm64", system: "macOS", archLabel: "ARM64", archNote: "Apple Silicon", file: "pumpkin-ARM64-macOS" },
   { os: "android", arch: "arm64", system: "Android", archLabel: "ARM64", file: "pumpkin-aarch64-android" },

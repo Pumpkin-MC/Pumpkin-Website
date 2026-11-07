@@ -45,6 +45,35 @@ detect_arch() {
   esac
 }
 
+supports_x86_64_v3() {
+  if [ -r /proc/cpuinfo ]; then
+    cpu_flags=""
+    while IFS=: read -r key val; do
+      case "$key" in
+        flags*)
+          cpu_flags=" $val "
+          break
+          ;;
+      esac
+    done < /proc/cpuinfo
+    if [ -n "$cpu_flags" ]; then
+      for flag in avx avx2 bmi1 bmi2 f16c fma abm movbe xsave cx16 lahf_lm popcnt sse4_1 sse4_2 ssse3; do
+        case "$cpu_flags" in
+          *" $flag "*) ;;
+          *) return 1 ;;
+        esac
+      done
+      return 0
+    fi
+  fi
+  if [ -x /lib64/ld-linux-x86-64.so.2 ]; then
+    if /lib64/ld-linux-x86-64.so.2 --help 2>/dev/null | grep -q "x86-64-v3 (supported"; then
+      return 0
+    fi
+  fi
+  return 1
+}
+
 # ── Dependency checks ─────────────────────────────────────────────────────────
 
 need_cmd() {
@@ -62,6 +91,9 @@ ARCH=$(detect_arch)
 
 case "$OS" in
   linux)
+    if [ "$ARCH" = "X64" ] && supports_x86_64_v3; then
+      ARCH="X64-v3"
+    fi
     BINARY_NAME="pumpkin-${ARCH}-Linux"
     ;;
   macos)
