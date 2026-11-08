@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.60",
-  "commit": "bc494ec664abcf2244bb01897365fef50a05e966",
-  "updated": "2026-11-06",
+  "commit": "3ea7d281654a03fdc4f4fee43734c098acd1fb52",
+  "updated": "2026-11-08",
   "categories": [
     {
       "id": "entities",
@@ -507,6 +507,7 @@
           "name": "Sulfur Cube",
           "group": "Hostile",
           "status": "partial",
+          "source": "crates/pumpkin-core/src/entity/mob/sulfur_cube.rs",
           "issues": [
             {
               "number": 3114,
