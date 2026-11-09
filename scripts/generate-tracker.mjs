@@ -55,6 +55,8 @@ function entitySource(id) {
     zombie: "entity/mob/zombie/zombie.rs",
     ender_dragon: "entity/boss/ender_dragon.rs",
     villager: "entity/passive/villager/mod.rs",
+    fox: "entity/passive/fox/mod.rs",
+    camel_husk: "entity/passive/camel.rs",
     glow_item_frame: "entity/decoration/item_frame.rs",
     block_display: "entity/decoration/display.rs",
     item_display: "entity/decoration/display.rs",
@@ -70,7 +72,7 @@ function entitySource(id) {
     tnt_minecart: "entity/vehicle/minecart/tnt.rs",
     command_block_minecart: "entity/vehicle/minecart.rs",
     spawner_minecart: "entity/vehicle/minecart.rs",
-    experience_bottle: "item/items/experience_bottle.rs",
+    experience_bottle: "entity/projectile/experience_bottle.rs",
   };
   if (overrides[id]) return ensureSource(id, `${ROOT}/` + overrides[id]);
   if (/_(chest_)?(boat|raft)$/.test(id)) return ensureSource(id, `${ROOT}/entity/vehicle/boat.rs`);
@@ -298,6 +300,8 @@ const BLOCK_NAMES = {
   torches: "Torches",
   beehive: "Beehive & Bee Nest",
   bed: "Beds",
+  bonemealable_feature_placer: "Moss & Pale Moss",
+  huge_mushroom: "Huge Mushroom Blocks",
 };
 const BLOCK_GROUPS = [
   ["Redstone", (p) => p.includes("/redstone/")],
@@ -328,7 +332,6 @@ for (const file of walk(path.join(SRC, "block/blocks")).sort()) {
 }
 blockEntries.push(
   { id: "lodestone", name: "Lodestone", group: "Blocks", status: "unknown" },
-  { id: "frogspawn", name: "Frogspawn", group: "Blocks", status: "unknown" },
 );
 blockEntries.sort((a, b) => a.group.localeCompare(b.group) || a.name.localeCompare(b.name));
 
