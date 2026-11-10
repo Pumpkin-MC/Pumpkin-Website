@@ -1,6 +1,6 @@
 {
   "version": "26.3-26.60",
-  "commit": "900ebf77fa15e839f1349c6f2808805c0ec1db12",
+  "commit": "d393d358112254b027c66754a61017a73acf91ea",
   "updated": "2026-11-09",
   "categories": [
     {
@@ -8617,39 +8617,12 @@
           "ids": [
             "minecraft:mace"
           ],
-          "note": "Player attacks add 1.5 times fall distance plus enchantment bonuses. Lantern MaceItem uses 4 damage/block for the first 3 blocks, 2 for the next 5, and 1 thereafter.",
-          "items": [
-            {
-              "text": "Smash classification, density bonus, sounds and fall reset",
-              "done": true
-            },
-            {
-              "text": "Vanilla piecewise smash damage formula",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/item/items/mace.rs",
-              "line": 9
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/player.rs",
-              "line": 62
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/combat.rs",
-              "line": 30
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "shears",
@@ -9223,41 +9196,14 @@
           "id": "elytra",
           "name": "Elytra",
           "group": "Utility",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/player.rs",
-          "note": "Implements equip behavior, glide initiation validation, and flight durability wear.",
-          "items": [
-            {
-              "text": "Gliding flag, pose and movement statistics",
-              "done": true
-            },
-            {
-              "text": "Validate glide-capable equipment before starting flight",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/player.rs",
-              "line": 62
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mod.rs",
-              "line": 111
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/net/java/play/player_command.rs",
-              "line": 5
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "glass_bottle",
