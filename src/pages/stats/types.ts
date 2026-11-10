@@ -59,18 +59,23 @@ export interface PluginEntry {
   market_plugin_name: string | null;
 }
 
-export const RANGES: { id: TrendRange; label: string; long: string }[] = [
-  { id: "24h", label: "24H", long: "last 24 hours" },
-  { id: "7d", label: "7D", long: "last 7 days" },
-  { id: "30d", label: "30D", long: "last 30 days" },
-  { id: "90d", label: "90D", long: "last 90 days" },
-  { id: "all", label: "All", long: "all time" },
-];
+export const RANGES: TrendRange[] = ["24h", "7d", "30d", "90d", "all"];
 
-export function formatNumber(value: number | null | undefined): string {
-  return (value ?? 0).toLocaleString("en-US");
+export function formatNumber(value: number | null | undefined, locale = "en-US"): string {
+  return (value ?? 0).toLocaleString(locale);
 }
 
-export function formatPercent(value: number): string {
-  return `${value.toFixed(1)}%`;
+export function formatPercent(value: number, locale = "en-US"): string {
+  if (locale === "en-US") return `${value.toFixed(1)}%`;
+  return (value / 100).toLocaleString(locale, { style: "percent", minimumFractionDigits: 1, maximumFractionDigits: 1 });
+}
+
+export function countryName(code: string, fallback: string, locale: string): string {
+  if (locale === "en-US") return fallback;
+  try {
+    const name = new Intl.DisplayNames([locale], { type: "region" }).of(code);
+    return name && name !== code ? name : fallback;
+  } catch {
+    return fallback;
+  }
 }

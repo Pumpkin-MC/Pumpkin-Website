@@ -1,0 +1,1493 @@
+{
+  "nav": {
+    "developers": "Geliştiriciler",
+    "docs": "Dokümantasyon",
+    "community": "Topluluk",
+    "market": "Eklenti pazarı",
+    "tracker": "Özellik takibi",
+    "download": "İndir",
+    "language": "Dil",
+    "menu": "Menü",
+    "main": "Ana menü",
+    "docsTranslations": "Dokümantasyon <de>Deutsch</de>, <ja>日本語</ja>, <nl>Nederlands</nl> ve <pt>Português</pt> dillerinde de mevcut.",
+    "panels": {
+      "developers": {
+        "writePlugins": "Eklenti geliştirme",
+        "pickLanguage": "Programlama dilleri",
+        "hackServer": "Sunucu geliştirme",
+        "howPluginsWork": {
+          "label": "Eklentiler nasıl çalışır?",
+          "hint": "API, çalışma ortamı ve paketleme."
+        },
+        "fromBukkit": {
+          "label": "Bukkit'ten geçiş",
+          "hint": "Bukkit olaylarının, komutlarının ve envanterlerinin Pumpkin'deki karşılıkları."
+        },
+        "examples": {
+          "label": "Örnek eklentiler",
+          "hint": "Kopyalayıp kullanabileceğin kısa ve eksiksiz eklenti örnekleri."
+        },
+        "contributing": {
+          "label": "Katkı rehberi",
+          "hint": "Kurulum, kod stili ve PR inceleme süreci."
+        },
+        "architecture": {
+          "label": "Mimari",
+          "hint": "Sunucunun yapısı."
+        },
+        "networking": {
+          "label": "Ağ iletişimi",
+          "hint": "Paketler, kimlik doğrulama ve MSMP."
+        },
+        "source": {
+          "label": "GitHub'daki kaynak kod",
+          "hint": "Hata bildirimleri, geliştirme talepleri, PR'lar ve sürümler."
+        }
+      },
+      "docs": {
+        "runServer": "Sunucu çalıştırma",
+        "configure": "Yapılandırma",
+        "about": "Hakkında",
+        "gettingStarted": {
+          "label": "İlk adımlar",
+          "hint": "Sunucuyu indirme, ilk kez çalıştırma ve oyuncuların bağlanması."
+        },
+        "migration": {
+          "label": "Paper veya Spigot'tan geçiş",
+          "hint": "Neler aktarılır, neler aktarılmaz?"
+        },
+        "patchBukkit": {
+          "label": "PatchBukkit",
+          "hint": "Bukkit ve Paper eklentilerini kullanmaya devam et."
+        },
+        "troubleshooting": {
+          "label": "Sorun giderme",
+          "hint": "Yaygın sorunlar ve hata mesajlarının anlamları."
+        },
+        "basicSettings": {
+          "label": "Temel ayarlar",
+          "hint": "Port, sunucu açıklaması (MOTD), görüş mesafesi ve beyaz liste."
+        },
+        "world": {
+          "label": "Dünya",
+          "hint": "Dünya oluşturma, kaydetme ve doğma ayarları."
+        },
+        "bedrock": {
+          "label": "Bedrock oyuncuları",
+          "hint": "Bedrock oyuncularının sunucuya bağlanması."
+        },
+        "proxy": {
+          "label": "Proxy ile kullanım",
+          "hint": "Velocity ve BungeeCord üzerinden bağlantı yönlendirme."
+        },
+        "configReference": {
+          "label": "Tüm yapılandırma seçenekleri",
+          "hint": "Tüm yapılandırma seçeneklerinin açıklamaları."
+        },
+        "benchmarks": {
+          "label": "Performans testleri",
+          "hint": "Performans ölçümlerinde kullanılan yöntemler."
+        },
+        "helping": {
+          "label": "Diğer katkı yolları",
+          "hint": "Kod yazmadan katkıda bulunmanın yolları."
+        }
+      },
+      "community": {
+        "talk": "İletişim",
+        "follow": "Gelişmeler",
+        "discord": {
+          "label": "Discord",
+          "hint": "Destek, geliştirici sohbetleri ve duyurular."
+        },
+        "x": {
+          "label": "X",
+          "hint": "Projeden kısa haberler."
+        },
+        "youtube": {
+          "label": "YouTube",
+          "hint": "Tanıtımlar ve konuşmalar."
+        },
+        "blog": {
+          "label": "Blog",
+          "hint": "Sürüm notları ve ayrıntılı yazılar."
+        },
+        "stats": {
+          "label": "İstatistikler",
+          "hint": "Pumpkin kullanan aktif sunucuların istatistikleri."
+        },
+        "parity": {
+          "label": "Vanilla özellikleri",
+          "hint": "Desteklenen, kısmen desteklenen ve planlanan özellikler."
+        },
+        "contributors": {
+          "label": "Katkıda bulunanlar",
+          "hint": "Pumpkin'i geliştiren insanlar."
+        },
+        "sponsor": {
+          "label": "Sponsor ol",
+          "hint": "Sponsorluk seviyeleri ve topluluk ayrıcalıkları."
+        }
+      }
+    }
+  },
+  "hero": {
+    "title": "<hl>5 ms'de</hl> hazır olan bir Minecraft sunucusu.",
+    "benchTitle": "Başlatma süresi",
+    "benchNote": "Aynı bilgisayarda ve aynı dünyayla, sunucunun başlatılmasından oyuncu kabul etmeye hazır olmasına kadar geçen süre.",
+    "runAgain": "Yeniden çalıştır",
+    "loading": "yükleniyor",
+    "ready": "hazır",
+    "lede": "Pumpkin, Rust ile yazılmış bir Minecraft sunucusudur. Java kurulumu gerektirmez, tek dosyayla çalışır; Java ve Bedrock oyuncularını aynı dünyada buluşturur.",
+    "download": "İndir",
+    "docs": "Dokümantasyonu oku",
+    "secondsUnit": "s"
+  },
+  "facts": {
+    "title": "Pumpkin <hl>bugün</hl> neler sunuyor?",
+    "items": [
+      {
+        "big": "JVM yok",
+        "lead": "Doğrudan sistemde çalışan tek bir dosya. Ek kurulum, parametre ayarı veya başlatma betiği gerektirmez.",
+        "rest": "Dosyayı bir klasöre koyup çalıştırman yeterli."
+      },
+      {
+        "big": "~100 MB",
+        "lead": "Dünya yüklüyken, sunucunun boşta kullandığı bellek miktarı.",
+        "rest": "Vanilla, henüz kimse katılmadan yaklaşık 1,8 GB kullanır."
+      },
+      {
+        "big": "Tüm çekirdekler",
+        "lead": "İlk günden beri paralel çalışmak üzere tasarlandı;",
+        "rest": "paralellik, tek bir ana iş parçacığına sonradan eklenen bir özellik değil."
+      },
+      {
+        "big": "Java + Bedrock",
+        "lead": "Java ve Bedrock oyuncuları aynı dünyada oynayabilir.",
+        "rest": "Bu destek yerleşiktir; proxy veya eklenti kurulumu gerektirmez."
+      },
+      {
+        "big": "9 dil",
+        "lead": "Rust, Kotlin, Python, Go, C#, C, D, Zig veya TypeScript ile eklenti yaz.",
+        "rest": "Tüm diller aynı API'yi kullanır; bildiğin dille başlayabilirsin."
+      },
+      {
+        "big": "GPL-3.0",
+        "lead": "Sunucunun tamamı bu lisansla sunulur; özelliklerin bir bölümü ücretli bir sürüme ayrılmaz.",
+        "rest": "Kodu incele, kendi kopyanı geliştir ve dağıt."
+      }
+    ],
+    "earlyTag": "Henüz erken aşamada",
+    "earlyBody": "<b>Pumpkin henüz tamamlanmadı.</b> Vanilla'daki tüm oyun mekanikleri henüz desteklenmiyor. Sürüm geçişlerinde dünyalar bozulabilir ve yapılandırma seçenekleri değişebilir. Önce bir test sunucusunda dene, yedeklerini sakla ve <report>karşılaştığın sorunları bildir</report>. Şu anda hangi özelliklerin çalıştığını <docs>dokümantasyonda</docs> bulabilirsin."
+  },
+  "checklist": {
+    "title": "Özellik <hl>karşılaştırması</hl>",
+    "description": "Pumpkin, Vanilla, Paper ve Folia'nın mevcut özellikleri. Noktayla işaretlenen sonuçların ek açıklamaları var.",
+    "feature": "Özellik",
+    "support": {
+      "yes": "Evet",
+      "partial": "Kısmen",
+      "no": "Hayır"
+    },
+    "noteLabel": "{status}, ek açıklama var",
+    "items": {
+      "startup": {
+        "feature": "Bir saniyeden kısa sürede başlar",
+        "detail": "JVM daha hazırlanırken sunucu oyuncu kabul etmeye hazırdır.",
+        "notes": {
+          "1": "Vanilla, JVM'nin başlamasını ve dünyanın yüklenmesini bekler.",
+          "3": "Başlatılacak daha fazla bileşen olduğundan genellikle Paper'dan yavaştır."
+        }
+      },
+      "idleCpu": {
+        "feature": "Boşta düşük CPU kullanımı",
+        "detail": "Sunucuda oyuncu yokken işlemci kullanımı sıfıra yakındır.",
+        "notes": {}
+      },
+      "memory": {
+        "feature": "Düşük bellek kullanımı",
+        "detail": "Bir dünya yüklüyken yaklaşık 100 MB.",
+        "notes": {}
+      },
+      "parallel": {
+        "feature": "Tüm çekirdekleri kullanır",
+        "detail": "İşler tek bir ana iş parçacığına bağlı kalmadan paralel yürütülür.",
+        "notes": {
+          "0": "Yalnızca chunk yükleme değil, oyun mantığı ve arka plan görevleri de birden fazla iş parçacığında çalışır.",
+          "3": "Yalnızca tick işlemleri paraleldir."
+        }
+      },
+      "bukkitPlugins": {
+        "feature": "Bukkit ve Paper eklentileri",
+        "detail": "PatchBukkit desteği henüz erken aşamada; bazı özellikler eksik.",
+        "notes": {
+          "0": "Pumpkin'in kendi API'si vardır. Bukkit ve Paper eklentileri, henüz erken aşamadaki PatchBukkit üzerinden çalışabilir.",
+          "2": "Yerleşik destek.",
+          "3": "Eklentiye göre değişir. Birçok eklentinin Folia'nın iş parçacığı yapısına uyarlanması gerekir."
+        }
+      },
+      "editions": {
+        "feature": "Java ve Bedrock oyuncuları",
+        "detail": "Java ve Bedrock oyuncuları aynı dünyada oynayabilir; proxy gerekmez.",
+        "notes": {
+          "0": "Yerleşik destek.",
+          "2": "Geyser gibi harici bir eklenti gerektirir.",
+          "3": "Harici eklentiler gerektirir. Folia'nın iş parçacığı yapısı ek kurulum zorlukları getirir."
+        }
+      },
+      "pluginLanguages": {
+        "feature": "9 dilde eklenti API'si",
+        "detail": "Rust, Kotlin, Python, Go, C#, C, D, Zig, TypeScript.",
+        "notes": {}
+      },
+      "configuration": {
+        "feature": "Ayrıntılı yapılandırma",
+        "detail": "Her alt sistemin kendi yapılandırma dosyası vardır.",
+        "notes": {}
+      },
+      "openSource": {
+        "feature": "Açık kaynak",
+        "detail": "Sunucunun tamamı GPL-3.0 lisanslıdır.",
+        "notes": {
+          "2": "Yalnızca yamalar açık kaynaklıdır.",
+          "3": "Yalnızca yamalar açık kaynaklıdır."
+        }
+      },
+      "worldFormats": {
+        "feature": "Birden fazla dünya dosyası biçimi",
+        "detail": "Anvil ve daha verimli alternatifler.",
+        "notes": {
+          "3": "Yalnızca Anvil biçimi desteklenir."
+        }
+      },
+      "executable": {
+        "feature": "Tek dosya, Java kurulumu gerekmez",
+        "detail": "İndirip çalıştırman yeterli.",
+        "notes": {}
+      }
+    }
+  },
+  "pluginLanguages": {
+    "title": "Eklenti yazabileceğin diller",
+    "market": "Hazır eklentiler için eklenti pazarına göz at"
+  },
+  "tryIt": {
+    "title": "Boştaki bir bilgisayarda dene.",
+    "body": "Tek bir dosyayla çalışır. Mevcut sunucunu kullanmaya devam ederken Pumpkin'i de çalıştırıp oyundan bağlanabilirsin. Geçiş yapmadan önce kendi dünyanda hangi özelliklerin çalıştığını dene.",
+    "github": "GitHub'da yıldız ver",
+    "contributors": "Katkıda bulunanlarla tanış"
+  },
+  "tracker": {
+    "title": "Vanilla <hl>uyumluluğu</hl>",
+    "description": "Vanilla özelliklerinin Pumpkin'deki durumu: eklenenler, kısmen desteklenenler ve planlananlar.",
+    "overallProgress": "Genel ilerleme",
+    "summary": "Minecraft {version} için Pumpkin {commit} kaynak kodundan alınan {count} kayıt · {updated}",
+    "status": {
+      "done": "Eklendi",
+      "partial": "Kısmi",
+      "planned": "Planlandı"
+    },
+    "progressLabel": "Eklenen, kısmen desteklenen ve planlanan özelliklerin dağılımı",
+    "issueState": {
+      "open": "açık",
+      "closed": "kapalı",
+      "merged": "birleştirildi"
+    },
+    "source": "Kaynak kod",
+    "issuesAndPrs": "İlgili kayıtlar ve PR'lar",
+    "issues": "İlgili kayıtlar",
+    "registered": "Kayıtlı kimlikler",
+    "browseTitle": "Özellik <hl>ayrıntıları</hl>",
+    "browseDescription": "Kayıtları kategoriye ve duruma göre filtreleyebilir veya arama yapabilirsin.",
+    "category": "Kategori",
+    "statusLabel": "Durum",
+    "any": "Tümü",
+    "searchPlaceholder": "Özellik, davranış veya anahtar sözcük ara...",
+    "searchLabel": "Kayıtlarda ara",
+    "showing": "{total} {unit} arasından {visible} tanesi gösteriliyor",
+    "trackingIssue": "Takip kaydı #{number}",
+    "collapseAll": "Tümünü daralt",
+    "expandAll": "Tümünü genişlet",
+    "empty": "Bu filtrelerle eşleşen kayıt yok.",
+    "other": "Diğer",
+    "sourceTag": "Kaynak koddan alınan veriler",
+    "sourceBody": "<b>Durumlar nasıl belirleniyor?</b> Varlıklar, Redstone, savaş ve dünya özellikleri, proje sorumlularının takip kayıtları esas alınarak tek tek incelendi. Blok, eşya ve komut listeleri ise kaynak koddan çıkarıldı. Pumpkin'de ilgili dosya varsa özellik eklenmiş sayılıyor; dosyada TODO notu varsa kısmi olarak işaretleniyor. Davranışlar vanilla ile satır satır karşılaştırılmadı. Bu yüzden yeşil renk, ilgili kodun mevcut olduğunu belirtir; özelliğin her koşulda vanilla ile aynı çalıştığını garanti etmez. Listenin tamamı tek bir dosyada tutuluyor. Düzeltmeler için <data>data.json</data> dosyasını düzenleyip pull request açabilirsin.",
+    "categories": {
+      "all": {
+        "label": "Tümü",
+        "unit": "kayıt",
+        "description": "Tüm kategorilerde takip edilen kayıtlar."
+      },
+      "entities": {
+        "label": "Varlıklar",
+        "unit": "varlık",
+        "description": "26.3-26.51 kayıt sistemindeki 160 varlık türünün tamamı listelenir. Varsa kaynak kod incelemelerine de yer verilir. Bir varlığın kayıtlı olması, vanilla ile aynı davrandığını tek başına göstermez."
+      },
+      "blocks": {
+        "label": "Bloklar",
+        "unit": "blok davranışı",
+        "description": "Sunucu kodunda blok davranışlarını tanımlayan dosyalar ve ayrıca takip edilen eksikler listelenir. Bu, vanilla'daki tüm blokların davranışlarının incelendiği anlamına gelmez."
+      },
+      "items": {
+        "label": "Eşyalar",
+        "unit": "eşya davranışı",
+        "description": "Sunucu kodunda eşya davranışlarını tanımlayan dosyalar ve bazı ortak mekanikler listelenir. Bu, vanilla'daki tüm eşyaların davranışlarının incelendiği anlamına gelmez."
+      },
+      "commands": {
+        "label": "Komutlar",
+        "unit": "komut",
+        "description": "Java Edition komutları ve Pumpkin'e özgü ek komutlardan oluşan liste. Dosya adının eşleşmesi, komutun veya alternatif adlarının vanilla ile aynı çalıştığını tek başına göstermez."
+      },
+      "redstone": {
+        "label": "Redstone",
+        "unit": "bileşen",
+        "description": "Redstone bileşenlerini ve mekaniklerini kapsar. Durumlarını belirlemek için kaynak kodun incelenmesi gerekir."
+      },
+      "combat": {
+        "label": "Savaş",
+        "unit": "mekanik",
+        "description": "Yakın dövüş, menzilli saldırı ve hasar mekaniklerini kapsar. Durumlarını belirlemek için kaynak kodun incelenmesi gerekir."
+      },
+      "world": {
+        "label": "Dünya",
+        "unit": "sistem",
+        "description": "Veri saklama, fizik ve dünya sistemlerini kapsar. Durumlarını belirlemek için kaynak kodun incelenmesi gerekir."
+      }
+    },
+    "groups": {
+      "hostile": "Düşman canlılar",
+      "boss": "Boss",
+      "passive": "Pasif canlılar",
+      "villager": "Köylüler",
+      "projectile": "Fırlatılan nesneler",
+      "vehicle": "Araçlar",
+      "decoration": "Dekorasyon",
+      "misc": "Diğer",
+      "blocks": "Bloklar",
+      "fireSculk": "Ateş ve Sculk",
+      "pistons": "Pistonlar",
+      "plantsCrops": "Bitkiler ve ekinler",
+      "redstone": "Redstone",
+      "toolsWeapons": "Aletler ve silahlar",
+      "throwables": "Fırlatılabilir eşyalar",
+      "placeables": "Yerleştirilebilir eşyalar",
+      "utility": "Yardımcı eşyalar",
+      "vanilla": "Vanilla",
+      "pumpkin": "Pumpkin",
+      "core": "Temel mekanikler",
+      "powerSensors": "Güç ve algılayıcılar",
+      "logicTiming": "Mantık ve zamanlama",
+      "mechanisms": "Mekanizmalar",
+      "interactive": "Etkileşimli bileşenler",
+      "equipment": "Ekipman",
+      "mechanics": "Mekanikler",
+      "persistence": "Veri saklama",
+      "logicPhysics": "Mantık ve fizik"
+    },
+    "entries": {
+      "entities": {
+        "blaze": "Blaze",
+        "bogged": "Bogged",
+        "breeze": "Breeze",
+        "cave_spider": "Cave Spider",
+        "creaking": "Creaking",
+        "creeper": "Creeper",
+        "drowned": "Drowned",
+        "elder_guardian": "Elder Guardian",
+        "enderman": "Enderman",
+        "endermite": "Endermite",
+        "evoker": "Evoker",
+        "ghast": "Ghast",
+        "giant": "Giant",
+        "guardian": "Guardian",
+        "hoglin": "Hoglin",
+        "husk": "Husk",
+        "illusioner": "Illusioner",
+        "magma_cube": "Magma Cube",
+        "parched": "Parched",
+        "phantom": "Phantom",
+        "piglin": "Piglin",
+        "piglin_brute": "Piglin Brute",
+        "pillager": "Pillager",
+        "ravager": "Ravager",
+        "shulker": "Shulker",
+        "silverfish": "Silverfish",
+        "skeleton": "Skeleton",
+        "slime": "Slime",
+        "spider": "Spider",
+        "stray": "Stray",
+        "sulfur_cube": "Sulfur Cube",
+        "vex": "Vex",
+        "vindicator": "Vindicator",
+        "warden": "Warden",
+        "witch": "Witch",
+        "wither_skeleton": "Wither Skeleton",
+        "zoglin": "Zoglin",
+        "zombie": "Zombie",
+        "zombie_villager": "Zombie Villager",
+        "zombified_piglin": "Zombified Piglin",
+        "ender_dragon": "Ender Dragon",
+        "wither": "Wither",
+        "allay": "Allay",
+        "armadillo": "Armadillo",
+        "axolotl": "Axolotl",
+        "bat": "Bat",
+        "bee": "Bee",
+        "camel": "Camel",
+        "camel_husk": "Camel Husk",
+        "cat": "Cat",
+        "chicken": "Chicken",
+        "cod": "Cod",
+        "copper_golem": "Copper Golem",
+        "cow": "Cow",
+        "dolphin": "Dolphin",
+        "donkey": "Donkey",
+        "fox": "Fox",
+        "frog": "Frog",
+        "glow_squid": "Glow Squid",
+        "goat": "Goat",
+        "happy_ghast": "Happy Ghast",
+        "horse": "Horse",
+        "iron_golem": "Iron Golem",
+        "llama": "Llama",
+        "mooshroom": "Mooshroom",
+        "mule": "Mule",
+        "nautilus": "Nautilus",
+        "ocelot": "Ocelot",
+        "panda": "Panda",
+        "parrot": "Parrot",
+        "pig": "Pig",
+        "polar_bear": "Polar Bear",
+        "pufferfish": "Pufferfish",
+        "rabbit": "Rabbit",
+        "salmon": "Salmon",
+        "sheep": "Sheep",
+        "skeleton_horse": "Skeleton Horse",
+        "sniffer": "Sniffer",
+        "snow_golem": "Snow Golem",
+        "squid": "Squid",
+        "strider": "Strider",
+        "tadpole": "Tadpole",
+        "trader_llama": "Trader Llama",
+        "tropical_fish": "Tropical Fish",
+        "turtle": "Turtle",
+        "wolf": "Wolf",
+        "zombie_horse": "Zombie Horse",
+        "zombie_nautilus": "Zombie Nautilus",
+        "mannequin": "Mannequin",
+        "villager": "Villager",
+        "wandering_trader": "Wandering Trader",
+        "arrow": "Arrow",
+        "breeze_wind_charge": "Breeze Wind Charge",
+        "dragon_fireball": "Dragon Fireball",
+        "egg": "Egg",
+        "ender_pearl": "Ender Pearl",
+        "evoker_fangs": "Evoker Fangs",
+        "experience_bottle": "Experience Bottle",
+        "eye_of_ender": "Eye of Ender",
+        "fireball": "Fireball",
+        "firework_rocket": "Firework Rocket",
+        "fishing_bobber": "Fishing Bobber",
+        "lingering_potion": "Lingering Potion",
+        "llama_spit": "Llama Spit",
+        "shulker_bullet": "Shulker Bullet",
+        "small_fireball": "Small Fireball",
+        "snowball": "Snowball",
+        "spectral_arrow": "Spectral Arrow",
+        "splash_potion": "Splash Potion",
+        "trident": "Trident",
+        "wind_charge": "Wind Charge",
+        "wither_skull": "Wither Skull",
+        "acacia_boat": "Acacia Boat",
+        "acacia_chest_boat": "Acacia Chest Boat",
+        "bamboo_chest_raft": "Bamboo Chest Raft",
+        "bamboo_raft": "Bamboo Raft",
+        "birch_boat": "Birch Boat",
+        "birch_chest_boat": "Birch Chest Boat",
+        "cherry_boat": "Cherry Boat",
+        "cherry_chest_boat": "Cherry Chest Boat",
+        "chest_minecart": "Chest Minecart",
+        "command_block_minecart": "Command Block Minecart",
+        "dark_oak_boat": "Dark Oak Boat",
+        "dark_oak_chest_boat": "Dark Oak Chest Boat",
+        "furnace_minecart": "Furnace Minecart",
+        "hopper_minecart": "Hopper Minecart",
+        "jungle_boat": "Jungle Boat",
+        "jungle_chest_boat": "Jungle Chest Boat",
+        "mangrove_boat": "Mangrove Boat",
+        "mangrove_chest_boat": "Mangrove Chest Boat",
+        "minecart": "Minecart",
+        "oak_boat": "Oak Boat",
+        "oak_chest_boat": "Oak Chest Boat",
+        "pale_oak_boat": "Pale Oak Boat",
+        "pale_oak_chest_boat": "Pale Oak Chest Boat",
+        "poplar_boat": "Poplar Boat",
+        "poplar_chest_boat": "Poplar Chest Boat",
+        "spawner_minecart": "Spawner Minecart",
+        "spruce_boat": "Spruce Boat",
+        "spruce_chest_boat": "Spruce Chest Boat",
+        "tnt_minecart": "TNT Minecart",
+        "armor_stand": "Armor Stand",
+        "block_display": "Block Display",
+        "cushion": "Cushion",
+        "end_crystal": "End Crystal",
+        "glow_item_frame": "Glow Item Frame",
+        "interaction": "Interaction",
+        "item_display": "Item Display",
+        "item_frame": "Item Frame",
+        "leash_knot": "Leash Knot",
+        "marker": "Marker",
+        "painting": "Painting",
+        "text_display": "Text Display",
+        "area_effect_cloud": "Area Effect Cloud",
+        "experience_orb": "Experience Orb",
+        "falling_block": "Falling Block",
+        "item": "Item",
+        "lightning_bolt": "Lightning Bolt",
+        "ominous_item_spawner": "Ominous Item Spawner",
+        "tnt": "TNT"
+      },
+      "blocks": {
+        "anvil": "Örs",
+        "banners": "Sancaklar",
+        "barrel": "Fıçı",
+        "barrier": "Bariyer",
+        "beacon": "Fener",
+        "bed": "Yataklar",
+        "beehive": "Arı Kovanı ve Arı Yuvası",
+        "blast_furnace": "Maden Fırını",
+        "brewing_stand": "İksir Tezgâhı",
+        "bubble_column": "Kabarcık Sütunu",
+        "amethyst": "Tomurcuklanan Ametist",
+        "cake": "Pasta",
+        "campfire": "Kamp Ateşi",
+        "candle_cakes": "Mumlu Pastalar",
+        "candles": "Mumlar",
+        "carpet": "Halı",
+        "cartography_table": "Haritacı Masası",
+        "carved_pumpkin": "Yontulmuş Bal Kabağı (golem çağırma)",
+        "cauldron": "Kazan",
+        "chain": "Zincir",
+        "chests": "Sandıklar",
+        "chiseled_bookshelf": "Yontulmuş Kitaplık",
+        "cobweb": "Örümcek Ağı",
+        "command": "Komut Bloğu",
+        "composter": "Gübre Varili",
+        "conduit": "Oluk",
+        "crafting_table": "Çalışma Masası",
+        "creaking_heart": "Gıcırtı Kalbi",
+        "decorated_pot": "Süslü Çömlek",
+        "dirt_path": "Toprak Yol",
+        "doors": "Kapılar",
+        "dragon_egg": "Ejderha Yumurtası",
+        "dried_ghast": "Kurumuş Ghast",
+        "dripstone": "Damla Taşı",
+        "enchanting_table": "Büyü Masası",
+        "end_gateway": "End Geçidi",
+        "end_portal": "End Portalı",
+        "end_portal_frame": "End Portalı Çerçevesi",
+        "end_rod": "End Çubuğu",
+        "ender_chest": "Ender Sandığı",
+        "falling": "Düşen Bloklar (kum, çakıl, çimento)",
+        "farmland": "Tarım Arazisi",
+        "fence_gates": "Çit Kapıları",
+        "fences": "Çitler",
+        "fletching_table": "Okçu Masası",
+        "flower_pots": "Saksılar",
+        "frogspawn": "Kurbağa Yumurtaları",
+        "furnace": "Ocak",
+        "glass_panes": "İnce Camlar",
+        "glazed_terracotta": "Sırlanmış Terakota",
+        "grass_block": "Çimenli Toprak",
+        "grindstone": "Bileme Taşı",
+        "hay": "Saman Balyası",
+        "honey": "Bal",
+        "hopper": "Huni",
+        "huge_mushroom": "Dev Mantar",
+        "ice": "Buz ve Kırağı",
+        "infested": "İstila Edilmiş Bloklar",
+        "iron_bars": "Demir Parmaklıklar",
+        "jigsaw": "Yapboz Bloğu",
+        "jukebox": "Müzik Kutusu",
+        "ladder": "Merdiven",
+        "lanterns": "Fenerler",
+        "leaves": "Yapraklar",
+        "lectern": "Kürsü",
+        "light": "Işık Bloğu",
+        "lodestone": "Manyetit",
+        "logs": "Kütükler (kabuk soyma)",
+        "loom": "Dokuma Tezgâhı",
+        "magma": "Magma",
+        "mangrove_roots": "Mangrov Kökleri",
+        "spawner": "Canavar Çağırıcı",
+        "mud": "Çamur",
+        "nether_portal": "Nether Portalı",
+        "netherrack": "Nether Taşı",
+        "note": "Nota Bloğu",
+        "nylium": "Niselyum",
+        "potent_sulfur": "Yoğun Kükürt",
+        "powder_snow": "Tozlaşmış Kar",
+        "pumpkin": "Bal Kabağı",
+        "respawn_anchor": "Diriltici",
+        "rooted_dirt": "Köklenmiş Toprak",
+        "scaffolding": "İskele",
+        "shelf": "Raflar",
+        "shulker_box": "Shulker Kutusu",
+        "signs": "Tabelalar",
+        "skull_block": "Kafatasları ve Kafalar",
+        "slabs": "Basamaklar",
+        "slime": "Balçık",
+        "smithing_table": "Demirci Masası",
+        "smoker": "Duman Fırını",
+        "sniffer_egg": "Koklarca Yumurtası",
+        "snow": "Kar",
+        "soul_sand": "Ruh Kumu",
+        "sponge": "Sünger",
+        "stairs": "Merdiven Blokları",
+        "stonecutter": "Taş Kesici",
+        "straw_bed": "Saman Yatak",
+        "structure_block": "Yapı Bloğu",
+        "structure_void": "Yapı Boşluğu",
+        "brushable_block": "Şüpheli Kum ve Çakıl",
+        "test_block": "Test Blokları",
+        "tinted_glass": "Gölgeli Cam",
+        "tnt": "TNT",
+        "torches": "Meşaleler",
+        "trapdoor": "Tuzak Kapısı",
+        "trial_spawner": "Sınama Çağırıcısı",
+        "turtle_egg": "Kaplumbağa Yumurtası",
+        "vault": "Kasa",
+        "vine": "Sarmaşık",
+        "walls": "Duvarlar",
+        "weathering_copper": "Oksitlenen Bakır",
+        "wither_skull": "Wither İskeleti Kafatası (çağırma)",
+        "fire-fire": "Ateş",
+        "sculk-sculk_catalyst": "Sculk Katalizörü",
+        "sculk-sculk_shrieker": "Sculk Çığırtkanı",
+        "sculk-sculk_vein": "Sculk Damarı",
+        "fire-soul_fire": "Ruh Ateşi",
+        "piston-piston_extension": "Hareketli Piston",
+        "piston-piston_head": "Piston Kafası",
+        "piston-piston": "Pistonlar",
+        "plant-crop-gourds-attached_stem": "Bağlı Saplar",
+        "plant-azalea": "Açelya",
+        "plant-bamboo": "Bambu",
+        "plant-bamboo_sapling": "Bambu Fidanı",
+        "plant-crop-beetroot": "Pancar",
+        "plant-big_dripleaf": "Büyük Damla Yaprağı",
+        "plant-big_dripleaf_stem": "Büyük Damla Yaprağı Sapı",
+        "plant-bush": "Çalı",
+        "plant-cactus": "Kaktüs",
+        "plant-cactus_flower": "Kaktüs Çiçeği",
+        "plant-crop-carrot": "Havuç",
+        "plant-cave_vines": "Mağara Sarmaşıkları",
+        "plant-chorus_flower": "Nakarat Çiçeği",
+        "plant-chorus_plant": "Nakarat Bitkisi",
+        "plant-cocoa": "Kakao",
+        "coral-coral_block": "Mercan Bloğu",
+        "coral-coral_fan": "Mercan Yelpazesi",
+        "coral-coral_plant": "Mercan",
+        "plant-dry_vegetation": "Kuru Bitkiler",
+        "plant-eyeblossom": "Göz Çiçeği",
+        "plant-flower": "Çiçek",
+        "plant-flowerbed": "Çiçek Tarhı",
+        "plant-fungus": "Mantar",
+        "plant-hanging_roots": "Sarkan Kökler",
+        "plant-kelp": "Su Yosunu",
+        "plant-leaf_litter": "Yaprak Döküntüsü",
+        "plant-lily_pad": "Nilüfer Yaprağı",
+        "plant-mangrove_propagule": "Mangrov Filizi",
+        "plant-mushroom_plant": "Mantarlar",
+        "plant-nether_sprouts": "Nether Filizleri",
+        "plant-crop-nether_wart": "Nether Yumrusu",
+        "plant-pale_hanging_moss": "Soluk Sarkan Yosun",
+        "plant-crop-pitcher_crop": "Sürahi Bitkisi Ekinleri",
+        "plant-crop-potatoes": "Patatesler",
+        "plant-crop-gourds-stem": "Bal Kabağı ve Karpuz Sapları",
+        "plant-roots": "Kökler",
+        "plant-sapling": "Fidan",
+        "plant-sea_pickles": "Pirozomlar",
+        "plant-seagrass": "Deniz Otu",
+        "plant-shelf_mushroom": "Raf Mantarı",
+        "plant-short_plant": "Kısa Bitkiler (otlar, eğrelti otları)",
+        "plant-small_dripleaf": "Küçük Damla Yaprağı",
+        "plant-spore_blossom": "Spor Çiçeği",
+        "plant-sugar_cane": "Şeker Kamışı",
+        "plant-crop-sweet_berry_bush": "Tatlı Orman Meyvesi Çalısı",
+        "plant-tall_plant": "Uzun Bitkiler",
+        "plant-tall_seagrass": "Uzun Deniz Otu",
+        "plant-crop-torch_flower": "Meşale Çiçeği Ekinleri",
+        "plant-twisting_vines": "Bükük Sarmaşıklar",
+        "plant-weeping_vines": "Ağlayan Sarmaşıklar",
+        "plant-crop-wheat": "Buğday",
+        "plant-wither_rose": "Wither Gülü",
+        "redstone-rails-activator_rail": "Etkinleştirici Ray",
+        "redstone-bell": "Çan",
+        "redstone-buttons": "Düğmeler",
+        "redstone-comparator": "Karşılaştırıcı",
+        "redstone-copper_bulb": "Bakır Ampul",
+        "redstone-crafter": "Üretici",
+        "redstone-daylight_detector": "Gün Işığı Algılayıcısı",
+        "redstone-rails-detector_rail": "Algılayıcı Ray",
+        "redstone-dispenser": "Fırlatıcı",
+        "redstone-dropper": "Bırakıcı",
+        "redstone-lever": "Şalter",
+        "redstone-lightning_rod": "Paratoner",
+        "redstone-observer": "Gözlemci",
+        "redstone-rails-powered_rail": "Elektrikli Ray",
+        "redstone-pressure_plate-plate": "Basınç Plakaları",
+        "redstone-rails-rail": "Raylar",
+        "redstone-redstone_block": "Redstone Bloğu",
+        "redstone-redstone_lamp": "Redstone Lambası",
+        "redstone-redstone_ore": "Redstone Cevheri",
+        "redstone-redstone_torch": "Redstone Meşalesi",
+        "redstone-redstone_wire": "Redstone Hattı",
+        "redstone-repeater": "Yineleyici",
+        "redstone-sculk_sensor": "Sculk Sensörü",
+        "redstone-target_block": "Hedef Bloğu",
+        "redstone-tripwire": "Tuzak İpi",
+        "redstone-tripwire_hook": "Tuzak Kancası",
+        "redstone-pressure_plate-weighted": "Ağırlıklı Basınç Plakaları"
+      },
+      "items": {
+        "arrow": "Ok",
+        "axe": "Baltalar",
+        "bow": "Yay",
+        "brush": "Fırça",
+        "crossbow": "Arbalet",
+        "debug_stick": "Hata Ayıklama Çubuğu",
+        "fishing_rod": "Olta",
+        "flint_and_steel": "Çakmak Taşı ve Çelik",
+        "hoe": "Çapalar",
+        "mace": "Gürz",
+        "shears": "Makas",
+        "shield": "Kalkan",
+        "shovel": "Kürekler",
+        "spear": "Mızraklar",
+        "swords": "Kılıçlar",
+        "trident": "Üçlü Mızrak",
+        "experience_bottle": "Tecrübe İksiri",
+        "chorus_fruit": "Nakarat Meyvesi",
+        "egg": "Yumurta",
+        "ender_pearl": "Ender İncisi",
+        "ender_eye": "Ender Gözü",
+        "fire_charge": "Ateş Topu",
+        "firework_rocket": "Havai Fişek Roketi",
+        "potions": "İksirler",
+        "snowball": "Kar Topu",
+        "wind_charge": "Rüzgâr Topu",
+        "armor_stand": "Zırh Askısı",
+        "boat": "Tekneler ve Sallar",
+        "bucket": "Kovalar",
+        "end_crystal": "End Kristali",
+        "hanging_entity": "Eşya Çerçeveleri ve Tablolar",
+        "place_on_water": "Nilüfer Yaprağı ve Kurbağa Yumurtaları",
+        "minecart": "Vagonlar",
+        "spawn_egg": "Çağırma Yumurtaları",
+        "bone_meal": "Kemik Tozu",
+        "writable_book": "Kitaplar",
+        "bundle": "Keseler",
+        "on_a_stick": "Havuçlu ve Mantarlı Oltalar",
+        "clock": "Saat",
+        "compass": "Pusula ve Kurtarma Pusulası",
+        "cushion": "Minder",
+        "dye": "Boyalar",
+        "elytra": "Elitra",
+        "glass_bottle": "Cam Şişe",
+        "glowing_ink_sac": "Parlayan Mürekkep Kesesi",
+        "goat_horn": "Keçi Boynuzu",
+        "honeycomb": "Bal Peteği",
+        "ink_sac": "Mürekkep Kesesi",
+        "knowledge_book": "Bilgi Kitabı",
+        "lead": "Kayış",
+        "map": "Haritalar",
+        "name_tag": "İsim Etiketi",
+        "saddle": "Eyer",
+        "spyglass": "Dürbün",
+        "totem_of_undying": "Ölümsüzlük Totemi"
+      },
+      "redstone": {
+        "redstone-wire-signal-propagation": "Redstone hattında sinyal yayılımı",
+        "redstone-tick-system": "Redstone tick sistemi",
+        "hard-vs-soft-powering": "Güçlü ve zayıf güç iletimi",
+        "pressure-plates": "Basınç plakaları",
+        "tripwire-hook": "Tuzak kancası",
+        "trapped-chest": "Tuzaklı sandık",
+        "sculk-sensors-shriekers-and-calibrated-sensors": "Sculk sensörleri, çığırtkanları ve ayarlanmış sensörler",
+        "daylight-detector": "Gün ışığı algılayıcısı",
+        "target-block": "Hedef bloğu",
+        "redstone-torch-levers-and-buttons": "Redstone meşalesi, şalterler ve düğmeler",
+        "comparator": "Karşılaştırıcı",
+        "repeater": "Yineleyici",
+        "note-block": "Nota bloğu",
+        "hopper-item-transfer": "Huniyle eşya aktarımı",
+        "observer": "Gözlemci",
+        "rails": "Raylar",
+        "pistons-and-block-swapping": "Pistonlar ve blokların yer değiştirmesi",
+        "dropper": "Bırakıcı",
+        "dispenser": "Fırlatıcı",
+        "crafter": "Üretici",
+        "minecart-powering-and-activation": "Vagonlara güç verme ve etkinleştirme",
+        "tnt-ignition-and-priming": "TNT'yi ateşleme ve patlamaya hazırlama",
+        "bell": "Çan",
+        "redstone-lamp": "Redstone lambası",
+        "doors-gates-and-trapdoors": "Kapılar, çit kapıları ve tuzak kapıları",
+        "lectern-signal-strength": "Kürsünün sinyal gücü",
+        "composter-signal-strength": "Gübre varilinin sinyal gücü"
+      },
+      "combat": {
+        "basic-melee-attack": "Temel yakın dövüş saldırısı",
+        "tool-based-damage-calculation": "Alete göre hasar hesaplama",
+        "vanilla-knockback": "Vanilla ile aynı geri itme davranışı",
+        "attack-speed-and-cooldown-indicator": "Saldırı hızı ve bekleme süresi göstergesi",
+        "bows": "Yaylar",
+        "crossbows": "Arbaletler",
+        "shields": "Kalkanlar",
+        "tridents": "Üçlü mızraklar",
+        "critical-hits": "Kritik vuruşlar",
+        "damage-invulnerability-frames": "Hasar aldıktan sonraki dokunulmazlık süresi",
+        "sweep-attack": "Süpürme saldırısı",
+        "enchantment-integration": "Büyülerin dövüşe etkisi",
+        "status-effect-integration": "Durum etkilerinin dövüşe etkisi",
+        "1-8-combat-mode": "1.8 dövüş modu"
+      },
+      "world": {
+        "world-loading-level-dat-dim1-dim-1": "Dünya yükleme (level.dat, DIM1, DIM-1)",
+        "world-saving": "Dünya kaydetme",
+        "chunk-loading-vanilla-linear-pump": "Chunk yükleme (vanilla, linear, pump)",
+        "chunk-saving": "Chunk kaydetme",
+        "chunk-generation": "Chunk oluşturma",
+        "flat-world-generation": "Düz dünya oluşturma",
+        "redstone": "Redstone",
+        "liquid-physics": "Sıvı fiziği",
+        "lighting": "Aydınlatma",
+        "world-time": "Dünya zamanı",
+        "world-borders": "Dünya sınırları",
+        "world-joining": "Dünyaya katılma",
+        "player-tab-list": "Tab tuşuyla açılan oyuncu listesi",
+        "scoreboard": "Skor tablosu",
+        "bossbar": "Boss çubuğu",
+        "entity-spawning": "Varlık oluşturma"
+      }
+    },
+    "notes": {
+      "reviewChanged": "Kaynak kod, son incelemeden bu yana değişti. Değerlendirmenin yenilenmesi gerekiyor.",
+      "sourceUnreviewed": "Özelliğe ait kod bulundu, ancak bu sürümde nasıl çalıştığı henüz incelenmedi.",
+      "giantGoals": "Vanilla'daki devin yapay zekâsında tanımlı davranış hedefi yok. Pumpkin birkaç hedef ekliyor.",
+      "magmaCubeGoals": "Balçık varlığını temel aldığı için onun tüm davranış hedeflerini devralır.",
+      "slimeParticles": "Davranış hedefleri vanilla ile aynı. Yere değdiğinde oluşan parçacıklar henüz eklenmedi.",
+      "dragonParts": "Ejderhanın parçaları oluşturuluyor ancak dünyaya kaydedilmiyor. Çarpışma kontrolleri ana kutu üzerinden yapılıyor; parçaların hasar ve temas davranışları tam olarak uygulanmış değil.",
+      "sharedArrow": "Okla aynı varlık kodunu kullanır.",
+      "frogspawnHatching": "Yerleştirilebiliyor, ancak yumurtalardan iribaş çıkmıyor.",
+      "lodestoneBinding": "Pusula henüz bu bloğa bağlanamıyor.",
+      "structureContents": "Blok ve blok varlığı ayarları saklıyor. Yapının içeriğini kopyalama ve dünyaya yerleştirme henüz desteklenmiyor.",
+      "pistonRemoval": "Pistonun başını ve tabanını kaldırma işlemleri mevcut. Ancak break_block işlevine oyuncu bilgisi aktarılmıyor. Piston hareketinde ve verilerin kaydedilmesinde de eksikler var.",
+      "arrowRegistration": "Eşya kaydı mevcut. Uçuş ve hasar, ok varlığının kodunda işleniyor.",
+      "shieldRegistration": "Eşya kaydı mevcut. Kalkanla engelleme, savaş sisteminin kodunda işleniyor.",
+      "swordRegistration": "Eşya kaydı mevcut. Süpürme saldırısı ve hasar, savaş sisteminin kodunda işleniyor.",
+      "chorusTeleport": "Rastgele ışınlanma, canlı varlıkları yöneten kodda işleniyor.",
+      "totemDeath": "Bu özellik, canlı varlıkların ölümünü işleyen kodda uygulanıyor.",
+      "banipAlias": "/banip komutunun alternatif adı.",
+      "sourceUnknown": "Özelliğe özel kaynak kod tespit edilemedi. Bu, özelliğin eksik olduğu anlamına gelmez.",
+      "pardonipAlias": "/pardonip komutunun alternatif adı.",
+      "saveallAlias": "/saveall komutunun alternatif adı.",
+      "saveoffAlias": "/saveoff komutunun alternatif adı.",
+      "saveonAlias": "/saveon komutunun alternatif adı.",
+      "msgAlias": "/msg komutunun alternatif adı.",
+      "teammsgAlias": "/teammsg komutunun alternatif adı.",
+      "teleportAlias": "/teleport komutunun alternatif adı.",
+      "pumpkinAlias": "/pumpkin komutunun alternatif adı.",
+      "experienceAlias": "/experience komutunun alternatif adı.",
+      "versionInfo": "Sürüm ve derleme bilgileri.",
+      "pluginLoading": "Eklentileri yükleme ve bellekten kaldırma.",
+      "pluginList": "Yüklü eklentileri listeleme.",
+      "ticksPerSecond": "Saniye başına tick sayısı.",
+      "timing": "Süre ölçme aracı.",
+      "raidDebugging": "Baskınlarla ilgili hata ayıklama."
+    },
+    "items": {
+      "fireballShooting": "Ateş topu fırlatma",
+      "flyingWander": "Uçarak gezinme ve etrafa bakma",
+      "spawnChance": "Doğma olasılığını belirleyen kurallar",
+      "entityAttributes": "Varlık türü ve nitelikleri",
+      "slimeGoals": "Balçığın davranış hedefleri: saldırma, zıplama ve bölünme",
+      "netherSpawn": "Nether'da doğma kuralları",
+      "collisionDamage": "Oyuncuya temasla verilen hasar",
+      "peekAndShoot": "Kabuğu aralama ve ateş etme davranış hedefleri",
+      "attachmentAndTeleport": "Yüzeye tutunma ve ışınlanma",
+      "shulkerBullet": "Shulker mermisi",
+      "slimeAttack": "Boyut, bölünme ve zıplayarak saldırma",
+      "slimeSpawn": "Balçık chunk'larında ve bataklıklarda doğma kuralları",
+      "dragonFlight": "Uçuş evreleri, kristaller, gövde parçalarının konumları ve blok kırma",
+      "dragonContact": "Vurulabilir gövde parçalarının kaydı ve her parça için temas/geri itme kontrolleri",
+      "breeding": "Üreme, yem tutan oyuncuyu izleme ve ebeveyni takip etme",
+      "eggLaying": "Yumurtlama",
+      "slowFall": "Yavaş düşme",
+      "milking": "Süt sağma",
+      "mushroomStew": "Mantar güveci",
+      "mooshroomShearing": "Makasla kırpıldığında ineğe dönüşme",
+      "pigRiding": "Eyer ve havuçlu olta",
+      "woolRegrowth": "Ot yiyerek yününü yeniden çıkarma",
+      "shearingAndDyeing": "Kırpma ve boyama",
+      "snowballAttack": "Kar topuyla menzilli saldırı",
+      "pumpkinShearing": "Bal kabağını makasla çıkarma",
+      "projectileFlight": "Uçuş, isabet ve yerden alma",
+      "hitDamage": "İsabetle verilen hasar",
+      "hitTeleport": "İsabet ettiğinde ışınlanma",
+      "throwerDamage": "Fırlatan kişiye verilen hasar",
+      "endermiteSpawn": "Endermite doğma olasılığı",
+      "sharedArrow": "Okla aynı varlık kodunun kullanılması",
+      "hitGlowing": "İsabetle uygulanan parlama etkisi",
+      "tridentPickup": "Üçlü mızrağın fırlatılması ve yerden alınması",
+      "tridentEnchantments": "Sadakat ve Girdap büyülerinin eşya kodunda uygulanması",
+      "structureSettings": "Ayarlar ekranı ve NBT verilerinin kaydedilmesi",
+      "structureExecution": "Yapıyı kopyalama, kaydetme ve yükleme",
+      "pistonBaseRemoval": "Uzamış pistonun başı kırıldığında tabanının da kaldırılması",
+      "pistonBreakingPlayer": "Bloğu kıran oyuncunun bilgisinin tabanı kaldıran koda aktarılması"
+    }
+  },
+  "footer": {
+    "description": "Rust ile yazılmış bir Minecraft sunucusu. Hızlı açılır, az kaynak tüketir ve özgürce değiştirilebilir.",
+    "useIt": {
+      "heading": "Kullanım",
+      "gettingStarted": "İlk adımlar",
+      "configuration": "Yapılandırma",
+      "troubleshooting": "Sorun giderme"
+    },
+    "buildOnIt": {
+      "heading": "Geliştirme",
+      "pluginDocs": "Eklenti dokümantasyonu",
+      "developers": "Geliştiriciler için",
+      "examples": "Örnekler",
+      "contributing": "Katkı rehberi"
+    },
+    "follow": {
+      "heading": "Gelişmeler",
+      "blog": "Blog",
+      "stats": "İstatistikler",
+      "parity": "Vanilla özellikleri",
+      "benchmarks": "Performans testleri",
+      "sponsorship": "Sponsorluk"
+    },
+    "project": {
+      "heading": "Proje",
+      "releases": "Sürümler",
+      "reportBug": "Hata bildir",
+      "contributors": "Katkıda bulunanlar",
+      "license": "Lisans",
+      "repositories": "Tüm depolar"
+    },
+    "credit": "<purdze>purdze</purdze>, <megalith>MegalithOfficial</megalith> ve katkıda bulunanlar tarafından ❤️ ile geliştirildi · GPL-3.0",
+    "disclaimer": "Resmî bir Minecraft ürünü değildir. Mojang veya Microsoft tarafından onaylanmamıştır ve bu şirketlerle bağlantısı yoktur."
+  },
+  "downloadPage": {
+    "title": "Pumpkin'i indir",
+    "lede": "Tek dosyayla çalışır, Java kurulumu gerektirmez. İndir, çalıştır ve oynamaya başla.",
+    "ppmPrompt": "Eklenti yöneticisini mi arıyorsun?",
+    "installPpm": "ppm'i (Pumpkin Package Manager) kur ↓",
+    "releaseChannel": "Sürüm kanalı",
+    "channels": {
+      "stable": "Kararlı",
+      "nightly": "Nightly"
+    },
+    "nightlyWarning": "Nightly derlemeleri doğrudan son commitlerden oluşturulur ve normal sürüm sürecinden geçmez. Hatalarla karşılaşabilirsin; kullanmadan önce dünyanı yedekle.",
+    "generated": "Derleme tarihi: {date}.",
+    "detected": "Cihazına uygun sürüm",
+    "mostCommon": "En yaygın indirme seçeneği",
+    "downloadFor": "{system} için indir",
+    "downloadNightlyFor": "{system} için nightly indir",
+    "allFiles": "Tüm dosyalar",
+    "nightlyRelease": "Nightly sürüm sayfası",
+    "releaseNotes": "Sürüm notları",
+    "allReleases": "Tüm sürümler",
+    "olderVersions": "Önceki sürümler",
+    "releaseFiles": "İndirilebilir dosyalar",
+    "system": "İşletim sistemi",
+    "architecture": "Mimari",
+    "file": "Dosya",
+    "download": "İndir",
+    "thisDevice": "Bu cihaz",
+    "downloadFile": "{file} dosyasını indir",
+    "downloadNightlyFile": "{file} nightly dosyasını indir",
+    "signing": "Sürümler SignPath ile dijital olarak imzalanır. Ücretsiz kod imzalama hizmeti <signpath>SignPath.io</signpath>, sertifika ise <foundation>SignPath Foundation</foundation> tarafından sağlanır.",
+    "ppmHeading": "Resmî paket yöneticisi",
+    "ppmTitle": "Pumpkin Package Manager (ppm)",
+    "githubRepository": "GitHub deposu",
+    "marketplace": "Eklenti pazarı",
+    "ppmDescription": "<strong>ppm</strong>, Pumpkin sunucu eklentileri için resmî komut satırı aracı ve paket yöneticisidir. Eklenti pazarında WebAssembly eklentileri arayabilir, kurabilir ve güncelleyebilirsin. Etkileşimli sihirbazla yeni eklenti projeleri de oluşturabilirsin.",
+    "ppmSearch": "Anahtar kelime veya kategoriye göre eklenti ara",
+    "ppmInstall": ".wasm eklentisini indirip sunucuya kur",
+    "ppmNew": "Rust, Python, Go gibi dillerde yeni bir eklenti projesi oluştur",
+    "standalone": "Doğrudan indir:",
+    "allPpmReleases": "Tüm ppm sürümleri →",
+    "afterDownloading": "İndirdikten sonra",
+    "quickStart": "Hızlı başlangıç rehberi",
+    "discordHelp": "Discord'dan yardım al",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "copyInstall": "Kurulum komutunu kopyala",
+    "copiedInstall": "Kurulum komutu kopyalandı",
+    "copyPpmInstall": "ppm kurulum komutunu kopyala",
+    "copiedPpmInstall": "ppm kurulum komutu kopyalandı",
+    "installHint": "macOS, Linux ve diğer Unix benzeri sistemler içindir. Kurulum <code>./pumpkin-server</code> klasörüne yapılır.",
+    "ppmInstallHint": "<code>ppm self-install</code> komutunu çalıştırarak programı otomatik olarak <code>~/.local/bin</code> (veya <code>/usr/local/bin</code>) klasörüne kurar.",
+    "terminalLabel": "Pumpkin sunucusunun başlatılmasını gösteren animasyon",
+    "running": "çalışıyor",
+    "idle": "bekliyor",
+    "steps": [
+      {
+        "title": "Dosyayı indir",
+        "body": "Yukarıdan işletim sistemine uygun dosyayı indir. macOS ve Linux kullanıyorsan kurulum betiğini de kullanabilirsin. Pumpkin tek bir çalıştırılabilir dosyadan oluşur; kurulum programı veya Java kurulumu gerektirmez."
+      },
+      {
+        "title": "Sunucuyu çalıştır",
+        "body": "Dosyaya çift tıkla veya terminalden çalıştır. Sunucun birkaç milisaniye içinde hazır olur."
+      },
+      {
+        "title": "Sunucuya bağlan",
+        "body": "Java Edition oyuncuları <code>25565</code>, Bedrock Edition oyuncuları <code>19132</code> portundan bağlanır. Her iki sürümün oyuncuları da aynı dünyada oynayabilir."
+      },
+      {
+        "title": "Ayarları yapılandır",
+        "body": "Tüm seçenekler için <docs>yapılandırma dokümantasyonuna</docs> bakabilirsin. Sunucuyu başlatırken sorun yaşarsan <discord>Discord</discord> üzerinden yardım isteyebilirsin."
+      },
+      {
+        "title": "Eklenti ekle",
+        "body": "WebAssembly eklentilerini resmî paket yöneticisiyle yönetebilirsin. Kurulum için <ppm>ppm</ppm> kullanabilir veya topluluğun hazırladığı eklentileri <market>eklenti pazarında</market> inceleyebilirsin."
+      }
+    ]
+  },
+  "statsPage": {
+    "liveTelemetry": "Canlı istatistikler",
+    "title": "Pumpkin ekosistemi",
+    "description": "Pumpkin ve Vine sunucularının anlık kullanım verileri, dünya genelindeki dağılımı, donanım bilgileri ve topluluk istatistikleri.",
+    "timeRange": "Zaman aralığı",
+    "lastPolled": "Son kontrol",
+    "connecting": "Bağlanıyor...",
+    "refresh": "Yenile",
+    "apiDocs": "API dokümantasyonu",
+    "unavailable": "İstatistiklere şu anda ulaşılamıyor. Sayfa her dakika yeniden deniyor.",
+    "loading": "Yükleniyor...",
+    "ranges": {
+      "24h": {
+        "label": "24 saat",
+        "long": "son 24 saat"
+      },
+      "7d": {
+        "label": "7 gün",
+        "long": "son 7 gün"
+      },
+      "30d": {
+        "label": "30 gün",
+        "long": "son 30 gün"
+      },
+      "90d": {
+        "label": "90 gün",
+        "long": "son 90 gün"
+      },
+      "all": {
+        "label": "Tümü",
+        "long": "tüm zamanlar"
+      }
+    },
+    "servers": "Sunucular",
+    "players": "Oyuncular",
+    "serverUnit": "sunucu",
+    "playerUnit": "oyuncu",
+    "market": "Market",
+    "activeServers": "Aktif sunucular · {range}",
+    "peakPlayers": "En yüksek oyuncu sayısı · {range}",
+    "liveNow": "Şu an <count>{count}</count> sunucu açık · Pumpkin {pumpkin} · Vine {vine}",
+    "onlineNow": "Şu an <count>{count}</count> oyuncu çevrimiçi",
+    "countries": "Ülkeler",
+    "mostServers": "En çok sunucu: {country}",
+    "trackedPlugins": "Takip edilen eklentiler",
+    "mostUsed": "En çok kullanılan: {plugin}",
+    "activityTitle": "Zamana göre kullanım",
+    "activityDescription": "Eşzamanlı oyuncu ve çevrimiçi sunucu sayıları — {range}.",
+    "metric": "Gösterge",
+    "series": {
+      "online_players": "Çevrimiçi oyuncular",
+      "peak_players": "En yüksek oyuncu sayısı",
+      "pumpkin_servers": "Pumpkin sunucuları",
+      "vine_servers": "Vine sunucuları"
+    },
+    "noTrends": "Bu dönem için istatistik verisi yok.",
+    "summary": {
+      "peak": "En yüksek",
+      "average": "Ortalama",
+      "low": "En düşük",
+      "latest": "Son değer"
+    },
+    "hideTable": "Veri tablosunu gizle",
+    "showTable": "Veri tablosunu göster",
+    "time": "Zaman",
+    "chartAria": "{series}, {range}. Değerleri okumak için ok tuşlarını kullanın.",
+    "seriesJoiner": " ve ",
+    "mapTitle": "Sunucuların konumları",
+    "mapDescription": "Aktif sunucuların ve oyuncuların coğrafi dağılımı. Bir ülkeye tıklayarak listedeki bilgilerine ulaşabilirsiniz.",
+    "mapMetric": "Harita göstergesi",
+    "fewer": "Daha az",
+    "moreServers": "Daha çok sunucu",
+    "morePlayers": "Daha çok oyuncu",
+    "topLocation": "En yoğun konum",
+    "regions": "Bölgeler",
+    "reportedPlayers": "Bildirilen oyuncu sayısı",
+    "playersPerServer": "Sunucu başına oyuncu",
+    "countriesDescription": "Sunucuların bulunduğu ülkelere göre sunucu ve oyuncu sayıları.",
+    "sortCountries": "Ülkeleri sıralama ölçütü",
+    "noGeo": "Konum verisi bildirilmedi.",
+    "popularPlugins": "Popüler eklentiler",
+    "pluginsDescription": "Veri paylaşan sunucularda en çok kullanılan eklentiler.",
+    "noPlugins": "Eklenti verisi bildirilmedi.",
+    "systemsTitle": "Sistem ve donanım",
+    "systemsDescription": "Sunucuların bildirdiği işletim sistemleri, işlemci mimarileri, yazılım sürümleri ve bellek bilgileri.",
+    "operatingSystems": "İşletim sistemleri",
+    "cpuArchitecture": "İşlemci mimarisi",
+    "softwareVersions": "Yazılım sürümleri",
+    "minecraftVersions": "Minecraft sürümleri",
+    "serverMemory": "Sunucuya ayrılan bellek",
+    "hostMemory": "Sunucu makinesinin belleği",
+    "noData": "Veri bildirilmedi.",
+    "serverCpus": "Sunucu işlemcileri",
+    "cpusDescription": "En sık bildirilen işlemci modelleri.",
+    "privacyTitle": "Gizliliği koruyan açık telemetri",
+    "privacyBody": "Pumpkin ve Vine telemetrisi şeffaftır, kimliğinizi belirleyecek bilgiler içermez ve gizliliği ön planda tutar. Performansı karşılaştırmak, çok iş parçacıklı çalışmayı iyileştirmek ve Minecraft sürümleriyle uyumluluk çalışmalarına öncelik vermek için toplu sistem verileri toplarız. Bu veriler işletim sistemi, işlemci mimarisi, bellek aralığı, yazılım sürümleri ve oyuncu sayılarını kapsar. Daha fazla bilgi edinmek veya kendi araçlarınızla entegrasyon sağlamak için <apiDocs>Telemetri API dokümantasyonuna</apiDocs> bakabilir ya da <github>GitHub depomuzdaki</github> telemetri modüllerini inceleyebilirsiniz.",
+    "showLess": "Daha az göster",
+    "showMore": "{count} kayıt daha göster",
+    "mapLoading": "Harita yükleniyor...",
+    "mapError": "Harita yüklenemedi.",
+    "mapTooltip": "{servers} sunucu · {players} oyuncu",
+    "noReportingServers": "Veri paylaşan sunucu yok",
+    "zoomIn": "Yakınlaştır",
+    "zoomOut": "Uzaklaştır"
+  },
+  "sponsorPage": {
+    "title": "Sponsorluk",
+    "description": "Pumpkin'e destek olun. Destekçi listesinde yer almak, topluluk ayrıcalıklarından yararlanmak veya markanızı tanıtmak için bir sponsorluk paketi seçin.",
+    "manage": "Sponsorluğu yönet →",
+    "communityTitle": "Topluluk destek paketleri",
+    "communityDescription": "Dijital ayrıcalıklar sunan ve destekçi listesinde yer almanızı sağlayan aylık üyelik.",
+    "perMonth": "aylık",
+    "month": "ay",
+    "selectTier": "Paketi seç",
+    "selectTierLabel": "Aylık {amount} karşılığında {tier} paketini seç",
+    "monthlyPerks": {
+      "bronze": "Destekçi listesinde adınız ve Discord rolü",
+      "silver": "Destekçi listesinde adınız, bağlantınız ve Discord rolü",
+      "gold": "Destekçi listesinde Gold olarak yer alma, bağlantı ve Discord rolü",
+      "platinum": "Destekçi listesinde öncelikli konum, avatar ve bağlantı",
+      "titanium": "Destekçi listesinde öne çıkarılma, avatar ve bağlantı",
+      "diamond": "Destekçi listesinin en üst kademesinde yer alma, avatar ve bağlantı"
+    },
+    "corporateTitle": "Kurumsal sponsorluk",
+    "corporateDescription": "Destekçi listemizde logonuz ve sitenize yönlendiren bağlantılarla şirketinizi, barındırma hizmetinizi veya geliştirici araçlarınızı tanıtın.",
+    "selectPackage": "Paketi seç",
+    "selectPackageLabel": "Aylık {amount} karşılığında {tier} paketini seç",
+    "corporatePerks": {
+      "bronze": "Destekçi listesinde logo ve bağlantı",
+      "silver": "Destekçi listesinde öncelikli konumda logo ve bağlantı",
+      "gold": "Destekçi listesinde öne çıkarılan logo ve bağlantı",
+      "platinum": "Destekçi listesinin en üst kademesinde logo ve bağlantı"
+    },
+    "sponsorsTitle": "İş ortakları ve sponsorlar",
+    "sponsorsDescription": "Bu şirketler ve topluluk üyeleri, Pumpkin'in geliştirilmesine aktif olarak destek veriyor.",
+    "sponsorList": "Sponsor listesi",
+    "activeTab": "Aktif",
+    "pastTab": "Geçmiş",
+    "privateSponsor": "Adını gizleyen sponsor",
+    "loadError": "Sponsor listesi şu anda sunucudan alınamıyor. Lütfen daha sonra tekrar deneyin.",
+    "loading": "Sponsorlar yükleniyor...",
+    "noCurrent": "Henüz aktif bir sponsor yok. İlk sponsor siz olabilirsiniz.",
+    "noPast": "Geçmiş sponsor bulunmuyor.",
+    "termsTitle": "Satış koşulları, faturalandırma ve hizmet sunumu",
+    "terms": {
+      "digital": "<b>Dijital hizmetlerin sunumu:</b> Discord topluluk destekçisi rolleri, web sitesindeki destekçi listesi kayıtları ve kurumsal logo/bağlantı gösterimleri gibi dijital ayrıcalıklar, ödeme başarıyla tamamlandıktan sonra dijital olarak sağlanır. Ayrıcalıklarınız manuel kurulum veya Discord eşitlemesi gerektiriyorsa erişim onayı 24 saat içinde verilir.",
+      "corporate": "<b>Kurumsal sponsorluk kuralları:</b> Kurumsal sponsorluk paketleri, pumpkinmc.org üzerinde logo gösterimini ve sitenize yönlendiren bağlantılarla destekçi listesinde yer almayı içerir. Tüm marka görselleri ve bağlantılar, topluluk kurallarına uygunluk açısından incelenir. Pumpkin, bu kurallara aykırı materyalleri reddetme veya değiştirilmesini isteme hakkını saklı tutar.",
+      "billing": "<b>Faturalandırma ve iptal:</b> Aylık sponsorluk ödemeleri düzenli olarak tahsil edilir. Sponsorluğunuzu istediğiniz zaman <portal>Stripe Müşteri Portalı</portal> üzerinden değiştirebilir veya iptal edebilirsiniz. İptal, mevcut fatura döneminin sonunda geçerli olur.",
+      "refund": "<b>İade politikası:</b> Dijital ayrıcalıklar, topluluk rolleri ve destekçi listesindeki yeriniz hemen sağlandığından, bunlar etkinleştirildikten sonra ödemeler iade edilmez. Yürürlükteki mevzuatın iade gerektirdiği durumlar istisnadır.",
+      "signing": "<b>Kod imzalama:</b> Ücretsiz kod imzalama hizmeti <signpath>SignPath.io</signpath>, sertifika ise <foundation>SignPath Foundation</foundation> tarafından sağlanır. Pumpkin sürümleri SignPath kullanılarak dijital olarak imzalanır."
+    }
+  },
+  "contributorsPage": {
+    "title": "Katkıda bulunanların eseri",
+    "description": "Pumpkin, harika bir açık kaynak topluluğunun emeğiyle geliştiriliyor. Aşağıdaki her commit, birinin boş zamanını bu projeye ayırdığı anlamına geliyor.",
+    "contributors": "katkıda bulunan",
+    "commits": "commit",
+    "contributorLabel": "{name}, {count} commit",
+    "mostCommits": "En çok commit yapanlar",
+    "everyoneElse": "Diğer katkıda bulunanlar",
+    "peopleCount": "{count} kişi",
+    "loading": "Katkıda bulunanlar yükleniyor...",
+    "loadError": "Katkıda bulunanlar yüklenemedi. Lütfen daha sonra tekrar deneyin.",
+    "rateLimitReset": "GitHub API istek sınırına ulaşıldı. Sınır saat {time} itibarıyla yenilenecek. Lütfen daha sonra tekrar deneyin.",
+    "rateLimitSoon": "GitHub API istek sınırına ulaşıldı. Sınır kısa süre içinde yenilenecek. Lütfen daha sonra tekrar deneyin.",
+    "fullList": "Tam listeye her zaman <github>GitHub</github> üzerinden ulaşabilirsiniz.",
+    "contributeTitle": "Katkıda bulunmak ister misiniz?",
+    "contributeDescription": "Topluluğumuza katılın ve şimdiye kadarki en hızlı Minecraft sunucusunu geliştirmemize yardımcı olun.",
+    "guide": "Katkıda bulunma rehberi",
+    "github": "GitHub'da görüntüle",
+    "discord": "Discord'a katıl"
+  },
+  "notFoundPage": {
+    "title": "Bu sayfa bulunamadı.",
+    "description": "Bağlantı güncelliğini yitirmiş veya site yenilenirken sayfa taşınmış olabilir. Aradığınız içeriğe aşağıdaki bağlantılardan ulaşabilirsiniz.",
+    "home": "Ana sayfaya dön",
+    "download": "Pumpkin'i indir",
+    "docs": "Dokümantasyonu oku"
+  },
+  "pageMetadata": {
+    "home": {
+      "title": "Pumpkin - Yüksek performanslı Minecraft sunucusu",
+      "description": "Pumpkin: Rust ile yazılmış, hızlı ve verimli Minecraft sunucu yazılımı."
+    },
+    "download": {
+      "title": "Pumpkin'i indir",
+      "description": "Yüksek performanslı Minecraft sunucusu Pumpkin'in en yeni sürümünü indir."
+    },
+    "developers": {
+      "title": "Geliştiriciler için - Pumpkin",
+      "description": "Pumpkin ile eklenti geliştirme: tip güvenli komutlar, değiştirilebilir olaylar, Java ve Bedrock desteği."
+    },
+    "sponsor": {
+      "title": "Sponsorluk - Pumpkin",
+      "description": "Pumpkin geliştirmesine sponsor ol; topluluk ayrıcalıklarından ve marka tanıtımından yararlan."
+    },
+    "contributors": {
+      "title": "Katkıda bulunanlar - Pumpkin",
+      "description": "Minecraft sunucusu Pumpkin'in geliştirilmesine katkıda bulunanlarla tanış."
+    },
+    "stats": {
+      "title": "Telemetri ve istatistikler - Pumpkin",
+      "description": "Pumpkin ve Vine için canlı kullanım verileri, sunucu durumu, donanım dağılımı, dünya haritası ve topluluk istatistikleri."
+    },
+    "tracker": {
+      "title": "Vanilla uyumluluğu - Pumpkin",
+      "description": "Pumpkin hangi Vanilla özelliklerini destekliyor? Varlıkların, blokların, eşyaların ve komutların geliştirme durumu."
+    },
+    "notFound": {
+      "title": "Sayfa bulunamadı - Pumpkin",
+      "description": "pumpkinmc.org üzerinde böyle bir sayfa yok."
+    }
+  },
+  "developersPage": {
+    "code": {
+      "copy": "Kopyala",
+      "copied": "Kopyalandı",
+      "copyCommand": "Komutu kopyala",
+      "commandCopied": "Komut kopyalandı",
+      "copyLabel": "{label} içeriğini kopyala",
+      "copiedLabel": "{label} kopyalandı",
+      "terminal": "Terminal",
+      "projectLayout": "Proje yapısı"
+    },
+    "firstSteps": {
+      "c": "Önce <sdk>wasi-sdk</sdk> paketini indir, ardından içindeki clang ile derle.",
+      "d": "addon-wasi paketiyle birlikte <ldc>LDC</ldc> 1.43 veya üzerini ve <dub>DUB</dub> aracını kur.",
+      "typescript": "Henüz yazılı bir rehber yok. API, <api>pumpkin-api-ts</api> deposunda."
+    },
+    "picker": {
+      "title": "Programlama dilini seç",
+      "languageLabel": "Eklenti dili",
+      "firstStep": "{language} rehberindeki {count} adımın ilki.",
+      "noGuide": "{language} için henüz yazılı bir rehber yok.",
+      "openGuide": "Rehberi aç"
+    },
+    "hero": {
+      "overline": "NMS yok. Reflection yok. Sürüme özel çözümler yok.",
+      "title": "Kolayca eklenti geliştir",
+      "description": "Sade, tip güvenli API’ler. Bildiğin programlama diliyle yaz; Pumpkin, ortaya çıkan dosyayı WebAssembly eklentisi olarak yükler.",
+      "docs": "Eklenti dokümantasyonu",
+      "source": "GitHub’daki kaynak kod"
+    },
+    "comparison": {
+      "title": "Aynı özellik, <hl>iki API</hl>",
+      "description": "Bir karşılama mesajı gönder, ardından Java’da bir iletişim kutusu veya Bedrock’ta bir formla onay iste. Spigot’ta bunun için reflection ile NMS’e erişmek ve ikinci bir eklenti kullanmak gerekir. Pumpkin’de tek bir koşulla yapılır.",
+      "chooseApi": "API seç",
+      "reflectionCalls": "{count} reflection çağrısı",
+      "spigot": {
+        "badge": "Spigot + Reflection NMS + Geyser API (Java)",
+        "facts": [
+          "Geyser API gerekir",
+          "Sürüm güncellemelerinde bozulur"
+        ]
+      },
+      "pumpkin": {
+        "badge": "Pumpkin'in kendi API'si (Rust)",
+        "facts": [
+          "Ek bağımlılık yok",
+          "Derleme sırasında kontrol edilir"
+        ]
+      }
+    },
+    "featuresTitle": "API neler sunuyor?",
+    "features": [
+      {
+        "title": "Tüm oyunculara tek eklenti",
+        "body": "Yerleşik Java ve Bedrock desteği. Birden fazla sürüm desteği hazır.",
+        "rest": "Bir kez yaz, herkese ulaş."
+      },
+      {
+        "title": "Tip güvenli komutlar ve olaylar",
+        "body": "Komutlarını kaydet, tip güvenli eklenti olaylarını dinle.",
+        "rest": "Reflection, NMS veya sürüme özel çözümler gerekmez."
+      },
+      {
+        "title": "Varsayılan olarak asenkron",
+        "body": "Tokio üzerine kurulu. Ana iş parçacığı darboğazı yok.",
+        "rest": "Ağır işlemler sunucuyu dondurmaz."
+      },
+      {
+        "title": "Bellek güvenliği",
+        "body": "Rust’ın güvenceleriyle.",
+        "rest": "Null pointer, bellek sızıntısı veya veri yarışı yok."
+      }
+    ],
+    "quickStart": {
+      "title": "Hızlı <hl>başlangıç</hl>",
+      "description": "Bir dil seç. Her rehber, boş bir klasörden başlayıp Pumpkin’in yükleyebileceği bir eklenti dosyası oluşturmana yardımcı olur.",
+      "walkthrough": "Ayrıntılı rehber: <docs>{documentation}</docs>."
+    },
+    "ready": {
+      "title": "Geliştirmeye hazır mısın?",
+      "description": "Olaylar, komutlar ve API’nin diğer bölümleri dokümantasyonda anlatılıyor. Yanıt bulamadığın soruları Discord’da sorabilirsin.",
+      "getStarted": "Başla",
+      "discord": "Discord’da sor"
+    },
+    "guides": {
+      "rust": {
+        "docsLabel": "Rust dokümantasyonu",
+        "titles": [
+          "Yeni proje oluşturma",
+          "Derleme araçlarının kurulumu",
+          "Yeni crate oluşturma",
+          "Crate yapılandırması"
+        ],
+        "text": {
+          "build": "Pumpkin eklentileri Cargo derleme sistemini kullanır.",
+          "template": "Bu eklentinin tüm kodunu <link0>GitHub’daki şablonda</link0> bulabilirsin.",
+          "target": "Eklentiyi derlemek için önce <code0>wasm32-wasip2</code0> hedefini kurmalısın. Şu komutu çalıştırarak kurabilirsin:",
+          "folder": "Önce yeni bir proje klasörü oluştur. Oluşturduğun klasörde şu komutu çalıştır:",
+          "cargo": "Ardından <code0>.cargo</code0> adında bir klasör oluştur ve içine aşağıdaki içeriğe sahip bir <code1>config.toml</code1> dosyası ekle:",
+          "tree": "Projenin klasör yapısı şöyle olmalı:",
+          "cdylib": "Pumpkin eklentileri çalışma sırasında dinamik kütüphane olarak yüklendiği için Cargo’yu bu crate’i dinamik kütüphane olarak derleyecek şekilde yapılandırmalısın.",
+          "deps": "Şimdi temel bağımlılıkları ekle. Pumpkin henüz erken geliştirme aşamasında olduğu için dahili crate’ler crates.io’da yayımlanmıyor. Cargo’nun bağımlılıkları doğrudan GitHub’dan indirmesini sağlamalısın."
+        }
+      },
+      "python": {
+        "docsLabel": "Python dokümantasyonu",
+        "titles": [
+          "Kurulum",
+          "İlk eklentini oluşturma",
+          "Eklentiyi derleme"
+        ],
+        "text": {
+          "install": "Önce <code0>pumpkin-api-py</code0> kütüphanesini kur:",
+          "file": "<code0>main.py</code0> adında bir dosya oluştur ve aşağıdaki kodu ekle:",
+          "build": "Sağlanan derleme aracıyla eklentiyi bir WebAssembly bileşenine dönüştür:",
+          "output": "Bu işlem bir <code0>my_plugin.wasm</code0> dosyası oluşturur. Dosyayı Pumpkin sunucunun plugins klasörüne koyabilirsin."
+        }
+      },
+      "csharp": {
+        "docsLabel": "C# dokümantasyonu",
+        "titles": [
+          "Kurulum",
+          "İlk eklentini oluşturma",
+          "Eklentiyi derleme"
+        ],
+        "text": {
+          "sdk": "Pumpkin için C# eklentileri derlemek üzere <code0>.NET SDK</code0> ve WASI iş yükü gerekir.",
+          "library": "Yeni bir sınıf kütüphanesi oluştur ve aşağıdaki kodu ekle:",
+          "build": "WASI runtime tanımlayıcısıyla eklentiyi WebAssembly’ye derle:",
+          "output": "Çıktı klasöründe Pumpkin’in yükleyebileceği bir <code0>.wasm</code0> dosyası oluşur."
+        }
+      },
+      "c": {
+        "docsLabel": "GitHub deposu",
+        "titles": [
+          "Kurulum",
+          "İlk eklentini oluşturma",
+          "Eklentiyi derleme"
+        ],
+        "text": {
+          "sdk": "Pumpkin için C/C++ eklentileri derlemek üzere <code0>wasi-sdk</code0> gerekir. En güncel sürümü <link1>wasi-sdk deposundan</link1> indir.",
+          "repo": "Bu eklentinin tüm kodunu <link0>pumpkin-api-c deposunda</link0> bulabilirsin.",
+          "file": "<code0>main.c</code0> adında bir dosya oluştur ve aşağıdaki kodu ekle:",
+          "clang": "Eklentiyi bir WebAssembly bileşenine derlemek için <code1>wasi-sdk</code1> içindeki <code0>clang</code0> derleyicisini kullan:",
+          "output": "Bu işlem, Pumpkin’in yükleyebileceği bir <code0>my_plugin.wasm</code0> dosyası oluşturur."
+        }
+      },
+      "go": {
+        "docsLabel": "Go dokümantasyonu",
+        "titles": [
+          "Kurulum",
+          "İlk eklentini oluşturma",
+          "Eklentiyi derleme"
+        ],
+        "text": {
+          "tools": "Pumpkin için Go eklentileri derlemek üzere <link0>Go 1.23 veya üzeri</link0> ve <code1>tinygo</code1> gerekir.",
+          "file": "<code0>main.go</code0> adında bir dosya oluştur ve aşağıdaki kodu ekle:",
+          "build": "<code0>tinygo</code0> ile eklentiyi WebAssembly’ye derle:",
+          "output": "Bu işlem, Pumpkin’in yükleyebileceği bir <code0>my_plugin.wasm</code0> dosyası oluşturur."
+        }
+      },
+      "kotlin": {
+        "docsLabel": "Kotlin dokümantasyonu",
+        "titles": [
+          "Kurulum",
+          "İlk eklentini oluşturma",
+          "Eklentiyi derleme"
+        ],
+        "text": {
+          "needs": "Şu araçların kurulu olması gerekir:",
+          "item0": "<link0>Rust</link0> (yalnızca varsayılan/host toolchain)",
+          "item1": "<code0>make</code0> (örneğin <link1>GNU Make</link1>)",
+          "template": "Diğer API’lerin çoğundan farklı olarak bu proje bir şablon sunar. Depoyu klonlayıp adını değiştir.",
+          "rename": "<code1>settings.gradle.kts</code1> dosyasındaki <code0>rootProject.name</code0> ile <code3>Makefile</code3> dosyasındaki <code2>PROJECT_NAME</code2> değerini değiştir. İkisi aynı olmalı. Projeye verdiğin ad, oluşturulan Wasm dosyasının adı olur.",
+          "prepared": "Şablonda başlangıç kodu hazırdır. <code0>src/wasmWasiMain/kotlin/plugin/Plugin.kt</code0> dosyasının içeriği şöyledir:",
+          "make": "<code0>Makefile</code0> dosyasını çalıştırarak eklentiyi WebAssembly’ye derle:",
+          "slow": "İlk derleme, bazı Rust bağımlılıklarını kaynak koddan derlediği için biraz zaman alır.",
+          "output": "İşlem tamamlandığında <code1>build</code1> klasöründe, Pumpkin’e yüklenmeye hazır <code0>my_kotlin_plugin.wasm</code0> dosyası (veya Gradle proje adını verdiğin dosya) oluşur."
+        }
+      },
+      "d": {
+        "docsLabel": "D dokümantasyonu",
+        "titles": [
+          "Kurulum",
+          "İlk eklentini oluşturma",
+          "Eklentiyi derleme"
+        ],
+        "text": {
+          "needs": "<code1>addon-wasi</code1> paketi kurulu <link0>LDC</link0> 1.43 veya üzeri ve <link2>DUB</link2> gerekir.",
+          "package": "API erişimini <link0>pumpkin-api-d</link0> paketi sağlar. Eklentinin yanındaki <code1>dub.json</code1> dosyasında bu bağımlılığı tanımla:",
+          "source": "Eklenti kodunu <code0>source/app.d</code0> dosyasına yaz:",
+          "dub": "DUB ile <code0>wasm32-wasip2</code0> hedefi için eklentiyi bir WebAssembly bileşenine derle:",
+          "output": "Projenin kök klasöründe, Pumpkin’e yüklenmeye hazır <code0>my-d-plugin.wasm</code0> dosyası oluşur."
+        }
+      },
+      "zig": {
+        "docsLabel": "Zig dokümantasyonu",
+        "titles": [
+          "Proje kurulumu",
+          "İlk eklentini oluşturma",
+          "Eklentiyi derleme"
+        ],
+        "text": {
+          "needs": "<link0>Zig</link0> 0.16.0 veya üzeri ile <link1>wasm-tools</link1>, <code2>PATH</code2> üzerinde erişilebilir olmalı.",
+          "fetch": "<link0>pumpkin-api-zig</link0> paketini indirip bağımlılık olarak ekle:",
+          "build-zig": "Projenin kök klasöründe bir <code0>build.zig</code0> dosyası oluştur:",
+          "source": "Eklentinin kaynak kodunu <code0>src/main.zig</code0> dosyasına yaz:",
+          "build": "Eklentiyi bir WebAssembly bileşenine derle:",
+          "output": "Pumpkin’e yüklenmeye hazır <code0>zig-out/my-zig-plugin.wasm</code0> dosyası oluşur."
+        }
+      },
+      "typescript": {
+        "docsLabel": "pumpkin-api-ts deposu",
+        "titles": [],
+        "text": {
+          "intro": "TypeScript için henüz yazılı bir hızlı başlangıç rehberi yok. API’yi ve kurulum talimatlarını <link0>pumpkin-api-ts deposunda</link0> bulabilirsin."
+        }
+      }
+    }
+  }
+}

@@ -1,11 +1,15 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { GITHUB_URL, MARKET_URL } from "../../links";
+import { languageTag, useI18n } from "../../i18n";
+import { formatMessage } from "../../i18n/format";
+import { rich } from "../../i18n/rich";
 import { DistributionList, type DistributionItem } from "./DistributionList";
 import { TREND_SERIES, TrendChart, TrendTable } from "./TrendChart";
 import { useTelemetry } from "./useTelemetry";
 import { MAP_RAMP, WorldMap } from "./WorldMap";
 import {
   RANGES,
+  countryName,
   formatNumber,
   formatPercent,
   type GeoMetric,
@@ -71,11 +75,13 @@ function Panel({ title, description, actions, children, className = "" }: PanelP
 }
 
 function Kpi({ label, value, detail }: { label: string; value: number | null | undefined; detail: ReactNode }) {
+  const { lang } = useI18n();
+  const locale = languageTag(lang);
   return (
     <div className="bg-surface p-5 md:px-6">
       <p className="font-mono text-xs tracking-wider text-muted uppercase">{label}</p>
       <p className="mt-2 text-4xl font-extrabold tracking-[-0.02em] md:text-5xl">
-        {value === null || value === undefined ? "-" : formatNumber(value)}
+        {value === null || value === undefined ? "-" : formatNumber(value, locale)}
       </p>
       <p className="mt-1 min-h-5 text-sm text-muted">{detail}</p>
     </div>
@@ -83,7 +89,8 @@ function Kpi({ label, value, detail }: { label: string; value: number | null | u
 }
 
 function Loading() {
-  return <p className="py-2 text-sm text-muted">Loading...</p>;
+  const { t } = useI18n();
+  return <p className="py-2 text-sm text-muted">{t.statsPage.loading}</p>;
 }
 
 function shares(list: Share[] | undefined): DistributionItem[] {
@@ -95,10 +102,10 @@ function summarize(data: TrendPoint[], metric: TrendMetric) {
   const peak = (point: TrendPoint) => (metric === "players" ? point.peak_players : point.active_servers);
   const levels = data.map(level);
   return [
-    { label: "Peak", value: Math.max(0, ...data.map(peak)) },
-    { label: "Average", value: Math.round(levels.reduce((sum, value) => sum + value, 0) / (levels.length || 1)) },
-    { label: "Low", value: levels.length ? Math.min(...levels) : 0 },
-    { label: "Latest", value: levels.at(-1) ?? 0 },
+    { key: "peak" as const, value: Math.max(0, ...data.map(peak)) },
+    { key: "average" as const, value: Math.round(levels.reduce((sum, value) => sum + value, 0) / (levels.length || 1)) },
+    { key: "low" as const, value: levels.length ? Math.min(...levels) : 0 },
+    { key: "latest" as const, value: levels.at(-1) ?? 0 },
   ];
 }
 
@@ -118,6 +125,9 @@ function RefreshIcon({ spinning }: { spinning: boolean }) {
 }
 
 export default function Stats() {
+  const { t, lang } = useI18n();
+  const s = t.statsPage;
+  const locale = languageTag(lang);
   const [range, setRange] = useState<TrendRange>("24h");
   const [metric, setMetric] = useState<TrendMetric>("players");
   const [mapMetric, setMapMetric] = useState<GeoMetric>("servers");
@@ -126,9 +136,9 @@ export default function Stats() {
   const [showTable, setShowTable] = useState(false);
   const telemetry = useTelemetry(range);
   const { overview, trends, systems, geo, plugins } = telemetry;
-  const rangeOption = RANGES.find((option) => option.id === range);
-  const rangeLabel = rangeOption?.long ?? range;
-  const rangeShort = range === "all" ? "all time" : (rangeOption?.label ?? range);
+  const rangeOptions = RANGES.map((id) => ({ id, label: s.ranges[id].label }));
+  const rangeLabel = s.ranges[range].long;
+  const rangeShort = range === "all" ? rangeLabel : s.ranges[range].label;
 
   useEffect(() => {
     if (!selectedCountry) return;
@@ -151,13 +161,13 @@ export default function Stats() {
         label: (
           <span className="flex items-baseline gap-2">
             <span className="w-7 shrink-0 font-mono text-xs text-muted">{entry.country}</span>
-            {entry.country_name}
+            {countryName(entry.country, entry.country_name, locale)}
           </span>
         ),
         detail: (
           <>
-            <span className="text-fg">{formatNumber(entry.servers)}</span> servers ·{" "}
-            <span className="text-fg">{formatNumber(entry.players)}</span> players
+            <span className="text-fg">{formatNumber(entry.servers, locale)}</span> {s.serverUnit} ·{" "}
+            <span className="text-fg">{formatNumber(entry.players, locale)}</span> {s.playerUnit}
           </>
         ),
       };
@@ -173,15 +183,15 @@ export default function Stats() {
         {plugin.name}
         {plugin.market_plugin_id !== null && (
           <a href={MARKET_URL} target="_blank" rel="noopener" className="text-xs font-bold text-pumpkin hover:text-fg">
-            Market
+            {s.market}
           </a>
         )}
       </span>
     ),
     detail: (
       <>
-        <span className="text-fg">{formatNumber(plugin.server_count)}</span> servers ·{" "}
-        {formatPercent(plugin.adoption_percentage)}
+        <span className="text-fg">{formatNumber(plugin.server_count, locale)}</span> {s.serverUnit} ·{" "}
+        {formatPercent(plugin.adoption_percentage, locale)}
       </>
     ),
   }));
@@ -190,22 +200,22 @@ export default function Stats() {
   const reportingServers = (geo ?? []).reduce((sum, entry) => sum + entry.servers, 0);
 
   const mapSummary = [
-    { label: "Top location", value: topOnMap ? topOnMap.country_name : "-" },
-    { label: "Regions", value: geo ? formatNumber(geo.length) : "-" },
-    { label: "Reported players", value: geo ? formatNumber(reportedPlayers) : "-" },
+    { label: s.topLocation, value: topOnMap ? countryName(topOnMap.country, topOnMap.country_name, locale) : "-" },
+    { label: s.regions, value: geo ? formatNumber(geo.length, locale) : "-" },
+    { label: s.reportedPlayers, value: geo ? formatNumber(reportedPlayers, locale) : "-" },
     {
-      label: "Players per server",
-      value: geo ? (reportingServers ? (reportedPlayers / reportingServers).toFixed(1) : "0") : "-",
+      label: s.playersPerServer,
+      value: geo ? (reportingServers ? (reportedPlayers / reportingServers).toLocaleString(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : "0") : "-",
     },
   ];
 
   const systemPanels = [
-    { title: "Operating systems", items: systems?.os, limit: 5 },
-    { title: "CPU architecture", items: systems?.arch },
-    { title: "Software versions", items: systems?.software_versions },
-    { title: "Minecraft versions", items: systems?.minecraft_versions },
-    { title: "Allocated server memory", items: systems?.ram_distribution },
-    { title: "Host machine memory", items: systems?.total_ram_distribution },
+    { title: s.operatingSystems, items: systems?.os, limit: 5 },
+    { title: s.cpuArchitecture, items: systems?.arch },
+    { title: s.softwareVersions, items: systems?.software_versions },
+    { title: s.minecraftVersions, items: systems?.minecraft_versions },
+    { title: s.serverMemory, items: systems?.ram_distribution },
+    { title: s.hostMemory, items: systems?.total_ram_distribution },
   ];
 
   return (
@@ -216,26 +226,25 @@ export default function Stats() {
             <span className="absolute inset-0 animate-ping bg-success opacity-60 motion-reduce:animate-none" />
             <span className="relative size-2 bg-success" />
           </span>
-          Live telemetry
+          {s.liveTelemetry}
         </p>
         <h1 className="text-[clamp(2.6rem,6vw,5rem)] leading-[0.98] font-extrabold tracking-[-0.015em]">
-          Ecosystem telemetry<span className="text-pumpkin">.</span>
+          {s.title}<span className="text-pumpkin">.</span>
         </h1>
         <p className="mt-5 max-w-2xl text-lg text-muted md:text-xl">
-          Real-time network telemetry, global node distribution, hardware infrastructure, and community server analytics
-          across Pumpkin and Vine deployments.
+          {s.description}
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 border-y-2 border-white/15 py-4">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="font-mono text-xs tracking-wider text-muted uppercase">Time range</span>
-            <Segmented label="Time range" options={RANGES} value={range} onChange={setRange} />
+            <span className="font-mono text-xs tracking-wider text-muted uppercase">{s.timeRange}</span>
+            <Segmented label={s.timeRange} options={rangeOptions} value={range} onChange={setRange} />
           </div>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-muted">
             <span>
-              Last polled{" "}
+              {s.lastPolled}{" "}
               <span className="text-fg">
-                {telemetry.lastUpdated ? telemetry.lastUpdated.toLocaleTimeString("en-US", { hour12: false }) : "connecting..."}
+                {telemetry.lastUpdated ? telemetry.lastUpdated.toLocaleTimeString(locale, { hour12: false }) : s.connecting}
               </span>
             </span>
             <button
@@ -245,17 +254,17 @@ export default function Stats() {
               className="inline-flex cursor-pointer items-center gap-1.5 font-bold text-pumpkin uppercase hover:text-fg disabled:cursor-wait disabled:opacity-60"
             >
               <RefreshIcon spinning={telemetry.loading} />
-              Refresh
+              {s.refresh}
             </button>
             <a href={API_DOCS_URL} target="_blank" rel="noopener" className="font-bold text-pumpkin uppercase hover:text-fg">
-              API docs
+              {s.apiDocs}
             </a>
           </div>
         </div>
 
         {telemetry.failed && (
           <p className="mt-4 border-l-3 border-danger bg-danger/10 px-4 py-3 text-sm text-danger">
-            Telemetry is unreachable right now. The page retries every minute.
+            {s.unavailable}
           </p>
         )}
       </section>
@@ -267,41 +276,36 @@ export default function Stats() {
           }`}
         >
           <Kpi
-            label={`Active servers · ${rangeShort}`}
+            label={formatMessage(s.activeServers, { range: rangeShort })}
             value={overview?.active_range_servers}
             detail={
               overview && (
-                <>
-                  <span className="text-fg">{formatNumber(overview.live_servers)}</span> live now · Pumpkin{" "}
-                  {formatNumber(overview.live_pumpkin_servers)} · Vine {formatNumber(overview.live_vine_servers)}
-                </>
+                rich(formatMessage(s.liveNow, { count: formatNumber(overview.live_servers, locale), pumpkin: formatNumber(overview.live_pumpkin_servers, locale), vine: formatNumber(overview.live_vine_servers, locale) }), { count: (text) => <span className="text-fg">{text}</span> })
               )
             }
           />
           <Kpi
-            label={`Peak players · ${rangeShort}`}
+            label={formatMessage(s.peakPlayers, { range: rangeShort })}
             value={overview?.peak_range_players}
             detail={
               overview && (
-                <>
-                  <span className="text-fg">{formatNumber(overview.total_online_players)}</span> online now
-                </>
+                rich(formatMessage(s.onlineNow, { count: formatNumber(overview.total_online_players, locale) }), { count: (text) => <span className="text-fg">{text}</span> })
               )
             }
           />
-          <Kpi label="Countries" value={overview?.total_countries} detail={topCountry && <>Most servers in {topCountry.country_name}</>} />
-          <Kpi label="Tracked plugins" value={overview?.total_tracked_plugins} detail={plugins?.[0] && <>Most used: {plugins[0].name}</>} />
+          <Kpi label={s.countries} value={overview?.total_countries} detail={topCountry && formatMessage(s.mostServers, { country: countryName(topCountry.country, topCountry.country_name, locale) })} />
+          <Kpi label={s.trackedPlugins} value={overview?.total_tracked_plugins} detail={plugins?.[0] && formatMessage(s.mostUsed, { plugin: plugins[0].name })} />
         </div>
 
         <Panel
-          title="Activity over time"
-          description={`Concurrent players and online servers, ${rangeLabel}.`}
+          title={s.activityTitle}
+          description={formatMessage(s.activityDescription, { range: rangeLabel })}
           actions={
             <Segmented
-              label="Metric"
+              label={s.metric}
               options={[
-                { id: "players", label: "Players" },
-                { id: "servers", label: "Servers" },
+                { id: "players", label: s.players },
+                { id: "servers", label: s.servers },
               ]}
               value={metric}
               onChange={setMetric}
@@ -312,15 +316,15 @@ export default function Stats() {
             {TREND_SERIES[metric].map((spec) => (
               <li key={spec.key} className="flex items-center gap-2">
                 <span aria-hidden="true" className="h-0.5 w-4" style={{ backgroundColor: spec.color }} />
-                {spec.label}
+                {s.series[spec.key]}
               </li>
             ))}
           </ul>
           <div className={`transition-opacity ${telemetry.rangeLoading ? "opacity-40" : ""}`}>
             {trends === null ? (
-              <div className="grid h-75 place-items-center text-sm text-muted">Loading...</div>
+              <div className="grid h-75 place-items-center text-sm text-muted">{s.loading}</div>
             ) : trends.length === 0 ? (
-              <div className="grid h-75 place-items-center text-sm text-muted">No telemetry trend data available.</div>
+              <div className="grid h-75 place-items-center text-sm text-muted">{s.noTrends}</div>
             ) : (
               <TrendChart data={trends} metric={metric} range={range} rangeLabel={rangeLabel} />
             )}
@@ -329,9 +333,9 @@ export default function Stats() {
             <>
               <dl className="mt-5 grid grid-cols-2 gap-0.5 border-2 border-white/15 bg-white/15 md:grid-cols-4">
                 {summarize(trends, metric).map((item) => (
-                  <div key={item.label} className="bg-surface px-4 py-3">
-                    <dt className="font-mono text-xs tracking-wider text-muted uppercase">{item.label}</dt>
-                    <dd className="mt-1 text-2xl font-extrabold">{formatNumber(item.value)}</dd>
+                  <div key={item.key} className="bg-surface px-4 py-3">
+                    <dt className="font-mono text-xs tracking-wider text-muted uppercase">{s.summary[item.key]}</dt>
+                    <dd className="mt-1 text-2xl font-extrabold">{formatNumber(item.value, locale)}</dd>
                   </div>
                 ))}
               </dl>
@@ -341,7 +345,7 @@ export default function Stats() {
                 onClick={() => setShowTable((value) => !value)}
                 className="mt-4 cursor-pointer text-sm font-bold text-pumpkin hover:text-fg"
               >
-                {showTable ? "Hide data table" : "Show data table"}
+                {showTable ? s.hideTable : s.showTable}
               </button>
               {showTable && (
                 <div className="mt-3">
@@ -353,14 +357,14 @@ export default function Stats() {
         </Panel>
 
         <Panel
-          title="Where servers run"
-          description="Geographic distribution of active servers and player traffic. Click a country to find it in the list."
+          title={s.mapTitle}
+          description={s.mapDescription}
           actions={
             <Segmented
-              label="Map metric"
+              label={s.mapMetric}
               options={[
-                { id: "servers", label: "Servers" },
-                { id: "players", label: "Players" },
+                { id: "servers", label: s.servers },
+                { id: "players", label: s.players },
               ]}
               value={mapMetric}
               onChange={setMapMetric}
@@ -368,18 +372,18 @@ export default function Stats() {
           }
         >
           {geo === null ? (
-            <div className="grid h-72 place-items-center text-sm text-muted md:h-104">Loading...</div>
+            <div className="grid h-72 place-items-center text-sm text-muted md:h-104">{s.loading}</div>
           ) : (
             <WorldMap geo={geo} metric={mapMetric} onSelect={setSelectedCountry} />
           )}
           <div className="mt-4 flex items-center gap-3 font-mono text-xs text-muted">
-            <span>Fewer</span>
+            <span>{s.fewer}</span>
             <span
               aria-hidden="true"
               className="h-2 w-32"
               style={{ backgroundImage: `linear-gradient(to right, ${MAP_RAMP[0]}, ${MAP_RAMP[1]})` }}
             />
-            <span>More {mapMetric}</span>
+            <span>{mapMetric === "servers" ? s.moreServers : s.morePlayers}</span>
           </div>
           <dl className="mt-5 grid grid-cols-2 gap-0.5 border-2 border-white/15 bg-white/15 md:grid-cols-4">
             {mapSummary.map((item) => (
@@ -393,14 +397,14 @@ export default function Stats() {
 
         <div className="grid gap-6 lg:grid-cols-2">
           <Panel
-            title="Countries"
-            description="Servers and player traffic by host country."
+            title={s.countries}
+            description={s.countriesDescription}
             actions={
               <Segmented
-                label="Sort countries by"
+                label={s.sortCountries}
                 options={[
-                  { id: "servers", label: "Servers" },
-                  { id: "players", label: "Players" },
+                  { id: "servers", label: s.servers },
+                  { id: "players", label: s.players },
                 ]}
                 value={geoSort}
                 onChange={setGeoSort}
@@ -410,48 +414,40 @@ export default function Stats() {
             {geo === null ? (
               <Loading />
             ) : (
-              <DistributionList items={geoItems} limit={10} idPrefix="geo" highlight={selectedCountry} empty="No geolocation data reported." />
+              <DistributionList items={geoItems} limit={10} idPrefix="geo" highlight={selectedCountry} empty={s.noGeo} />
             )}
           </Panel>
-          <Panel title="Popular plugins" description="Most adopted plugins across reporting servers.">
-            {plugins === null ? <Loading /> : <DistributionList items={pluginItems} limit={10} empty="No plugin telemetry reported." />}
+          <Panel title={s.popularPlugins} description={s.pluginsDescription}>
+            {plugins === null ? <Loading /> : <DistributionList items={pluginItems} limit={10} empty={s.noPlugins} />}
           </Panel>
         </div>
 
         <div className="mt-6">
-          <h2 className="text-3xl font-extrabold md:text-4xl">Systems & hardware</h2>
+          <h2 className="text-3xl font-extrabold md:text-4xl">{s.systemsTitle}</h2>
           <p className="mt-2 max-w-2xl text-muted">
-            Operating systems, CPU architectures, software versions, and memory footprints reported by server hosts.
+            {s.systemsDescription}
           </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {systemPanels.map((panel) => (
             <Panel key={panel.title} title={panel.title}>
-              {systems === null ? <Loading /> : <DistributionList items={shares(panel.items)} limit={panel.limit} empty="No data reported." />}
+              {systems === null ? <Loading /> : <DistributionList items={shares(panel.items)} limit={panel.limit} empty={s.noData} />}
             </Panel>
           ))}
         </div>
 
-        <Panel title="Server CPUs" description="The processors reported most often.">
-          {systems === null ? <Loading /> : <DistributionList items={shares(systems.cpu_models)} limit={10} empty="No data reported." />}
+        <Panel title={s.serverCpus} description={s.cpusDescription}>
+          {systems === null ? <Loading /> : <DistributionList items={shares(systems.cpu_models)} limit={10} empty={s.noData} />}
         </Panel>
 
         <aside className="mt-6 border-l-3 border-success bg-success/10 px-5 py-4">
-          <h2 className="font-extrabold text-success">Privacy-preserving open telemetry</h2>
+          <h2 className="font-extrabold text-success">{s.privacyTitle}</h2>
           <p className="mt-2 max-w-4xl text-sm text-muted">
-            Pumpkin and Vine telemetry is completely transparent, non-identifying, and privacy-first. We collect aggregated
-            system metrics (OS, CPU architecture, memory range, software versions, and player counts) to help benchmark
-            performance, optimize multi-threading, and prioritize Minecraft version compatibility. To learn more or
-            integrate your own tools, visit our{" "}
-            <a href={API_DOCS_URL} target="_blank" rel="noopener" className={inlineLink}>
-              Telemetry API documentation
-            </a>{" "}
-            or inspect the telemetry modules in our{" "}
-            <a href={GITHUB_URL} target="_blank" rel="noopener" className={inlineLink}>
-              GitHub repository
-            </a>
-            .
+            {rich(s.privacyBody, {
+              apiDocs: (text) => <a href={API_DOCS_URL} target="_blank" rel="noopener" className={inlineLink}>{text}</a>,
+              github: (text) => <a href={GITHUB_URL} target="_blank" rel="noopener" className={inlineLink}>{text}</a>,
+            })}
           </p>
         </aside>
       </div>

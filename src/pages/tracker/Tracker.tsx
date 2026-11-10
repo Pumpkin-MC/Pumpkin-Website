@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { GITHUB_ORG_URL, GITHUB_URL } from "../../links";
 import { ChevronDownIcon, ExternalIcon } from "../../components/icons";
-import { useI18n } from "../../i18n";
+import { languageTag, useI18n } from "../../i18n";
 import { rich } from "../../i18n/rich";
 import { withBase } from "../../lib/url";
 import {
@@ -285,7 +285,7 @@ const ENTRIES = new Map(trackerData.all.entries.map((entry) => [entryKey(entry),
 
 /** Vanilla parity tracker page: browse, filter and search the tracked entries. */
 export default function Tracker() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const data = useMemo(() => getTrackerData(t), [t]);
   const views: Category[] = [data.all, ...data.categories];
   const [category, setCategory] = useState("all");
@@ -328,28 +328,38 @@ export default function Tracker() {
   }, [category, open]);
 
   const visible = useMemo(() => {
-    const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+    const locale = languageTag(lang);
+    const tokens = query.split(/\s+/).filter(Boolean).map((token) => ({
+      localized: token.toLocaleLowerCase(locale),
+      original: token.toLowerCase(),
+    }));
     return current.entries.filter((entry) => {
       if (filter !== "all" && entry.status !== filter) return false;
       if (!tokens.length) return true;
       const original = ENTRIES.get(entryKey(entry));
-      const haystack = [
-        entry.name,
+      const sourceText = [
         original?.name ?? "",
         entry.group ?? "",
-        entry.groupLabel ?? "",
-        entry.note ?? "",
         original?.note ?? "",
-        ...(entry.items ?? []).map((item) => item.text),
         ...(original?.items ?? []).map((item) => item.text),
         ...(entry.issues ?? []).map((issue) => `#${issue.number} ${issue.title ?? ""}`),
         ...(entry.ids ?? []),
-      ]
-        .join(" ")
-        .toLowerCase();
-      return tokens.every((token) => haystack.includes(token));
+      ].join(" ");
+      const text = [
+        entry.name,
+        entry.groupLabel ?? "",
+        entry.note ?? "",
+        ...(entry.items ?? []).map((item) => item.text),
+        sourceText,
+      ].join(" ");
+      const localizedHaystack = text.toLocaleLowerCase(locale);
+      // English source terms also use their own casing, even in mixed-language queries.
+      const originalHaystack = sourceText.toLowerCase();
+      return tokens.every((token) =>
+        localizedHaystack.includes(token.localized) || originalHaystack.includes(token.original),
+      );
     });
-  }, [current, filter, query]);
+  }, [current, filter, query, lang]);
 
   const anyVisibleOpen = visible.some((entry) => open.has(entryKey(entry)));
 
