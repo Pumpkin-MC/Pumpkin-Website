@@ -1,6 +1,6 @@
 {
-  "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
-  "updated": "2026-11-09",
+  "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+  "updated": "2026-11-11",
   "method": "Inherited tracker claims, including file-presence and TODO heuristics. Not current verified parity.",
   "entries": {
     "entities:blaze": {
@@ -131,28 +131,28 @@
       ]
     },
     "entities:drowned": {
-      "status": "partial",
-      "note": "Spawn rules exist, but the entity registers none of its own goals, so trident drowned never throw.",
+      "status": "done",
+      "note": "Implements ranged trident attacks, amphibious water/ground navigation switching, beach/water seeking goals, and zombie nautilus jockey spawning.",
       "items": [
         {
           "text": "`DrownedGoToWaterGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`DrownedTridentAttackGoal` and `DrownedAttackGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`DrownedGoToBeachGoal` and `DrownedSwimUpGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "Water-bound navigation",
-          "done": false
+          "done": true
         },
         {
           "text": "Drowned conversion persistence",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -340,8 +340,8 @@
       ]
     },
     "entities:husk": {
-      "status": "partial",
-      "note": "Wraps the zombie base with desert spawn rules.",
+      "status": "done",
+      "note": "Implements difficulty-scaled Hunger on unarmed melee hits, submerged conversion to zombie, camel husk jockey spawning, and inherited zombie goals.",
       "items": [
         {
           "text": "Zombie goal set",
@@ -353,7 +353,7 @@
         },
         {
           "text": "Conversion to zombie when submerged",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -420,8 +420,8 @@
       ]
     },
     "entities:phantom": {
-      "status": "partial",
-      "note": "Look goals only. It has no target selector and does nothing.",
+      "status": "done",
+      "note": "Implements circling and swooping flight AI, cat avoidance, insomnia-based natural spawning, and size-scaled damage.",
       "items": [
         {
           "text": "Look goals",
@@ -429,23 +429,23 @@
         },
         {
           "text": "`PhantomAttackStrategyGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`PhantomSweepAttackGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`PhantomCircleAroundAnchorGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`PhantomAttackPlayerTargetGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "Flying navigation",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -796,8 +796,8 @@
       ]
     },
     "entities:zombie": {
-      "status": "partial",
-      "note": "Zombie melee, reinforcements, door breaking, and 2.5x baby XP multiplier are implemented. The baby +50% movement speed modifier remains missing.",
+      "status": "done",
+      "note": "Implements zombie melee, spear usage, village movement, reinforcements, door breaking, baby +50% speed modifier, and 2.5x baby XP multiplier.",
       "items": [
         {
           "text": "Zombie attack, sun burn, water conversion, and 2.5x baby XP reward",
@@ -805,13 +805,13 @@
         },
         {
           "text": "Baby +50% speed attribute modifier",
-          "done": false
+          "done": true
         }
       ]
     },
     "entities:zombie_villager": {
-      "status": "partial",
-      "note": "Villager profession data and curing are ported.",
+      "status": "done",
+      "note": "Implements villager profession/gossip/trade persistence, weakness + golden apple curing with iron bars/bed acceleration, and village movement.",
       "items": [
         {
           "text": "Villager profession and biome data",
@@ -827,12 +827,12 @@
         },
         {
           "text": "`MoveThroughVillageGoal`",
-          "done": false
+          "done": true
         }
       ]
     },
     "entities:zombified_piglin": {
-      "status": "partial",
+      "status": "done",
       "items": [
         {
           "text": "Zombie goal set and nether spawn rules",
@@ -844,13 +844,14 @@
         },
         {
           "text": "`SpearUseGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "Group anger and `ResetUniversalAngerTargetGoal`",
-          "done": false
+          "done": true
         }
-      ]
+      ],
+      "note": "Implements anger targeting, group alerts, spear-use combat, and baby/jockey spawning."
     },
     "entities:ender_dragon": {
       "status": "partial",
@@ -1870,8 +1871,8 @@
       ]
     },
     "entities:turtle": {
-      "status": "partial",
-      "note": "Never lays eggs, goes home or travels.",
+      "status": "done",
+      "note": "Implements home-beach egg laying, amphibious navigation and move control, seagrass breeding, and lightning bowl drops.",
       "items": [
         {
           "text": "Breed, tempt and `TryFindWaterGoal`",
@@ -1883,15 +1884,15 @@
         },
         {
           "text": "`TurtleLayEggGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "`TurtleGoHomeGoal` and `TurtleTravelGoal`",
-          "done": false
+          "done": true
         },
         {
           "text": "Amphibious navigation",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -3458,8 +3459,8 @@
       "status": "done"
     },
     "items:mace": {
-      "status": "partial",
-      "note": "Registered. Smash attack not verified."
+      "status": "done",
+      "note": "Implements piecewise smash damage scaling, Density and Breach enchantment hooks, AoE knockback, fall-reset impulse context, and landing particles."
     },
     "items:shears": {
       "status": "done"
