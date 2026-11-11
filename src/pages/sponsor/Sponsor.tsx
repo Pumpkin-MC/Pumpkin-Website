@@ -50,7 +50,7 @@ const corporateTiers = [
 
 const inlineLink = "font-semibold text-pumpkin underline underline-offset-3 hover:text-fg";
 
-const dollars = (amount: number) => `$${amount.toLocaleString("en-US")}`;
+const euros = (amount: number) => `€${amount.toLocaleString("en-US")}`;
 
 function hasSafeUrl(url: string | null | undefined): url is string {
   if (!url) return false;
@@ -188,13 +188,13 @@ export default function Sponsor() {
             <li key={tier.name}>
               <a
                 href={tier.href}
-                aria-label={`Select ${tier.name} tier for ${dollars(tier.amount)} per month`}
+                aria-label={`Select ${tier.name} tier for ${euros(tier.amount)} per month`}
                 className="group flex h-full flex-col border-2 border-white/15 bg-surface p-5 transition-colors hover:border-pumpkin hover:bg-pumpkin hover:text-black focus-visible:border-pumpkin focus-visible:outline-none"
               >
                 <span className="font-mono text-xs tracking-wider text-muted uppercase group-hover:text-black/70">
                   {tier.name}
                 </span>
-                <span className="mt-3 text-4xl font-extrabold tracking-[-0.02em]">{dollars(tier.amount)}</span>
+                <span className="mt-3 text-4xl font-extrabold tracking-[-0.02em]">{euros(tier.amount)}</span>
                 <span className="text-sm text-muted group-hover:text-black/70">per month</span>
                 <span className="mt-3 text-xs text-muted group-hover:text-black/80">{tier.perk}</span>
                 <span className="mt-auto pt-5 text-sm font-bold text-pumpkin group-hover:text-black">Select tier</span>
@@ -220,11 +220,11 @@ export default function Sponsor() {
               <span className="font-extrabold">{tier.name}</span>
               <span className="col-start-1 text-sm text-muted md:col-start-auto md:text-base">{tier.perk}</span>
               <span className="col-start-1 font-mono text-sm text-muted md:col-start-auto">
-                <span className="text-fg">{dollars(tier.amount)}</span> / month
+                <span className="text-fg">{euros(tier.amount)}</span> / month
               </span>
               <a
                 href={tier.href}
-                aria-label={`Select ${tier.name} package for ${dollars(tier.amount)} per month`}
+                aria-label={`Select ${tier.name} package for ${euros(tier.amount)} per month`}
                 className="col-start-2 row-span-3 row-start-1 font-bold text-pumpkin hover:text-fg md:col-start-auto md:row-span-1 md:row-start-auto md:text-right"
               >
                 Select package
