@@ -5920,6 +5920,279 @@
           "line": 46
         }
       ]
+    },
+    "blocks:vault": {
+      "status": "partial",
+      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+      "note": "Key validation and state transitions exist, but use_with_item drops hardcoded emerald, diamond, and iron stacks instead of rolling configured loot tables, VaultBlockEntity has no tick state machine, and rewarded_players is not persisted to NBT.",
+      "items": [
+        {
+          "text": "Key validation, state changes, and sounds",
+          "done": true
+        },
+        {
+          "text": "Vault loot table rolls, tick cycle, and rewarded-player NBT persistence",
+          "done": false
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/block/blocks/vault.rs",
+          "sha256": "5346a8471303a9d8cf632c64810476969c0af5bec1b3a13b25815f432716c5f9"
+        },
+        {
+          "source": "crates/pumpkin-core/src/block/entities/vault.rs",
+          "sha256": "3964a20c0889cac98c21b79226819f91edf6a597cc634fde4c671ec2e422f72c"
+        }
+      ],
+      "evidence": [
+        {
+          "source": "crates/pumpkin-core/src/block/blocks/vault.rs",
+          "line": 109,
+          "label": "VaultBlock::use_with_item drops hardcoded loot stacks"
+        },
+        {
+          "source": "crates/pumpkin-core/src/block/entities/vault.rs",
+          "line": 38,
+          "label": "VaultBlockEntity::write_nbt omits rewarded_players"
+        }
+      ]
+    },
+    "blocks:creaking_heart": {
+      "status": "partial",
+      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+      "note": "Updates Uprooted and Dormant states from flanking Pale Oak logs, but CreakingHeartBlockEntity has no tick to transition to Awake, spawn or link a Creaking, or generate resin.",
+      "items": [
+        {
+          "text": "Flanking Pale Oak log validation and Uprooted/Dormant state updates",
+          "done": true
+        },
+        {
+          "text": "Day/night Awake ticking, Creaking spawning/linking, and resin generation",
+          "done": false
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/block/blocks/creaking_heart.rs",
+          "sha256": "1837d81e1505fc2f3eb11ad4db56b8dbd2cfa213a2d91702305be139490fc893"
+        },
+        {
+          "source": "crates/pumpkin-core/src/block/entities/creaking_heart.rs",
+          "sha256": "c66599570ed6c732ee852ab164da7d94f27c408fffa30fe86972bfbddbad5525"
+        }
+      ],
+      "evidence": [
+        {
+          "source": "crates/pumpkin-core/src/block/blocks/creaking_heart.rs",
+          "line": 80,
+          "label": "CreakingHeartBlock::on_neighbor_update"
+        },
+        {
+          "source": "crates/pumpkin-core/src/block/entities/creaking_heart.rs",
+          "line": 18,
+          "label": "CreakingHeartBlockEntity without tick implementation"
+        }
+      ]
+    },
+    "blocks:beacon": {
+      "status": "partial",
+      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+      "note": "Pyramid level validation, periodic effect application, and GUI handling exist in BeaconBlockEntity, but BeaconBlock omits placed/broken block entity lifecycle hooks and beam occlusion checks.",
+      "items": [
+        {
+          "text": "Pyramid base validation, periodic effect application, and GUI screen",
+          "done": true
+        },
+        {
+          "text": "Block placement/removal block entity wiring and sky beam occlusion checks",
+          "done": false
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/block/blocks/beacon.rs",
+          "sha256": "9b081c6fd19f0df5822ef25877e12067cfac18cb36de1c2fab2e069dbd395db5"
+        },
+        {
+          "source": "crates/pumpkin-core/src/block/entities/beacon.rs",
+          "sha256": "e08bf9368aee5ee75a2a59889d7f636686ff957113345bf7dd00c4c76b763f3b"
+        }
+      ],
+      "evidence": [
+        {
+          "source": "crates/pumpkin-core/src/block/blocks/beacon.rs",
+          "line": 44,
+          "label": "BeaconBlock::normal_use without placed/broken hooks"
+        },
+        {
+          "source": "crates/pumpkin-core/src/block/entities/beacon.rs",
+          "line": 320,
+          "label": "BeaconBlockEntity::tick"
+        }
+      ]
+    },
+    "blocks:redstone-sculk_sensor": {
+      "status": "partial",
+      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+      "note": "Redstone signal output, calibrated directional filtering, and phase cooldown ticks are implemented, but World::post_game_event only notifies mob listeners and never triggers sculk sensors.",
+      "items": [
+        {
+          "text": "Active/cooldown phase transitions, comparator output, and calibrated input filtering",
+          "done": true
+        },
+        {
+          "text": "World game-event vibration listener dispatch to SculkSensorBlock::trigger",
+          "done": false
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/block/blocks/redstone/sculk_sensor.rs",
+          "sha256": "3612b19c48f3b9e3625762c926439a77f1f64ccf8ad1502c2b6d0717b9ee59e3"
+        },
+        {
+          "source": "crates/pumpkin-core/src/world/game_event.rs",
+          "sha256": "dc4f24411519a919e030ff8d2b2fd5a1201d12c505e030548619c4e93e4ea452"
+        }
+      ],
+      "evidence": [
+        {
+          "source": "crates/pumpkin-core/src/block/blocks/redstone/sculk_sensor.rs",
+          "line": 74,
+          "label": "SculkSensorBlock::trigger"
+        },
+        {
+          "source": "crates/pumpkin-core/src/world/game_event.rs",
+          "line": 57,
+          "label": "World::post_game_event only iterates mob listeners"
+        }
+      ]
+    },
+    "blocks:sculk-sculk_shrieker": {
+      "status": "partial",
+      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+      "note": "Direct player stepping, warning levels, Darkness application, and Warden spawning are implemented, but world game events do not dispatch vibrations to shriekers.",
+      "items": [
+        {
+          "text": "Step activation, warning levels, Darkness effect, and Warden summoning",
+          "done": true
+        },
+        {
+          "text": "Vibration game-event listener activation",
+          "done": false
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/block/blocks/sculk/sculk_shrieker.rs",
+          "sha256": "a7e3310a7a1a16a48f0a00112f32b92b858e36081d09c0a173984adb8419364c"
+        },
+        {
+          "source": "crates/pumpkin-core/src/world/game_event.rs",
+          "sha256": "dc4f24411519a919e030ff8d2b2fd5a1201d12c505e030548619c4e93e4ea452"
+        }
+      ],
+      "evidence": [
+        {
+          "source": "crates/pumpkin-core/src/block/blocks/sculk/sculk_shrieker.rs",
+          "line": 77,
+          "label": "SculkShriekerBlock::try_shriek"
+        },
+        {
+          "source": "crates/pumpkin-core/src/world/game_event.rs",
+          "line": 57,
+          "label": "World::post_game_event only iterates mob listeners"
+        }
+      ]
+    },
+    "blocks:lodestone": {
+      "status": "done",
+      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+      "note": "Compass binding via LodestoneTrackerImpl is implemented in CompassItem::use_on_block.",
+      "items": [
+        {
+          "text": "Lodestone compass binding and sound",
+          "done": true
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/item/items/compass.rs",
+          "sha256": "de426cc4832ad62ab7f4753104f6cc365df853da49d1a6d971265e84a802563d"
+        }
+      ],
+      "evidence": [
+        {
+          "source": "crates/pumpkin-core/src/item/items/compass.rs",
+          "line": 34,
+          "label": "CompassItem::use_on_block lodestone binding"
+        }
+      ]
+    },
+    "items:compass": {
+      "status": "partial",
+      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+      "note": "Lodestone binding on right-click is implemented, but inventory ticking does not clear the target when the linked lodestone is broken.",
+      "items": [
+        {
+          "text": "Lodestone binding and stack splitting on right-click",
+          "done": true
+        },
+        {
+          "text": "Inventory tick verification of tracked lodestone block",
+          "done": false
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/item/items/compass.rs",
+          "sha256": "de426cc4832ad62ab7f4753104f6cc365df853da49d1a6d971265e84a802563d"
+        }
+      ],
+      "evidence": [
+        {
+          "source": "crates/pumpkin-core/src/item/items/compass.rs",
+          "line": 24,
+          "label": "CompassItem::use_on_block"
+        }
+      ]
+    },
+    "items:goat_horn": {
+      "status": "partial",
+      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+      "note": "Plays the instrument sound, sets the active hand, and emits the InstrumentPlay game event, but does not apply the use cooldown.",
+      "items": [
+        {
+          "text": "Instrument sound playback and InstrumentPlay game event",
+          "done": true
+        },
+        {
+          "text": "Use cooldown enforcement",
+          "done": false
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/item/items/goat_horn.rs",
+          "sha256": "8d05c7a62bc0af7bb93019f41725a65238ebb366a0f2c589818840c7aabec437"
+        }
+      ],
+      "evidence": [
+        {
+          "source": "crates/pumpkin-core/src/item/items/goat_horn.rs",
+          "line": 27,
+          "label": "GoatHornItem::normal_use_with_hand"
+        }
+      ]
     }
   },
   "updated": "2026-11-09"

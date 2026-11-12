@@ -4725,6 +4725,7 @@
       "id": "blocks",
       "label": "Blocks",
       "unit": "block behaviours",
+      "tracking": 4559,
       "description": "Block behaviour files discovered in the server source, plus explicitly tracked gaps. File discovery is not a complete vanilla block audit.",
       "entries": [
         {
@@ -4789,17 +4790,39 @@
           "id": "beacon",
           "name": "Beacon",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/beacon.rs",
           "ids": [
             "minecraft:beacon"
           ],
-          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "note": "Pyramid level validation, periodic effect application, and GUI handling exist in BeaconBlockEntity, but BeaconBlock omits placed/broken block entity lifecycle hooks and beam occlusion checks.",
+          "items": [
+            {
+              "text": "Pyramid base validation, periodic effect application, and GUI screen",
+              "done": true
+            },
+            {
+              "text": "Block placement/removal block entity wiring and sky beam occlusion checks",
+              "done": false
+            }
+          ],
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
-            "current": false
-          }
+            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "current": true
+          },
+          "evidence": [
+            {
+              "source": "crates/pumpkin-core/src/block/blocks/beacon.rs",
+              "line": 44,
+              "label": "BeaconBlock::normal_use without placed/broken hooks"
+            },
+            {
+              "source": "crates/pumpkin-core/src/block/entities/beacon.rs",
+              "line": 320,
+              "label": "BeaconBlockEntity::tick"
+            }
+          ]
         },
         {
           "id": "bed",
@@ -4807,6 +4830,28 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/bed.rs",
+          "issues": [
+            {
+              "number": 4344,
+              "title": "Beds never explode in the Nether or the End",
+              "state": "open"
+            },
+            {
+              "number": 3888,
+              "title": "Taking damage/getting killed while sleeping doesn't wake the player up",
+              "state": "open"
+            },
+            {
+              "number": 3581,
+              "title": "Players cannot use beds occupied by sleeping villagers",
+              "state": "open"
+            },
+            {
+              "number": 3521,
+              "title": "Bed and respawn-anchor explosions do not create fire",
+              "state": "open"
+            }
+          ],
           "note": "Sleeping and occupied-bed checks exist. The occupied-bed path still sends the occupied message without waking the villager.",
           "items": [
             {
@@ -4954,6 +4999,18 @@
           "group": "Blocks",
           "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/campfire.rs",
+          "issues": [
+            {
+              "number": 4178,
+              "title": "Campfire dupes food",
+              "state": "open"
+            },
+            {
+              "number": 3020,
+              "title": "Campfire block cannot cook and cannot be extinguished by potion",
+              "state": "open"
+            }
+          ],
           "note": "Implements cooking, smoke/signal states, extinguishing, entity fire damage, and ignition by burning projectiles.",
           "items": [
             {
@@ -5090,6 +5147,28 @@
           "ids": [
             "minecraft:trapped_chest"
           ],
+          "issues": [
+            {
+              "number": 4288,
+              "title": "Chest changes are lost when the last player leaves (item duplication)",
+              "state": "open"
+            },
+            {
+              "number": 4011,
+              "title": "Extending a chest from diagonally above does not work properly",
+              "state": "open"
+            },
+            {
+              "number": 3902,
+              "title": "Chest contents and structure loot tables are lost on `stop` in chunks away from spawn (only an explicit `save-all` persists them)",
+              "state": "open"
+            },
+            {
+              "number": 3545,
+              "title": "Sitting cats do not block chests or ender chests from opening",
+              "state": "open"
+            }
+          ],
           "note": "Implements single/double chest inventory, trapped chest redstone output, and top obstruction checks including sitting cats.",
           "items": [
             {
@@ -5122,6 +5201,18 @@
           "source": "crates/pumpkin-core/src/block/blocks/chiseled_bookshelf.rs",
           "ids": [
             "minecraft:chiseled_bookshelf"
+          ],
+          "issues": [
+            {
+              "number": 3847,
+              "title": "dupe with chiseled bookshelfs",
+              "state": "open"
+            },
+            {
+              "number": 3646,
+              "title": "Chiseled bookshelf book changes emit no block-change game event",
+              "state": "open"
+            }
           ],
           "note": "Book storage and last-interacted-slot comparator handling exist. try_add_book does not increment the player used-block statistic.",
           "items": [
@@ -5182,6 +5273,23 @@
           "ids": [
             "minecraft:composter"
           ],
+          "issues": [
+            {
+              "number": 4342,
+              "title": "Hoppers do not insert items into composters",
+              "state": "open"
+            },
+            {
+              "number": 4129,
+              "title": "Composter does not take seeds",
+              "state": "open"
+            },
+            {
+              "number": 3293,
+              "title": "Composter gives you free bonemeal every time you break it",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -5236,6 +5344,13 @@
           "ids": [
             "minecraft:crafting_table"
           ],
+          "issues": [
+            {
+              "number": 3917,
+              "title": "Crafting Table Duplication Glitch",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -5247,17 +5362,39 @@
           "id": "creaking_heart",
           "name": "Creaking Heart",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/creaking_heart.rs",
           "ids": [
             "minecraft:creaking_heart"
           ],
-          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "note": "Updates Uprooted and Dormant states from flanking Pale Oak logs, but CreakingHeartBlockEntity has no tick to transition to Awake, spawn or link a Creaking, or generate resin.",
+          "items": [
+            {
+              "text": "Flanking Pale Oak log validation and Uprooted/Dormant state updates",
+              "done": true
+            },
+            {
+              "text": "Day/night Awake ticking, Creaking spawning/linking, and resin generation",
+              "done": false
+            }
+          ],
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
-            "current": false
-          }
+            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "current": true
+          },
+          "evidence": [
+            {
+              "source": "crates/pumpkin-core/src/block/blocks/creaking_heart.rs",
+              "line": 80,
+              "label": "CreakingHeartBlock::on_neighbor_update"
+            },
+            {
+              "source": "crates/pumpkin-core/src/block/entities/creaking_heart.rs",
+              "line": 18,
+              "label": "CreakingHeartBlockEntity without tick implementation"
+            }
+          ]
         },
         {
           "id": "decorated_pot",
@@ -5283,6 +5420,18 @@
           "source": "crates/pumpkin-core/src/block/blocks/dirt_path.rs",
           "ids": [
             "minecraft:dirt_path"
+          ],
+          "issues": [
+            {
+              "number": 3580,
+              "title": "Farmland and dirt paths turning into dirt can leave entities embedded",
+              "state": "open"
+            },
+            {
+              "number": 3560,
+              "title": "Fence gates turn farmland and dirt paths into dirt",
+              "state": "open"
+            }
           ],
           "note": "Obstructed scheduled conversion to dirt and the fence-gate exception are implemented. Entity upward displacement on dirt conversion remains a TODO.",
           "items": [
@@ -5399,6 +5548,13 @@
           "group": "Blocks",
           "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/dripstone.rs",
+          "issues": [
+            {
+              "number": 3377,
+              "title": "Bottom dripstone does not deal damage",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -5525,6 +5681,18 @@
           "group": "Blocks",
           "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/falling.rs",
+          "issues": [
+            {
+              "number": 3672,
+              "title": "Falling blocks don't slow with cobwebs",
+              "state": "open"
+            },
+            {
+              "number": 2467,
+              "title": "Sand disappears after falling",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -5540,6 +5708,23 @@
           "source": "crates/pumpkin-core/src/block/blocks/farmland.rs",
           "ids": [
             "minecraft:farmland"
+          ],
+          "issues": [
+            {
+              "number": 3580,
+              "title": "Farmland and dirt paths turning into dirt can leave entities embedded",
+              "state": "open"
+            },
+            {
+              "number": 3560,
+              "title": "Fence gates turn farmland and dirt paths into dirt",
+              "state": "open"
+            },
+            {
+              "number": 3111,
+              "title": "Crops cannot be trampled",
+              "state": "open"
+            }
           ],
           "note": "Water fluid hydration, rain hydration, crop check, fence-gate exception, and trampling are implemented. Entity upward displacement on dirt conversion remains a TODO.",
           "items": [
@@ -5658,6 +5843,33 @@
           "ids": [
             "minecraft:furnace"
           ],
+          "issues": [
+            {
+              "number": 4496,
+              "title": "Furnace does not award experience after smelting when the smelted product is extracted",
+              "state": "open"
+            },
+            {
+              "number": 4491,
+              "title": "Lava bucket consumed as furnace fuel without returning empty bucket",
+              "state": "open"
+            },
+            {
+              "number": 4340,
+              "title": "Side hopper puts non-fuel items into furnace input slot",
+              "state": "open"
+            },
+            {
+              "number": 4339,
+              "title": "Hopper pulls input and fuel from furnace above",
+              "state": "open"
+            },
+            {
+              "number": 2976,
+              "title": "Bug: Furnace Interaction Restores Tool Durability in Survival Mode",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -5761,6 +5973,38 @@
           "ids": [
             "minecraft:hopper"
           ],
+          "issues": [
+            {
+              "number": 4343,
+              "title": "Hopper does not pull items from a chest minecart above it",
+              "state": "open"
+            },
+            {
+              "number": 4342,
+              "title": "Hoppers do not insert items into composters",
+              "state": "open"
+            },
+            {
+              "number": 4341,
+              "title": "Hopper can insert shulker boxes into a shulker box",
+              "state": "open"
+            },
+            {
+              "number": 4340,
+              "title": "Side hopper puts non-fuel items into furnace input slot",
+              "state": "open"
+            },
+            {
+              "number": 4339,
+              "title": "Hopper pulls input and fuel from furnace above",
+              "state": "open"
+            },
+            {
+              "number": 3881,
+              "title": "Hopper-to-hopper cooldown compares cooldown_time instead of tickedGameTime",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -5800,6 +6044,13 @@
           "group": "Blocks",
           "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/ice.rs",
+          "issues": [
+            {
+              "number": 3781,
+              "title": "Breaking ice blocks in creative mode replaces the ice with water",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -5813,6 +6064,13 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/infested.rs",
+          "issues": [
+            {
+              "number": 3615,
+              "title": "Mining infested blocks with Silk Touch still spawns silverfish",
+              "state": "open"
+            }
+          ],
           "note": "Silk Touch and block_drops game rule checks are implemented. Breaking still constructs a generic Entity with the silverfish type rather than SilverfishEntity.",
           "items": [
             {
@@ -5874,6 +6132,23 @@
           "source": "crates/pumpkin-core/src/block/blocks/jukebox.rs",
           "ids": [
             "minecraft:jukebox"
+          ],
+          "issues": [
+            {
+              "number": 4128,
+              "title": "Jukebox music disc duplication",
+              "state": "open"
+            },
+            {
+              "number": 3643,
+              "title": "Inserting or ejecting a jukebox record emits no block-change game event",
+              "state": "open"
+            },
+            {
+              "number": 3548,
+              "title": "Jukebox playback state never resumes after chunk or server reload",
+              "state": "open"
+            }
           ],
           "note": "Disc playback, state updates, and comparator notifications on replacement are implemented. Insertion still omits the BlockChange game event.",
           "items": [
@@ -5939,6 +6214,13 @@
           "group": "Blocks",
           "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/leaves.rs",
+          "issues": [
+            {
+              "number": 3250,
+              "title": "Leaves drop saplings when broken too often",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -5954,6 +6236,13 @@
           "source": "crates/pumpkin-core/src/block/blocks/lectern.rs",
           "ids": [
             "minecraft:lectern"
+          ],
+          "issues": [
+            {
+              "number": 2698,
+              "title": "Lectern Book Takes Time To Appear",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -5982,13 +6271,27 @@
           "id": "lodestone",
           "name": "Lodestone",
           "group": "Blocks",
-          "status": "planned",
-          "note": "Compass binding is not implemented.",
+          "status": "done",
+          "source": "crates/pumpkin-core/src/item/items/compass.rs",
+          "note": "Compass binding via LodestoneTrackerImpl is implemented in CompassItem::use_on_block.",
+          "items": [
+            {
+              "text": "Lodestone compass binding and sound",
+              "done": true
+            }
+          ],
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
-            "current": false
-          }
+            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "current": true
+          },
+          "evidence": [
+            {
+              "source": "crates/pumpkin-core/src/item/items/compass.rs",
+              "line": 34,
+              "label": "CompassItem::use_on_block lodestone binding"
+            }
+          ]
         },
         {
           "id": "logs",
@@ -6030,6 +6333,18 @@
           "source": "crates/pumpkin-core/src/block/blocks/magma.rs",
           "ids": [
             "minecraft:magma_block"
+          ],
+          "issues": [
+            {
+              "number": 3837,
+              "title": "Standing on one block above a magma block with snow placed on it does damage",
+              "state": "open"
+            },
+            {
+              "number": 3099,
+              "title": "Magma blocks generated in the terrain dont produce bubbles underwater.",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -6117,6 +6432,18 @@
           "source": "crates/pumpkin-core/src/block/blocks/nether_portal.rs",
           "ids": [
             "minecraft:nether_portal"
+          ],
+          "issues": [
+            {
+              "number": 4197,
+              "title": "Entities that pass through nether portals don't appears at the other side",
+              "state": "open"
+            },
+            {
+              "number": 4194,
+              "title": "Can't turn off a nether portal with water",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -6262,6 +6589,18 @@
           "ids": [
             "minecraft:respawn_anchor"
           ],
+          "issues": [
+            {
+              "number": 3521,
+              "title": "Bed and respawn-anchor explosions do not create fire",
+              "state": "open"
+            },
+            {
+              "number": 3514,
+              "title": "Uncharged respawn anchors explode outside the Nether",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -6294,6 +6633,13 @@
           "ids": [
             "minecraft:scaffolding"
           ],
+          "issues": [
+            {
+              "number": 1871,
+              "title": "cannot place Scaffolding like usual",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -6320,6 +6666,18 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/shulker_box.rs",
+          "issues": [
+            {
+              "number": 4537,
+              "title": "Shulker box doesn't check for blocks on top",
+              "state": "open"
+            },
+            {
+              "number": 4341,
+              "title": "Hopper can insert shulker boxes into a shulker box",
+              "state": "open"
+            }
+          ],
           "note": "The inventory works, but the synced event handler explicitly lacks the closing-state restriction. Source review does not establish full lid/collision parity.",
           "items": [
             {
@@ -6381,6 +6739,13 @@
           "group": "Blocks",
           "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/slabs.rs",
+          "issues": [
+            {
+              "number": 4247,
+              "title": "Can't waterlog stairs or slabs",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -6412,6 +6777,13 @@
           "source": "crates/pumpkin-core/src/block/blocks/smithing_table.rs",
           "ids": [
             "minecraft:smithing_table"
+          ],
+          "issues": [
+            {
+              "number": 4457,
+              "title": "smithing table bug",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -6461,6 +6833,18 @@
           "ids": [
             "minecraft:snow"
           ],
+          "issues": [
+            {
+              "number": 3855,
+              "title": "Breaking block below snow carpet bugs out in random ways",
+              "state": "open"
+            },
+            {
+              "number": 3837,
+              "title": "Standing on one block above a magma block with snow placed on it does damage",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -6507,6 +6891,13 @@
           "group": "Blocks",
           "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/stairs.rs",
+          "issues": [
+            {
+              "number": 4247,
+              "title": "Can't waterlog stairs or slabs",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -6522,6 +6913,13 @@
           "source": "crates/pumpkin-core/src/block/blocks/stonecutter.rs",
           "ids": [
             "minecraft:stonecutter"
+          ],
+          "issues": [
+            {
+              "number": 4458,
+              "title": "stone cutter bug",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -6655,6 +7053,13 @@
           "ids": [
             "minecraft:tnt"
           ],
+          "issues": [
+            {
+              "number": 4084,
+              "title": "TNT explodes with delay",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -6668,6 +7073,13 @@
           "group": "Blocks",
           "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/torches.rs",
+          "issues": [
+            {
+              "number": 3120,
+              "title": "When breaking block with torch on it in creative, torch doesnt drop",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -6724,17 +7136,46 @@
           "id": "vault",
           "name": "Vault",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/vault.rs",
           "ids": [
             "minecraft:vault"
           ],
-          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "issues": [
+            {
+              "number": 3989,
+              "title": "Trial Vault crashes the server",
+              "state": "open"
+            }
+          ],
+          "note": "Key validation and state transitions exist, but use_with_item drops hardcoded emerald, diamond, and iron stacks instead of rolling configured loot tables, VaultBlockEntity has no tick state machine, and rewarded_players is not persisted to NBT.",
+          "items": [
+            {
+              "text": "Key validation, state changes, and sounds",
+              "done": true
+            },
+            {
+              "text": "Vault loot table rolls, tick cycle, and rewarded-player NBT persistence",
+              "done": false
+            }
+          ],
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
-            "current": false
-          }
+            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "current": true
+          },
+          "evidence": [
+            {
+              "source": "crates/pumpkin-core/src/block/blocks/vault.rs",
+              "line": 109,
+              "label": "VaultBlock::use_with_item drops hardcoded loot stacks"
+            },
+            {
+              "source": "crates/pumpkin-core/src/block/entities/vault.rs",
+              "line": 38,
+              "label": "VaultBlockEntity::write_nbt omits rewarded_players"
+            }
+          ]
         },
         {
           "id": "vine",
@@ -6771,6 +7212,13 @@
           "group": "Blocks",
           "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/weathering_copper.rs",
+          "issues": [
+            {
+              "number": 3567,
+              "title": "Waxing copper trapdoors resets their orientation and open state",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -6799,6 +7247,28 @@
           "source": "crates/pumpkin-core/src/block/blocks/fire/fire.rs",
           "ids": [
             "minecraft:fire"
+          ],
+          "issues": [
+            {
+              "number": 4478,
+              "title": "After the flame is extinguished, it reappears out of thin air.",
+              "state": "open"
+            },
+            {
+              "number": 4451,
+              "title": "The way the fire is spreading doesn't seem quite right.",
+              "state": "open"
+            },
+            {
+              "number": 3772,
+              "title": "Fire propagation from natural lava source is infinite",
+              "state": "open"
+            },
+            {
+              "number": 3659,
+              "title": "Fire may stay floating mid air after burning down a tree/forest",
+              "state": "open"
+            }
           ],
           "note": "Fire spread exists. Increased burnout is hardcoded to biome IDs, whereas the Lantern reference reads the environment attribute at the position.",
           "items": [
@@ -6858,14 +7328,43 @@
           "id": "sculk-sculk_shrieker",
           "name": "Sculk Shrieker",
           "group": "Fire & Sculk",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/sculk/sculk_shrieker.rs",
-          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "issues": [
+            {
+              "number": 3107,
+              "title": "Sculk Shrieker doesnt activate",
+              "state": "open"
+            }
+          ],
+          "note": "Direct player stepping, warning levels, Darkness application, and Warden spawning are implemented, but world game events do not dispatch vibrations to shriekers.",
+          "items": [
+            {
+              "text": "Step activation, warning levels, Darkness effect, and Warden summoning",
+              "done": true
+            },
+            {
+              "text": "Vibration game-event listener activation",
+              "done": false
+            }
+          ],
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
-            "current": false
-          }
+            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "current": true
+          },
+          "evidence": [
+            {
+              "source": "crates/pumpkin-core/src/block/blocks/sculk/sculk_shrieker.rs",
+              "line": 77,
+              "label": "SculkShriekerBlock::try_shriek"
+            },
+            {
+              "source": "crates/pumpkin-core/src/world/game_event.rs",
+              "line": 57,
+              "label": "World::post_game_event only iterates mob listeners"
+            }
+          ]
         },
         {
           "id": "sculk-sculk_vein",
@@ -6971,6 +7470,28 @@
           "ids": [
             "minecraft:piston",
             "minecraft:sticky_piston"
+          ],
+          "issues": [
+            {
+              "number": 4281,
+              "title": "Issues with pistons",
+              "state": "open"
+            },
+            {
+              "number": 3900,
+              "title": "Piston problem",
+              "state": "open"
+            },
+            {
+              "number": 3833,
+              "title": "Pistons can be powered from the head when the head is facing down.",
+              "state": "open"
+            },
+            {
+              "number": 3144,
+              "title": "Extended piston client desync",
+              "state": "open"
+            }
           ],
           "note": "Extension, sticky retraction, rapid retraction pulse dropping, entity pushing, and activate/deactivate game events are implemented. Moving-piston NBT still omits pushed_block_state.",
           "items": [
@@ -7083,6 +7604,13 @@
           "source": "crates/pumpkin-core/src/block/blocks/plant/big_dripleaf.rs",
           "ids": [
             "minecraft:big_dripleaf"
+          ],
+          "issues": [
+            {
+              "number": 3552,
+              "title": "Projectiles do not collapse big dripleaf leaves",
+              "state": "open"
+            }
           ],
           "note": "Implements entity tilt scheduling, projectile hit tilting, redstone lock, bone meal growth, and waterlogging.",
           "items": [
@@ -7313,6 +7841,13 @@
           "group": "Plants & Crops",
           "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/plant/eyeblossom.rs",
+          "issues": [
+            {
+              "number": 3065,
+              "title": "Eyeblossom state changes send malformed Trail particle data and disconnect 26.2 clients",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -7413,6 +7948,13 @@
           "ids": [
             "minecraft:lily_pad"
           ],
+          "issues": [
+            {
+              "number": 3557,
+              "title": "Lily pads cannot be placed on waterlogged blocks",
+              "state": "open"
+            }
+          ],
           "note": "Implements water/ice placement support and boat/raft collision breaking.",
           "items": [
             {
@@ -7459,6 +8001,13 @@
           "group": "Plants & Crops",
           "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/plant/mushroom_plant.rs",
+          "issues": [
+            {
+              "number": 3060,
+              "title": "Mushrooms break unexpectedly",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -7734,6 +8283,13 @@
           "ids": [
             "minecraft:sugar_cane"
           ],
+          "issues": [
+            {
+              "number": 3558,
+              "title": "Sugar cane cannot be planted beside water or waterlogged blocks",
+              "state": "open"
+            }
+          ],
           "note": "Implements adjacent water/frosted-ice support checks and random-tick vertical growth.",
           "items": [
             {
@@ -7766,6 +8322,13 @@
           "source": "crates/pumpkin-core/src/block/blocks/plant/crop/sweet_berry_bush.rs",
           "ids": [
             "minecraft:sweet_berry_bush"
+          ],
+          "issues": [
+            {
+              "number": 3292,
+              "title": "Berries duplicate when placing them and breaking them without letting them grow",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -7854,6 +8417,13 @@
           "ids": [
             "minecraft:wheat"
           ],
+          "issues": [
+            {
+              "number": 3516,
+              "title": "Crops continue growing below vanilla light level",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -7919,6 +8489,23 @@
           "ids": [
             "minecraft:bell"
           ],
+          "issues": [
+            {
+              "number": 3631,
+              "title": "Bells never resonate or reveal nearby raiders",
+              "state": "open"
+            },
+            {
+              "number": 3003,
+              "title": "Ring bell with arrow shot",
+              "state": "open"
+            },
+            {
+              "number": 3002,
+              "title": "Bell animation missing",
+              "state": "open"
+            }
+          ],
           "note": "Implements directional ringing, synced block events, and BlockChange game event emission.",
           "items": [
             {
@@ -7954,6 +8541,13 @@
           "group": "Redstone",
           "status": "done",
           "source": "crates/pumpkin-core/src/block/blocks/redstone/buttons.rs",
+          "issues": [
+            {
+              "number": 3838,
+              "title": "Button noise fires twice",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -7998,6 +8592,13 @@
           "source": "crates/pumpkin-core/src/block/blocks/redstone/crafter.rs",
           "ids": [
             "minecraft:crafter"
+          ],
+          "issues": [
+            {
+              "number": 4290,
+              "title": "[BUG] Crafter's disabled slots reset when the player opens the UI.",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -8078,6 +8679,33 @@
           "ids": [
             "minecraft:dispenser"
           ],
+          "issues": [
+            {
+              "number": 3972,
+              "title": "Powder snow placed from a bucket by a dispenser is not shown to clients",
+              "state": "open"
+            },
+            {
+              "number": 3970,
+              "title": "Dispensers drop filled buckets in front of replaceable blocks (short grass) instead of replacing them",
+              "state": "open"
+            },
+            {
+              "number": 3822,
+              "title": "Dispensers can only shear sheep and beehives",
+              "state": "open"
+            },
+            {
+              "number": 3627,
+              "title": "Dispensers drop bone meal instead of applying it as fertilizer",
+              "state": "open"
+            },
+            {
+              "number": 3518,
+              "title": "Dispensers lose aquatic mobs from filled buckets",
+              "state": "open"
+            }
+          ],
           "note": "Projectiles, experience bottles, buckets, fire charges, flint and steel, shears, saddles, TNT, shulker boxes, and armor dispensing are implemented. Bone meal, boats, and brush dispensing remain incomplete.",
           "items": [
             {
@@ -8132,6 +8760,13 @@
           "ids": [
             "minecraft:lever"
           ],
+          "issues": [
+            {
+              "number": 3133,
+              "title": "Lever: on_state_replaced ignores the piston `moved` flag, and normal_use returns Consume instead of Success",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -8160,6 +8795,13 @@
           "source": "crates/pumpkin-core/src/block/blocks/redstone/observer.rs",
           "ids": [
             "minecraft:observer"
+          ],
+          "issues": [
+            {
+              "number": 3105,
+              "title": "Observers doesnt work",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -8328,14 +8970,36 @@
           "id": "redstone-sculk_sensor",
           "name": "Sculk Sensor",
           "group": "Redstone",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/redstone/sculk_sensor.rs",
-          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "note": "Redstone signal output, calibrated directional filtering, and phase cooldown ticks are implemented, but World::post_game_event only notifies mob listeners and never triggers sculk sensors.",
+          "items": [
+            {
+              "text": "Active/cooldown phase transitions, comparator output, and calibrated input filtering",
+              "done": true
+            },
+            {
+              "text": "World game-event vibration listener dispatch to SculkSensorBlock::trigger",
+              "done": false
+            }
+          ],
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
-            "current": false
-          }
+            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "current": true
+          },
+          "evidence": [
+            {
+              "source": "crates/pumpkin-core/src/block/blocks/redstone/sculk_sensor.rs",
+              "line": 74,
+              "label": "SculkSensorBlock::trigger"
+            },
+            {
+              "source": "crates/pumpkin-core/src/world/game_event.rs",
+              "line": 57,
+              "label": "World::post_game_event only iterates mob listeners"
+            }
+          ]
         },
         {
           "id": "redstone-target_block",
@@ -8361,6 +9025,18 @@
           "source": "crates/pumpkin-core/src/block/blocks/redstone/tripwire.rs",
           "ids": [
             "minecraft:tripwire"
+          ],
+          "issues": [
+            {
+              "number": 3623,
+              "title": "Tripwire state changes emit no game events",
+              "state": "open"
+            },
+            {
+              "number": 3574,
+              "title": "Breaking tripwire with shears does not consume durability",
+              "state": "open"
+            }
           ],
           "note": "Entity detection, hook updates, spectator filtering, and Shear game event emission are implemented. Shears durability deduction and trap-avoiding entity filtering remain TODOs.",
           "items": [
@@ -8438,6 +9114,7 @@
       "id": "items",
       "label": "Items",
       "unit": "item behaviours",
+      "tracking": 4560,
       "description": "Item behaviour files discovered in the server source, plus selected shared mechanics. File discovery is not a complete vanilla item audit.",
       "entries": [
         {
@@ -8450,6 +9127,23 @@
             "minecraft:arrow",
             "minecraft:tipped_arrow",
             "minecraft:spectral_arrow"
+          ],
+          "issues": [
+            {
+              "number": 4487,
+              "title": "[Vanilla Parity 26.3] Missing and outdated mechanics in `ArrowEntity` (`arrow.rs`)",
+              "state": "open"
+            },
+            {
+              "number": 3489,
+              "title": "Arrows dont hurt",
+              "state": "open"
+            },
+            {
+              "number": 3388,
+              "title": "Arrows have glitchy particles",
+              "state": "open"
+            }
           ],
           "note": "Registration. Flight and damage live in the arrow entity.",
           "review": {
@@ -8466,6 +9160,18 @@
           "source": "crates/pumpkin-core/src/item/items/axe.rs",
           "ids": [
             "minecraft:minecraft_axes"
+          ],
+          "issues": [
+            {
+              "number": 3567,
+              "title": "Waxing copper trapdoors resets their orientation and open state",
+              "state": "open"
+            },
+            {
+              "number": 3039,
+              "title": "Tool durability reset upon dropping and picking up item",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -8515,6 +9221,13 @@
           "ids": [
             "minecraft:crossbow"
           ],
+          "issues": [
+            {
+              "number": 3844,
+              "title": "Crossbow Loading results in client kick",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -8546,6 +9259,18 @@
           "source": "crates/pumpkin-core/src/item/items/fishing_rod.rs",
           "ids": [
             "minecraft:fishing_rod"
+          ],
+          "issues": [
+            {
+              "number": 3522,
+              "title": "Successful fishing yields no item, experience, or rod durability cost",
+              "state": "open"
+            },
+            {
+              "number": 3051,
+              "title": "Fishing rod is broken",
+              "state": "open"
+            }
           ],
           "note": "Implements bobber casting, retrieval, hooked entity pulling, and fishing loot table rolls.",
           "items": [
@@ -8600,6 +9325,13 @@
           "source": "crates/pumpkin-core/src/item/items/hoe.rs",
           "ids": [
             "minecraft:minecraft_hoes"
+          ],
+          "issues": [
+            {
+              "number": 3039,
+              "title": "Tool durability reset upon dropping and picking up item",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -8660,6 +9392,23 @@
           "ids": [
             "minecraft:shears"
           ],
+          "issues": [
+            {
+              "number": 3830,
+              "title": "Fix shearing animation",
+              "state": "open"
+            },
+            {
+              "number": 3574,
+              "title": "Breaking tripwire with shears does not consume durability",
+              "state": "open"
+            },
+            {
+              "number": 3081,
+              "title": "Shears doesn't work on mooshroom cow",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -8675,6 +9424,13 @@
           "source": "crates/pumpkin-core/src/item/items/shield.rs",
           "ids": [
             "minecraft:shield"
+          ],
+          "issues": [
+            {
+              "number": 3520,
+              "title": "Shields cannot block ordinary player melee attacks",
+              "state": "open"
+            }
           ],
           "note": "Registration. Blocking lives in the combat code.",
           "review": {
@@ -8692,6 +9448,13 @@
           "ids": [
             "minecraft:minecraft_shovels"
           ],
+          "issues": [
+            {
+              "number": 3039,
+              "title": "Tool durability reset upon dropping and picking up item",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -8707,6 +9470,13 @@
           "source": "crates/pumpkin-core/src/item/items/spear.rs",
           "ids": [
             "minecraft:minecraft_spears"
+          ],
+          "issues": [
+            {
+              "number": 4454,
+              "title": "lunge enchantment doesnt work on the spear",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -8724,6 +9494,18 @@
           "ids": [
             "minecraft:minecraft_swords"
           ],
+          "issues": [
+            {
+              "number": 4477,
+              "title": "The sword's sweeping effect appeared in the wrong location.",
+              "state": "open"
+            },
+            {
+              "number": 3062,
+              "title": "Sweeping attack effect appears in the wrong position",
+              "state": "open"
+            }
+          ],
           "note": "Registration. Sweep and damage live in the combat code.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -8739,6 +9521,23 @@
           "source": "crates/pumpkin-core/src/item/items/trident.rs",
           "ids": [
             "minecraft:trident"
+          ],
+          "issues": [
+            {
+              "number": 4456,
+              "title": "riptide animation bug",
+              "state": "open"
+            },
+            {
+              "number": 3918,
+              "title": "Trident infinity damage",
+              "state": "open"
+            },
+            {
+              "number": 1552,
+              "title": "Riptide Tridents inconsistently work while it's raining",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -8803,6 +9602,13 @@
           "ids": [
             "minecraft:ender_pearl"
           ],
+          "issues": [
+            {
+              "number": 4187,
+              "title": "Ender pearl don't works when you try to interract with a block with it",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -8851,6 +9657,18 @@
           "ids": [
             "minecraft:firework_rocket"
           ],
+          "issues": [
+            {
+              "number": 4089,
+              "title": "Firework Rockets All being Power 1",
+              "state": "open"
+            },
+            {
+              "number": 1551,
+              "title": "Elytra State & Using Fireworks with (and without) one equipped.",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -8868,6 +9686,18 @@
             "minecraft:potion",
             "minecraft:splash_potion",
             "minecraft:lingering_potion"
+          ],
+          "issues": [
+            {
+              "number": 4296,
+              "title": "Splash potion damage fires no `entity-damage-by-entity` event (attacker lost)",
+              "state": "open"
+            },
+            {
+              "number": 3806,
+              "title": "Enderman Does not Damage when throwing water bottle",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -8901,6 +9731,13 @@
           "ids": [
             "minecraft:wind_charge"
           ],
+          "issues": [
+            {
+              "number": 3873,
+              "title": "Wind Charges Don't work",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -8916,6 +9753,13 @@
           "source": "crates/pumpkin-core/src/item/items/armor_stand.rs",
           "ids": [
             "minecraft:armor_stand"
+          ],
+          "issues": [
+            {
+              "number": 3614,
+              "title": "Armor stands cannot equip or swap items through player interaction",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -8954,6 +9798,33 @@
             "minecraft:bamboo_raft",
             "minecraft:bamboo_chest_raft"
           ],
+          "issues": [
+            {
+              "number": 4386,
+              "title": "Lava does not burn boats",
+              "state": "open"
+            },
+            {
+              "number": 3577,
+              "title": "Boat placement snaps to the block center instead of the raycast hit point",
+              "state": "open"
+            },
+            {
+              "number": 3082,
+              "title": "Chest on chest boat doesnt work",
+              "state": "open"
+            },
+            {
+              "number": 3068,
+              "title": "Boats cannot be broken by hand",
+              "state": "open"
+            },
+            {
+              "number": 3061,
+              "title": "Incorrect boat placement. Boats do not drop boat item after breaking.",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -8981,6 +9852,38 @@
             "minecraft:sulfur_cube_bucket",
             "minecraft:milk_bucket"
           ],
+          "issues": [
+            {
+              "number": 4491,
+              "title": "Lava bucket consumed as furnace fuel without returning empty bucket",
+              "state": "open"
+            },
+            {
+              "number": 4138,
+              "title": "Bucket events fire after the world changed; cancelling does not undo it",
+              "state": "open"
+            },
+            {
+              "number": 3973,
+              "title": "Placing a powder snow bucket by hand consumes the bucket instead of returning an empty one",
+              "state": "open"
+            },
+            {
+              "number": 3971,
+              "title": "Mob buckets do not keep the mob data, so a released axolotl gets a random color",
+              "state": "open"
+            },
+            {
+              "number": 3969,
+              "title": "Filled water and mob buckets create a water block above seagrass instead of using its water",
+              "state": "open"
+            },
+            {
+              "number": 3933,
+              "title": "Catching a fish, axolotl or tadpole with a water bucket does not give the mob bucket",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -8996,6 +9899,13 @@
           "source": "crates/pumpkin-core/src/item/items/end_crystal.rs",
           "ids": [
             "minecraft:end_crystal"
+          ],
+          "issues": [
+            {
+              "number": 3690,
+              "title": "End crystals damage, knockback and placement are not working as the intended way",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -9014,6 +9924,33 @@
             "minecraft:painting",
             "minecraft:item_frame",
             "minecraft:glow_item_frame"
+          ],
+          "issues": [
+            {
+              "number": 4522,
+              "title": "Painting variant metadata is sent without the Holder +1 offset",
+              "state": "open"
+            },
+            {
+              "number": 3767,
+              "title": "Item frames lack placement and survival validation",
+              "state": "open"
+            },
+            {
+              "number": 3622,
+              "title": "Broken paintings do not drop a painting item",
+              "state": "open"
+            },
+            {
+              "number": 3108,
+              "title": "Player disconnects when picking up any painting into the inventory.",
+              "state": "open"
+            },
+            {
+              "number": 3103,
+              "title": "Cant place paintings or itemframes",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -9053,6 +9990,18 @@
             "minecraft:furnace_minecart",
             "minecraft:command_block_minecart"
           ],
+          "issues": [
+            {
+              "number": 3880,
+              "title": "Hopper minecart picks up a dropped stack one item at a time",
+              "state": "open"
+            },
+            {
+              "number": 3071,
+              "title": "Minecarts not going uphill",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -9066,6 +10015,23 @@
           "group": "Placeables",
           "status": "done",
           "source": "crates/pumpkin-core/src/item/items/spawn_egg.rs",
+          "issues": [
+            {
+              "number": 4550,
+              "title": "When clicking on mob that has variants with spawn eggs, child is default variant instead of similar to parent.",
+              "state": "open"
+            },
+            {
+              "number": 4036,
+              "title": "Spawn Egg problems",
+              "state": "open"
+            },
+            {
+              "number": 2536,
+              "title": "Ricgt clicking a mob with a spawn egg doesnt spawn a baby",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -9115,6 +10081,13 @@
           "ids": [
             "minecraft:minecraft_bundles"
           ],
+          "issues": [
+            {
+              "number": 4388,
+              "title": "Bundle does not work as it should.",
+              "state": "open"
+            }
+          ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -9159,18 +10132,35 @@
           "id": "compass",
           "name": "Compass & Recovery Compass",
           "group": "Utility",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/item/items/compass.rs",
           "ids": [
             "minecraft:compass",
             "minecraft:recovery_compass"
           ],
-          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "note": "Lodestone binding on right-click is implemented, but inventory ticking does not clear the target when the linked lodestone is broken.",
+          "items": [
+            {
+              "text": "Lodestone binding and stack splitting on right-click",
+              "done": true
+            },
+            {
+              "text": "Inventory tick verification of tracked lodestone block",
+              "done": false
+            }
+          ],
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
-            "current": false
-          }
+            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "current": true
+          },
+          "evidence": [
+            {
+              "source": "crates/pumpkin-core/src/item/items/compass.rs",
+              "line": 24,
+              "label": "CompassItem::use_on_block"
+            }
+          ]
         },
         {
           "id": "cushion",
@@ -9225,6 +10215,38 @@
           "group": "Utility",
           "status": "done",
           "source": "crates/pumpkin-core/src/entity/player.rs",
+          "issues": [
+            {
+              "number": 3899,
+              "title": "Flying in creative while flying with a elytra you move strangly",
+              "state": "open"
+            },
+            {
+              "number": 3648,
+              "title": "Flying high with an elytra and landing causes damage/death.",
+              "state": "open"
+            },
+            {
+              "number": 3647,
+              "title": "Removing the elytra still allows for flight.",
+              "state": "open"
+            },
+            {
+              "number": 3070,
+              "title": "dying with an elytra makes you glide until you relog",
+              "state": "open"
+            },
+            {
+              "number": 1807,
+              "title": "Unable to return to normal state after landing with Elytra flight",
+              "state": "open"
+            },
+            {
+              "number": 1551,
+              "title": "Elytra State & Using Fireworks with (and without) one equipped.",
+              "state": "open"
+            }
+          ],
           "note": "Implements equip behavior, glide initiation validation, and flight durability wear.",
           "items": [
             {
@@ -9295,17 +10317,41 @@
           "id": "goat_horn",
           "name": "Goat Horn",
           "group": "Utility",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/item/items/goat_horn.rs",
           "ids": [
             "minecraft:goat_horn"
           ],
-          "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
+          "issues": [
+            {
+              "number": 3113,
+              "title": "Non-Ponder Goat Horn item inventory disconnects",
+              "state": "open"
+            }
+          ],
+          "note": "Plays the instrument sound, sets the active hand, and emits the InstrumentPlay game event, but does not apply the use cooldown.",
+          "items": [
+            {
+              "text": "Instrument sound playback and InstrumentPlay game event",
+              "done": true
+            },
+            {
+              "text": "Use cooldown enforcement",
+              "done": false
+            }
+          ],
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-            "scope": "Previous tracker assessment; not revalidated against the current snapshot.",
-            "current": false
-          }
+            "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
+            "current": true
+          },
+          "evidence": [
+            {
+              "source": "crates/pumpkin-core/src/item/items/goat_horn.rs",
+              "line": 27,
+              "label": "GoatHornItem::normal_use_with_hand"
+            }
+          ]
         },
         {
           "id": "honeycomb",
@@ -9364,6 +10410,18 @@
           "source": "crates/pumpkin-core/src/item/items/lead.rs",
           "ids": [
             "minecraft:lead"
+          ],
+          "issues": [
+            {
+              "number": 4546,
+              "title": "Clicking on a fence with lead causes time out of player connection. Server doesn't crash",
+              "state": "open"
+            },
+            {
+              "number": 4545,
+              "title": "Lead doesn't drop after attached mob is killed",
+              "state": "open"
+            }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
           "review": {
@@ -9453,6 +10511,23 @@
           "group": "Utility",
           "status": "done",
           "source": "crates/pumpkin-core/src/entity/living.rs",
+          "issues": [
+            {
+              "number": 4320,
+              "title": "Ghost totem",
+              "state": "open"
+            },
+            {
+              "number": 4135,
+              "title": "Evokers do not drop totems",
+              "state": "open"
+            },
+            {
+              "number": 4134,
+              "title": "Totems do not appear to work",
+              "state": "open"
+            }
+          ],
           "note": "Handled in the living entity death path.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",

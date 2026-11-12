@@ -303,6 +303,56 @@ const BLOCK_NAMES = {
   bonemealable_feature_placer: "Moss & Pale Moss",
   huge_mushroom: "Huge Mushroom Blocks",
 };
+const BLOCK_ISSUES = {
+  bed: [4344, 3888, 3581, 3521],
+  campfire: [4178, 3020],
+  chests: [4288, 4011, 3902, 3545],
+  chiseled_bookshelf: [3847, 3646],
+  composter: [4342, 4129, 3293],
+  crafting_table: [3917],
+  dirt_path: [3580, 3560],
+  dripstone: [3377],
+  falling: [3672, 2467],
+  farmland: [3580, 3560, 3111],
+  "fire-fire": [4478, 4451, 3772, 3659],
+  furnace: [4496, 4491, 4340, 4339, 2976],
+  hopper: [4343, 4342, 4341, 4340, 4339, 3881],
+  ice: [3781],
+  infested: [3615],
+  jukebox: [4128, 3643, 3548],
+  leaves: [3250],
+  lectern: [2698],
+  magma: [3837, 3099],
+  nether_portal: [4197, 4194],
+  "piston-piston": [4281, 3900, 3833, 3144],
+  "plant-big_dripleaf": [3552],
+  "plant-crop-sweet_berry_bush": [3292],
+  "plant-crop-wheat": [3516],
+  "plant-eyeblossom": [3065],
+  "plant-lily_pad": [3557],
+  "plant-mushroom_plant": [3060],
+  "plant-sugar_cane": [3558],
+  "redstone-bell": [3631, 3003, 3002],
+  "redstone-buttons": [3838],
+  "redstone-crafter": [4290],
+  "redstone-dispenser": [3972, 3970, 3822, 3627, 3518],
+  "redstone-lever": [3133],
+  "redstone-observer": [3105],
+  "redstone-tripwire": [3623, 3574],
+  respawn_anchor: [3521, 3514],
+  scaffolding: [1871],
+  "sculk-sculk_shrieker": [3107],
+  shulker_box: [4537, 4341],
+  slabs: [4247],
+  smithing_table: [4457],
+  snow: [3855, 3837],
+  stairs: [4247],
+  stonecutter: [4458],
+  tnt: [4084],
+  torches: [3120],
+  vault: [3989],
+  weathering_copper: [3567],
+};
 const BLOCK_GROUPS = [
   ["Redstone", (p) => p.includes("/redstone/")],
   ["Plants & Crops", (p) => p.includes("/plant/") || p.includes("/coral/")],
@@ -320,18 +370,20 @@ for (const file of walk(path.join(SRC, "block/blocks")).sort()) {
   const r = rel(file);
   const group = BLOCK_GROUPS.find(([, test]) => test(r))[0];
   const ids = declaredIds(txt, "Block");
+  const id = path.relative(path.join(SRC, "block/blocks"), file).replace(/\\/g, "/").replace(/\.rs$/, "").replace(/\//g, "-");
   const entry = {
-    id: path.relative(path.join(SRC, "block/blocks"), file).replace(/\\/g, "/").replace(/\.rs$/, "").replace(/\//g, "-"),
+    id,
     name: BLOCK_NAMES[base] || humanize(base),
     group,
     status: "unknown",
     source: r,
   };
   if (ids.length) entry.ids = ids;
+  if (BLOCK_ISSUES[id]?.length) entry.issues = BLOCK_ISSUES[id];
   blockEntries.push(entry);
 }
 blockEntries.push(
-  { id: "lodestone", name: "Lodestone", group: "Blocks", status: "unknown" },
+  { id: "lodestone", name: "Lodestone", group: "Blocks", status: "unknown", source: ensureSource("lodestone", `${ROOT}/item/items/compass.rs`) },
 );
 blockEntries.sort((a, b) => a.group.localeCompare(b.group) || a.name.localeCompare(b.name));
 
@@ -374,6 +426,35 @@ const ITEM_NAMES = {
   map: "Maps",
   compass: "Compass & Recovery Compass",
 };
+const ITEM_ISSUES = {
+  armor_stand: [3614],
+  arrow: [4487, 3489, 3388],
+  axe: [3567, 3039],
+  boat: [4386, 3577, 3082, 3068, 3061],
+  bucket: [4491, 4138, 3973, 3971, 3969, 3933],
+  bundle: [4388],
+  crossbow: [3844],
+  elytra: [3899, 3648, 3647, 3070, 1807, 1551],
+  end_crystal: [3690],
+  ender_pearl: [4187],
+  firework_rocket: [4089, 1551],
+  fishing_rod: [3522, 3051],
+  goat_horn: [3113],
+  hanging_entity: [4522, 3767, 3622, 3108, 3103],
+  hoe: [3039],
+  lead: [4546, 4545],
+  minecart: [3880, 3071],
+  potions: [4296, 3806],
+  shears: [3830, 3574, 3081],
+  shield: [3520],
+  shovel: [3039],
+  spawn_egg: [4550, 4036, 2536],
+  spear: [4454],
+  swords: [4477, 3062],
+  totem_of_undying: [4320, 4135, 4134],
+  trident: [4456, 3918, 1552],
+  wind_charge: [3873],
+};
 const ITEM_GROUPS = [
   ["Tools & Weapons", new Set(["axe", "hoe", "shovel", "swords", "mace", "spear", "bow", "crossbow", "arrow", "trident", "shield", "shears", "brush", "fishing_rod", "flint_and_steel", "debug_stick"])],
   ["Throwables", new Set(["egg", "snowball", "ender_pearl", "ender_eye", "experience_bottle", "wind_charge", "fire_charge", "firework_rocket", "potions"])],
@@ -397,11 +478,12 @@ for (const file of walk(path.join(SRC, "item/items")).sort()) {
     source: rel(file),
   };
   if (ids.length) entry.ids = ids;
+  if (ITEM_ISSUES[base]?.length) entry.issues = ITEM_ISSUES[base];
   itemEntries.push(entry);
 }
 itemEntries.push(
-  { id: "elytra", name: "Elytra", group: "Utility", status: "unknown", source: ensureSource("elytra", `${ROOT}/entity/player.rs`) },
-  { id: "totem_of_undying", name: "Totem of Undying", group: "Utility", status: "unknown", source: ensureSource("totem_of_undying", `${ROOT}/entity/living.rs`) },
+  { id: "elytra", name: "Elytra", group: "Utility", status: "unknown", source: ensureSource("elytra", `${ROOT}/entity/player.rs`), issues: ITEM_ISSUES.elytra },
+  { id: "totem_of_undying", name: "Totem of Undying", group: "Utility", status: "unknown", source: ensureSource("totem_of_undying", `${ROOT}/entity/living.rs`), issues: ITEM_ISSUES.totem_of_undying },
   { id: "chorus_fruit", name: "Chorus Fruit", group: "Throwables", status: "unknown", source: ensureSource("chorus_fruit", `${ROOT}/entity/living.rs`) },
 );
 const ITEM_GROUP_ORDER = ITEM_GROUPS.map((g) => g[0]);
@@ -545,7 +627,7 @@ async function issueInfo(number) {
   }
 }
 
-for (const entry of entityEntries) {
+for (const entry of [...entityEntries, ...blockEntries, ...itemEntries]) {
   if (entry.issues) entry.issues = await Promise.all(entry.issues.map(issueInfo));
 }
 
@@ -555,8 +637,8 @@ const out = {
   updated: commitDate,
   categories: [
     { id: "entities", label: "Entities", unit: "entities", tracking: 3468, description: `All ${entityEntries.length} entity types in the ${mcVersion} registry, with source reviews where available. Registry presence alone does not establish behaviour parity.`, entries: entityEntries },
-    { id: "blocks", label: "Blocks", unit: "block behaviours", description: "Block behaviour files discovered in the server source, plus explicitly tracked gaps. File discovery is not a complete vanilla block audit.", entries: blockEntries },
-    { id: "items", label: "Items", unit: "item behaviours", description: "Item behaviour files discovered in the server source, plus selected shared mechanics. File discovery is not a complete vanilla item audit.", entries: itemEntries },
+    { id: "blocks", label: "Blocks", unit: "block behaviours", tracking: 4559, description: "Block behaviour files discovered in the server source, plus explicitly tracked gaps. File discovery is not a complete vanilla block audit.", entries: blockEntries },
+    { id: "items", label: "Items", unit: "item behaviours", tracking: 4560, description: "Item behaviour files discovered in the server source, plus selected shared mechanics. File discovery is not a complete vanilla item audit.", entries: itemEntries },
     { id: "commands", label: "Commands", unit: "commands", tracking: 15, description: "Curated Java command inventory and Pumpkin extras. A matching filename does not establish command or alias parity.", entries: commandEntries },
     { id: "redstone", label: "Redstone", unit: "components", tracking: 1402, description: "Inventory of redstone components and mechanics; assessments require a source review.", entries: redstoneEntries },
     { id: "combat", label: "Combat", unit: "mechanics", tracking: 1404, description: "Inventory of melee, ranged and damage mechanics; assessments require a source review.", entries: combatEntries },
