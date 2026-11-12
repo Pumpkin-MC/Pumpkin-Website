@@ -90,6 +90,41 @@ function shares(list: Share[] | undefined): DistributionItem[] {
   return (list ?? []).map((share) => ({ key: share.label, label: share.label, value: share.count, share: share.percentage }));
 }
 
+const LANGUAGE_LABELS: Record<string, string> = {
+  rust: "Rust",
+  native: "Rust (Native)",
+  "rust-native": "Rust (Native)",
+  go: "Go",
+  golang: "Go",
+  javascript: "JavaScript",
+  js: "JavaScript",
+  typescript: "TypeScript",
+  ts: "TypeScript",
+  python: "Python",
+  py: "Python",
+  csharp: "C#",
+  "c#": "C#",
+  cpp: "C++",
+  "c++": "C++",
+  c_plus_plus: "C++",
+  c: "C",
+  kotlin: "Kotlin",
+  kt: "Kotlin",
+  java: "Java",
+  zig: "Zig",
+  moonbit: "MoonBit",
+  assemblyscript: "AssemblyScript",
+  swift: "Swift",
+  ruby: "Ruby",
+  lua: "Lua",
+  wasm: "Wasm",
+};
+
+function formatLanguage(language: string): string {
+  const key = language.trim().toLowerCase();
+  return LANGUAGE_LABELS[key] ?? language;
+}
+
 function summarize(data: TrendPoint[], metric: TrendMetric) {
   const level = (point: TrendPoint) => (metric === "players" ? point.online_players : point.active_servers);
   const peak = (point: TrendPoint) => (metric === "players" ? point.peak_players : point.active_servers);
@@ -171,6 +206,9 @@ export default function Stats() {
       <span className="flex flex-wrap items-baseline gap-x-2">
         <span className="w-6 shrink-0 font-mono text-xs text-muted">{plugin.rank}</span>
         {plugin.name}
+        {plugin.language && (
+          <span className="font-mono text-xs text-muted">{formatLanguage(plugin.language)}</span>
+        )}
         {plugin.market_plugin_id !== null && (
           <a href={MARKET_URL} target="_blank" rel="noopener" className="text-xs font-bold text-pumpkin hover:text-fg">
             Market
@@ -433,9 +471,18 @@ export default function Stats() {
           ))}
         </div>
 
-        <Panel title="Server CPUs" description="The processors reported most often.">
-          {systems === null ? <Loading /> : <DistributionList items={shares(systems.cpu_models)} limit={10} empty="No data reported." />}
-        </Panel>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Panel title="Plugin languages" description="Binding languages used by active plugins across reporting servers.">
+            {systems === null ? (
+              <Loading />
+            ) : (
+              <DistributionList items={shares(systems.plugin_languages)} limit={10} empty="No plugin language data reported." />
+            )}
+          </Panel>
+          <Panel title="Server CPUs" description="The processors reported most often.">
+            {systems === null ? <Loading /> : <DistributionList items={shares(systems.cpu_models)} limit={10} empty="No data reported." />}
+          </Panel>
+        </div>
 
         <aside className="mt-6 border-l-3 border-success bg-success/10 px-5 py-4">
           <h2 className="font-extrabold text-success">Privacy-preserving open telemetry</h2>

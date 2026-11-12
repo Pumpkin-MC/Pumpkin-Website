@@ -40,6 +40,7 @@ export interface Systems {
   software_versions: Share[];
   ram_distribution: Share[];
   total_ram_distribution: Share[];
+  plugin_languages?: Share[];
 }
 
 export interface GeoEntry {
@@ -53,6 +54,7 @@ export interface GeoEntry {
 export interface PluginEntry {
   rank: number;
   name: string;
+  language?: string | null;
   server_count: number;
   adoption_percentage: number;
   market_plugin_id: string | number | null;
