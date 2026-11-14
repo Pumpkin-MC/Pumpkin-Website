@@ -1,6 +1,6 @@
 {
   "version": "26.3-26.60",
-  "commit": "e9dc12e9a137675002025be9efa5bf8a2be4bd1e",
+  "commit": "e880aefa9850763ed21532266e3bccfe2064b99a",
   "updated": "2026-11-13",
   "categories": [
     {
@@ -8758,7 +8758,7 @@
             {
               "number": 3039,
               "title": "Tool durability reset upon dropping and picking up item",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -8918,7 +8918,7 @@
             {
               "number": 3039,
               "title": "Tool durability reset upon dropping and picking up item",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -9013,7 +9013,7 @@
             {
               "number": 3039,
               "title": "Tool durability reset upon dropping and picking up item",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
