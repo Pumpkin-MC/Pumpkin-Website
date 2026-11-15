@@ -1,14 +1,14 @@
 {
-  "version": "26.3-26.60",
-  "commit": "e880aefa9850763ed21532266e3bccfe2064b99a",
-  "updated": "2026-11-13",
+  "version": "26.3-26.63",
+  "commit": "4f6ba98dd1162d3f3a8e2ea06f59eb39c7add6d9",
+  "updated": "2026-11-15",
   "categories": [
     {
       "id": "entities",
       "label": "Entities",
       "unit": "entities",
       "tracking": 3468,
-      "description": "All 160 entity types in the 26.3-26.60 registry, with source reviews where available. Registry presence alone does not establish behaviour parity.",
+      "description": "All 160 entity types in the 26.3-26.63 registry, with source reviews where available. Registry presence alone does not establish behaviour parity.",
       "entries": [
         {
           "id": "blaze",
@@ -98,29 +98,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/breeze.rs",
-          "note": "The runtime has basic goals but no wind-charge attack, combat jump or slide behaviour.",
-          "items": [
-            {
-              "text": "Basic movement and player targeting",
-              "done": true
-            },
-            {
-              "text": "Wind-charge combat, jumping and sliding",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/breeze.rs",
-              "line": 19
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "cave_spider",
@@ -172,34 +155,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/creaking.rs",
-          "note": "Gaze changes call stop_in_place once. Shared AI continues ticking goals/navigation without a can_move gate, so the frozen flag does not continuously suppress movement/attacks. Brain migration alone was a misleading gap.",
-          "items": [
-            {
-              "text": "Heart binding, gaze detection and teardown effects",
-              "done": true
-            },
-            {
-              "text": "Keep navigation and attacks disabled throughout the frozen state",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/creaking.rs",
-              "line": 60
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "creeper",
@@ -207,29 +168,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/creeper.rs",
-          "note": "Explosion handling explicitly omits the area-effect cloud for active potion effects.",
-          "items": [
-            {
-              "text": "Fuse, ignition, charged state and explosion",
-              "done": true
-            },
-            {
-              "text": "Spawn a potion-effect cloud after exploding",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/creeper.rs",
-              "line": 42
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "drowned",
@@ -284,40 +228,18 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/elder_guardian.rs",
-          "note": "The source has targets and retaliation, but no beam attack or guardian swimming controller. Elder guardian also applies mining fatigue; the two entities are not look-only scaffolds.",
-          "items": [
-            {
-              "text": "Targeting and retaliation damage",
-              "done": true
-            },
-            {
-              "text": "Beam attack and water-specific swimming",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/elder_guardian.rs",
-              "line": 25
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "enderman",
           "name": "Enderman",
           "group": "Hostile",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/enderman.rs",
           "issues": [
             {
@@ -326,69 +248,25 @@
               "state": "open"
             }
           ],
-          "note": "Implements stare provocation, teleportation, water/rain damage, sunlight avoidance, and block carrying with death drops.",
-          "items": [
-            {
-              "text": "Stare/player chase, anger reset and validated teleportation",
-              "done": true
-            },
-            {
-              "text": "Sunlight avoidance and dropping the carried block on death",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/enderman.rs",
-              "line": 53
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/active_target.rs",
-              "line": 35
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "endermite",
           "name": "Endermite",
           "group": "Hostile",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/endermite.rs",
-          "note": "Implements powder-snow climbing, melee/revenge/wander/look goals, and the 2400-tick despawn timer.",
-          "items": [
-            {
-              "text": "Melee, player targeting and lifetime persistence",
-              "done": true
-            },
-            {
-              "text": "Powder-snow escape, revenge targeting and persistence-aware lifetime",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/endermite.rs",
-              "line": 23
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "evoker",
@@ -472,34 +350,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/guardian.rs",
-          "note": "The source has targets and retaliation, but no beam attack or guardian swimming controller. Elder guardian also applies mining fatigue; the two entities are not look-only scaffolds.",
-          "items": [
-            {
-              "text": "Targeting and retaliation damage",
-              "done": true
-            },
-            {
-              "text": "Beam attack and water-specific swimming",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/guardian.rs",
-              "line": 22
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "hoglin",
@@ -1431,36 +1287,14 @@
           "id": "bat",
           "name": "Bat",
           "group": "Passive",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/bat.rs",
-          "note": "Implements roosting, hanging state transitions, erratic flight movement, and cave spawn rules.",
-          "items": [
-            {
-              "text": "Roosting, airborne steering, wakeup and sound handling",
-              "done": true
-            },
-            {
-              "text": "Honour NoAI for flying/roosting AI",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/bat.rs",
-              "line": 32
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "bee",
@@ -1531,26 +1365,14 @@
           "id": "camel_husk",
           "name": "Camel Husk",
           "group": "Passive",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/camel.rs",
-          "note": "Shares the camel implementation with husk variant handling and riding.",
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Entity factory construction path only; registry and spawn-rule support are separate.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "CamelEntity::new_with_type",
-              "source": "crates/pumpkin-core/src/entity/passive/camel.rs",
-              "line": 109
-            },
-            {
-              "label": "EntityType::CAMEL_HUSK",
-              "source": "crates/pumpkin-core/src/entity/type.rs",
-              "line": 162
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "cat",
@@ -1708,36 +1530,14 @@
           "id": "dolphin",
           "name": "Dolphin",
           "group": "Passive",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/dolphin.rs",
-          "note": "Implements water navigation, air-supply breathing goal, treasure leading, swimming-with-player Dolphin's Grace, and item play.",
-          "items": [
-            {
-              "text": "Food interaction, melee and revenge",
-              "done": true
-            },
-            {
-              "text": "Air seeking, fish-guided treasure search and item play",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/dolphin.rs",
-              "line": 35
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "donkey",
@@ -2050,34 +1850,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/nautilus.rs",
-          "note": "The constructor has no goals and the runtime only handles passenger effects/cooldowns/particles. Riding state exists but does not supply autonomous nautilus AI.",
-          "items": [
-            {
-              "text": "Taming, saddling, dash cooldown and passenger breathing effect",
-              "done": true
-            },
-            {
-              "text": "Autonomous underwater movement and target/tempt AI",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/nautilus.rs",
-              "line": 38
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "ocelot",
@@ -2470,41 +2248,14 @@
           "id": "tadpole",
           "name": "Tadpole",
           "group": "Passive",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/tadpole.rs",
-          "note": "Implements water navigation, tadpole Brain AI, bucket pickup, and growth into biome-specific frog variants.",
-          "items": [
-            {
-              "text": "Food growth acceleration and generic water-finding",
-              "done": true
-            },
-            {
-              "text": "Water-bound swimming and conversion into a frog",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/tadpole.rs",
-              "line": 32
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ageable.rs",
-              "line": 17
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "trader_llama",
@@ -2764,7 +2515,7 @@
             {
               "number": 3083,
               "title": "Wandering Trader Spawns with All Trades Locked",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implements world spawning with trader llamas, trade offers, night invisibility/milk potion drinking, and wander goals.",
@@ -2906,36 +2657,14 @@
           "id": "experience_bottle",
           "name": "Experience Bottle",
           "group": "Projectile",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/projectile/experience_bottle.rs",
-          "note": "Implements thrown bottle projectile physics, splash particles, and experience orb spawning on impact.",
-          "items": [
-            {
-              "text": "Consumption, throwing sound and experience creation",
-              "done": true
-            },
-            {
-              "text": "Thrown bottle projectile and impact-triggered experience",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "ExperienceBottleEntity",
-              "source": "crates/pumpkin-core/src/entity/projectile/experience_bottle.rs",
-              "line": 23
-            },
-            {
-              "label": "ExperienceBottleItem::normal_use",
-              "source": "crates/pumpkin-core/src/item/items/experience_bottle.rs",
-              "line": 31
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "eye_of_ender",
@@ -2980,36 +2709,14 @@
           "id": "fishing_bobber",
           "name": "Fishing Bobber",
           "group": "Projectile",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/projectile/fishing_bobber.rs",
-          "note": "Implements cast physics, entity hooking, water bite timer, and fishing loot table evaluation with luck/enchantment bonuses.",
-          "items": [
-            {
-              "text": "Casting, reeling and catch handling",
-              "done": true
-            },
-            {
-              "text": "Fishing loot tables and their luck/enchantment context",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/projectile/fishing_bobber.rs",
-              "line": 28
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/item/items/fishing_rod.rs",
-              "line": 16
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "lingering_potion",
@@ -3476,29 +3183,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/minecart.rs",
-          "note": "The minecart selects MinecartKind::Other and has no command-block state or execution hook.",
-          "items": [
-            {
-              "text": "Shared rail movement and damage handling",
-              "done": true
-            },
-            {
-              "text": "Command storage, editing and activator-rail execution",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/minecart.rs",
-              "line": 39
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "dark_oak_boat",
@@ -3989,29 +3679,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/minecart.rs",
-          "note": "The minecart selects MinecartKind::Other and has no spawner state or ticking spawning implementation.",
-          "items": [
-            {
-              "text": "Shared rail movement and damage handling",
-              "done": true
-            },
-            {
-              "text": "Spawner state, delay and entity spawning",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/minecart.rs",
-              "line": 39
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "spruce_boat",
@@ -4106,29 +3779,12 @@
           "group": "Decoration",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/decoration/armor_stand.rs",
-          "note": "Break handling explicitly omits equipment drops. Igniting/burning armor-stand damage tags are also not implemented.",
-          "items": [
-            {
-              "text": "Placement/state and damage/break handling",
-              "done": true
-            },
-            {
-              "text": "Equipment drops and fire-specific damage handling",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/decoration/armor_stand.rs",
-              "line": 29
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "block_display",
@@ -4149,34 +3805,12 @@
           "group": "Decoration",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/decoration/cushion.rs",
-          "note": "Sitting plays the cushion sit sound, but neither the cushion nor shared dismount path plays the vanilla get-up sound.",
-          "items": [
-            {
-              "text": "Colour spawn metadata, sitting, NBT and break drops",
-              "done": true
-            },
-            {
-              "text": "Get-up sound when the passenger dismounts",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/decoration/cushion.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mod.rs",
-              "line": 111
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "end_crystal",
@@ -4247,36 +3881,14 @@
           "id": "leash_knot",
           "name": "Leash Knot",
           "group": "Decoration",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/decoration/leash_knot.rs",
-          "note": "Registered in the entity factory with knot attachment, leash transfer, and break handling.",
-          "items": [
-            {
-              "text": "Fence interaction and leash attachment",
-              "done": true
-            },
-            {
-              "text": "Restore the specialised knot behaviour through the entity factory",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/decoration/leash_knot.rs",
-              "line": 21
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mod.rs",
-              "line": 111
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "marker",
@@ -4297,34 +3909,12 @@
           "group": "Decoration",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/decoration/painting.rs",
-          "note": "Painting drops are implemented. The remaining difference is that no hanging-entity tick checks wall support after placement.",
-          "items": [
-            {
-              "text": "Placement fitting, variant metadata/NBT and break drops",
-              "done": true
-            },
-            {
-              "text": "Periodic support validation and breaking after support removal",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/decoration/painting.rs",
-              "line": 24
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mod.rs",
-              "line": 111
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "text_display",
@@ -4721,7 +4311,7 @@
           "id": "campfire",
           "name": "Campfire",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/campfire.rs",
           "issues": [
             {
@@ -4735,34 +4325,12 @@
               "state": "open"
             }
           ],
-          "note": "Implements cooking, smoke/signal states, extinguishing, entity fire damage, and ignition by burning projectiles.",
-          "items": [
-            {
-              "text": "Placement, cooking inventory and collision damage",
-              "done": true
-            },
-            {
-              "text": "Ignition from burning projectile impact",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/campfire.rs",
-              "line": 27
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/entities/campfire.rs",
-              "line": 27
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "candle_cakes",
@@ -4890,7 +4458,7 @@
             {
               "number": 3545,
               "title": "Sitting cats do not block chests or ender chests from opening",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implements single/double chest inventory, trapped chest redstone output, and top obstruction checks including sitting cats.",
@@ -5011,7 +4579,7 @@
             {
               "number": 3293,
               "title": "Composter gives you free bonemeal every time you break it",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -5132,7 +4700,7 @@
             {
               "number": 3560,
               "title": "Fence gates turn farmland and dirt paths into dirt",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Obstructed scheduled conversion to dirt and the fence-gate exception are implemented. Entity upward displacement on dirt conversion remains a TODO.",
@@ -5254,7 +4822,7 @@
             {
               "number": 3377,
               "title": "Bottom dripstone does not deal damage",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -5420,12 +4988,12 @@
             {
               "number": 3560,
               "title": "Fence gates turn farmland and dirt paths into dirt",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3111,
               "title": "Crops cannot be trampled",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Water fluid hydration, rain hydration, crop check, fence-gate exception, and trampling are implemented. Entity upward displacement on dirt conversion remains a TODO.",
@@ -5770,7 +5338,7 @@
             {
               "number": 3615,
               "title": "Mining infested blocks with Silk Touch still spawns silverfish",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Silk Touch and block_drops game rule checks are implemented. Breaking still constructs a generic Entity with the silverfish type rather than SilverfishEntity.",
@@ -5920,7 +5488,7 @@
             {
               "number": 3250,
               "title": "Leaves drop saplings when broken too often",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -6757,7 +6325,7 @@
             {
               "number": 3120,
               "title": "When breaking block with torch on it in creative, torch doesnt drop",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -7073,34 +6641,17 @@
           "id": "piston-piston_head",
           "name": "Piston Head",
           "group": "Pistons",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/piston/piston_head.rs",
           "ids": [
             "minecraft:piston_head"
           ],
-          "note": "Implements base validation, survival/creative break propagation, and neighbor state updates.",
-          "items": [
-            {
-              "text": "Remove an extended piston base when its head is broken",
-              "done": true
-            },
-            {
-              "text": "Pass the breaking player through to base removal",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/piston/piston_head.rs",
-              "line": 17
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "piston-piston",
@@ -7134,34 +6685,12 @@
               "state": "open"
             }
           ],
-          "note": "Extension, sticky retraction, rapid retraction pulse dropping, entity pushing, and activate/deactivate game events are implemented. Moving-piston NBT still omits pushed_block_state.",
-          "items": [
-            {
-              "text": "Push/pull solver, rapid retraction, entity pushing, and game events",
-              "done": true
-            },
-            {
-              "text": "Persist `pushed_block_state` in `PistonBlockEntity` NBT",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/piston/piston.rs",
-              "line": 33
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/entities/piston.rs",
-              "line": 26
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "plant-crop-gourds-attached_stem",
@@ -7250,7 +6779,7 @@
             {
               "number": 3552,
               "title": "Projectiles do not collapse big dripleaf leaves",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implements entity tilt scheduling, projectile hit tilting, redstone lock, bone meal growth, and waterlogging.",
@@ -7968,7 +7497,7 @@
             {
               "number": 3292,
               "title": "Berries duplicate when placing them and breaking them without letting them grow",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -8139,7 +7668,7 @@
             {
               "number": 3003,
               "title": "Ring bell with arrow shot",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3002,
@@ -8843,7 +8372,7 @@
           "id": "fishing_rod",
           "name": "Fishing Rod",
           "group": "Tools & Weapons",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/item/items/fishing_rod.rs",
           "ids": [
             "minecraft:fishing_rod"
@@ -8860,34 +8389,12 @@
               "state": "open"
             }
           ],
-          "note": "Implements bobber casting, retrieval, hooked entity pulling, and fishing loot table rolls.",
-          "items": [
-            {
-              "text": "Casting, reeling and catch handling",
-              "done": true
-            },
-            {
-              "text": "Fishing loot tables and their luck/enchantment context",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/item/items/fishing_rod.rs",
-              "line": 16
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/projectile/fishing_bobber.rs",
-              "line": 28
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "flint_and_steel",
@@ -8967,7 +8474,7 @@
             {
               "number": 3081,
               "title": "Shears doesn't work on mooshroom cow",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -9368,7 +8875,7 @@
             {
               "number": 3577,
               "title": "Boat placement snaps to the block center instead of the raycast hit point",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3082,
@@ -9795,7 +9302,7 @@
             {
               "number": 3070,
               "title": "dying with an elytra makes you glide until you relog",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 1807,
@@ -9860,7 +9367,7 @@
             {
               "number": 3113,
               "title": "Non-Ponder Goat Horn item inventory disconnects",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Plays the instrument sound, sets the active hand, and emits the InstrumentPlay game event, but does not apply the use cooldown.",
@@ -9984,44 +9491,17 @@
           "id": "name_tag",
           "name": "Name Tag",
           "group": "Utility",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/item/items/name_tag.rs",
           "ids": [
             "minecraft:name_tag"
           ],
-          "note": "Applies custom names to living entities and sets mob persistence.",
-          "items": [
-            {
-              "text": "Custom-name application and consumption",
-              "done": true
-            },
-            {
-              "text": "Make named mobs persistent",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/item/items/name_tag.rs",
-              "line": 13
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mod.rs",
-              "line": 111
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-              "line": 120
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "spyglass",
