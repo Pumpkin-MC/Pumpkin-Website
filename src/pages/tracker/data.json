@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.63",
-  "commit": "4f6ba98dd1162d3f3a8e2ea06f59eb39c7add6d9",
-  "updated": "2026-11-15",
+  "commit": "79c88fdb6761fd3bc51820d1513091622f7153d9",
+  "updated": "2026-11-16",
   "categories": [
     {
       "id": "entities",
@@ -53,44 +53,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/skeleton/bogged.rs",
-          "note": "The shared bow attack always constructs a plain ARROW payload; the wrapper supplies neither poison arrows nor shearing.",
-          "items": [
-            {
-              "text": "Inherited skeleton ranged attacks and equipment",
-              "done": true
-            },
-            {
-              "text": "Poison arrow payload and shearing interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/bogged.rs",
-              "line": 12
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/mod.rs",
-              "line": 33
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/bow_attack.rs",
-              "line": 40
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/equipment.rs",
-              "line": 485
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "breeze",
@@ -179,7 +147,7 @@
           "id": "drowned",
           "name": "Drowned",
           "group": "Hostile",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/zombie/drowned.rs",
           "issues": [
             {
@@ -193,34 +161,12 @@
               "state": "open"
             }
           ],
-          "note": "Implements ranged trident attacks, amphibious water/ground navigation switching, beach/water seeking goals, and zombie nautilus jockey spawning.",
-          "items": [
-            {
-              "text": "Inherited zombie melee and targeting",
-              "done": true
-            },
-            {
-              "text": "Trident attacks and underwater-specific movement",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombie/drowned.rs",
-              "line": 15
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombie/mod.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "elder_guardian",
@@ -1479,29 +1425,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/copper_golem.rs",
-          "note": "The constructor only has generic movement/look goals. No sorting/chest transport or autonomous oxidation tick is wired.",
-          "items": [
-            {
-              "text": "Oxidation state, axe/honeycomb interaction and lightning handling",
-              "done": true
-            },
-            {
-              "text": "Chest-to-chest item sorting and oxidation ticking",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/copper_golem.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "cow",
@@ -2451,6 +2380,7 @@
           "name": "Zombie Nautilus",
           "group": "Passive",
           "status": "partial",
+          "source": "crates/pumpkin-core/src/entity/passive/zombie_nautilus.rs",
           "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -2463,6 +2393,7 @@
           "name": "Mannequin",
           "group": "Villager",
           "status": "partial",
+          "source": "crates/pumpkin-core/src/entity/decoration/mannequin.rs",
           "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -2593,6 +2524,7 @@
           "name": "Dragon Fireball",
           "group": "Projectile",
           "status": "partial",
+          "source": "crates/pumpkin-core/src/entity/projectile/dragon_fireball.rs",
           "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -2874,34 +2806,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "acacia_chest_boat",
@@ -2909,38 +2819,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            },
-            {
-              "text": "Chest inventory and container interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "bamboo_chest_raft",
@@ -2948,38 +2832,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            },
-            {
-              "text": "Chest inventory and container interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "bamboo_raft",
@@ -2987,34 +2845,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "birch_boat",
@@ -3022,34 +2858,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "birch_chest_boat",
@@ -3057,38 +2871,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            },
-            {
-              "text": "Chest inventory and container interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "cherry_boat",
@@ -3096,34 +2884,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "cherry_chest_boat",
@@ -3131,38 +2897,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            },
-            {
-              "text": "Chest inventory and container interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "chest_minecart",
@@ -3196,34 +2936,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "dark_oak_chest_boat",
@@ -3231,38 +2949,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            },
-            {
-              "text": "Chest inventory and container interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "furnace_minecart",
@@ -3296,34 +2988,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "jungle_chest_boat",
@@ -3331,38 +3001,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            },
-            {
-              "text": "Chest inventory and container interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "mangrove_boat",
@@ -3370,34 +3014,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "mangrove_chest_boat",
@@ -3405,38 +3027,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            },
-            {
-              "text": "Chest inventory and container interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "minecart",
@@ -3457,34 +3053,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "oak_chest_boat",
@@ -3492,38 +3066,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            },
-            {
-              "text": "Chest inventory and container interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "pale_oak_boat",
@@ -3531,34 +3079,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "pale_oak_chest_boat",
@@ -3566,38 +3092,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            },
-            {
-              "text": "Chest inventory and container interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "poplar_boat",
@@ -3605,34 +3105,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "poplar_chest_boat",
@@ -3640,38 +3118,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            },
-            {
-              "text": "Chest inventory and container interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "spawner_minecart",
@@ -3692,34 +3144,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "spruce_chest_boat",
@@ -3727,38 +3157,12 @@
           "group": "Vehicle",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
-          "items": [
-            {
-              "text": "Mounting, paddle metadata, damage and water-contact timer",
-              "done": true
-            },
-            {
-              "text": "Water-status/buoyancy physics",
-              "done": false
-            },
-            {
-              "text": "Chest inventory and container interaction",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
-              "line": 1
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "tnt_minecart",
@@ -3972,45 +3376,14 @@
           "id": "item",
           "name": "Item",
           "group": "Misc",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/item.rs",
-          "note": "Implements item stack merging, pickup delay, age despawning, and fluid buoyancy.",
-          "items": [
-            {
-              "text": "Component-aware merging and stack limits",
-              "done": true
-            },
-            {
-              "text": "Pickup delay and despawn handling",
-              "done": true
-            },
-            {
-              "text": "Damage-type resistance and container-content spills",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "fn process_age_and_merge",
-              "source": "crates/pumpkin-core/src/entity/item.rs",
-              "line": 504
-            },
-            {
-              "label": "fn on_destroyed",
-              "source": "crates/pumpkin-core/src/entity/item.rs",
-              "line": 359
-            },
-            {
-              "label": "fn damage_resistant_items",
-              "source": "crates/pumpkin-core/src/entity/item.rs",
-              "line": 917
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "lightning_bolt",
@@ -4030,6 +3403,7 @@
           "name": "Ominous Item Spawner",
           "group": "Misc",
           "status": "partial",
+          "source": "crates/pumpkin-core/src/entity/ominous_item_spawner.rs",
           "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
@@ -4126,34 +3500,12 @@
           "ids": [
             "minecraft:beacon"
           ],
-          "note": "Pyramid level validation, periodic effect application, and GUI handling exist in BeaconBlockEntity, but BeaconBlock omits placed/broken block entity lifecycle hooks and beam occlusion checks.",
-          "items": [
-            {
-              "text": "Pyramid base validation, periodic effect application, and GUI screen",
-              "done": true
-            },
-            {
-              "text": "Block placement/removal block entity wiring and sky beam occlusion checks",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "source": "crates/pumpkin-core/src/block/blocks/beacon.rs",
-              "line": 44,
-              "label": "BeaconBlock::normal_use without placed/broken hooks"
-            },
-            {
-              "source": "crates/pumpkin-core/src/block/entities/beacon.rs",
-              "line": 320,
-              "label": "BeaconBlockEntity::tick"
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "bed",
@@ -4196,39 +3548,12 @@
           "group": "Blocks",
           "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/beehive.rs",
-          "note": "The block reports honey level. Its block entity serialises stored bees but has no ticking release path, and bee AI has no hive entry path.",
-          "items": [
-            {
-              "text": "Honey comparator output and stored bee NBT",
-              "done": true
-            },
-            {
-              "text": "Bee entry/release and ticking hive lifecycle",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/beehive.rs",
-              "line": 8
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/entities/beehive.rs",
-              "line": 14
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/bee.rs",
-              "line": 40
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "blast_furnace",
@@ -4434,7 +3759,7 @@
           "id": "chests",
           "name": "Chests",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/chests.rs",
           "ids": [
             "minecraft:trapped_chest"
@@ -4461,29 +3786,12 @@
               "state": "closed"
             }
           ],
-          "note": "Implements single/double chest inventory, trapped chest redstone output, and top obstruction checks including sitting cats.",
-          "items": [
-            {
-              "text": "Single/double inventory, opening and comparator output",
-              "done": true
-            },
-            {
-              "text": "Prevent opening with a sitting cat above",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/chests.rs",
-              "line": 39
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "chiseled_bookshelf",
@@ -4506,29 +3814,12 @@
               "state": "open"
             }
           ],
-          "note": "Book storage and last-interacted-slot comparator handling exist. try_add_book does not increment the player used-block statistic.",
-          "items": [
-            {
-              "text": "Slot-based book insertion/removal and comparator output",
-              "done": true
-            },
-            {
-              "text": "Increment the used-block statistic on inserting a book",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/chiseled_bookshelf.rs",
-              "line": 30
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "cobweb",
@@ -5318,7 +4609,7 @@
             {
               "number": 3781,
               "title": "Breaking ice blocks in creative mode replaces the ice with water",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -5420,34 +4711,12 @@
               "state": "open"
             }
           ],
-          "note": "Disc playback, state updates, and comparator notifications on replacement are implemented. Insertion still omits the BlockChange game event.",
-          "items": [
-            {
-              "text": "Disc insertion/ejection, comparator output, and replacement comparator update",
-              "done": true
-            },
-            {
-              "text": "`GameEvent::BlockChange` on disc insertion",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/jukebox.rs",
-              "line": 29
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/entities/jukebox.rs",
-              "line": 31
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "ladder",
@@ -5541,27 +4810,14 @@
           "id": "lodestone",
           "name": "Lodestone",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/item/items/compass.rs",
-          "note": "Compass binding via LodestoneTrackerImpl is implemented in CompassItem::use_on_block.",
-          "items": [
-            {
-              "text": "Lodestone compass binding and sound",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "source": "crates/pumpkin-core/src/item/items/compass.rs",
-              "line": 34,
-              "label": "CompassItem::use_on_block lodestone binding"
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "logs",
@@ -5742,39 +4998,17 @@
           "id": "note",
           "name": "Note Block",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/note.rs",
           "ids": [
             "minecraft:note_block"
           ],
-          "note": "Implements instrument selection from below block, note cycling, redstone trigger, and mob head sound playback.",
-          "items": [
-            {
-              "text": "Mob-head placement on the top face",
-              "done": true
-            },
-            {
-              "text": "Instrument selection from neighbouring blocks",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "fn use_with_item",
-              "source": "crates/pumpkin-core/src/block/blocks/note.rs",
-              "line": 109
-            },
-            {
-              "label": "fn get_state_with_instrument",
-              "source": "crates/pumpkin-core/src/block/blocks/note.rs",
-              "line": 46
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "nylium",
@@ -6201,34 +5435,12 @@
           "ids": [
             "minecraft:structure_block"
           ],
-          "note": "The block and block entity store configuration. They do not implement capture or placement of structure contents.",
-          "items": [
-            {
-              "text": "Settings screen and NBT persistence",
-              "done": true
-            },
-            {
-              "text": "Structure capture/save/load execution",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/structure_block.rs",
-              "line": 13
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/entities/structure_block.rs",
-              "line": 30
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "structure_void",
@@ -8599,7 +7811,7 @@
             {
               "number": 3918,
               "title": "Trident infinity damage",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 1552,
@@ -8764,7 +7976,7 @@
             {
               "number": 3806,
               "title": "Enderman Does not Damage when throwing water bottle",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -8803,7 +8015,7 @@
             {
               "number": 3873,
               "title": "Wind Charges Don't work",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -9206,29 +8418,12 @@
             "minecraft:compass",
             "minecraft:recovery_compass"
           ],
-          "note": "Lodestone binding on right-click is implemented, but inventory ticking does not clear the target when the linked lodestone is broken.",
-          "items": [
-            {
-              "text": "Lodestone binding and stack splitting on right-click",
-              "done": true
-            },
-            {
-              "text": "Inventory tick verification of tracked lodestone block",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "source": "crates/pumpkin-core/src/item/items/compass.rs",
-              "line": 24,
-              "label": "CompassItem::use_on_block"
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "cushion",
@@ -9292,12 +8487,12 @@
             {
               "number": 3648,
               "title": "Flying high with an elytra and landing causes damage/death.",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3647,
               "title": "Removing the elytra still allows for flight.",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3070,
@@ -9370,29 +8565,12 @@
               "state": "closed"
             }
           ],
-          "note": "Plays the instrument sound, sets the active hand, and emits the InstrumentPlay game event, but does not apply the use cooldown.",
-          "items": [
-            {
-              "text": "Instrument sound playback and InstrumentPlay game event",
-              "done": true
-            },
-            {
-              "text": "Use cooldown enforcement",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "source": "crates/pumpkin-core/src/item/items/goat_horn.rs",
-              "line": 27,
-              "label": "GoatHornItem::normal_use_with_hand"
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "honeycomb",
