@@ -11,6 +11,7 @@ const OPTIONAL_PREFIXES = ["tracker."];
 
 const PLACEHOLDER = /\{(\w+)\}/g;
 const TAG = /<(\w+)>/g;
+const TAG_TOKEN = /<(\/?)(\w+)>/g;
 
 const localeFiles = (await readdir(LOCALES_DIR)).filter((name) => name.endsWith(".json")).sort();
 const base = JSON.parse(await readFile(join(LOCALES_DIR, `${BASE_LOCALE}.json`), "utf8"));
@@ -30,6 +31,19 @@ function flatten(value, path = "", into = new Map()) {
 
 function matches(pattern, text) {
   return [...text.matchAll(pattern)].map((match) => match[1]).sort();
+}
+
+/** True when every opening rich-text tag is closed, in order. */
+function tagsBalanced(text) {
+  const stack = [];
+  for (const [, closing, name] of text.matchAll(TAG_TOKEN)) {
+    if (!closing) {
+      stack.push(name);
+    } else if (stack.pop() !== name) {
+      return false;
+    }
+  }
+  return stack.length === 0;
 }
 
 const baseEntries = flatten(base);
@@ -63,6 +77,7 @@ for (const file of localeFiles) {
     if (expectedTags.join() !== actualTags.join()) {
       errors.push(`${name}: ${path} tags <${expectedTags}> != <${actualTags}>`);
     }
+    if (!tagsBalanced(target)) errors.push(`${name}: ${path} has unbalanced tags`);
   }
 
   for (const path of messages.keys()) {

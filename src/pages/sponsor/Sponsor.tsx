@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { languageTag, useI18n, type Messages } from "../../i18n";
-import { formatAmount, formatMessage } from "../../i18n/format";
+import { formatCurrency, formatMessage } from "../../i18n/format";
 import { rich } from "../../i18n/rich";
 import { MARKET_API_URL } from "../../lib/marketApi";
 
@@ -137,7 +137,7 @@ export default function Sponsor() {
   const [sponsors, setSponsors] = useState<SponsorList | null>(null);
   const [failed, setFailed] = useState(false);
   const locale = languageTag(lang);
-  const euros = (amount: number) => formatAmount(amount, locale, "€");
+  const euros = (amount: number) => formatCurrency(amount, locale, "EUR");
 
   useEffect(() => {
     let cancelled = false;

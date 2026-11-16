@@ -15,9 +15,31 @@ export function formatPercent(value: number, tag: string): string {
   return (value / 100).toLocaleString(tag, { style: "percent", minimumFractionDigits: 1, maximumFractionDigits: 1 });
 }
 
-/** Formats an amount of money with a currency symbol in the given locale. */
-export function formatAmount(value: number, tag: string, symbol: string): string {
-  return `${symbol}${value.toLocaleString(tag)}`;
+/** Formats an amount of money in the given locale and currency, without decimals. */
+export function formatCurrency(value: number, tag: string, currency: string): string {
+  return value.toLocaleString(tag, {
+    style: "currency",
+    currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+}
+
+/**
+ * Formats a date-time string from a release note in the given locale, keeping
+ * the original text when it cannot be parsed.
+ */
+export function formatTimestamp(value: string, tag: string): string {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleString(tag, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
 }
 
 /** Formats a clock time (hours and minutes) in the given locale. */

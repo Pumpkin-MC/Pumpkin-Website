@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { ButtonLink } from "../../components/Button";
 import { DownloadIcon } from "../../components/icons";
-import { useI18n } from "../../i18n";
-import { formatMessage } from "../../i18n/format";
+import { languageTag, useI18n } from "../../i18n";
+import { formatMessage, formatTimestamp } from "../../i18n/format";
 import { rich, type RichTags } from "../../i18n/rich";
 import { readCache, writeCache } from "../../lib/cache";
 import { useCopy } from "../../lib/useCopy";
@@ -376,7 +376,8 @@ function TerminalDemo() {
 }
 
 export default function Download() {
-  const { t } = useI18n();
+  const { lang, t } = useI18n();
+  const locale = languageTag(lang);
   const [recommended, setRecommended] = useState<ReleaseFile>(files[0]);
   const [detected, setDetected] = useState(false);
   const [channel, setChannel] = useState<Channel>("stable");
@@ -458,7 +459,7 @@ export default function Download() {
             <p className="animate-fade-up border-b-2 border-white/15 bg-warning/10 px-5 py-2.5 text-sm text-warning motion-reduce:animate-none md:px-7">
               {t.download.nightlyWarning}
               {nightly?.builtAt && (
-                <span className="text-muted"> {formatMessage(t.download.generated, { date: nightly.builtAt })}</span>
+                <span className="text-muted"> {formatMessage(t.download.generated, { date: formatTimestamp(nightly.builtAt, locale) })}</span>
               )}
             </p>
           )}

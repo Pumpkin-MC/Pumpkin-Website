@@ -58,8 +58,10 @@ function resolveLang(value: string | null | undefined): Lang | undefined {
   if (isLang(code)) return code;
   const [language, ...subtags] = code?.split("_") ?? [];
   if (language === "zh") {
-    if (subtags.some((subtag) => subtag.startsWith("hant"))) return "zh_tw";
-    if (subtags.some((subtag) => subtag.startsWith("hans"))) return "zh_cn";
+    const hant = subtags.some((subtag) => subtag.startsWith("hant"));
+    const hans = subtags.some((subtag) => subtag.startsWith("hans"));
+    if (hant) return subtags.includes("hk") ? "zh_hk" : "zh_tw";
+    if (hans) return "zh_cn";
     if (subtags.includes("hk")) return "zh_hk";
     if (subtags.some((subtag) => subtag === "tw" || subtag === "mo")) return "zh_tw";
   }

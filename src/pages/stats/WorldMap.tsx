@@ -88,7 +88,8 @@ export function WorldMap({ geo, metric, onSelect }: WorldMapProps) {
             true,
           );
         } else {
-          tooltip.text(`<strong>${escapeHtml(tooltip.text())}</strong><br>${escapeHtml(t.stats.map.noReporting)}`, true);
+          const label = countryName(code, tooltip.text(), locale);
+          tooltip.text(`<strong>${escapeHtml(label)}</strong><br>${escapeHtml(t.stats.map.noReporting)}`, true);
         }
       },
       onRegionClick(_event: unknown, code: string) {
