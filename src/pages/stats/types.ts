@@ -41,6 +41,11 @@ export interface Systems {
   ram_distribution: Share[];
   total_ram_distribution: Share[];
   plugin_languages?: Share[];
+  online_mode?: Share[];
+  player_editions?: Share[];
+  client_brands?: Share[];
+  player_locales?: Share[];
+  view_distances?: Share[];
 }
 
 export interface GeoEntry {
