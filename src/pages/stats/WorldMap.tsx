@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import "jsvectormap/dist/jsvectormap.css";
 import "./map.css";
-import { formatNumber, type GeoEntry, type GeoMetric } from "./types";
+import { languageTag, useI18n } from "../../i18n";
+import { countryName, formatMessage, formatNumber } from "../../i18n/format";
+import type { GeoEntry, GeoMetric } from "./types";
 
 const MAP_ID = "telemetry-map";
 export const MAP_RAMP = ["#4a2410", "#ff6b2c"] as const;
@@ -25,6 +27,8 @@ interface WorldMapProps {
 }
 
 export function WorldMap({ geo, metric, onSelect }: WorldMapProps) {
+  const { lang, t } = useI18n();
+  const locale = languageTag(lang);
   const [engine, setEngine] = useState<MapEngine | null>(null);
   const [failed, setFailed] = useState(false);
   const onSelectRef = useRef(onSelect);
@@ -75,11 +79,16 @@ export function WorldMap({ geo, metric, onSelect }: WorldMapProps) {
         const entry = byCode.get(code);
         if (entry) {
           tooltip.text(
-            `<strong>${escapeHtml(entry.country_name)}</strong><br>${formatNumber(entry.servers)} servers · ${formatNumber(entry.players)} players`,
+            `<strong>${escapeHtml(countryName(entry.country, entry.country_name, locale))}</strong><br>${escapeHtml(
+              formatMessage(t.stats.map.tooltip, {
+                servers: formatNumber(entry.servers, locale),
+                players: formatNumber(entry.players, locale),
+              }),
+            )}`,
             true,
           );
         } else {
-          tooltip.text(`<strong>${escapeHtml(tooltip.text())}</strong><br>No reporting servers`, true);
+          tooltip.text(`<strong>${escapeHtml(tooltip.text())}</strong><br>${escapeHtml(t.stats.map.noReporting)}`, true);
         }
       },
       onRegionClick(_event: unknown, code: string) {
@@ -94,17 +103,15 @@ export function WorldMap({ geo, metric, onSelect }: WorldMapProps) {
         container.innerHTML = "";
       }
     };
-  }, [engine, geo, metric]);
+  }, [engine, geo, metric, locale, t]);
 
   return (
     <div className="relative h-72 md:h-104">
       <div id={MAP_ID} className="size-full" />
       {!engine && !failed && (
-        <p className="absolute inset-0 grid place-items-center text-sm text-muted">Loading map...</p>
+        <p className="absolute inset-0 grid place-items-center text-sm text-muted">{t.stats.map.loading}</p>
       )}
-      {failed && (
-        <p className="absolute inset-0 grid place-items-center text-sm text-muted">The map could not be loaded.</p>
-      )}
+      {failed && <p className="absolute inset-0 grid place-items-center text-sm text-muted">{t.stats.map.error}</p>}
     </div>
   );
 }

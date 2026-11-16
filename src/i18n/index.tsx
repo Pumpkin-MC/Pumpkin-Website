@@ -8,6 +8,8 @@ export const languages = {
   es_es: "Español",
   vi_vn: "Tiếng Việt",
   zh_cn: "简体中文",
+  zh_hk: "繁體中文（香港）",
+  zh_tw: "繁體中文（台灣）",
 } as const;
 
 export type Lang = keyof typeof languages;
@@ -17,6 +19,17 @@ export type Messages = typeof en;
 export function languageTag(lang: Lang): string {
   const [language, region] = lang.split("_");
   return `${language}-${region.toUpperCase()}`;
+}
+
+/**
+ * Returns the short uppercase code the language switcher shows: the bare
+ * language when it has a single variant, the full tag when several regions
+ * share it ("ZH-CN", "ZH-HK", "ZH-TW").
+ */
+export function languageCode(lang: Lang): string {
+  const language = lang.split("_")[0];
+  const variants = (Object.keys(languages) as Lang[]).filter((code) => code.split("_")[0] === language);
+  return (variants.length > 1 ? languageTag(lang) : language).toUpperCase();
 }
 
 interface I18nValue {
@@ -37,13 +50,19 @@ function isLang(value: string | null | undefined): value is Lang {
 
 /**
  * Resolves a stored or browser language tag to a supported language.
- * Accepts full tags ("zh-CN"), bare language names ("zh") and legacy
- * short codes, falling back to the closest matching language.
+ * Accepts full tags ("zh-CN"), bare language names ("zh"), legacy short
+ * codes and script subtags ("zh-Hant"), falling back to the closest match.
  */
 function resolveLang(value: string | null | undefined): Lang | undefined {
   const code = value?.toLowerCase().replaceAll("-", "_");
   if (isLang(code)) return code;
-  const language = code?.split("_")[0];
+  const [language, ...subtags] = code?.split("_") ?? [];
+  if (language === "zh") {
+    if (subtags.some((subtag) => subtag.startsWith("hant"))) return "zh_tw";
+    if (subtags.some((subtag) => subtag.startsWith("hans"))) return "zh_cn";
+    if (subtags.includes("hk")) return "zh_hk";
+    if (subtags.some((subtag) => subtag === "tw" || subtag === "mo")) return "zh_tw";
+  }
   return (Object.keys(languages) as Lang[]).find((lang) => lang.split("_")[0] === language);
 }
 

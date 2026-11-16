@@ -1,10 +1,12 @@
-import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { ButtonLink } from "../../components/Button";
+import { useI18n } from "../../i18n";
+import { formatMessage } from "../../i18n/format";
+import { rich } from "../../i18n/rich";
 import { DISCORD_URL, DOCS_URL, GITHUB_URL } from "../../links";
 import { useCopy } from "../../lib/useCopy";
 import { CodeBlock, TokenLine, tokensFor } from "./CodeBlock";
-import { guides, isCodeSample, type GuideId } from "./guides";
-import type { SnippetName } from "./snippet-languages";
+import { GUIDE_IDS, getFirstSteps, getGuides, isCodeSample, type GuideId } from "./guides";
 import { snippets } from "./snippets";
 
 const REFLECTION_CALL = /\.(getMethod|getField|getConstructor|invoke|newInstance)\(|Class\.forName\(/g;
@@ -16,108 +18,19 @@ function countReflectionCalls(code: string): number {
 const highlight = "inline-block border-2 border-pumpkin bg-pumpkin px-[0.2em] text-black";
 const sectionTitle = "text-[clamp(2rem,4vw,3rem)] leading-[1.05] font-extrabold tracking-[-0.01em] text-balance";
 
-const comparison = [
-  {
-    id: "spigot",
-    tab: "Spigot",
-    badge: "Spigot + Reflection NMS + Geyser API (Java)",
-    file: "WelcomeListener.java",
-    tone: "border-danger",
-    badgeTone: "bg-danger",
-    snippet: "javaReflection",
-    facts: [`${countReflectionCalls(snippets.javaReflection)} reflection calls`, "Needs the Geyser API", "Breaks on version bumps"],
-  },
-  {
-    id: "pumpkin",
-    tab: "Pumpkin",
-    badge: "Pumpkin Native API (Rust)",
-    file: "lib.rs",
-    tone: "border-success",
-    badgeTone: "bg-success",
-    snippet: "rustNative",
-    facts: [`${countReflectionCalls(snippets.rustNative)} reflection calls`, "No extra dependencies", "Checked at compile time"],
-  },
-] as const;
-
-type Side = (typeof comparison)[number]["id"];
-
-const features = [
-  {
-    title: "Every player, one plugin",
-    body: "Native Java + Bedrock support. Multi-version built in.",
-    rest: "Write once, reach everyone.",
-  },
-  {
-    title: "Typed commands and events",
-    body: "Register commands and hook typed plugin events",
-    rest: "without reflection, NMS, or version-specific hacks.",
-  },
-  {
-    title: "Async by default",
-    body: "Built on Tokio. No main thread bottleneck.",
-    rest: "Heavy tasks don't freeze the server.",
-  },
-  {
-    title: "Memory safe",
-    body: "Rust guarantees.",
-    rest: "No null pointers, no memory leaks, no data races.",
-  },
-];
+type Side = "spigot" | "pumpkin";
 
 function guideFromHash(): GuideId | null {
   const id = window.location.hash.replace(/^#guide-/, "");
-  return guides.some((guide) => guide.id === id) ? (id as GuideId) : null;
+  return (GUIDE_IDS as readonly string[]).includes(id) ? (id as GuideId) : null;
 }
 
 const inlineLink = "font-semibold text-pumpkin underline underline-offset-3 hover:text-fg";
 
-const firstSteps: Record<GuideId, { snippet: SnippetName } | { note: ReactNode }> = {
-  rust: { snippet: "rustTarget" },
-  python: { snippet: "pythonInstall" },
-  csharp: { snippet: "csharpInstall" },
-  c: {
-    note: (
-      <>
-        Start by downloading the{" "}
-        <a href="https://github.com/WebAssembly/wasi-sdk/releases" className={inlineLink}>
-          wasi-sdk
-        </a>
-        , then compile with its clang.
-      </>
-    ),
-  },
-  go: { snippet: "goInstall" },
-  kotlin: { snippet: "kotlinClone" },
-  d: {
-    note: (
-      <>
-        Install{" "}
-        <a href="https://github.com/ldc-developers/ldc" className={inlineLink}>
-          LDC
-        </a>{" "}
-        1.43 or later with the addon-wasi package, plus{" "}
-        <a href="https://dub.pm/" className={inlineLink}>
-          DUB
-        </a>
-        .
-      </>
-    ),
-  },
-  zig: { snippet: "zigFetch" },
-  typescript: {
-    note: (
-      <>
-        No written guide yet. The API lives in{" "}
-        <a href="https://github.com/Pumpkin-MC/pumpkin-api-ts" className={inlineLink}>
-          pumpkin-api-ts
-        </a>
-        .
-      </>
-    ),
-  },
-};
-
 function StartPicker() {
+  const { t } = useI18n();
+  const guides = useMemo(() => getGuides(t), [t]);
+  const firstSteps = useMemo(() => getFirstSteps(t), [t]);
   const [active, setActive] = useState<GuideId>("rust");
   const [pinned, setPinned] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -167,11 +80,11 @@ function StartPicker() {
 
   return (
     <div ref={rootRef} className="group/start min-w-0">
-      <p className="mb-4 font-mono text-sm text-muted">Pick your language</p>
+      <p className="mb-4 font-mono text-sm text-muted">{t.developers.picker.title}</p>
       <div
         ref={listRef}
         role="tablist"
-        aria-label="Plugin language"
+        aria-label={t.developers.picker.language}
         className="relative flex flex-wrap gap-x-5 gap-y-1 lg:flex-col lg:gap-0"
       >
         {markerTop !== null && (
@@ -228,10 +141,10 @@ function StartPicker() {
             <button
               type="button"
               onClick={copy}
-              aria-label={copied ? "Copied command" : "Copy command"}
+              aria-label={copied ? t.developers.guides.copiedCommand : t.developers.guides.copyCommand}
               className="shrink-0 cursor-pointer text-xs font-bold tracking-wider text-pumpkin uppercase hover:text-fg"
             >
-              {copied ? "Copied" : "Copy"}
+              {copied ? t.developers.guides.copied : t.developers.guides.copy}
             </button>
           </>
         ) : (
@@ -252,10 +165,10 @@ function StartPicker() {
       </div>
       <p className="mt-3 text-sm text-muted">
         {guide.steps.length > 0
-          ? `First step of ${guide.steps.length} in the ${guide.label} guide.`
-          : `${guide.label} has no written guide yet.`}{" "}
+          ? formatMessage(t.developers.picker.firstStep, { count: guide.steps.length, language: guide.label })
+          : formatMessage(t.developers.picker.noGuide, { language: guide.label })}{" "}
         <a href={`#guide-${guide.id}`} className={inlineLink}>
-          Open the guide
+          {t.developers.picker.open}
         </a>
       </p>
     </div>
@@ -263,26 +176,26 @@ function StartPicker() {
 }
 
 function Hero() {
+  const { t } = useI18n();
+
   return (
     <section className="border-b-3 border-pumpkin">
       <div className="mx-auto grid max-w-325 gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
         <div>
           <p className="mb-5 font-mono text-sm text-muted">
-            <s className="decoration-danger decoration-2">No NMS. No reflection. No version-specific hacks.</s>
+            <s className="decoration-danger decoration-2">{t.developers.hero.overline}</s>
           </p>
           <h1 className="text-[clamp(2.6rem,6vw,5rem)] leading-[0.98] font-extrabold tracking-[-0.015em] text-balance">
-            Build plugins without the pain<span className="text-pumpkin">.</span>
+            {t.developers.hero.title}
+            <span className="text-pumpkin">.</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-muted md:text-xl">
-            Just clean, type-safe APIs. Write in the language you already use, and Pumpkin loads the result as a
-            WebAssembly plugin.
-          </p>
+          <p className="mt-6 max-w-xl text-lg text-muted md:text-xl">{t.developers.hero.description}</p>
           <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
             <a href={`${DOCS_URL}/plugin-dev/introduction`} className={inlineLink}>
-              Plugin docs
+              {t.developers.hero.docs}
             </a>
             <a href={GITHUB_URL} className={inlineLink}>
-              Source on GitHub
+              {t.developers.hero.source}
             </a>
           </div>
         </div>
@@ -293,23 +206,53 @@ function Hero() {
 }
 
 function Comparison() {
+  const { t } = useI18n();
   const [side, setSide] = useState<Side>("spigot");
+  const { comparison } = t.developers;
+
+  const panels = [
+    {
+      id: "spigot",
+      tab: "Spigot",
+      file: "WelcomeListener.java",
+      tone: "border-danger",
+      badgeTone: "bg-danger",
+      snippet: "javaReflection",
+      badge: comparison.spigot.badge,
+      facts: [
+        formatMessage(comparison.reflectionCalls, { count: countReflectionCalls(snippets.javaReflection) }),
+        ...comparison.spigot.facts,
+      ],
+    },
+    {
+      id: "pumpkin",
+      tab: "Pumpkin",
+      file: "lib.rs",
+      tone: "border-success",
+      badgeTone: "bg-success",
+      snippet: "rustNative",
+      badge: comparison.pumpkin.badge,
+      facts: [
+        formatMessage(comparison.reflectionCalls, { count: countReflectionCalls(snippets.rustNative) }),
+        ...comparison.pumpkin.facts,
+      ],
+    },
+  ] as const;
 
   return (
     <section className="py-14 md:py-20">
       <div className="mx-auto mb-8 max-w-325 px-5 md:px-8">
         <h2 className={`${sectionTitle} max-w-3xl`}>
-          Same feature, <span className={highlight}>two APIs</span>
+          {rich(comparison.title, {
+            hl: (text) => <span className={highlight}>{text}</span>,
+          })}
         </h2>
-        <p className="mt-4 max-w-3xl text-lg text-muted">
-          Send a welcome message, then ask for confirmation with a Java dialog or a Bedrock form. On Spigot that means
-          reflection into NMS and a second plugin. On Pumpkin it's one branch.
-        </p>
+        <p className="mt-4 max-w-3xl text-lg text-muted">{comparison.description}</p>
       </div>
 
       <div className="mx-auto max-w-400 px-5 md:px-8">
-        <div role="tablist" aria-label="Choose an API" className="mb-4 grid grid-cols-2 border-3 border-fg lg:hidden">
-          {comparison.map((panel) => (
+        <div role="tablist" aria-label={comparison.api} className="mb-4 grid grid-cols-2 border-3 border-fg lg:hidden">
+          {panels.map((panel) => (
             <button
               key={panel.id}
               type="button"
@@ -326,7 +269,7 @@ function Comparison() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-2">
-          {comparison.map((panel) => (
+          {panels.map((panel) => (
             <article
               key={panel.id}
               id={`compare-${panel.id}`}
@@ -367,12 +310,14 @@ function Comparison() {
 }
 
 function Features() {
+  const { t } = useI18n();
+
   return (
     <section className="border-t-3 border-pumpkin bg-surface">
       <div className="mx-auto max-w-325 px-5 py-14 md:px-8 md:py-20">
-        <h2 className={`${sectionTitle} mb-10`}>What the API gives you</h2>
+        <h2 className={`${sectionTitle} mb-10`}>{t.developers.featuresTitle}</h2>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {features.map((feature) => (
+          {t.developers.features.map((feature) => (
             <div key={feature.title} className="border-3 border-pumpkin bg-ink p-6 brutal-4">
               <h3 className="mb-3 font-extrabold text-pumpkin text-xl/tight">{feature.title}</h3>
               <p>
@@ -387,6 +332,8 @@ function Features() {
 }
 
 function QuickStart() {
+  const { t } = useI18n();
+  const guides = useMemo(() => getGuides(t), [t]);
   const [active, setActive] = useState<GuideId>("rust");
 
   useEffect(() => {
@@ -411,17 +358,17 @@ function QuickStart() {
       <div className="mx-auto max-w-325 px-5 py-14 md:px-8 md:py-20">
         <div className="mb-10 max-w-3xl">
           <h2 className={sectionTitle}>
-            Quick <span className={highlight}>start</span>
+            {rich(t.developers.quickStart.title, {
+              hl: (text) => <span className={highlight}>{text}</span>,
+            })}
           </h2>
-          <p className="mt-4 text-lg text-muted">
-            Pick a language. Each guide goes from an empty folder to a plugin file Pumpkin can load.
-          </p>
+          <p className="mt-4 text-lg text-muted">{t.developers.quickStart.description}</p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-12">
           <div
             role="tablist"
-            aria-label="Plugin language"
+            aria-label={t.developers.picker.language}
             className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 lg:sticky lg:top-28 lg:mx-0 lg:flex-col lg:self-start lg:overflow-visible lg:px-0"
           >
             {guides.map((guide) => (
@@ -470,11 +417,13 @@ function QuickStart() {
                 ))}
               </ol>
               <p className="mt-10 border-t border-white/15 pt-5 text-muted">
-                The full walkthrough is in{" "}
-                <a href={guide.docsHref} className="font-semibold text-pumpkin underline underline-offset-3 hover:text-fg">
-                  {guide.docsLabel}
-                </a>
-                .
+                {rich(formatMessage(t.developers.quickStart.walkthrough, { documentation: guide.docsLabel }), {
+                  docs: (text) => (
+                    <a href={guide.docsHref} className="font-semibold text-pumpkin underline underline-offset-3 hover:text-fg">
+                      {text}
+                    </a>
+                  ),
+                })}
               </p>
             </div>
           ))}
@@ -485,19 +434,21 @@ function QuickStart() {
 }
 
 function ReadyToBuild() {
+  const { t } = useI18n();
+
   return (
     <section className="mx-auto max-w-225 px-5 pb-16 md:px-8 md:pb-24">
       <div className="border-3 border-pumpkin bg-surface px-6 py-10 text-center brutal-4 md:px-12 md:py-14 md:brutal-6">
-        <h2 className="mb-3 text-[2rem] leading-[1.05] font-extrabold text-pumpkin md:text-[2.5rem]">Ready to build?</h2>
-        <p className="mx-auto mb-8 max-w-xl text-lg text-muted">
-          The docs cover events, commands and the rest of the API. Discord is where to ask when they don't.
-        </p>
+        <h2 className="mb-3 text-[2rem] leading-[1.05] font-extrabold text-pumpkin md:text-[2.5rem]">
+          {t.developers.ready.title}
+        </h2>
+        <p className="mx-auto mb-8 max-w-xl text-lg text-muted">{t.developers.ready.description}</p>
         <div className="flex flex-wrap justify-center gap-4">
           <ButtonLink href={`${DOCS_URL}/plugin-dev/introduction`} className="w-full md:w-auto">
-            Get started
+            {t.developers.ready.getStarted}
           </ButtonLink>
           <ButtonLink href={DISCORD_URL} variant="ghost" className="w-full md:w-auto">
-            Ask on Discord
+            {t.developers.ready.discord}
           </ButtonLink>
         </div>
       </div>

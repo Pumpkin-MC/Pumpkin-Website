@@ -4,7 +4,6 @@
     "docs": "文档",
     "community": "社区",
     "market": "插件市场",
-
     "tracker": "进度",
     "download": "下载",
     "language": "语言",
@@ -139,7 +138,7 @@
     "runAgain": "再运行一次",
     "loading": "加载中",
     "ready": "已就绪",
-    "lede": "Pumpkin 是用 Rust 编写的 Minecraft 服务器。无需安装 Java，只需运行一个文件，Java版和基岩版玩家便能加入同一个世界。",
+    "lede": "Pumpkin 是用 Rust 编写的 Minecraft 服务器。无需安装 Java，只需运行一个文件，Java 版和基岩版玩家便能加入同一个世界。",
     "download": "下载",
     "docs": "阅读文档",
     "secondsUnit": "秒"
@@ -601,7 +600,7 @@
         "glazed_terracotta": "带釉陶瓦",
         "grass_block": "草方块",
         "grindstone": "砂轮",
-        "hay": "干草块",
+        "hay": "干草捆",
         "honey": "蜂蜜块",
         "hopper": "漏斗",
         "huge_mushroom": "巨型蘑菇",
@@ -945,6 +944,572 @@
       "structureExecution": "结构捕获、保存和加载的执行逻辑",
       "pistonBaseRemoval": "活塞头被破坏时移除处于伸出状态的活塞底座",
       "pistonBreakingPlayer": "将执行破坏操作的玩家传递给底座移除逻辑"
+    }
+  },
+  "download": {
+    "title": "下载 Pumpkin",
+    "lede": "独立可执行文件。无需安装 Java。下载、运行，即可开玩。",
+    "pluginManager": "在找插件管理器？",
+    "installPpm": "安装 ppm（Pumpkin 包管理器）↓",
+    "channel": "发布通道",
+    "channels": {
+      "stable": "稳定版",
+      "nightly": "每日构建"
+    },
+    "nightlyWarning": "每日构建直接来自最新提交，跳过发布流程。可能存在问题，请先备份世界。",
+    "generated": "{date} 生成。",
+    "detected": "已检测到当前设备",
+    "mostCommon": "最常见的下载",
+    "downloadFor": "下载适用于 {system} 的版本",
+    "downloadNightlyFor": "下载适用于 {system} 的每日构建",
+    "allFiles": "全部文件",
+    "releaseNotes": "发行说明",
+    "nightlyRelease": "每日构建发布页",
+    "olderVersions": "旧版本",
+    "allReleases": "全部版本",
+    "releaseFiles": "发布文件",
+    "system": "系统",
+    "architecture": "架构",
+    "file": "文件",
+    "download": "下载",
+    "thisDevice": "此设备",
+    "downloadFile": "下载 {file}",
+    "downloadNightlyFile": "下载每日构建 {file}",
+    "signing": "发布版本使用 SignPath 进行数字签名。免费代码签名由 <signpath>SignPath.io</signpath> 提供，证书由 <foundation>SignPath Foundation</foundation> 提供。",
+    "copy": "复制",
+    "copied": "已复制",
+    "copyInstall": "复制安装命令",
+    "copiedInstall": "已复制安装命令",
+    "copyPpmInstall": "复制 ppm 安装命令",
+    "copiedPpmInstall": "已复制 ppm 安装命令",
+    "installHint": "适用于 macOS、Linux 及其他类 Unix 系统。会安装到 <code>./pumpkin-server</code>。",
+    "ppmInstallHint": "运行 <code>ppm self-install</code>，自动将可执行文件安装到 <code>~/.local/bin</code>（或 <code>/usr/local/bin</code>）。",
+    "ppm": {
+      "eyebrow": "官方包管理器",
+      "title": "Pumpkin 包管理器（ppm）",
+      "github": "GitHub 仓库",
+      "marketplace": "插件市场",
+      "description": "<ppm>ppm</ppm> 是 Pumpkin Minecraft 服务器插件的官方命令行工具与包管理器。你可以从插件市场搜索并安装 WebAssembly 插件、保持其更新，或通过交互式向导创建新的插件项目。",
+      "search": "按关键词或分类搜索插件市场中的插件",
+      "install": "下载 .wasm 插件并安装到服务器",
+      "new": "用 Rust、Python、Go 等创建新的插件项目",
+      "standalone": "独立二进制文件：",
+      "allReleases": "全部 ppm 版本 →"
+    },
+    "afterDownloading": "下载之后",
+    "steps": [
+      {
+        "title": "下载文件",
+        "body": "在上方获取适用于你系统的文件，或在 macOS 和 Linux 上使用安装脚本。它只有一个可执行文件，没有安装程序，也无需配置 Java。"
+      },
+      {
+        "title": "运行",
+        "body": "双击该可执行文件，或在终端中启动它。几毫秒后服务器就会开始运行。"
+      },
+      {
+        "title": "连接",
+        "body": "Java 版玩家通过 <code>25565</code> 端口加入，基岩版玩家通过 <code>19132</code> 端口加入。两个版本可以处在同一个世界中。"
+      },
+      {
+        "title": "配置",
+        "body": "查看<docs>配置文档</docs>了解所有选项；如果启动失败，也可以在 <discord>Discord</discord> 上提问。"
+      },
+      {
+        "title": "添加插件",
+        "body": "使用官方包管理器管理 WebAssembly 插件。用 <ppm>ppm</ppm> 安装，或在<market>插件市场</market>浏览社区作品。"
+      }
+    ],
+    "quickStart": "快速开始指南",
+    "discordHelp": "在 Discord 获取帮助",
+    "terminal": {
+      "label": "Pumpkin 启动动画演示",
+      "running": "运行中",
+      "idle": "空闲"
+    }
+  },
+  "developers": {
+    "hero": {
+      "overline": "没有 NMS，没有反射，没有针对特定版本的 hack。",
+      "title": "开发插件，无需再受折磨",
+      "description": "只有干净、类型安全的 API。用你熟悉的语言编写，Pumpkin 会把结果作为 WebAssembly 插件加载。",
+      "docs": "插件文档",
+      "source": "GitHub 源码"
+    },
+    "picker": {
+      "title": "选择你的语言",
+      "language": "插件语言",
+      "firstStep": "{language} 指南共 {count} 步，这是第一步。",
+      "noGuide": "{language} 还没有编写指南。",
+      "open": "打开指南"
+    },
+    "comparison": {
+      "title": "同样的功能，<hl>两套 API</hl>",
+      "description": "先发送欢迎消息，再用 Java 对话框或基岩版表单请求确认。在 Spigot 上，这意味着反射调用 NMS，还要再写一个插件；在 Pumpkin 上，只需一个分支。",
+      "api": "选择 API",
+      "reflectionCalls": "{count} 次反射调用",
+      "spigot": {
+        "badge": "Spigot + 反射 NMS + Geyser API（Java）",
+        "facts": [
+          "需要 Geyser API",
+          "版本一变就失效"
+        ]
+      },
+      "pumpkin": {
+        "badge": "Pumpkin 原生 API（Rust）",
+        "facts": [
+          "没有额外依赖",
+          "编译期检查"
+        ]
+      }
+    },
+    "featuresTitle": "API 能带给你什么",
+    "features": [
+      {
+        "title": "所有玩家，一个插件",
+        "body": "原生支持 Java 版和基岩版，内置多版本兼容。",
+        "rest": "写一次，覆盖所有人。"
+      },
+      {
+        "title": "类型安全的命令与事件",
+        "body": "注册命令，挂接带类型的插件事件",
+        "rest": "无需反射、NMS 或针对特定版本的 hack。"
+      },
+      {
+        "title": "默认异步",
+        "body": "基于 Tokio，没有主线程瓶颈。",
+        "rest": "繁重任务不会卡住服务器。"
+      },
+      {
+        "title": "内存安全",
+        "body": "Rust 的保证。",
+        "rest": "没有空指针、内存泄漏和数据竞争。"
+      }
+    ],
+    "quickStart": {
+      "title": "快速<hl>开始</hl>",
+      "description": "选择一种语言。每份指南都从空文件夹开始，直到生成 Pumpkin 能加载的插件文件。",
+      "walkthrough": "完整教程见<docs>{documentation}</docs>。"
+    },
+    "ready": {
+      "title": "准备好开始了吗？",
+      "description": "文档涵盖事件、命令以及其余 API。遇到文档解答不了的问题，就来 Discord 提问。",
+      "getStarted": "开始使用",
+      "discord": "在 Discord 提问"
+    },
+    "guides": {
+      "terminal": "终端",
+      "projectLayout": "项目结构",
+      "copy": "复制",
+      "copied": "已复制",
+      "copyCommand": "复制命令",
+      "copiedCommand": "已复制命令",
+      "copyLabel": "复制 {label}",
+      "copiedLabel": "已复制 {label}",
+      "firstSteps": {
+        "c": "先下载 <sdk>wasi-sdk</sdk>，然后用它提供的 clang 编译。",
+        "d": "安装 <ldc>LDC</ldc> 1.43 或更高版本并附带 addon-wasi 包，另外还需要 <dub>DUB</dub>。",
+        "typescript": "还没有编写指南。API 位于 <api>pumpkin-api-ts</api>。"
+      },
+      "rust": {
+        "docsLabel": "Rust 文档",
+        "steps": {
+          "create": "创建新项目",
+          "toolchain": "安装工具链",
+          "crate": "初始化新的 crate",
+          "configure": "配置 crate"
+        },
+        "text": {
+          "build": "Pumpkin 插件使用 Cargo 构建系统。",
+          "template": "这个插件的完整代码可以在 <template>GitHub 模板</template> 中找到。",
+          "target": "编译插件之前，必须先安装 <code>wasm32-wasip2</code> 目标。可以运行以下命令安装：",
+          "folder": "首先需要创建一个新的项目文件夹。可以在你创建的文件夹中运行以下命令：",
+          "cargo": "接下来需要创建一个名为 <code>.cargo</code> 的目录，并在其中添加一个内容如下的 <code>config.toml</code> 文件：",
+          "tree": "最终你的文件夹结构应该是这样：",
+          "cdylib": "由于 Pumpkin 插件在运行时作为动态库加载，我们需要让 Cargo 把这个 crate 构建为动态库。",
+          "deps": "接下来需要添加一些基本依赖。由于 Pumpkin 仍处于早期开发阶段，内部 crate 尚未发布到 crates.io，因此需要让 Cargo 直接从 GitHub 下载依赖。"
+        }
+      },
+      "python": {
+        "docsLabel": "Python 文档",
+        "steps": {
+          "install": "安装",
+          "create": "创建你的第一个插件",
+          "build": "构建插件"
+        },
+        "text": {
+          "install": "首先，你需要安装 <code>pumpkin-api-py</code> 库：",
+          "file": "创建一个名为 <code>main.py</code> 的文件，并添加以下内容：",
+          "build": "使用提供的构建工具将插件构建为 WebAssembly 组件：",
+          "output": "这会生成一个 <code>my_plugin.wasm</code> 文件，可以放入 Pumpkin 服务器的 plugins 文件夹。"
+        }
+      },
+      "csharp": {
+        "docsLabel": "C# 文档",
+        "steps": {
+          "install": "安装",
+          "create": "创建你的第一个插件",
+          "build": "构建插件"
+        },
+        "text": {
+          "sdk": "编译 Pumpkin 的 C# 插件需要 <code>.NET SDK</code> 和 WASI 工作负载。",
+          "library": "创建一个新的类库，并添加以下代码：",
+          "build": "使用 WASI 运行时标识符将插件编译为 WebAssembly：",
+          "output": "这会在输出目录中生成一个 <code>.wasm</code> 文件，Pumpkin 可以加载它。"
+        }
+      },
+      "c": {
+        "docsLabel": "GitHub 仓库",
+        "steps": {
+          "install": "安装",
+          "create": "创建你的第一个插件",
+          "build": "构建插件"
+        },
+        "text": {
+          "sdk": "编译 Pumpkin 的 C/C++ 插件需要 <code>wasi-sdk</code>。请从 <sdk>wasi-sdk 仓库</sdk> 下载最新版本。",
+          "repo": "这个插件的完整代码可以在 <repo>pumpkin-api-c 仓库</repo> 中找到。",
+          "file": "创建一个名为 <code>main.c</code> 的文件，并添加以下内容：",
+          "clang": "请使用 <code>wasi-sdk</code> 中的 <code>clang</code> 将这个插件编译为 WebAssembly 组件：",
+          "output": "这会生成一个 <code>my_plugin.wasm</code> 文件，Pumpkin 可以加载它。"
+        }
+      },
+      "go": {
+        "docsLabel": "Go 文档",
+        "steps": {
+          "install": "安装",
+          "create": "创建你的第一个插件",
+          "build": "构建插件"
+        },
+        "text": {
+          "tools": "编译 Pumpkin 的 Go 插件需要 <go>Go 1.23 或更高版本</go> 和 <code>tinygo</code>。",
+          "file": "创建一个名为 <code>main.go</code> 的文件，并添加以下内容：",
+          "build": "使用 <code>tinygo</code> 将插件编译为 WebAssembly：",
+          "output": "这会生成一个 <code>my_plugin.wasm</code> 文件，Pumpkin 可以加载它。"
+        }
+      },
+      "kotlin": {
+        "docsLabel": "Kotlin 文档",
+        "steps": {
+          "install": "安装",
+          "create": "创建你的第一个插件",
+          "build": "构建插件"
+        },
+        "text": {
+          "needs": "你需要安装一些工具。",
+          "rust": "Rust（仅默认/宿主工具链）",
+          "wasmTools": "wasm-tools",
+          "make": "<code>make</code>（例如 <make>GNU Make</make>）",
+          "template": "与大多数其他 API 不同，这个 API 实际上是一个模板。请克隆它并重命名。",
+          "rename": "然后修改 <code>settings.gradle.kts</code> 中的 <code>rootProject.name</code>，以及 <code>Makefile</code> 中的 <code>PROJECT_NAME</code>。两者必须一致。你给项目起的名字也会成为生成的 Wasm 文件名。",
+          "prepared": "模板中已经准备好一些代码。<code>src/wasmWasiMain/kotlin/plugin/Plugin.kt</code> 包含：",
+          "makeCommand": "运行 <code>Makefile</code> 将插件编译为 WebAssembly：",
+          "slow": "第一次构建会比较慢，因为它需要从源码构建一些 Rust 依赖。",
+          "output": "完成后，<code>my_kotlin_plugin.wasm</code>（或你的 Gradle 项目名）会出现在 <code>build</code> 中，可以直接加载到 Pumpkin。"
+        }
+      },
+      "d": {
+        "docsLabel": "D 文档",
+        "steps": {
+          "install": "安装",
+          "create": "创建你的第一个插件",
+          "build": "构建插件"
+        },
+        "text": {
+          "needs": "需要 <ldc>LDC</ldc> 1.43 或更高版本并安装 <code>addon-wasi</code> 包，另外还需要 <dub>DUB</dub>。",
+          "package": "绑定来自 <api>pumpkin-api-d</api> 包。请在插件旁边创建一个 <code>dub.json</code> 来声明它：",
+          "source": "然后把插件本身放在 <code>source/app.d</code> 中：",
+          "dub": "使用 DUB 将插件编译为面向 <code>wasm32-wasip2</code> 的 WebAssembly 组件：",
+          "output": "<code>my-d-plugin.wasm</code> 会出现在项目根目录，可以直接加载到 Pumpkin。"
+        }
+      },
+      "zig": {
+        "docsLabel": "Zig 文档",
+        "steps": {
+          "install": "搭建项目",
+          "create": "创建你的第一个插件",
+          "build": "构建插件"
+        },
+        "text": {
+          "needs": "需要 <zig>Zig</zig> 0.16.0 或更高版本，并确保 <code>PATH</code> 中包含 <tools>wasm-tools</tools>。",
+          "fetch": "获取并添加 <api>pumpkin-api-zig</api> 包作为依赖：",
+          "buildFile": "在项目根目录创建一个 <code>build.zig</code> 文件：",
+          "source": "在 <code>src/main.zig</code> 中创建插件源码：",
+          "build": "将插件编译为 WebAssembly 组件：",
+          "output": "这会生成 <code>zig-out/my-zig-plugin.wasm</code>，可以直接加载到 Pumpkin。"
+        }
+      },
+      "typescript": {
+        "docsLabel": "pumpkin-api-ts 仓库",
+        "intro": "TypeScript 目前还没有编写快速开始文档。API 及其安装说明位于 <repo>pumpkin-api-ts 仓库</repo>。"
+      }
+    }
+  },
+  "sponsor": {
+    "title": "赞助",
+    "description": "与 Pumpkin 合作。选择赞助套餐，获得项目致谢、社区特权或企业品牌展示。",
+    "manage": "管理赞助 →",
+    "community": {
+      "title": "社区支持者档位",
+      "description": "按月订阅，享有数字特权和名录展示。"
+    },
+    "perMonth": "每月",
+    "monthlyPrice": "{amount} / 月",
+    "selectTier": "选择档位",
+    "selectTierLabel": "选择每月 {amount} 的{tier}档位",
+    "tiers": {
+      "bronze": "青铜",
+      "silver": "白银",
+      "gold": "黄金",
+      "platinum": "白金",
+      "titanium": "钛金",
+      "diamond": "钻石",
+      "corporateBronze": "企业青铜",
+      "corporateSilver": "企业白银",
+      "corporateGold": "企业黄金",
+      "corporatePlatinum": "企业白金"
+    },
+    "monthlyPerks": {
+      "bronze": "致谢名单展示与 Discord 身份组",
+      "silver": "致谢名单、链接与 Discord 身份组",
+      "gold": "黄金致谢、链接与 Discord 身份组",
+      "platinum": "优先致谢、头像与链接",
+      "titanium": "精选致谢、头像与链接",
+      "diamond": "顶级致谢、头像与链接"
+    },
+    "corporate": {
+      "title": "企业赞助",
+      "description": "通过致谢名单中的标志展示和外链，推广你的公司、主机服务或开发工具。",
+      "select": "选择套餐",
+      "selectLabel": "选择每月 {amount} 的{tier}套餐"
+    },
+    "corporatePerks": {
+      "corporateBronze": "致谢名单中的标志与链接",
+      "corporateSilver": "优先展示的标志与链接",
+      "corporateGold": "精选展示的标志与链接",
+      "corporatePlatinum": "顶级展示的标志与链接"
+    },
+    "partners": {
+      "title": "合作伙伴与赞助者",
+      "description": "这些公司和社区成员正在积极支持 Pumpkin 的开发。",
+      "list": "赞助者列表",
+      "active": "当前",
+      "past": "往期赞助者",
+      "private": "匿名赞助者",
+      "loadError": "暂时无法从服务器加载赞助者，请稍后再试。",
+      "loading": "正在加载赞助者……",
+      "noCurrent": "还没有当前赞助者，你可以成为第一个。",
+      "noPast": "没有往期赞助者。"
+    },
+    "terms": {
+      "title": "销售、计费与交付政策",
+      "digital": "<b>数字交付：</b>数字特权——包括 Discord 社区支持者身份组、网站致谢名单，以及企业标志与链接展示——会在付款成功后以数字方式开通。如果你的数字特权需要人工设置或 Discord 同步，我们会在 24 小时内确认访问权限。",
+      "corporate": "<b>企业赞助准则：</b>企业赞助档位包含 pumpkinmc.org 上的标志展示和外链致谢。所有品牌素材和链接都会依据社区准则进行审核。对于违反这些标准的素材，Pumpkin 保留拒绝或要求修改的权利。",
+      "billing": "<b>计费与取消：</b>月度赞助按周期自动计费，可随时通过<portal>Stripe 客户门户</portal>修改或取消。取消将在当前计费周期结束时生效。",
+      "refund": "<b>退款政策：</b>由于数字特权、社区身份组和名录展示会立即交付，付款一旦生效便不予退款，适用法律另有规定的除外。",
+      "signing": "<b>代码签名：</b>免费代码签名由 <signpath>SignPath.io</signpath> 提供，证书由 <foundation>SignPath Foundation</foundation> 提供。Pumpkin 的发布版本使用 SignPath 进行数字签名。"
+    }
+  },
+  "contributors": {
+    "title": "由贡献者共同打造",
+    "description": "Pumpkin 由一个出色的开源社区共同构建。下面的每一次提交，都是某人利用业余时间完成的。",
+    "contributors": "位贡献者",
+    "commits": "次提交",
+    "contributorLabel": "{name}，{count} 次提交",
+    "mostCommits": "提交最多",
+    "everyoneElse": "其他所有人",
+    "people": "{count} 人",
+    "loading": "正在加载贡献者……",
+    "loadError": "加载贡献者失败，请稍后再试。",
+    "rateLimitReset": "已达到 GitHub API 速率限制，将于 {time} 重置，请稍后再试。",
+    "rateLimitSoon": "已达到 GitHub API 速率限制，即将重置，请稍后再试。",
+    "fullList": "完整名单始终可在 <github>GitHub</github> 上查看。",
+    "contributeTitle": "想参与贡献吗？",
+    "contributeDescription": "加入我们的社区，一起打造史上最快的 Minecraft 服务器。",
+    "guide": "贡献指南",
+    "github": "在 GitHub 上查看",
+    "discord": "加入 Discord"
+  },
+  "stats": {
+    "live": "实时遥测",
+    "title": "生态系统遥测",
+    "description": "Pumpkin 与 Vine 部署的实时网络遥测、全球节点分布、硬件基础设施和社区服务器分析数据。",
+    "timeRange": "时间范围",
+    "lastPolled": "上次更新",
+    "connecting": "连接中……",
+    "refresh": "刷新",
+    "apiDocs": "API 文档",
+    "unavailable": "目前无法连接遥测服务，页面每分钟重试一次。",
+    "loading": "加载中……",
+    "ranges": {
+      "24h": {
+        "label": "24 小时",
+        "long": "过去 24 小时"
+      },
+      "7d": {
+        "label": "7 天",
+        "long": "过去 7 天"
+      },
+      "30d": {
+        "label": "30 天",
+        "long": "过去 30 天"
+      },
+      "90d": {
+        "label": "90 天",
+        "long": "过去 90 天"
+      },
+      "all": {
+        "label": "全部",
+        "long": "全部时间"
+      }
+    },
+    "kpi": {
+      "activeServers": "活跃服务器 · {range}",
+      "peakPlayers": "峰值玩家 · {range}",
+      "liveNow": "当前 {count} 台在线 · Pumpkin {pumpkin} · Vine {vine}",
+      "onlineNow": "当前 {count} 人在线",
+      "countries": "国家/地区",
+      "mostServers": "服务器最多：{country}",
+      "plugins": "已跟踪插件",
+      "mostUsed": "最常用：{plugin}"
+    },
+    "activity": {
+      "title": "活动趋势",
+      "description": "{range}内的同时在线玩家和在线服务器。",
+      "metric": "指标",
+      "noData": "没有可用的遥测趋势数据。",
+      "showTable": "显示数据表",
+      "hideTable": "隐藏数据表",
+      "time": "时间",
+      "chartLabel": "{series}，{range}。使用方向键读取数值。",
+      "seriesJoiner": "与"
+    },
+    "series": {
+      "onlinePlayers": "在线玩家",
+      "peakPlayers": "峰值玩家",
+      "pumpkinServers": "Pumpkin 服务器",
+      "vineServers": "Vine 服务器"
+    },
+    "summary": {
+      "peak": "峰值",
+      "average": "平均",
+      "low": "最低",
+      "latest": "最新"
+    },
+    "metrics": {
+      "players": "玩家",
+      "servers": "服务器"
+    },
+    "map": {
+      "title": "服务器分布",
+      "description": "活跃服务器与玩家流量的地理分布。点击国家/地区可在列表中定位。",
+      "metric": "地图指标",
+      "fewer": "较少",
+      "moreServers": "更多服务器",
+      "morePlayers": "更多玩家",
+      "topLocation": "热门地区",
+      "regions": "国家/地区",
+      "reportedPlayers": "上报玩家",
+      "playersPerServer": "每服务器玩家数",
+      "loading": "正在加载地图……",
+      "error": "地图加载失败。",
+      "tooltip": "{servers} 台服务器 · {players} 名玩家",
+      "noReporting": "没有上报的服务器"
+    },
+    "geoDetail": "{servers} 台服务器 · {players} 名玩家",
+    "countries": {
+      "title": "国家/地区",
+      "description": "按托管国家/地区统计的服务器与玩家流量。",
+      "sort": "排序依据",
+      "empty": "没有上报地理位置数据。"
+    },
+    "plugins": {
+      "title": "热门插件",
+      "description": "上报服务器中采用率最高的插件。",
+      "empty": "没有上报插件遥测数据。",
+      "detail": "{count} 台服务器 · {percent}"
+    },
+    "players": {
+      "title": "玩家",
+      "description": "上报服务器汇总的在线模式比例，以及匿名的玩家客户端构成。",
+      "breakdown": "玩家构成",
+      "edition": "Java / 基岩版",
+      "editionDescription": "活跃服务器上 Java 版与基岩版客户端数量之和。",
+      "online": "在线模式",
+      "onlineDescription": "活跃服务器上使用 Mojang 与 Xbox Live 验证，还是离线或代理模式。",
+      "view": "视距",
+      "viewDescription": "已连接玩家设置的客户端区块渲染距离。",
+      "empty": "暂无上报数据。",
+      "clientBrands": "客户端品牌",
+      "clientBrandsDescription": "已连接客户端上报的 Minecraft 启动器和模组加载器。",
+      "clientBrandsEmpty": "暂无客户端品牌数据。",
+      "locales": "玩家语言",
+      "localesDescription": "已连接玩家设置的首选语言。",
+      "localesEmpty": "暂无玩家语言数据。"
+    },
+    "systems": {
+      "title": "系统与硬件",
+      "description": "服务器主机上报的操作系统、CPU 架构、软件版本和内存占用。",
+      "os": "操作系统",
+      "arch": "CPU 架构",
+      "software": "软件版本",
+      "minecraft": "Minecraft 版本",
+      "serverMemory": "分配的服务器内存",
+      "hostMemory": "主机内存",
+      "pluginLanguages": "插件语言",
+      "pluginLanguagesDescription": "上报服务器上活跃插件使用的绑定语言。",
+      "pluginLanguagesEmpty": "没有上报插件语言数据。",
+      "cpus": "服务器 CPU",
+      "cpusDescription": "上报次数最多的处理器。",
+      "empty": "没有上报数据。",
+      "rustNative": "Rust（原生）"
+    },
+    "distribution": {
+      "showLess": "收起",
+      "showMore": "再显示 {count} 项"
+    },
+    "privacy": {
+      "title": "保护隐私的开放遥测",
+      "body": "Pumpkin 与 Vine 的遥测完全透明、不识别个人身份，并以隐私优先。我们收集聚合后的系统指标（操作系统、CPU 架构、内存范围、软件版本、验证模式，以及不含用户名、IP 或原始 UUID 的匿名玩家客户端设置），用于性能基准测试、多线程优化，以及确定 Minecraft 版本兼容性的优先级。要了解更多或集成你自己的工具，请访问<docs>遥测 API 文档</docs>，或查看我们 <github>GitHub 仓库</github> 中的遥测模块。"
+    }
+  },
+  "notFound": {
+    "title": "这个页面不存在。",
+    "description": "链接可能已经过期，或者页面在网站重建时被移动了。下面是大多数人想找的地方。",
+    "home": "返回首页",
+    "download": "下载 Pumpkin",
+    "docs": "阅读文档"
+  },
+  "metadata": {
+    "home": {
+      "title": "Pumpkin - 极速 Minecraft 服务器",
+      "description": "Pumpkin：最快、最高效的 Minecraft 服务器软件，使用 Rust 编写。"
+    },
+    "download": {
+      "title": "下载 Pumpkin - 极速 Minecraft 服务器",
+      "description": "下载 Pumpkin 最新版本，最快的 Minecraft 服务器。"
+    },
+    "developers": {
+      "title": "开发者 - Pumpkin",
+      "description": "为什么开发者喜欢在 Pumpkin 上开发：类型安全的命令、可变事件、Java + 基岩版支持，以及更多。"
+    },
+    "sponsor": {
+      "title": "赞助 - Pumpkin",
+      "description": "成为赞助者，支持 Pumpkin 的开发，解锁社区特权和品牌展示。"
+    },
+    "contributors": {
+      "title": "贡献者 - Pumpkin",
+      "description": "认识为 Pumpkin 这个最快的 Minecraft 服务器做出贡献的人们。"
+    },
+    "stats": {
+      "title": "遥测与统计 - Pumpkin",
+      "description": "Pumpkin 与 Vine 的实时生态遥测、服务器健康状况、硬件分布、全球地图和社区统计。"
+    },
+    "tracker": {
+      "title": "原版功能进度 - Pumpkin",
+      "description": "Pumpkin 与原版的接近程度：哪些实体、方块、物品和命令已经实现、部分实现，哪些仍在计划中。"
+    },
+    "notFound": {
+      "title": "页面未找到 - Pumpkin",
+      "description": "pumpkinmc.org 上不存在此页面。"
     }
   },
   "footer": {

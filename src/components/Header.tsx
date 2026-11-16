@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { languages, languageTag, useI18n, type Lang } from "../i18n";
+import { languages, languageCode, languageTag, useI18n, type Lang } from "../i18n";
 import { rich } from "../i18n/rich";
 import { GITHUB_URL, MARKET_URL } from "../links";
 import { withBase } from "../lib/url";
@@ -99,7 +99,7 @@ function LanguageSwitcher() {
               code === lang ? "bg-pumpkin text-black" : "text-muted hover:text-fg"
             }`}
           >
-            {code.split("_")[0]}
+            {languageCode(code)}
           </button>
         ))}
       </div>
@@ -113,7 +113,7 @@ function LanguageSwitcher() {
         className={`${squareButton} cursor-pointer gap-1.5 px-2.5 text-[0.85rem] font-bold uppercase`}
       >
         <GlobeIcon className="size-4" />
-        {lang.split("_")[0]}
+        {languageCode(lang)}
       </button>
       {open && (
         <ul
@@ -132,7 +132,7 @@ function LanguageSwitcher() {
                 }}
                 className={`block w-full cursor-pointer border-b border-white/10 px-4 py-2.5 text-left text-[0.9rem] font-semibold last:border-b-0 hover:bg-pumpkin hover:text-black ${code === lang ? "bg-pumpkin text-black" : "text-fg"}`}
               >
-                {languages[code]} ({code.split("_")[0].toUpperCase()})
+                {languages[code]} ({languageCode(code)})
               </button>
             </li>
           ))}

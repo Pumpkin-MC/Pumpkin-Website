@@ -1,0 +1,1549 @@
+{
+  "nav": {
+    "developers": "開發者",
+    "docs": "文件",
+    "community": "社群",
+    "market": "插件市場",
+    "tracker": "進度",
+    "download": "下載",
+    "language": "語言",
+    "menu": "選單",
+    "main": "主導航",
+    "docsTranslations": "文件還提供<de>德語</de>、<ja>日語</ja>、<nl>荷蘭語</nl>和<pt>葡萄牙語</pt>版本。",
+    "panels": {
+      "developers": {
+        "writePlugins": "編寫插件",
+        "pickLanguage": "選擇語言",
+        "hackServer": "參與伺服器端開發",
+        "howPluginsWork": {
+          "label": "插件如何工作",
+          "hint": "API、執行階段和打包方式。"
+        },
+        "fromBukkit": {
+          "label": "從 Bukkit 遷移",
+          "hint": "事件、指令和物品欄的對應關係。"
+        },
+        "examples": {
+          "label": "範例插件",
+          "hint": "簡短、完整，可直接複製使用。"
+        },
+        "contributing": {
+          "label": "參與貢獻",
+          "hint": "環境設定、程式碼風格和 PR 審核流程。"
+        },
+        "architecture": {
+          "label": "架構",
+          "hint": "伺服器端的整體結構。"
+        },
+        "networking": {
+          "label": "網路通訊",
+          "hint": "資料包、身分驗證和 MSMP。"
+        },
+        "source": {
+          "label": "GitHub 原始碼",
+          "hint": "議題、PR 和發佈版本。"
+        }
+      },
+      "docs": {
+        "runServer": "執行伺服器",
+        "configure": "設定",
+        "about": "關於",
+        "gettingStarted": {
+          "label": "快速開始",
+          "hint": "下載、首次執行和迎接第一位玩家。"
+        },
+        "migration": {
+          "label": "從 Paper 或 Spigot 遷移",
+          "hint": "哪些內容可以沿用，哪些不能。"
+        },
+        "patchBukkit": {
+          "label": "PatchBukkit",
+          "hint": "繼續執行現有的 Bukkit 和 Paper 插件。"
+        },
+        "troubleshooting": {
+          "label": "故障排查",
+          "hint": "常見問題及其含義。"
+        },
+        "basicSettings": {
+          "label": "基本設定",
+          "hint": "埠、MOTD、視距和白名單。"
+        },
+        "world": {
+          "label": "世界",
+          "hint": "生成、儲存和出生點。"
+        },
+        "bedrock": {
+          "label": "基岩版玩家",
+          "hint": "讓基岩版客戶端加入伺服器。"
+        },
+        "proxy": {
+          "label": "透過代理連線",
+          "hint": "Velocity 和 BungeeCord 轉發。"
+        },
+        "configReference": {
+          "label": "全部設定項",
+          "hint": "完整的設定參考。"
+        },
+        "benchmarks": {
+          "label": "效能測試",
+          "hint": "這些資料是如何測得的。"
+        },
+        "helping": {
+          "label": "提供幫助",
+          "hint": "無需編寫程式碼也能參與貢獻。"
+        }
+      },
+      "community": {
+        "talk": "交流",
+        "follow": "關注進展",
+        "discord": {
+          "label": "Discord",
+          "hint": "尋求幫助、開發交流和公告。"
+        },
+        "x": {
+          "label": "X",
+          "hint": "簡短動態。"
+        },
+        "youtube": {
+          "label": "YouTube",
+          "hint": "演示和分享。"
+        },
+        "blog": {
+          "label": "部落格",
+          "hint": "版本說明和長篇文章。"
+        },
+        "stats": {
+          "label": "統計",
+          "hint": "目前正在執行 Pumpkin 的伺服器。"
+        },
+        "parity": {
+          "label": "原版功能進度",
+          "hint": "哪些功能已實作、部分實作或仍在規劃中。"
+        },
+        "contributors": {
+          "label": "貢獻者",
+          "hint": "共同開發 Pumpkin 的人們。"
+        },
+        "sponsor": {
+          "label": "贊助",
+          "hint": "贊助檔位和社群權益。"
+        }
+      }
+    }
+  },
+  "hero": {
+    "title": "只需 <hl>5 毫秒</hl> 即可啟動的 Minecraft 伺服器。",
+    "benchTitle": "啟動時間",
+    "benchNote": "同一個世界、同一台機器，從啟動開始計時，直到玩家可以加入。",
+    "runAgain": "再執行一次",
+    "loading": "載入中",
+    "ready": "已就緒",
+    "lede": "Pumpkin 是用 Rust 編寫的 Minecraft 伺服器。無需安裝 Java，只需執行一個檔案，Java 版和基岩版玩家便能加入同一個世界。",
+    "download": "下載",
+    "docs": "閱讀文件",
+    "secondsUnit": "秒"
+  },
+  "facts": {
+    "title": "<hl>如今</hl>的 Pumpkin",
+    "items": [
+      {
+        "big": "無需 JVM",
+        "lead": "一個原生執行檔，無需安裝、調整啟動引數或編寫啟動腳本。",
+        "rest": "放進資料夾即可執行。"
+      },
+      {
+        "big": "~100 MB",
+        "lead": "載入世界後空閒時的記憶體佔用。",
+        "rest": "原版在尚無玩家加入時就已佔用約 1.8 GB。"
+      },
+      {
+        "big": "用上所有核心",
+        "lead": "從第一次提交起就為並行處理而設計，",
+        "rest": "而非在單一主執行緒上附加輔助執行緒。"
+      },
+      {
+        "big": "Java 版 + 基岩版",
+        "lead": "兩個版本的玩家加入同一個世界。",
+        "rest": "內建支援，無需前置代理，也無需安裝插件。"
+      },
+      {
+        "big": "9 種語言",
+        "lead": "用 Rust、Kotlin、Python、Go、C#、C、D、Zig 或 TypeScript 編寫插件。",
+        "rest": "底層使用同一套 API，選擇你熟悉的語言即可。"
+      },
+      {
+        "big": "GPL-3.0",
+        "lead": "整個伺服器端都採用這一許可，不設付費功能層級。",
+        "rest": "自由閱讀、分叉和分發。"
+      }
+    ],
+    "earlyTag": "開發早期",
+    "earlyBody": "<b>Pumpkin 尚未完成。</b>部分原版機制仍未實作，版本之間的變更可能導致世界損壞，設定項也仍在調整。請先在測試伺服器上執行，保留備份，並<report>報告遇到的問題</report>。目前已支援的功能請參閱<docs>文件</docs>。"
+  },
+  "checklist": {
+    "title": "功能<hl>對照表</hl>",
+    "description": "對比 Pumpkin、原版、Paper 和 Folia 目前提供的功能。帶圓點的標記附有說明。",
+    "feature": "功能",
+    "support": {
+      "yes": "支援",
+      "partial": "部分支援",
+      "no": "不支援"
+    },
+    "noteLabel": "{status}，附有說明",
+    "items": {
+      "startup": {
+        "feature": "不到一秒即可啟動",
+        "detail": "JVM 還沒預熱完，就已經準備就緒。",
+        "notes": {
+          "1": "原版需要等待 JVM 啟動和世界載入。",
+          "3": "需要初始化的內容更多，通常比 Paper 更慢。"
+        }
+      },
+      "idleCpu": {
+        "feature": "空閒時 CPU 佔用低",
+        "detail": "無人線上時，CPU 佔用接近零。",
+        "notes": {}
+      },
+      "memory": {
+        "feature": "記憶體佔用低",
+        "detail": "載入世界後約佔用 100 MB。",
+        "notes": {}
+      },
+      "parallel": {
+        "feature": "利用所有核心",
+        "detail": "從設計之初就採用並行處理，不依賴單一主執行緒。",
+        "notes": {
+          "0": "遊戲邏輯和後台任務都跨執行緒執行，不僅限於區塊載入。",
+          "3": "僅 Tick 處理支援並行。"
+        }
+      },
+      "bukkitPlugins": {
+        "feature": "Bukkit 和 Paper 插件",
+        "detail": "透過尚處早期階段的 PatchBukkit 支援，仍有缺失。",
+        "notes": {
+          "0": "Pumpkin 有自己的 API。Bukkit 和 Paper 插件可透過尚處早期階段的 PatchBukkit 執行。",
+          "2": "原生支援。",
+          "3": "情況各異。許多插件需要更新才能適配 Folia 的執行緒模型。"
+        }
+      },
+      "editions": {
+        "feature": "Java 版和基岩版玩家",
+        "detail": "兩個版本的玩家共用一個世界，無需代理。",
+        "notes": {
+          "0": "內建支援。",
+          "2": "透過 Geyser 等外部插件實作。",
+          "3": "透過外部插件實作，且 Folia 的執行緒模型會增加設定難度。"
+        }
+      },
+      "pluginLanguages": {
+        "feature": "支援 9 種語言的插件 API",
+        "detail": "Rust、Kotlin、Python、Go、C#、C、D、Zig、TypeScript。",
+        "notes": {}
+      },
+      "configuration": {
+        "feature": "精細的設定選項",
+        "detail": "每個子系統都有獨立的設定檔案。",
+        "notes": {}
+      },
+      "openSource": {
+        "feature": "開源",
+        "detail": "整個伺服器端採用 GPL-3.0 許可。",
+        "notes": {
+          "2": "僅補丁開源。",
+          "3": "僅補丁開源。"
+        }
+      },
+      "worldFormats": {
+        "feature": "多種世界格式",
+        "detail": "支援 Anvil 及其他更高效的格式。",
+        "notes": {
+          "3": "僅支援 Anvil。"
+        }
+      },
+      "executable": {
+        "feature": "單個執行檔，無需 Java",
+        "detail": "下載、執行，即可使用。",
+        "notes": {}
+      }
+    }
+  },
+  "pluginLanguages": {
+    "title": "使用這些語言編寫插件",
+    "market": "或從插件市場安裝現成插件"
+  },
+  "tryIt": {
+    "title": "找台備用機器試試。",
+    "body": "只需一個檔案。讓它與你現有的伺服器並行執行，用客戶端連線，在正式採用前看看它能否滿足你的世界所需。",
+    "github": "在 GitHub 上加星",
+    "contributors": "認識貢獻者"
+  },
+  "tracker": {
+    "title": "原版功能<hl>實作進度</hl>",
+    "description": "檢視 Pumpkin 已實作、部分實作和規劃實作的原版功能。",
+    "overallProgress": "總體進度",
+    "summary": "{count} 個條目，讀取自 Pumpkin {commit}，對應 Minecraft {version}，日期：{updated}",
+    "status": {
+      "done": "已實作",
+      "partial": "部分實作",
+      "planned": "規劃中"
+    },
+    "progressLabel": "已實作、部分實作和規劃中條目的佔比",
+    "issueState": {
+      "open": "未關閉",
+      "closed": "已關閉",
+      "merged": "已合併"
+    },
+    "source": "原始碼",
+    "issuesAndPrs": "議題和 PR",
+    "issues": "議題",
+    "registered": "已註冊 ID",
+    "browseTitle": "逐項檢視<hl>進度</hl>",
+    "browseDescription": "選擇一個分類，再按狀態篩選或搜尋。",
+    "category": "分類",
+    "statusLabel": "狀態",
+    "any": "全部",
+    "searchPlaceholder": "搜尋條目、AI 目標、關鍵字……",
+    "searchLabel": "搜尋條目",
+    "showing": "顯示 {visible} / {total} {unit}",
+    "trackingIssue": "追蹤議題 #{number}",
+    "collapseAll": "全部收起",
+    "expandAll": "全部展開",
+    "empty": "沒有符合篩選條件的條目。",
+    "other": "其他",
+    "sourceTag": "源自程式碼",
+    "sourceBody": "<b>這些狀態是如何確定的。</b>實體、紅石、戰鬥和世界功能已根據維護者的追蹤議題進行了人工核對。方塊、物品和指令的狀態來自原始碼目錄：Pumpkin 中存在對應檔案，就計為已實作；檔案內有 TODO 則降為部分實作。這些行為並未與原版逐行對照，因此綠色表示程式碼存在，不代表所有邊界情況都與原版一致。整個列表儲存在一個檔案中。修改 <data>data.json</data> 並提交 PR，即可幫助完善。",
+    "categories": {
+      "all": {
+        "label": "全部",
+        "unit": "個條目",
+        "description": "所有分類中的全部追蹤條目。"
+      },
+      "entities": {
+        "label": "實體",
+        "unit": "個實體",
+        "description": "涵蓋 26.3-26.51 註冊表中的全部 160 種實體，並在已有原始碼審查的情況下採用審查結果。僅在註冊表中存在，並不能證明其行為與原版一致。"
+      },
+      "blocks": {
+        "label": "方塊",
+        "unit": "項方塊行為",
+        "description": "從伺服器端原始碼中發現的方塊行為檔案，以及明確追蹤的缺失功能。發現檔案並不等於完成了對所有原版方塊的審查。"
+      },
+      "items": {
+        "label": "物品",
+        "unit": "項物品行為",
+        "description": "從伺服器端原始碼中發現的物品行為檔案，以及部分共用機制。發現檔案並不等於完成了對所有原版物品的審查。"
+      },
+      "commands": {
+        "label": "指令",
+        "unit": "條指令",
+        "description": "整理後的 Java 版指令清單，以及 Pumpkin 的額外指令。檔名相符並不能證明指令或別名的行為與原版一致。"
+      },
+      "redstone": {
+        "label": "紅石",
+        "unit": "個元件",
+        "description": "紅石元件和機制清單；評估需要經過原始碼審查。"
+      },
+      "combat": {
+        "label": "戰鬥",
+        "unit": "項機制",
+        "description": "近戰、遠端攻擊和傷害機制清單；評估需要經過原始碼審查。"
+      },
+      "world": {
+        "label": "世界",
+        "unit": "個系統",
+        "description": "持久化、物理和世界系統清單；評估需要經過原始碼審查。"
+      }
+    },
+    "groups": {
+      "hostile": "敵對生物",
+      "boss": "Boss 生物",
+      "passive": "被動生物",
+      "villager": "村民",
+      "projectile": "彈射物",
+      "vehicle": "載具",
+      "decoration": "裝飾",
+      "misc": "雜項",
+      "blocks": "方塊",
+      "fireSculk": "火與伏聆",
+      "pistons": "活塞",
+      "plantsCrops": "植物與作物",
+      "redstone": "紅石",
+      "toolsWeapons": "工具與武器",
+      "throwables": "投擲物",
+      "placeables": "可放置物品",
+      "utility": "實用物品",
+      "vanilla": "原版",
+      "pumpkin": "Pumpkin",
+      "core": "核心",
+      "powerSensors": "訊號源與感測器",
+      "logicTiming": "邏輯與時序",
+      "mechanisms": "機械元件",
+      "interactive": "互動元件",
+      "equipment": "裝備",
+      "mechanics": "機制",
+      "persistence": "持久化",
+      "logicPhysics": "邏輯與物理"
+    },
+    "entries": {
+      "entities": {
+        "blaze": "烈焰使者",
+        "bogged": "沼骸",
+        "breeze": "旋風使者",
+        "cave_spider": "洞穴蜘蛛",
+        "creaking": "嘎枝",
+        "creeper": "苦力怕",
+        "drowned": "沉屍",
+        "elder_guardian": "遠古深海守衛",
+        "enderman": "終界使者",
+        "endermite": "終界蟎",
+        "evoker": "喚魔者",
+        "ghast": "地獄幽靈",
+        "giant": "巨人",
+        "guardian": "深海守衛",
+        "hoglin": "豬布獸",
+        "husk": "屍殼",
+        "illusioner": "幻術師",
+        "magma_cube": "岩漿立方怪",
+        "parched": "枯骸",
+        "phantom": "夜魅",
+        "piglin": "豬布林",
+        "piglin_brute": "豬布林蠻兵",
+        "pillager": "掠奪者",
+        "ravager": "劫毀獸",
+        "shulker": "界伏蚌",
+        "silverfish": "蠹魚",
+        "skeleton": "骷髏",
+        "slime": "史萊姆方塊",
+        "spider": "蜘蛛",
+        "stray": "流髑",
+        "sulfur_cube": "硫磺立方怪",
+        "vex": "惱鬼",
+        "vindicator": "衛道士",
+        "warden": "伏守者",
+        "witch": "女巫",
+        "wither_skeleton": "凋零骷髏",
+        "zoglin": "豬屍獸",
+        "zombie": "殭屍",
+        "zombie_villager": "殭屍村民",
+        "zombified_piglin": "殭屍化豬布林",
+        "ender_dragon": "終界龍",
+        "wither": "凋零怪",
+        "allay": "悅靈",
+        "armadillo": "犰狳",
+        "axolotl": "六角恐龍",
+        "bat": "蝙蝠",
+        "bee": "蜜蜂",
+        "camel": "駱駝",
+        "camel_husk": "駱駝屍殼",
+        "cat": "貓",
+        "chicken": "雞",
+        "cod": "鱈魚",
+        "copper_golem": "銅魔像",
+        "cow": "牛",
+        "dolphin": "海豚",
+        "donkey": "驢子",
+        "fox": "狐狸",
+        "frog": "青蛙",
+        "glow_squid": "螢光魷魚",
+        "goat": "山羊",
+        "happy_ghast": "快樂幽靈",
+        "horse": "馬",
+        "iron_golem": "鐵魔像",
+        "llama": "駱馬",
+        "mooshroom": "哞菇",
+        "mule": "騾子",
+        "nautilus": "鸚鵡螺",
+        "ocelot": "山貓",
+        "panda": "貓熊",
+        "parrot": "鸚鵡",
+        "pig": "豬",
+        "polar_bear": "北極熊",
+        "pufferfish": "河豚",
+        "rabbit": "兔子",
+        "salmon": "鮭魚",
+        "sheep": "綿羊",
+        "skeleton_horse": "骷髏馬",
+        "sniffer": "嗅探獸",
+        "snow_golem": "雪人",
+        "squid": "魷魚",
+        "strider": "熾足獸",
+        "tadpole": "蝌蚪",
+        "trader_llama": "商駝",
+        "tropical_fish": "熱帶魚",
+        "turtle": "海龜",
+        "wolf": "狼",
+        "zombie_horse": "殭屍馬",
+        "zombie_nautilus": "殭屍鸚鵡螺",
+        "mannequin": "玩家模型",
+        "villager": "村民",
+        "wandering_trader": "流浪商人",
+        "arrow": "箭矢",
+        "breeze_wind_charge": "風彈",
+        "dragon_fireball": "龍炎彈",
+        "egg": "雞蛋",
+        "ender_pearl": "終界珍珠",
+        "evoker_fangs": "喚魔者尖牙",
+        "experience_bottle": "經驗瓶",
+        "eye_of_ender": "終界之眼",
+        "fireball": "火球",
+        "firework_rocket": "煙火",
+        "fishing_bobber": "浮標",
+        "lingering_potion": "滯留藥水",
+        "llama_spit": "駱馬唾液",
+        "shulker_bullet": "界伏彈",
+        "small_fireball": "小火球",
+        "snowball": "雪球",
+        "spectral_arrow": "追跡之箭",
+        "splash_potion": "飛濺藥水",
+        "trident": "三叉戟",
+        "wind_charge": "風彈",
+        "wither_skull": "凋零頭顱",
+        "acacia_boat": "相思木船",
+        "acacia_chest_boat": "儲物箱相思木船",
+        "bamboo_chest_raft": "儲物箱竹筏",
+        "bamboo_raft": "竹筏",
+        "birch_boat": "樺木船",
+        "birch_chest_boat": "儲物箱樺木船",
+        "cherry_boat": "櫻花木船",
+        "cherry_chest_boat": "儲物箱櫻花木船",
+        "chest_minecart": "儲物箱礦車",
+        "command_block_minecart": "指令方塊礦車",
+        "dark_oak_boat": "黑橡木船",
+        "dark_oak_chest_boat": "儲物箱黑橡木船",
+        "furnace_minecart": "熔爐礦車",
+        "hopper_minecart": "漏斗礦車",
+        "jungle_boat": "叢林木船",
+        "jungle_chest_boat": "儲物箱叢林木船",
+        "mangrove_boat": "紅樹林木船",
+        "mangrove_chest_boat": "儲物箱紅樹林木船",
+        "minecart": "礦車",
+        "oak_boat": "橡木船",
+        "oak_chest_boat": "儲物箱橡木船",
+        "pale_oak_boat": "蒼白橡木船",
+        "pale_oak_chest_boat": "儲物箱蒼白橡木船",
+        "poplar_boat": "楊木船",
+        "poplar_chest_boat": "儲物箱楊木船",
+        "spawner_minecart": "生怪磚礦車",
+        "spruce_boat": "杉木船",
+        "spruce_chest_boat": "儲物箱杉木船",
+        "tnt_minecart": "TNT 礦車",
+        "armor_stand": "盔甲座",
+        "block_display": "方塊展示實體",
+        "cushion": "坐墊",
+        "end_crystal": "終界水晶",
+        "glow_item_frame": "螢光物品展示框",
+        "interaction": "互動實體",
+        "item_display": "物品展示實體",
+        "item_frame": "物品展示框",
+        "leash_knot": "拴繩結",
+        "marker": "標記",
+        "painting": "繪畫",
+        "text_display": "文字展示實體",
+        "area_effect_cloud": "藥水效果雲",
+        "experience_orb": "經驗球",
+        "falling_block": "掉落的方塊",
+        "item": "物品",
+        "lightning_bolt": "閃電電流",
+        "ominous_item_spawner": "不祥物品生成器",
+        "tnt": "被啟用的TNT"
+      },
+      "blocks": {
+        "anvil": "鐵砧",
+        "banners": "旗幟",
+        "barrel": "木桶",
+        "barrier": "屏障",
+        "beacon": "烽火台",
+        "bed": "床",
+        "beehive": "蜂箱與蜂巢",
+        "blast_furnace": "高爐",
+        "brewing_stand": "釀造台",
+        "bubble_column": "氣泡柱",
+        "amethyst": "紫水晶芽床",
+        "cake": "蛋糕",
+        "campfire": "營火",
+        "candle_cakes": "插上蠟燭的蛋糕",
+        "candles": "蠟燭",
+        "carpet": "地毯",
+        "cartography_table": "製圖台",
+        "carved_pumpkin": "雕刻南瓜（召喚傀儡）",
+        "cauldron": "鍋釜",
+        "chain": "鎖鏈",
+        "chests": "儲物箱",
+        "chiseled_bookshelf": "浮雕書櫃",
+        "cobweb": "蜘蛛網",
+        "command": "指令方塊",
+        "composter": "堆肥箱",
+        "conduit": "海靈核心",
+        "crafting_table": "工作台",
+        "creaking_heart": "嘎枝之心",
+        "decorated_pot": "飾紋陶罐",
+        "dirt_path": "土徑",
+        "doors": "門",
+        "dragon_egg": "龍蛋",
+        "dried_ghast": "乾癟幽靈",
+        "dripstone": "滴水石",
+        "enchanting_table": "附魔台",
+        "end_gateway": "終界折躍門",
+        "end_portal": "終界傳送門",
+        "end_portal_frame": "終界傳送門框架",
+        "end_rod": "終界燭",
+        "ender_chest": "終界箱",
+        "falling": "下落方塊（沙、礫石、混凝土粉末）",
+        "farmland": "耕地",
+        "fence_gates": "柵欄門",
+        "fences": "柵欄",
+        "fletching_table": "製箭台",
+        "flower_pots": "花盆",
+        "frogspawn": "青蛙卵",
+        "furnace": "熔爐",
+        "glass_panes": "玻璃片",
+        "glazed_terracotta": "帶釉陶瓦",
+        "grass_block": "草地",
+        "grindstone": "砂輪",
+        "hay": "乾草捆",
+        "honey": "蜂蜜塊",
+        "hopper": "漏斗",
+        "huge_mushroom": "巨型蘑菇",
+        "ice": "冰與霜冰",
+        "infested": "蟲蝕方塊",
+        "iron_bars": "鐵柵欄",
+        "jigsaw": "拼圖方塊",
+        "jukebox": "唱片機",
+        "ladder": "梯子",
+        "lanterns": "燈籠",
+        "leaves": "樹葉",
+        "lectern": "講台",
+        "light": "光源",
+        "lodestone": "磁石",
+        "logs": "原木（去皮）",
+        "loom": "紡織機",
+        "magma": "岩漿塊",
+        "mangrove_roots": "紅樹林木根",
+        "spawner": "生怪磚",
+        "mud": "泥巴",
+        "nether_portal": "地獄傳送門",
+        "netherrack": "地獄石",
+        "note": "音階盒",
+        "nylium": "菌巖",
+        "potent_sulfur": "烈性硫磺",
+        "powder_snow": "粉雪",
+        "pumpkin": "南瓜",
+        "respawn_anchor": "重生錨",
+        "rooted_dirt": "扎根土",
+        "scaffolding": "鷹架",
+        "shelf": "展示架",
+        "shulker_box": "界伏盒",
+        "signs": "告示牌",
+        "skull_block": "頭顱",
+        "slabs": "半磚",
+        "slime": "史萊姆方塊",
+        "smithing_table": "鍛造台",
+        "smoker": "煙燻爐",
+        "sniffer_egg": "嗅探獸蛋",
+        "snow": "雪",
+        "soul_sand": "靈魂砂",
+        "sponge": "海綿",
+        "stairs": "階梯",
+        "stonecutter": "切石機",
+        "straw_bed": "乾草床",
+        "structure_block": "結構方塊",
+        "structure_void": "結構空位",
+        "brushable_block": "可疑的沙與礫石",
+        "test_block": "測試方塊",
+        "tinted_glass": "遮光玻璃",
+        "tnt": "TNT",
+        "torches": "火把",
+        "trapdoor": "地板門",
+        "trial_spawner": "試煉生怪磚",
+        "turtle_egg": "海龜蛋",
+        "vault": "寶庫",
+        "vine": "藤蔓",
+        "walls": "牆",
+        "weathering_copper": "銅的氧化",
+        "wither_skull": "凋零骷髏頭顱（召喚凋零怪）",
+        "fire-fire": "火",
+        "sculk-sculk_catalyst": "伏聆觸媒",
+        "sculk-sculk_shrieker": "伏聆嘯口",
+        "sculk-sculk_vein": "伏聆脈絡",
+        "fire-soul_fire": "靈魂火",
+        "piston-piston_extension": "移動中的活塞",
+        "piston-piston_head": "活塞頭",
+        "piston-piston": "活塞",
+        "plant-crop-gourds-attached_stem": "結果的莖",
+        "plant-azalea": "杜鵑叢",
+        "plant-bamboo": "竹子",
+        "plant-bamboo_sapling": "竹筍",
+        "plant-crop-beetroot": "甜菜根",
+        "plant-big_dripleaf": "大懸葉草",
+        "plant-big_dripleaf_stem": "大懸葉草葉柄",
+        "plant-bush": "灌木叢",
+        "plant-cactus": "仙人掌",
+        "plant-cactus_flower": "仙人掌花",
+        "plant-crop-carrot": "胡蘿蔔",
+        "plant-cave_vines": "洞穴藤蔓",
+        "plant-chorus_flower": "歌萊花",
+        "plant-chorus_plant": "歌萊枝",
+        "plant-cocoa": "可可豆",
+        "coral-coral_block": "珊瑚塊",
+        "coral-coral_fan": "珊瑚扇",
+        "coral-coral_plant": "珊瑚",
+        "plant-dry_vegetation": "乾枯植被",
+        "plant-eyeblossom": "眼眸花",
+        "plant-flower": "花",
+        "plant-flowerbed": "花簇",
+        "plant-fungus": "菌類",
+        "plant-hanging_roots": "懸根",
+        "plant-kelp": "海帶",
+        "plant-leaf_litter": "枯葉",
+        "plant-lily_pad": "荷葉",
+        "plant-mangrove_propagule": "紅樹林木胎生苗",
+        "plant-mushroom_plant": "蘑菇",
+        "plant-nether_sprouts": "地獄芽",
+        "plant-crop-nether_wart": "地獄疙瘩",
+        "plant-pale_hanging_moss": "蒼白垂絲",
+        "plant-crop-pitcher_crop": "瓶子草植株",
+        "plant-crop-potatoes": "馬鈴薯",
+        "plant-crop-gourds-stem": "南瓜莖與西瓜莖",
+        "plant-roots": "菌索",
+        "plant-sapling": "樹苗",
+        "plant-sea_pickles": "海鞘",
+        "plant-seagrass": "海草",
+        "plant-shelf_mushroom": "層孔菇",
+        "plant-short_plant": "矮小植物（草、蕨）",
+        "plant-small_dripleaf": "小懸葉草",
+        "plant-spore_blossom": "孢子花",
+        "plant-sugar_cane": "甘蔗",
+        "plant-crop-sweet_berry_bush": "甜莓灌木叢",
+        "plant-tall_plant": "高大植物",
+        "plant-tall_seagrass": "高海草",
+        "plant-crop-torch_flower": "火把花植株",
+        "plant-twisting_vines": "扭曲藤",
+        "plant-weeping_vines": "垂泣藤",
+        "plant-crop-wheat": "小麥",
+        "plant-wither_rose": "凋零玫瑰",
+        "redstone-rails-activator_rail": "觸發鐵軌",
+        "redstone-bell": "鐘",
+        "redstone-buttons": "按鈕",
+        "redstone-comparator": "紅石比較器",
+        "redstone-copper_bulb": "銅燈",
+        "redstone-crafter": "合成器",
+        "redstone-daylight_detector": "日光感測器",
+        "redstone-rails-detector_rail": "感測鐵軌",
+        "redstone-dispenser": "發射器",
+        "redstone-dropper": "投擲器",
+        "redstone-lever": "控制桿",
+        "redstone-lightning_rod": "避雷針",
+        "redstone-observer": "偵測器",
+        "redstone-rails-powered_rail": "動力鐵軌",
+        "redstone-pressure_plate-plate": "壓力板",
+        "redstone-rails-rail": "鐵軌",
+        "redstone-redstone_block": "紅石方塊",
+        "redstone-redstone_lamp": "紅石燈",
+        "redstone-redstone_ore": "紅石礦",
+        "redstone-redstone_torch": "紅石火把",
+        "redstone-redstone_wire": "紅石線",
+        "redstone-repeater": "紅石中繼器",
+        "redstone-sculk_sensor": "伏聆振測器",
+        "redstone-target_block": "標靶",
+        "redstone-tripwire": "絆線",
+        "redstone-tripwire_hook": "絆線鉤",
+        "redstone-pressure_plate-weighted": "測重壓力板"
+      },
+      "items": {
+        "arrow": "箭矢",
+        "axe": "斧",
+        "bow": "弓",
+        "brush": "刷子",
+        "crossbow": "弩",
+        "debug_stick": "除錯棒",
+        "fishing_rod": "釣竿",
+        "flint_and_steel": "打火石",
+        "hoe": "鋤",
+        "mace": "重錘",
+        "shears": "剪刀",
+        "shield": "盾牌",
+        "shovel": "鍬",
+        "spear": "矛",
+        "swords": "劍",
+        "trident": "三叉戟",
+        "experience_bottle": "經驗瓶",
+        "chorus_fruit": "歌萊果",
+        "egg": "雞蛋",
+        "ender_pearl": "終界珍珠",
+        "ender_eye": "終界之眼",
+        "fire_charge": "火焰彈",
+        "firework_rocket": "煙火",
+        "potions": "藥水",
+        "snowball": "雪球",
+        "wind_charge": "風彈",
+        "armor_stand": "盔甲座",
+        "boat": "船與竹筏",
+        "bucket": "桶",
+        "end_crystal": "終界水晶",
+        "hanging_entity": "物品展示框與畫",
+        "place_on_water": "荷葉與青蛙卵",
+        "minecart": "礦車",
+        "spawn_egg": "刷怪蛋",
+        "bone_meal": "骨粉",
+        "writable_book": "書籍",
+        "bundle": "收納袋",
+        "on_a_stick": "胡蘿蔔釣竿與詭異菌釣竿",
+        "clock": "時鐘",
+        "compass": "指南針與追溯指標",
+        "cushion": "坐墊",
+        "dye": "染料",
+        "elytra": "鞘翅",
+        "glass_bottle": "玻璃瓶",
+        "glowing_ink_sac": "螢光墨囊",
+        "goat_horn": "山羊角",
+        "honeycomb": "蜂巢",
+        "ink_sac": "墨囊",
+        "knowledge_book": "知識之書",
+        "lead": "拴繩",
+        "map": "地圖",
+        "name_tag": "命名牌",
+        "saddle": "鞍",
+        "spyglass": "望遠鏡",
+        "totem_of_undying": "不死圖騰"
+      },
+      "redstone": {
+        "redstone-wire-signal-propagation": "紅石線訊號傳播",
+        "redstone-tick-system": "紅石 Tick 系統",
+        "hard-vs-soft-powering": "強充能與弱充能",
+        "pressure-plates": "壓力板",
+        "tripwire-hook": "絆線鉤",
+        "trapped-chest": "陷阱箱",
+        "sculk-sensors-shriekers-and-calibrated-sensors": "伏聆感測體、伏聆尖嘯體和校頻伏聆感測體",
+        "daylight-detector": "陽光探測器",
+        "target-block": "標靶",
+        "redstone-torch-levers-and-buttons": "紅石火把、拉桿和按鈕",
+        "comparator": "紅石比較器",
+        "repeater": "紅石中繼器",
+        "note-block": "音符盒",
+        "hopper-item-transfer": "漏斗物品傳輸",
+        "observer": "偵測器",
+        "rails": "鐵軌",
+        "pistons-and-block-swapping": "活塞與方塊交換",
+        "dropper": "投擲器",
+        "dispenser": "發射器",
+        "crafter": "合成器",
+        "minecart-powering-and-activation": "礦車動力與啟用",
+        "tnt-ignition-and-priming": "TNT 點燃與啟用",
+        "bell": "鍾",
+        "redstone-lamp": "紅石燈",
+        "doors-gates-and-trapdoors": "門、柵欄門和地板門",
+        "lectern-signal-strength": "講台訊號強度",
+        "composter-signal-strength": "堆肥桶訊號強度"
+      },
+      "combat": {
+        "basic-melee-attack": "基礎近戰攻擊",
+        "tool-based-damage-calculation": "基於工具的傷害計算",
+        "vanilla-knockback": "原版擊退",
+        "attack-speed-and-cooldown-indicator": "攻擊速度與冷卻指示器",
+        "bows": "弓",
+        "crossbows": "弩",
+        "shields": "盾牌",
+        "tridents": "三叉戟",
+        "critical-hits": "暴擊",
+        "damage-invulnerability-frames": "受傷後的無敵時間",
+        "sweep-attack": "橫掃攻擊",
+        "enchantment-integration": "附魔整合",
+        "status-effect-integration": "狀態效果整合",
+        "1-8-combat-mode": "1.8 戰鬥模式"
+      },
+      "world": {
+        "world-loading-level-dat-dim1-dim-1": "世界載入（level.dat、DIM1、DIM-1）",
+        "world-saving": "世界儲存",
+        "chunk-loading-vanilla-linear-pump": "區塊載入（vanilla、linear、pump）",
+        "chunk-saving": "區塊儲存",
+        "chunk-generation": "區塊生成",
+        "flat-world-generation": "超平坦世界生成",
+        "redstone": "紅石",
+        "liquid-physics": "流體物理",
+        "lighting": "光照",
+        "world-time": "世界時間",
+        "world-borders": "世界邊界",
+        "world-joining": "加入世界",
+        "player-tab-list": "玩家 Tab 列表",
+        "scoreboard": "記分板",
+        "bossbar": "Boss 欄",
+        "entity-spawning": "實體生成"
+      }
+    },
+    "notes": {
+      "reviewChanged": "已審查的原始碼發生了變化，需要重新審查之前的評估。",
+      "sourceUnreviewed": "已找到實作原始碼，但尚未審查此快照中的行為。",
+      "giantGoals": "原版巨人沒有註冊任何 AI 目標。Pumpkin 在此基礎上添加了少量 AI 目標。",
+      "magmaCubeGoals": "基於史萊姆實體實作，因此繼承了史萊姆的全部 AI 目標。",
+      "slimeParticles": "AI 目標與原版一致，落地粒子效果仍待實作。",
+      "dragonParts": "已構造終界龍的各個部件，但未將其註冊到世界中。主碰撞箱的處理尚未完整實作基於各部件的傷害與接觸行為。",
+      "sharedArrow": "共用箭實體。",
+      "frogspawnHatching": "可以放置，但不會孵化出蝌蚪。",
+      "lodestoneBinding": "尚未實作指南針繫結。",
+      "structureContents": "方塊和方塊實體會儲存設定，但尚未實作結構內容的捕獲或放置。",
+      "pistonRemoval": "已實作活塞頭和底座的移除，但 break_block 不接收玩家引數，導致玩家上下文丟失；活塞系統的移動和持久化也存在其他缺失。",
+      "arrowRegistration": "負責註冊，飛行和傷害由箭實體處理。",
+      "shieldRegistration": "負責註冊，格擋由戰鬥程式碼處理。",
+      "swordRegistration": "負責註冊，橫掃和傷害由戰鬥程式碼處理。",
+      "chorusTeleport": "隨機傳送由生物實體的相關程式碼處理。",
+      "totemDeath": "由生物實體的死亡處理邏輯處理。",
+      "banipAlias": "/banip 的別名。",
+      "sourceUnknown": "尚未找到專門的實作原始碼，但這並不能證明該功能缺失。",
+      "pardonipAlias": "/pardonip 的別名。",
+      "saveallAlias": "/saveall 的別名。",
+      "saveoffAlias": "/saveoff 的別名。",
+      "saveonAlias": "/saveon 的別名。",
+      "msgAlias": "/msg 的別名。",
+      "teammsgAlias": "/teammsg 的別名。",
+      "teleportAlias": "/teleport 的別名。",
+      "pumpkinAlias": "/pumpkin 的別名。",
+      "experienceAlias": "/experience 的別名。",
+      "versionInfo": "版本和建置資訊。",
+      "pluginLoading": "載入和解除安裝插件。",
+      "pluginList": "列出已載入的插件。",
+      "ticksPerSecond": "每秒 Tick 數。",
+      "timing": "計時工具。",
+      "raidDebugging": "襲擊除錯。"
+    },
+    "items": {
+      "fireballShooting": "發射火球",
+      "flyingWander": "飛行遊蕩和觀察",
+      "spawnChance": "生成機率規則",
+      "entityAttributes": "實體型別與屬性",
+      "slimeGoals": "史萊姆 AI 目標：攻擊、跳躍和分裂",
+      "netherSpawn": "地獄生成規則",
+      "collisionDamage": "與玩家碰撞時造成傷害",
+      "peekAndShoot": "探頭和射擊 AI 目標",
+      "attachmentAndTeleport": "附著與傳送",
+      "shulkerBullet": "潛影彈",
+      "slimeAttack": "大小、分裂和跳躍攻擊",
+      "slimeSpawn": "史萊姆區塊和沼澤的生成規則",
+      "dragonFlight": "飛行階段、終界水晶、多部件位置和方塊破壞",
+      "dragonContact": "註冊可偵測命中的部件，並按部件進行接觸和擊退判定",
+      "breeding": "繁殖、誘引和跟隨親代",
+      "eggLaying": "下蛋",
+      "slowFall": "緩慢下落",
+      "milking": "擠奶",
+      "mushroomStew": "蘑菇煲",
+      "mooshroomShearing": "修剪後變為牛",
+      "pigRiding": "鞍與胡蘿蔔釣竿",
+      "woolRegrowth": "吃草並重新長出羊毛",
+      "shearingAndDyeing": "剪毛與染色",
+      "snowballAttack": "雪球遠端攻擊",
+      "pumpkinShearing": "剪下南瓜",
+      "projectileFlight": "飛行、命中與拾取",
+      "hitDamage": "命中時造成傷害",
+      "hitTeleport": "命中時傳送",
+      "throwerDamage": "對投擲者造成傷害",
+      "endermiteSpawn": "終界蟎生成機率",
+      "sharedArrow": "共用箭實體",
+      "hitGlowing": "命中時施加發光效果",
+      "tridentPickup": "投擲三叉戟與拾取",
+      "tridentEnchantments": "透過物品實作忠誠與激流附魔",
+      "structureSettings": "設定介面與 NBT 持久化",
+      "structureExecution": "結構捕獲、儲存和載入的執行邏輯",
+      "pistonBaseRemoval": "活塞頭被破壞時移除處於伸出狀態的活塞底座",
+      "pistonBreakingPlayer": "將執行破壞操作的玩家傳遞給底座移除邏輯"
+    }
+  },
+  "download": {
+    "title": "下載 Pumpkin",
+    "lede": "獨立執行檔。無需安裝 Java。下載、執行，即可開玩。",
+    "pluginManager": "在找插件管理器？",
+    "installPpm": "安裝 ppm（Pumpkin 套件管理器）↓",
+    "channel": "發佈通道",
+    "channels": {
+      "stable": "穩定版",
+      "nightly": "每日建置"
+    },
+    "nightlyWarning": "每日建置直接來自最新提交，跳過發佈流程。可能存在問題，請先備份世界。",
+    "generated": "{date} 生成。",
+    "detected": "已偵測到目前裝置",
+    "mostCommon": "最常見的下載",
+    "downloadFor": "下載適用於 {system} 的版本",
+    "downloadNightlyFor": "下載適用於 {system} 的每日建置",
+    "allFiles": "全部檔案",
+    "releaseNotes": "發行說明",
+    "nightlyRelease": "每日建置發佈頁",
+    "olderVersions": "舊版本",
+    "allReleases": "全部版本",
+    "releaseFiles": "發佈檔案",
+    "system": "系統",
+    "architecture": "架構",
+    "file": "檔案",
+    "download": "下載",
+    "thisDevice": "此裝置",
+    "downloadFile": "下載 {file}",
+    "downloadNightlyFile": "下載每日建置 {file}",
+    "signing": "發佈版本使用 SignPath 進行數位簽章。免費程式碼簽章由 <signpath>SignPath.io</signpath> 提供，憑證由 <foundation>SignPath Foundation</foundation> 提供。",
+    "copy": "複製",
+    "copied": "已複製",
+    "copyInstall": "複製安裝指令",
+    "copiedInstall": "已複製安裝指令",
+    "copyPpmInstall": "複製 ppm 安裝指令",
+    "copiedPpmInstall": "已複製 ppm 安裝指令",
+    "installHint": "適用於 macOS、Linux 及其他類 Unix 系統。會安裝到 <code>./pumpkin-server</code>。",
+    "ppmInstallHint": "執行 <code>ppm self-install</code>，自動將執行檔安裝到 <code>~/.local/bin</code>（或 <code>/usr/local/bin</code>）。",
+    "ppm": {
+      "eyebrow": "官方套件管理器",
+      "title": "Pumpkin 套件管理器（ppm）",
+      "github": "GitHub 倉庫",
+      "marketplace": "插件市場",
+      "description": "<ppm>ppm</ppm> 是 Pumpkin Minecraft 伺服器插件的官方命令列工具與套件管理器。你可以從插件市場搜尋並安裝 WebAssembly 插件、保持其更新，或透過互動式精靈建立新的插件專案。",
+      "search": "依關鍵字或分類搜尋插件市場中的插件",
+      "install": "下載 .wasm 插件並安裝到伺服器",
+      "new": "用 Rust、Python、Go 等建立新的插件專案",
+      "standalone": "獨立二進位檔：",
+      "allReleases": "全部 ppm 版本 →"
+    },
+    "afterDownloading": "下載之後",
+    "steps": [
+      {
+        "title": "下載檔案",
+        "body": "在上方取得適用於你系統的檔案，或在 macOS 和 Linux 上使用安裝腳本。它只有一個執行檔，沒有安裝程式，也無需設定 Java。"
+      },
+      {
+        "title": "執行",
+        "body": "雙擊該執行檔，或在終端機中啟動它。幾毫秒後伺服器就會開始執行。"
+      },
+      {
+        "title": "連線",
+        "body": "Java 版玩家透過 <code>25565</code> 埠加入，基岩版玩家透過 <code>19132</code> 埠加入。兩個版本可以處在同一個世界中。"
+      },
+      {
+        "title": "設定",
+        "body": "檢視<docs>設定文件</docs>瞭解所有選項；如果啟動失敗，也可以在 <discord>Discord</discord> 上提問。"
+      },
+      {
+        "title": "新增插件",
+        "body": "使用官方套件管理器管理 WebAssembly 插件。用 <ppm>ppm</ppm> 安裝，或在<market>插件市場</market>瀏覽社群作品。"
+      }
+    ],
+    "quickStart": "快速開始指南",
+    "discordHelp": "在 Discord 取得幫助",
+    "terminal": {
+      "label": "Pumpkin 啟動動畫演示",
+      "running": "執行中",
+      "idle": "空閒"
+    }
+  },
+  "developers": {
+    "hero": {
+      "overline": "沒有 NMS，沒有反射，沒有針對特定版本的 hack。",
+      "title": "開發插件，無需再受折磨",
+      "description": "只有乾淨、型別安全的 API。用你熟悉的語言編寫，Pumpkin 會把結果作為 WebAssembly 插件載入。",
+      "docs": "插件文件",
+      "source": "GitHub 原始碼"
+    },
+    "picker": {
+      "title": "選擇你的語言",
+      "language": "插件語言",
+      "firstStep": "{language} 指南共 {count} 步，這是第一步。",
+      "noGuide": "{language} 還沒有編寫指南。",
+      "open": "開啟指南"
+    },
+    "comparison": {
+      "title": "同樣的功能，<hl>兩套 API</hl>",
+      "description": "先發送歡迎訊息，再用 Java 對話方塊或基岩版表單請求確認。在 Spigot 上，這意味著反射呼叫 NMS，還要再寫一個插件；在 Pumpkin 上，只需一個分支。",
+      "api": "選擇 API",
+      "reflectionCalls": "{count} 次反射呼叫",
+      "spigot": {
+        "badge": "Spigot + 反射 NMS + Geyser API（Java）",
+        "facts": [
+          "需要 Geyser API",
+          "版本一變就失效"
+        ]
+      },
+      "pumpkin": {
+        "badge": "Pumpkin 原生 API（Rust）",
+        "facts": [
+          "沒有額外依賴",
+          "編譯期檢查"
+        ]
+      }
+    },
+    "featuresTitle": "API 能帶給你什麼",
+    "features": [
+      {
+        "title": "所有玩家，一個插件",
+        "body": "原生支援 Java 版和基岩版，內建多版本相容。",
+        "rest": "寫一次，覆蓋所有人。"
+      },
+      {
+        "title": "型別安全的指令與事件",
+        "body": "註冊指令，掛接帶型別的插件事件",
+        "rest": "無需反射、NMS 或針對特定版本的 hack。"
+      },
+      {
+        "title": "預設非同步",
+        "body": "基於 Tokio，沒有主執行緒瓶頸。",
+        "rest": "繁重任務不會卡住伺服器。"
+      },
+      {
+        "title": "記憶體安全",
+        "body": "Rust 的保證。",
+        "rest": "沒有空指標、記憶體洩漏和資料競爭。"
+      }
+    ],
+    "quickStart": {
+      "title": "快速<hl>開始</hl>",
+      "description": "選擇一種語言。每份指南都從空資料夾開始，直到生成 Pumpkin 能載入的插件檔案。",
+      "walkthrough": "完整教學見<docs>{documentation}</docs>。"
+    },
+    "ready": {
+      "title": "準備好開始了嗎？",
+      "description": "文件涵蓋事件、指令以及其餘 API。遇到文件解答不了的問題，就來 Discord 提問。",
+      "getStarted": "開始使用",
+      "discord": "在 Discord 提問"
+    },
+    "guides": {
+      "terminal": "終端機",
+      "projectLayout": "專案結構",
+      "copy": "複製",
+      "copied": "已複製",
+      "copyCommand": "複製指令",
+      "copiedCommand": "已複製指令",
+      "copyLabel": "複製 {label}",
+      "copiedLabel": "已複製 {label}",
+      "firstSteps": {
+        "c": "先下載 <sdk>wasi-sdk</sdk>，然後用它提供的 clang 編譯。",
+        "d": "安裝 <ldc>LDC</ldc> 1.43 或更高版本並附帶 addon-wasi 包，另外還需要 <dub>DUB</dub>。",
+        "typescript": "還沒有編寫指南。API 位於 <api>pumpkin-api-ts</api>。"
+      },
+      "rust": {
+        "docsLabel": "Rust 文件",
+        "steps": {
+          "create": "建立新專案",
+          "toolchain": "安裝工具鏈",
+          "crate": "初始化新的 crate",
+          "configure": "設定 crate"
+        },
+        "text": {
+          "build": "Pumpkin 插件使用 Cargo 建置系統。",
+          "template": "這個插件的完整程式碼可以在 <template>GitHub 範本</template> 中找到。",
+          "target": "編譯插件之前，必須先安裝 <code>wasm32-wasip2</code> 目標。可以執行以下指令安裝：",
+          "folder": "首先需要建立一個新的專案資料夾。可以在你建立的資料夾中執行以下指令：",
+          "cargo": "接下來需要建立一個名為 <code>.cargo</code> 的目錄，並在其中新增一個內容如下的 <code>config.toml</code> 檔案：",
+          "tree": "最終你的資料夾結構應該是這樣：",
+          "cdylib": "由於 Pumpkin 插件在執行階段作為動態程式庫載入，我們需要讓 Cargo 把這個 crate 建置為動態程式庫。",
+          "deps": "接下來需要新增一些基本依賴。由於 Pumpkin 仍處於早期開發階段，內部 crate 尚未發佈到 crates.io，因此需要讓 Cargo 直接從 GitHub 下載依賴。"
+        }
+      },
+      "python": {
+        "docsLabel": "Python 文件",
+        "steps": {
+          "install": "安裝",
+          "create": "建立你的第一個插件",
+          "build": "建置插件"
+        },
+        "text": {
+          "install": "首先，你需要安裝 <code>pumpkin-api-py</code> 函式庫：",
+          "file": "建立一個名為 <code>main.py</code> 的檔案，並新增以下內容：",
+          "build": "使用提供的建置工具將插件建置為 WebAssembly 元件：",
+          "output": "這會生成一個 <code>my_plugin.wasm</code> 檔案，可以放入 Pumpkin 伺服器的 plugins 資料夾。"
+        }
+      },
+      "csharp": {
+        "docsLabel": "C# 文件",
+        "steps": {
+          "install": "安裝",
+          "create": "建立你的第一個插件",
+          "build": "建置插件"
+        },
+        "text": {
+          "sdk": "編譯 Pumpkin 的 C# 插件需要 <code>.NET SDK</code> 和 WASI 工作負載。",
+          "library": "建立一個新的類別庫，並新增以下程式碼：",
+          "build": "使用 WASI 執行階段識別碼將插件編譯為 WebAssembly：",
+          "output": "這會在輸出目錄中生成一個 <code>.wasm</code> 檔案，Pumpkin 可以載入它。"
+        }
+      },
+      "c": {
+        "docsLabel": "GitHub 倉庫",
+        "steps": {
+          "install": "安裝",
+          "create": "建立你的第一個插件",
+          "build": "建置插件"
+        },
+        "text": {
+          "sdk": "編譯 Pumpkin 的 C/C++ 插件需要 <code>wasi-sdk</code>。請從 <sdk>wasi-sdk 倉庫</sdk> 下載最新版本。",
+          "repo": "這個插件的完整程式碼可以在 <repo>pumpkin-api-c 倉庫</repo> 中找到。",
+          "file": "建立一個名為 <code>main.c</code> 的檔案，並新增以下內容：",
+          "clang": "請使用 <code>wasi-sdk</code> 中的 <code>clang</code> 將這個插件編譯為 WebAssembly 元件：",
+          "output": "這會生成一個 <code>my_plugin.wasm</code> 檔案，Pumpkin 可以載入它。"
+        }
+      },
+      "go": {
+        "docsLabel": "Go 文件",
+        "steps": {
+          "install": "安裝",
+          "create": "建立你的第一個插件",
+          "build": "建置插件"
+        },
+        "text": {
+          "tools": "編譯 Pumpkin 的 Go 插件需要 <go>Go 1.23 或更高版本</go> 和 <code>tinygo</code>。",
+          "file": "建立一個名為 <code>main.go</code> 的檔案，並新增以下內容：",
+          "build": "使用 <code>tinygo</code> 將插件編譯為 WebAssembly：",
+          "output": "這會生成一個 <code>my_plugin.wasm</code> 檔案，Pumpkin 可以載入它。"
+        }
+      },
+      "kotlin": {
+        "docsLabel": "Kotlin 文件",
+        "steps": {
+          "install": "安裝",
+          "create": "建立你的第一個插件",
+          "build": "建置插件"
+        },
+        "text": {
+          "needs": "你需要安裝一些工具。",
+          "rust": "Rust（僅預設/宿主工具鏈）",
+          "wasmTools": "wasm-tools",
+          "make": "<code>make</code>（例如 <make>GNU Make</make>）",
+          "template": "與大多數其他 API 不同，這個 API 實際上是一個範本。請複製它並重新命名。",
+          "rename": "然後修改 <code>settings.gradle.kts</code> 中的 <code>rootProject.name</code>，以及 <code>Makefile</code> 中的 <code>PROJECT_NAME</code>。兩者必須一致。你給專案起的名字也會成為生成的 Wasm 檔名。",
+          "prepared": "範本中已經準備好一些程式碼。<code>src/wasmWasiMain/kotlin/plugin/Plugin.kt</code> 包含：",
+          "makeCommand": "執行 <code>Makefile</code> 將插件編譯為 WebAssembly：",
+          "slow": "第一次建置會比較慢，因為它需要從原始碼建置一些 Rust 依賴。",
+          "output": "完成後，<code>my_kotlin_plugin.wasm</code>（或你的 Gradle 專案名）會出現在 <code>build</code> 中，可以直接載入到 Pumpkin。"
+        }
+      },
+      "d": {
+        "docsLabel": "D 文件",
+        "steps": {
+          "install": "安裝",
+          "create": "建立你的第一個插件",
+          "build": "建置插件"
+        },
+        "text": {
+          "needs": "需要 <ldc>LDC</ldc> 1.43 或更高版本並安裝 <code>addon-wasi</code> 包，另外還需要 <dub>DUB</dub>。",
+          "package": "繫結來自 <api>pumpkin-api-d</api> 包。請在插件旁邊建立一個 <code>dub.json</code> 來宣告它：",
+          "source": "然後把插件本身放在 <code>source/app.d</code> 中：",
+          "dub": "使用 DUB 將插件編譯為面向 <code>wasm32-wasip2</code> 的 WebAssembly 元件：",
+          "output": "<code>my-d-plugin.wasm</code> 會出現在專案根目錄，可以直接載入到 Pumpkin。"
+        }
+      },
+      "zig": {
+        "docsLabel": "Zig 文件",
+        "steps": {
+          "install": "建立專案",
+          "create": "建立你的第一個插件",
+          "build": "建置插件"
+        },
+        "text": {
+          "needs": "需要 <zig>Zig</zig> 0.16.0 或更高版本，並確保 <code>PATH</code> 中包含 <tools>wasm-tools</tools>。",
+          "fetch": "取得並新增 <api>pumpkin-api-zig</api> 包作為依賴：",
+          "buildFile": "在專案根目錄建立一個 <code>build.zig</code> 檔案：",
+          "source": "在 <code>src/main.zig</code> 中建立插件原始碼：",
+          "build": "將插件編譯為 WebAssembly 元件：",
+          "output": "這會生成 <code>zig-out/my-zig-plugin.wasm</code>，可以直接載入到 Pumpkin。"
+        }
+      },
+      "typescript": {
+        "docsLabel": "pumpkin-api-ts 倉庫",
+        "intro": "TypeScript 目前還沒有編寫快速開始文件。API 及其安裝說明位於 <repo>pumpkin-api-ts 倉庫</repo>。"
+      }
+    }
+  },
+  "sponsor": {
+    "title": "贊助",
+    "description": "與 Pumpkin 合作。選擇贊助套餐，獲得專案致謝、社群特權或企業品牌展示。",
+    "manage": "管理贊助 →",
+    "community": {
+      "title": "社群支持者檔位",
+      "description": "按月訂閱，享有數位特權和名單展示。"
+    },
+    "perMonth": "每月",
+    "monthlyPrice": "{amount} / 月",
+    "selectTier": "選擇檔位",
+    "selectTierLabel": "選擇每月 {amount} 的{tier}檔位",
+    "tiers": {
+      "bronze": "青銅",
+      "silver": "白銀",
+      "gold": "黃金",
+      "platinum": "白金",
+      "titanium": "鈦金",
+      "diamond": "鑽石",
+      "corporateBronze": "企業青銅",
+      "corporateSilver": "企業白銀",
+      "corporateGold": "企業黃金",
+      "corporatePlatinum": "企業白金"
+    },
+    "monthlyPerks": {
+      "bronze": "致謝名單展示與 Discord 身分組",
+      "silver": "致謝名單、連結與 Discord 身分組",
+      "gold": "黃金致謝、連結與 Discord 身分組",
+      "platinum": "優先致謝、頭像與連結",
+      "titanium": "精選致謝、頭像與連結",
+      "diamond": "頂級致謝、頭像與連結"
+    },
+    "corporate": {
+      "title": "企業贊助",
+      "description": "透過致謝名單中的標誌展示和外部連結，推廣你的公司、主機服務或開發工具。",
+      "select": "選擇套餐",
+      "selectLabel": "選擇每月 {amount} 的{tier}套餐"
+    },
+    "corporatePerks": {
+      "corporateBronze": "致謝名單中的標誌與連結",
+      "corporateSilver": "優先展示的標誌與連結",
+      "corporateGold": "精選展示的標誌與連結",
+      "corporatePlatinum": "頂級展示的標誌與連結"
+    },
+    "partners": {
+      "title": "合作夥伴與贊助者",
+      "description": "這些公司和社群成員正在積極支援 Pumpkin 的開發。",
+      "list": "贊助者列表",
+      "active": "目前",
+      "past": "過往贊助者",
+      "private": "匿名贊助者",
+      "loadError": "暫時無法從伺服器載入贊助者，請稍後再試。",
+      "loading": "正在載入贊助者……",
+      "noCurrent": "還沒有目前贊助者，你可以成為第一個。",
+      "noPast": "沒有過往贊助者。"
+    },
+    "terms": {
+      "title": "銷售、計費與交付政策",
+      "digital": "<b>數位交付：</b>數位特權——包括 Discord 社群支持者身分組、網站致謝名單，以及企業標誌與連結展示——會在付款成功後以數位方式開通。如果你的數位特權需要人工設定或 Discord 同步，我們會在 24 小時內確認參閱權限。",
+      "corporate": "<b>企業贊助準則：</b>企業贊助檔位包含 pumpkinmc.org 上的標誌展示和外部連結致謝。所有品牌素材和連結都會依據社群準則進行審核。對於違反這些標準的素材，Pumpkin 保留拒絕或要求修改的權利。",
+      "billing": "<b>計費與取消：</b>每月贊助按週期自動計費，可隨時透過<portal>Stripe 客戶入口網站</portal>修改或取消。取消將在目前計費週期結束時生效。",
+      "refund": "<b>退款政策：</b>由於數位特權、社群身分組和名單展示會立即交付，付款一旦生效便不予退款，適用法律另有規定的除外。",
+      "signing": "<b>程式碼簽章：</b>免費程式碼簽章由 <signpath>SignPath.io</signpath> 提供，憑證由 <foundation>SignPath Foundation</foundation> 提供。Pumpkin 的發佈版本使用 SignPath 進行數位簽章。"
+    }
+  },
+  "contributors": {
+    "title": "由貢獻者共同打造",
+    "description": "Pumpkin 由一個出色的開源社群共同建置。下面的每一次提交，都是某人利用業餘時間完成的。",
+    "contributors": "位貢獻者",
+    "commits": "次提交",
+    "contributorLabel": "{name}，{count} 次提交",
+    "mostCommits": "提交最多",
+    "everyoneElse": "其他所有人",
+    "people": "{count} 人",
+    "loading": "正在載入貢獻者……",
+    "loadError": "載入貢獻者失敗，請稍後再試。",
+    "rateLimitReset": "已達到 GitHub API 速率限制，將於 {time} 重設，請稍後再試。",
+    "rateLimitSoon": "已達到 GitHub API 速率限制，即將重設，請稍後再試。",
+    "fullList": "完整名單始終可在 <github>GitHub</github> 上檢視。",
+    "contributeTitle": "想參與貢獻嗎？",
+    "contributeDescription": "加入我們的社群，一起打造史上最快的 Minecraft 伺服器。",
+    "guide": "貢獻指南",
+    "github": "在 GitHub 上檢視",
+    "discord": "加入 Discord"
+  },
+  "stats": {
+    "live": "即時遙測",
+    "title": "生態系統遙測",
+    "description": "Pumpkin 與 Vine 部署的即時網路遙測、全球節點分佈、硬體基礎設施和社群伺服器分析資料。",
+    "timeRange": "時間範圍",
+    "lastPolled": "上次更新",
+    "connecting": "連線中……",
+    "refresh": "重新整理",
+    "apiDocs": "API 文件",
+    "unavailable": "目前無法連線遙測服務，頁面每分鐘重試一次。",
+    "loading": "載入中……",
+    "ranges": {
+      "24h": {
+        "label": "24 小時",
+        "long": "過去 24 小時"
+      },
+      "7d": {
+        "label": "7 天",
+        "long": "過去 7 天"
+      },
+      "30d": {
+        "label": "30 天",
+        "long": "過去 30 天"
+      },
+      "90d": {
+        "label": "90 天",
+        "long": "過去 90 天"
+      },
+      "all": {
+        "label": "全部",
+        "long": "全部時間"
+      }
+    },
+    "kpi": {
+      "activeServers": "活躍伺服器 · {range}",
+      "peakPlayers": "峰值玩家 · {range}",
+      "liveNow": "目前線上 {count} 台 · Pumpkin {pumpkin} · Vine {vine}",
+      "onlineNow": "目前 {count} 人線上",
+      "countries": "國家/地區",
+      "mostServers": "伺服器最多的地區：{country}",
+      "plugins": "已追蹤插件",
+      "mostUsed": "最常用：{plugin}"
+    },
+    "activity": {
+      "title": "活動趨勢",
+      "description": "{range}內的同時線上玩家和線上伺服器。",
+      "metric": "指標",
+      "noData": "沒有可用的遙測趨勢資料。",
+      "showTable": "顯示資料表",
+      "hideTable": "隱藏資料表",
+      "time": "時間",
+      "chartLabel": "{series}，{range}。使用方向鍵讀取數值。",
+      "seriesJoiner": "與"
+    },
+    "series": {
+      "onlinePlayers": "線上玩家",
+      "peakPlayers": "峰值玩家",
+      "pumpkinServers": "Pumpkin 伺服器",
+      "vineServers": "Vine 伺服器"
+    },
+    "summary": {
+      "peak": "峰值",
+      "average": "平均",
+      "low": "最低",
+      "latest": "最新"
+    },
+    "metrics": {
+      "players": "玩家",
+      "servers": "伺服器"
+    },
+    "map": {
+      "title": "伺服器分佈",
+      "description": "活躍伺服器與玩家流量的地理分佈。點選國家/地區可在列表中定位。",
+      "metric": "地圖指標",
+      "fewer": "較少",
+      "moreServers": "更多伺服器",
+      "morePlayers": "更多玩家",
+      "topLocation": "熱門地區",
+      "regions": "國家/地區",
+      "reportedPlayers": "回報玩家",
+      "playersPerServer": "每台伺服器玩家數",
+      "loading": "正在載入地圖……",
+      "error": "地圖載入失敗。",
+      "tooltip": "{servers} 台伺服器 · {players} 名玩家",
+      "noReporting": "沒有回報的伺服器"
+    },
+    "geoDetail": "{servers} 台伺服器 · {players} 名玩家",
+    "countries": {
+      "title": "國家/地區",
+      "description": "依託管國家/地區統計的伺服器與玩家流量。",
+      "sort": "排序依據",
+      "empty": "沒有回報地理位置資料。"
+    },
+    "plugins": {
+      "title": "熱門插件",
+      "description": "回報伺服器中採用率最高的插件。",
+      "empty": "沒有回報插件遙測資料。",
+      "detail": "{count} 台伺服器 · {percent}"
+    },
+    "players": {
+      "title": "玩家",
+      "description": "回報伺服器彙總的線上模式比例，以及匿名的玩家客戶端構成。",
+      "breakdown": "玩家構成",
+      "edition": "Java / 基岩版",
+      "editionDescription": "活躍伺服器上 Java 版與基岩版客戶端數量之和。",
+      "online": "線上模式",
+      "onlineDescription": "活躍伺服器上使用 Mojang 與 Xbox Live 驗證，還是離線或代理模式。",
+      "view": "視距",
+      "viewDescription": "已連線玩家設定的客戶端區塊渲染距離。",
+      "empty": "暫無回報資料。",
+      "clientBrands": "客戶端品牌",
+      "clientBrandsDescription": "已連線客戶端回報的 Minecraft 啟動器和模組載入器。",
+      "clientBrandsEmpty": "暫無客戶端品牌資料。",
+      "locales": "玩家語言",
+      "localesDescription": "已連線玩家設定的首選語言。",
+      "localesEmpty": "暫無玩家語言資料。"
+    },
+    "systems": {
+      "title": "系統與硬體",
+      "description": "伺服器主機回報的作業系統、CPU 架構、軟體版本和記憶體佔用。",
+      "os": "作業系統",
+      "arch": "CPU 架構",
+      "software": "軟體版本",
+      "minecraft": "Minecraft 版本",
+      "serverMemory": "分配的伺服器記憶體",
+      "hostMemory": "主機記憶體",
+      "pluginLanguages": "插件語言",
+      "pluginLanguagesDescription": "回報伺服器上活躍插件使用的繫結語言。",
+      "pluginLanguagesEmpty": "沒有回報插件語言資料。",
+      "cpus": "伺服器 CPU",
+      "cpusDescription": "回報次數最多的處理器。",
+      "empty": "沒有回報資料。",
+      "rustNative": "Rust（原生）"
+    },
+    "distribution": {
+      "showLess": "收起",
+      "showMore": "再顯示 {count} 項"
+    },
+    "privacy": {
+      "title": "保護隱私的開放遙測",
+      "body": "Pumpkin 與 Vine 的遙測完全透明、不識別個人身分，並以隱私優先。我們收集聚合後的系統指標（作業系統、CPU 架構、記憶體範圍、軟體版本、驗證模式，以及不含使用者名稱、IP 或原始 UUID 的匿名玩家客戶端設定），用於效能基準測試、多執行緒最佳化，以及確定 Minecraft 版本相容性的優先順序。要了解更多或整合你自己的工具，請參閱<docs>遙測 API 文件</docs>，或檢視我們 <github>GitHub 倉庫</github> 中的遙測模組。"
+    }
+  },
+  "notFound": {
+    "title": "這個頁面不存在。",
+    "description": "連結可能已經過期，或者頁面在網站重建時被移動了。下面是大多數人想找的地方。",
+    "home": "返回首頁",
+    "download": "下載 Pumpkin",
+    "docs": "閱讀文件"
+  },
+  "metadata": {
+    "home": {
+      "title": "Pumpkin - 極速 Minecraft 伺服器",
+      "description": "Pumpkin：最快、最高效的 Minecraft 伺服器軟體，使用 Rust 編寫。"
+    },
+    "download": {
+      "title": "下載 Pumpkin - 極速 Minecraft 伺服器",
+      "description": "下載 Pumpkin 最新版本，最快的 Minecraft 伺服器。"
+    },
+    "developers": {
+      "title": "開發者 - Pumpkin",
+      "description": "為什麼開發者喜歡在 Pumpkin 上開發：型別安全的指令、可變事件、Java + 基岩版支援，以及更多。"
+    },
+    "sponsor": {
+      "title": "贊助 - Pumpkin",
+      "description": "成為贊助者，支援 Pumpkin 的開發，解鎖社群特權和品牌展示。"
+    },
+    "contributors": {
+      "title": "貢獻者 - Pumpkin",
+      "description": "認識為 Pumpkin 這個最快的 Minecraft 伺服器做出貢獻的人們。"
+    },
+    "stats": {
+      "title": "遙測與統計 - Pumpkin",
+      "description": "Pumpkin 與 Vine 的即時生態遙測、伺服器健康狀況、硬體分佈、全球地圖和社群統計。"
+    },
+    "tracker": {
+      "title": "原版功能進度 - Pumpkin",
+      "description": "Pumpkin 與原版的接近程度：哪些實體、方塊、物品和指令已經實作、部分實作，哪些仍在規劃中。"
+    },
+    "notFound": {
+      "title": "頁面未找到 - Pumpkin",
+      "description": "pumpkinmc.org 上不存在此頁面。"
+    }
+  },
+  "footer": {
+    "description": "用 Rust 編寫的 Minecraft 伺服器。啟動快、執行輕巧、可自由修改。",
+    "useIt": {
+      "heading": "使用",
+      "gettingStarted": "快速開始",
+      "configuration": "設定",
+      "troubleshooting": "故障排查"
+    },
+    "buildOnIt": {
+      "heading": "開發",
+      "pluginDocs": "插件文件",
+      "developers": "開發者指南",
+      "examples": "範例",
+      "contributing": "參與貢獻"
+    },
+    "follow": {
+      "heading": "關注",
+      "blog": "部落格",
+      "stats": "統計",
+      "parity": "原版功能進度",
+      "benchmarks": "效能測試",
+      "sponsorship": "贊助"
+    },
+    "project": {
+      "heading": "專案",
+      "releases": "發佈版本",
+      "reportBug": "報告問題",
+      "contributors": "貢獻者",
+      "license": "許可證",
+      "repositories": "所有倉庫"
+    },
+    "credit": "由 <purdze>purdze</purdze>、<megalith>MegalithOfficial</megalith> 和貢獻者用 ❤️ 製作 · GPL-3.0",
+    "disclaimer": "這不是 Minecraft 官方產品，未經 Mojang 或 Microsoft 批准，也與兩家公司無關。"
+  }
+}
