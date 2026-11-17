@@ -1,6 +1,6 @@
 {
   "version": "26.3-26.63",
-  "commit": "79c88fdb6761fd3bc51820d1513091622f7153d9",
+  "commit": "87f8822ac36da62102350977be2f62f155a303dc",
   "updated": "2026-11-16",
   "categories": [
     {
@@ -3860,12 +3860,12 @@
             {
               "number": 4342,
               "title": "Hoppers do not insert items into composters",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 4129,
               "title": "Composter does not take seeds",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3293,
@@ -4418,12 +4418,12 @@
             {
               "number": 4340,
               "title": "Side hopper puts non-fuel items into furnace input slot",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 4339,
               "title": "Hopper pulls input and fuel from furnace above",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 2976,
@@ -4538,12 +4538,12 @@
             {
               "number": 4343,
               "title": "Hopper does not pull items from a chest minecart above it",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 4342,
               "title": "Hoppers do not insert items into composters",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 4341,
@@ -4553,17 +4553,17 @@
             {
               "number": 4340,
               "title": "Side hopper puts non-fuel items into furnace input slot",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 4339,
               "title": "Hopper pulls input and fuel from furnace above",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3881,
               "title": "Hopper-to-hopper cooldown compares cooldown_time instead of tickedGameTime",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -4703,7 +4703,7 @@
             {
               "number": 3643,
               "title": "Inserting or ejecting a jukebox record emits no block-change game event",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3548,
@@ -5517,7 +5517,7 @@
             {
               "number": 4084,
               "title": "TNT explodes with delay",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -6803,7 +6803,7 @@
             {
               "number": 3516,
               "title": "Crops continue growing below vanilla light level",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -6979,7 +6979,7 @@
             {
               "number": 4290,
               "title": "[BUG] Crafter's disabled slots reset when the player opens the UI.",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -7034,12 +7034,12 @@
             {
               "number": 3972,
               "title": "Powder snow placed from a bucket by a dispenser is not shown to clients",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3970,
               "title": "Dispensers drop filled buckets in front of replaceable blocks (short grass) instead of replacing them",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3822,
@@ -7359,7 +7359,7 @@
             {
               "number": 3623,
               "title": "Tripwire state changes emit no game events",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3574,
@@ -8219,7 +8219,7 @@
             {
               "number": 3622,
               "title": "Broken paintings do not drop a painting item",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3108,
@@ -8274,7 +8274,7 @@
             {
               "number": 3880,
               "title": "Hopper minecart picks up a dropped stack one item at a time",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3071,
@@ -8304,7 +8304,7 @@
             {
               "number": 4036,
               "title": "Spawn Egg problems",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 2536,
@@ -8634,12 +8634,12 @@
             {
               "number": 4546,
               "title": "Clicking on a fence with lead causes time out of player connection. Server doesn't crash",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 4545,
               "title": "Lead doesn't drop after attached mob is killed",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -8717,7 +8717,7 @@
             {
               "number": 4134,
               "title": "Totems do not appear to work",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Handled in the living entity death path.",
