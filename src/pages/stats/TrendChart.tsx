@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
-import { formatNumber, type TrendMetric, type TrendPoint, type TrendRange } from "./types";
+import { languageTag, useI18n, type Messages } from "../../i18n";
+import { formatDateTime, formatMessage, formatMonthDay, formatNumber, formatTime } from "../../i18n/format";
+import type { TrendMetric, TrendPoint, TrendRange } from "./types";
 
 type SeriesKey = "online_players" | "peak_players" | "pumpkin_servers" | "vine_servers";
 
@@ -9,16 +11,28 @@ export interface SeriesSpec {
   color: string;
 }
 
-export const TREND_SERIES: Record<TrendMetric, SeriesSpec[]> = {
+const SERIES_COLORS: Record<TrendMetric, { key: SeriesKey; color: string }[]> = {
   players: [
-    { key: "online_players", label: "Online players", color: "#d95926" },
-    { key: "peak_players", label: "Peak players", color: "#3987e5" },
+    { key: "online_players", color: "#d95926" },
+    { key: "peak_players", color: "#3987e5" },
   ],
   servers: [
-    { key: "pumpkin_servers", label: "Pumpkin servers", color: "#d95926" },
-    { key: "vine_servers", label: "Vine servers", color: "#3987e5" },
+    { key: "pumpkin_servers", color: "#d95926" },
+    { key: "vine_servers", color: "#3987e5" },
   ],
 };
+
+/** Builds the trend series with labels in the current language. */
+export function trendSeries(t: Messages, metric: TrendMetric): SeriesSpec[] {
+  const labels = t.stats.series;
+  const names: Record<SeriesKey, string> = {
+    online_players: labels.onlinePlayers,
+    peak_players: labels.peakPlayers,
+    pumpkin_servers: labels.pumpkinServers,
+    vine_servers: labels.vineServers,
+  };
+  return SERIES_COLORS[metric].map((spec) => ({ ...spec, label: names[spec.key] }));
+}
 
 const HEIGHT = 300;
 const PAD = { top: 16, right: 16, bottom: 32, left: 44 };
@@ -28,21 +42,8 @@ const CROSSHAIR = "#898781";
 const SURFACE = "#1a1a1a";
 const TOOLTIP_WIDTH = 190;
 
-export function formatTick(iso: string, range: TrendRange): string {
-  const date = new Date(iso);
-  return range === "24h"
-    ? date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })
-    : date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-}
-
-export function formatMoment(iso: string): string {
-  return new Date(iso).toLocaleString("en-US", {
-    month: "short",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
+export function formatTick(iso: string, range: TrendRange, locale: string): string {
+  return range === "24h" ? formatTime(new Date(iso), locale) : formatMonthDay(iso, locale);
 }
 
 function niceStep(raw: number): number {
@@ -67,10 +68,12 @@ interface TrendChartProps {
 }
 
 export function TrendChart({ data, metric, range, rangeLabel }: TrendChartProps) {
+  const { lang, t } = useI18n();
+  const locale = languageTag(lang);
   const wrapRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
   const [active, setActive] = useState<number | null>(null);
-  const series = TREND_SERIES[metric];
+  const series = useMemo(() => trendSeries(t, metric), [t, metric]);
 
   useEffect(() => {
     const element = wrapRef.current;
@@ -136,7 +139,10 @@ export function TrendChart({ data, metric, range, rangeLabel }: TrendChartProps)
           width={width}
           height={HEIGHT}
           role="img"
-          aria-label={`${series.map((spec) => spec.label).join(" and ")}, ${rangeLabel}. Use the arrow keys to read values.`}
+          aria-label={formatMessage(t.stats.activity.chartLabel, {
+            series: series.map((spec) => spec.label).join(t.stats.activity.seriesJoiner),
+            range: rangeLabel,
+          })}
           tabIndex={0}
           onPointerMove={handlePointerMove}
           onPointerLeave={() => setActive(null)}
@@ -162,7 +168,7 @@ export function TrendChart({ data, metric, range, rangeLabel }: TrendChartProps)
                 textAnchor="end"
                 className="fill-muted font-mono text-[11px] tabular-nums"
               >
-                {formatNumber(tick)}
+                {formatNumber(tick, locale)}
               </text>
             </g>
           ))}
@@ -174,7 +180,7 @@ export function TrendChart({ data, metric, range, rangeLabel }: TrendChartProps)
               textAnchor={index === 0 ? "start" : index === data.length - 1 ? "end" : "middle"}
               className="fill-muted font-mono text-[11px]"
             >
-              {formatTick(data[index].timestamp, range)}
+              {formatTick(data[index].timestamp, range, locale)}
             </text>
           ))}
           {geometry.paths.map((path) => (
@@ -222,11 +228,11 @@ export function TrendChart({ data, metric, range, rangeLabel }: TrendChartProps)
           style={{ left: tooltipLeft, width: TOOLTIP_WIDTH }}
           className="pointer-events-none absolute top-2 z-10 border-2 border-white/15 bg-ink px-3 py-2 text-sm"
         >
-          <p className="mb-1.5 font-mono text-xs text-muted">{formatMoment(point.timestamp)}</p>
+          <p className="mb-1.5 font-mono text-xs text-muted">{formatDateTime(point.timestamp, locale)}</p>
           {series.map((spec) => (
             <p key={spec.key} className="flex items-center gap-2">
               <span className="h-0.5 w-3 shrink-0" style={{ backgroundColor: spec.color }} />
-              <strong className="font-bold tabular-nums">{formatNumber(point[spec.key])}</strong>
+              <strong className="font-bold tabular-nums">{formatNumber(point[spec.key], locale)}</strong>
               <span className="truncate text-muted">{spec.label}</span>
             </p>
           ))}
@@ -237,14 +243,17 @@ export function TrendChart({ data, metric, range, rangeLabel }: TrendChartProps)
 }
 
 export function TrendTable({ data, metric }: { data: TrendPoint[]; metric: TrendMetric }) {
-  const series = TREND_SERIES[metric];
+  const { lang, t } = useI18n();
+  const locale = languageTag(lang);
+  const series = trendSeries(t, metric);
+
   return (
     <div className="max-h-80 overflow-auto border-2 border-white/15">
       <table className="w-full text-left text-sm">
         <thead className="sticky top-0 bg-ink">
           <tr className="border-b-2 border-white/15 font-mono text-xs tracking-wider text-muted uppercase">
             <th scope="col" className="px-4 py-2 font-normal">
-              Time
+              {t.stats.activity.time}
             </th>
             {series.map((spec) => (
               <th key={spec.key} scope="col" className="px-4 py-2 text-right font-normal">
@@ -256,10 +265,10 @@ export function TrendTable({ data, metric }: { data: TrendPoint[]; metric: Trend
         <tbody>
           {[...data].reverse().map((point) => (
             <tr key={point.timestamp} className="border-b border-white/5">
-              <td className="px-4 py-1.5 font-mono text-xs text-muted">{formatMoment(point.timestamp)}</td>
+              <td className="px-4 py-1.5 font-mono text-xs text-muted">{formatDateTime(point.timestamp, locale)}</td>
               {series.map((spec) => (
                 <td key={spec.key} className="px-4 py-1.5 text-right tabular-nums">
-                  {formatNumber(point[spec.key])}
+                  {formatNumber(point[spec.key], locale)}
                 </td>
               ))}
             </tr>

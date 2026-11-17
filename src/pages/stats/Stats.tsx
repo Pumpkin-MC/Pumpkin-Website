@@ -1,19 +1,13 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { GITHUB_URL, MARKET_URL } from "../../links";
+import { languageTag, useI18n, type Messages } from "../../i18n";
+import { countryName, formatMessage, formatNumber, formatPercent, formatTimeOfDay } from "../../i18n/format";
+import { rich } from "../../i18n/rich";
 import { DistributionList, type DistributionItem } from "./DistributionList";
-import { TREND_SERIES, TrendChart, TrendTable } from "./TrendChart";
+import { TrendChart, TrendTable, trendSeries } from "./TrendChart";
 import { useTelemetry } from "./useTelemetry";
 import { MAP_RAMP, WorldMap } from "./WorldMap";
-import {
-  RANGES,
-  formatNumber,
-  formatPercent,
-  type GeoMetric,
-  type Share,
-  type TrendMetric,
-  type TrendPoint,
-  type TrendRange,
-} from "./types";
+import { RANGES, type GeoMetric, type Share, type TrendMetric, type TrendPoint, type TrendRange } from "./types";
 
 const API_DOCS_URL = "https://market.pumpkinmc.org/api/docs/";
 
@@ -101,13 +95,15 @@ function Kpi({
   value: number | null | undefined;
   detail: ReactNode;
 }) {
+  const { lang } = useI18n();
+
   return (
     <div className="bg-surface p-5 md:px-6">
       <p className="font-mono text-xs tracking-wider text-muted uppercase">
         {label}
       </p>
       <p className="mt-2 text-4xl font-extrabold tracking-[-0.02em] md:text-5xl">
-        {value === null || value === undefined ? "-" : formatNumber(value)}
+        {value === null || value === undefined ? "-" : formatNumber(value, languageTag(lang))}
       </p>
       <p className="mt-1 min-h-5 text-sm text-muted">{detail}</p>
     </div>
@@ -115,39 +111,40 @@ function Kpi({
 }
 
 function Loading() {
-  return <p className="py-2 text-sm text-muted">Loading...</p>;
+  const { t } = useI18n();
+
+  return <p className="py-2 text-sm text-muted">{t.stats.loading}</p>;
 }
 
 type PlayerView = "edition" | "online" | "view";
 
-const PLAYER_VIEWS: {
+function playerViews(t: Messages): {
   id: PlayerView;
   label: string;
   key: "player_editions" | "online_mode" | "view_distances";
   description: string;
-}[] = [
-  {
-    id: "edition",
-    label: "Java / Bedrock",
-    key: "player_editions",
-    description:
-      "Java Edition vs. Bedrock Edition clients summed across active servers.",
-  },
-  {
-    id: "online",
-    label: "Online mode",
-    key: "online_mode",
-    description:
-      "Mojang and Xbox Live authentication vs. offline or proxy mode across active servers.",
-  },
-  {
-    id: "view",
-    label: "View distance",
-    key: "view_distances",
-    description:
-      "Client chunk render distances configured by connected players.",
-  },
-];
+}[] {
+  return [
+    {
+      id: "edition",
+      label: t.stats.players.edition,
+      key: "player_editions",
+      description: t.stats.players.editionDescription,
+    },
+    {
+      id: "online",
+      label: t.stats.players.online,
+      key: "online_mode",
+      description: t.stats.players.onlineDescription,
+    },
+    {
+      id: "view",
+      label: t.stats.players.view,
+      key: "view_distances",
+      description: t.stats.players.viewDescription,
+    },
+  ];
+}
 
 function shares(list: Share[] | undefined): DistributionItem[] {
   return (list ?? []).map((share) => ({
@@ -160,8 +157,6 @@ function shares(list: Share[] | undefined): DistributionItem[] {
 
 const LANGUAGE_LABELS: Record<string, string> = {
   rust: "Rust",
-  native: "Rust (Native)",
-  "rust-native": "Rust (Native)",
   go: "Go",
   golang: "Go",
   javascript: "JavaScript",
@@ -188,27 +183,29 @@ const LANGUAGE_LABELS: Record<string, string> = {
   wasm: "Wasm",
 };
 
-function formatLanguage(language: string): string {
+function languageLabel(language: string, native: string): string {
   const key = language.trim().toLowerCase();
+  if (key === "native" || key === "rust-native") return native;
   return LANGUAGE_LABELS[key] ?? language;
 }
 
-function summarize(data: TrendPoint[], metric: TrendMetric) {
+function summarize(t: Messages, data: TrendPoint[], metric: TrendMetric) {
   const level = (point: TrendPoint) =>
     metric === "players" ? point.online_players : point.active_servers;
   const peak = (point: TrendPoint) =>
     metric === "players" ? point.peak_players : point.active_servers;
   const levels = data.map(level);
+  const labels = t.stats.summary;
   return [
-    { label: "Peak", value: Math.max(0, ...data.map(peak)) },
+    { label: labels.peak, value: Math.max(0, ...data.map(peak)) },
     {
-      label: "Average",
+      label: labels.average,
       value: Math.round(
         levels.reduce((sum, value) => sum + value, 0) / (levels.length || 1),
       ),
     },
-    { label: "Low", value: levels.length ? Math.min(...levels) : 0 },
-    { label: "Latest", value: levels.at(-1) ?? 0 },
+    { label: labels.low, value: levels.length ? Math.min(...levels) : 0 },
+    { label: labels.latest, value: levels.at(-1) ?? 0 },
   ];
 }
 
@@ -228,6 +225,8 @@ function RefreshIcon({ spinning }: { spinning: boolean }) {
 }
 
 export default function Stats() {
+  const { lang, t } = useI18n();
+  const locale = languageTag(lang);
   const [range, setRange] = useState<TrendRange>("24h");
   const [metric, setMetric] = useState<TrendMetric>("players");
   const [mapMetric, setMapMetric] = useState<GeoMetric>("servers");
@@ -237,10 +236,9 @@ export default function Stats() {
   const [playerView, setPlayerView] = useState<PlayerView>("edition");
   const telemetry = useTelemetry(range);
   const { overview, trends, systems, geo, plugins } = telemetry;
-  const rangeOption = RANGES.find((option) => option.id === range);
-  const rangeLabel = rangeOption?.long ?? range;
-  const rangeShort =
-    range === "all" ? "all time" : (rangeOption?.label ?? range);
+  const rangeLabel = t.stats.ranges[range].long;
+  const rangeShort = range === "all" ? t.stats.ranges.all.long : t.stats.ranges[range].label;
+  const views = playerViews(t);
 
   useEffect(() => {
     if (!selectedCountry) return;
@@ -275,17 +273,13 @@ export default function Stats() {
             <span className="w-7 shrink-0 font-mono text-xs text-muted">
               {entry.country}
             </span>
-            {entry.country_name}
+            {countryName(entry.country, entry.country_name, locale)}
           </span>
         ),
-        detail: (
-          <>
-            <span className="text-fg">{formatNumber(entry.servers)}</span>{" "}
-            servers ·{" "}
-            <span className="text-fg">{formatNumber(entry.players)}</span>{" "}
-            players
-          </>
-        ),
+        detail: formatMessage(t.stats.geoDetail, {
+          servers: formatNumber(entry.servers, locale),
+          players: formatNumber(entry.players, locale),
+        }),
       };
     });
 
@@ -301,7 +295,7 @@ export default function Stats() {
         {plugin.name}
         {plugin.language && (
           <span className="font-mono text-xs text-muted">
-            {formatLanguage(plugin.language)}
+            {languageLabel(plugin.language, t.stats.systems.rustNative)}
           </span>
         )}
         {plugin.market_plugin_id !== null && (
@@ -311,17 +305,15 @@ export default function Stats() {
             rel="noopener"
             className="text-xs font-bold text-pumpkin hover:text-fg"
           >
-            Market
+            {t.nav.market}
           </a>
         )}
       </span>
     ),
-    detail: (
-      <>
-        <span className="text-fg">{formatNumber(plugin.server_count)}</span>{" "}
-        servers · {formatPercent(plugin.adoption_percentage)}
-      </>
-    ),
+    detail: formatMessage(t.stats.plugins.detail, {
+      count: formatNumber(plugin.server_count, locale),
+      percent: formatPercent(plugin.adoption_percentage, locale),
+    }),
   }));
 
   const reportedPlayers = (geo ?? []).reduce(
@@ -334,14 +326,17 @@ export default function Stats() {
   );
 
   const mapSummary = [
-    { label: "Top location", value: topOnMap ? topOnMap.country_name : "-" },
-    { label: "Regions", value: geo ? formatNumber(geo.length) : "-" },
     {
-      label: "Reported players",
-      value: geo ? formatNumber(reportedPlayers) : "-",
+      label: t.stats.map.topLocation,
+      value: topOnMap ? countryName(topOnMap.country, topOnMap.country_name, locale) : "-",
+    },
+    { label: t.stats.map.regions, value: geo ? formatNumber(geo.length, locale) : "-" },
+    {
+      label: t.stats.map.reportedPlayers,
+      value: geo ? formatNumber(reportedPlayers, locale) : "-",
     },
     {
-      label: "Players per server",
+      label: t.stats.map.playersPerServer,
       value: geo
         ? reportingServers
           ? (reportedPlayers / reportingServers).toFixed(1)
@@ -351,12 +346,12 @@ export default function Stats() {
   ];
 
   const systemPanels = [
-    { title: "Operating systems", items: systems?.os, limit: 5 },
-    { title: "CPU architecture", items: systems?.arch },
-    { title: "Software versions", items: systems?.software_versions },
-    { title: "Minecraft versions", items: systems?.minecraft_versions },
-    { title: "Allocated server memory", items: systems?.ram_distribution },
-    { title: "Host machine memory", items: systems?.total_ram_distribution },
+    { title: t.stats.systems.os, items: systems?.os, limit: 5 },
+    { title: t.stats.systems.arch, items: systems?.arch },
+    { title: t.stats.systems.software, items: systems?.software_versions },
+    { title: t.stats.systems.minecraft, items: systems?.minecraft_versions },
+    { title: t.stats.systems.serverMemory, items: systems?.ram_distribution },
+    { title: t.stats.systems.hostMemory, items: systems?.total_ram_distribution },
   ];
 
   return (
@@ -367,38 +362,33 @@ export default function Stats() {
             <span className="absolute inset-0 animate-ping bg-success opacity-60 motion-reduce:animate-none" />
             <span className="relative size-2 bg-success" />
           </span>
-          Live telemetry
+          {t.stats.live}
         </p>
         <h1 className="text-[clamp(2.6rem,6vw,5rem)] leading-[0.98] font-extrabold tracking-[-0.015em]">
-          Ecosystem telemetry<span className="text-pumpkin">.</span>
+          {t.stats.title}
+          <span className="text-pumpkin">.</span>
         </h1>
-        <p className="mt-5 max-w-2xl text-lg text-muted md:text-xl">
-          Real-time network telemetry, global node distribution, hardware
-          infrastructure, and community server analytics across Pumpkin and Vine
-          deployments.
-        </p>
+        <p className="mt-5 max-w-2xl text-lg text-muted md:text-xl">{t.stats.description}</p>
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 border-y-2 border-white/15 py-4">
           <div className="flex flex-wrap items-center gap-3">
             <span className="font-mono text-xs tracking-wider text-muted uppercase">
-              Time range
+              {t.stats.timeRange}
             </span>
             <Segmented
-              label="Time range"
-              options={RANGES}
+              label={t.stats.timeRange}
+              options={RANGES.map((id) => ({ id, label: t.stats.ranges[id].label }))}
               value={range}
               onChange={setRange}
             />
           </div>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-muted">
             <span>
-              Last polled{" "}
+              {t.stats.lastPolled}{" "}
               <span className="text-fg">
                 {telemetry.lastUpdated
-                  ? telemetry.lastUpdated.toLocaleTimeString("en-US", {
-                      hour12: false,
-                    })
-                  : "connecting..."}
+                  ? formatTimeOfDay(telemetry.lastUpdated, locale)
+                  : t.stats.connecting}
               </span>
             </span>
             <button
@@ -408,7 +398,7 @@ export default function Stats() {
               className="inline-flex cursor-pointer items-center gap-1.5 font-bold text-pumpkin uppercase hover:text-fg disabled:cursor-wait disabled:opacity-60"
             >
               <RefreshIcon spinning={telemetry.loading} />
-              Refresh
+              {t.stats.refresh}
             </button>
             <a
               href={API_DOCS_URL}
@@ -416,14 +406,14 @@ export default function Stats() {
               rel="noopener"
               className="font-bold text-pumpkin uppercase hover:text-fg"
             >
-              API docs
+              {t.stats.apiDocs}
             </a>
           </div>
         </div>
 
         {telemetry.failed && (
           <p className="mt-4 border-l-3 border-danger bg-danger/10 px-4 py-3 text-sm text-danger">
-            Telemetry is unreachable right now. The page retries every minute.
+            {t.stats.unavailable}
           </p>
         )}
       </section>
@@ -435,58 +425,56 @@ export default function Stats() {
           }`}
         >
           <Kpi
-            label={`Active servers · ${rangeShort}`}
+            label={formatMessage(t.stats.kpi.activeServers, { range: rangeShort })}
             value={overview?.active_range_servers}
             detail={
-              overview && (
-                <>
-                  <span className="text-fg">
-                    {formatNumber(overview.live_servers)}
-                  </span>{" "}
-                  live now · Pumpkin{" "}
-                  {formatNumber(overview.live_pumpkin_servers)} · Vine{" "}
-                  {formatNumber(overview.live_vine_servers)}
-                </>
-              )
+              overview &&
+              formatMessage(t.stats.kpi.liveNow, {
+                count: formatNumber(overview.live_servers, locale),
+                pumpkin: formatNumber(overview.live_pumpkin_servers, locale),
+                vine: formatNumber(overview.live_vine_servers, locale),
+              })
             }
           />
           <Kpi
-            label={`Peak players · ${rangeShort}`}
+            label={formatMessage(t.stats.kpi.peakPlayers, { range: rangeShort })}
             value={overview?.peak_range_players}
             detail={
-              overview && (
-                <>
-                  <span className="text-fg">
-                    {formatNumber(overview.total_online_players)}
-                  </span>{" "}
-                  online now
-                </>
-              )
+              overview &&
+              formatMessage(t.stats.kpi.onlineNow, {
+                count: formatNumber(overview.total_online_players, locale),
+              })
             }
           />
           <Kpi
-            label="Countries"
+            label={t.stats.kpi.countries}
             value={overview?.total_countries}
             detail={
-              topCountry && <>Most servers in {topCountry.country_name}</>
+              topCountry &&
+              formatMessage(t.stats.kpi.mostServers, {
+                country: countryName(topCountry.country, topCountry.country_name, locale),
+              })
             }
           />
           <Kpi
-            label="Tracked plugins"
+            label={t.stats.kpi.plugins}
             value={overview?.total_tracked_plugins}
-            detail={plugins?.[0] && <>Most used: {plugins[0].name}</>}
+            detail={
+              plugins?.[0] &&
+              formatMessage(t.stats.kpi.mostUsed, { plugin: plugins[0].name })
+            }
           />
         </div>
 
         <Panel
-          title="Activity over time"
-          description={`Concurrent players and online servers, ${rangeLabel}.`}
+          title={t.stats.activity.title}
+          description={formatMessage(t.stats.activity.description, { range: rangeLabel })}
           actions={
             <Segmented
-              label="Metric"
+              label={t.stats.activity.metric}
               options={[
-                { id: "players", label: "Players" },
-                { id: "servers", label: "Servers" },
+                { id: "players", label: t.stats.metrics.players },
+                { id: "servers", label: t.stats.metrics.servers },
               ]}
               value={metric}
               onChange={setMetric}
@@ -494,7 +482,7 @@ export default function Stats() {
           }
         >
           <ul className="mb-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
-            {TREND_SERIES[metric].map((spec) => (
+            {trendSeries(t, metric).map((spec) => (
               <li key={spec.key} className="flex items-center gap-2">
                 <span
                   aria-hidden="true"
@@ -510,11 +498,11 @@ export default function Stats() {
           >
             {trends === null ? (
               <div className="grid h-75 place-items-center text-sm text-muted">
-                Loading...
+                {t.stats.loading}
               </div>
             ) : trends.length === 0 ? (
               <div className="grid h-75 place-items-center text-sm text-muted">
-                No telemetry trend data available.
+                {t.stats.activity.noData}
               </div>
             ) : (
               <TrendChart
@@ -528,13 +516,13 @@ export default function Stats() {
           {trends && trends.length > 0 && (
             <>
               <dl className="mt-5 grid grid-cols-2 gap-0.5 border-2 border-white/15 bg-white/15 md:grid-cols-4">
-                {summarize(trends, metric).map((item) => (
+                {summarize(t, trends, metric).map((item) => (
                   <div key={item.label} className="bg-surface px-4 py-3">
                     <dt className="font-mono text-xs tracking-wider text-muted uppercase">
                       {item.label}
                     </dt>
                     <dd className="mt-1 text-2xl font-extrabold">
-                      {formatNumber(item.value)}
+                      {formatNumber(item.value, locale)}
                     </dd>
                   </div>
                 ))}
@@ -545,7 +533,7 @@ export default function Stats() {
                 onClick={() => setShowTable((value) => !value)}
                 className="mt-4 cursor-pointer text-sm font-bold text-pumpkin hover:text-fg"
               >
-                {showTable ? "Hide data table" : "Show data table"}
+                {showTable ? t.stats.activity.hideTable : t.stats.activity.showTable}
               </button>
               {showTable && (
                 <div className="mt-3">
@@ -557,14 +545,14 @@ export default function Stats() {
         </Panel>
 
         <Panel
-          title="Where servers run"
-          description="Geographic distribution of active servers and player traffic. Click a country to find it in the list."
+          title={t.stats.map.title}
+          description={t.stats.map.description}
           actions={
             <Segmented
-              label="Map metric"
+              label={t.stats.map.metric}
               options={[
-                { id: "servers", label: "Servers" },
-                { id: "players", label: "Players" },
+                { id: "servers", label: t.stats.metrics.servers },
+                { id: "players", label: t.stats.metrics.players },
               ]}
               value={mapMetric}
               onChange={setMapMetric}
@@ -573,7 +561,7 @@ export default function Stats() {
         >
           {geo === null ? (
             <div className="grid h-72 place-items-center text-sm text-muted md:h-104">
-              Loading...
+              {t.stats.loading}
             </div>
           ) : (
             <WorldMap
@@ -583,7 +571,7 @@ export default function Stats() {
             />
           )}
           <div className="mt-4 flex items-center gap-3 font-mono text-xs text-muted">
-            <span>Fewer</span>
+            <span>{t.stats.map.fewer}</span>
             <span
               aria-hidden="true"
               className="h-2 w-32"
@@ -591,7 +579,7 @@ export default function Stats() {
                 backgroundImage: `linear-gradient(to right, ${MAP_RAMP[0]}, ${MAP_RAMP[1]})`,
               }}
             />
-            <span>More {mapMetric}</span>
+            <span>{mapMetric === "servers" ? t.stats.map.moreServers : t.stats.map.morePlayers}</span>
           </div>
           <dl className="mt-5 grid grid-cols-2 gap-0.5 border-2 border-white/15 bg-white/15 md:grid-cols-4">
             {mapSummary.map((item) => (
@@ -609,14 +597,14 @@ export default function Stats() {
 
         <div className="grid gap-6 lg:grid-cols-2">
           <Panel
-            title="Countries"
-            description="Servers and player traffic by host country."
+            title={t.stats.countries.title}
+            description={t.stats.countries.description}
             actions={
               <Segmented
-                label="Sort countries by"
+                label={t.stats.countries.sort}
                 options={[
-                  { id: "servers", label: "Servers" },
-                  { id: "players", label: "Players" },
+                  { id: "servers", label: t.stats.metrics.servers },
+                  { id: "players", label: t.stats.metrics.players },
                 ]}
                 value={geoSort}
                 onChange={setGeoSort}
@@ -631,13 +619,13 @@ export default function Stats() {
                 limit={10}
                 idPrefix="geo"
                 highlight={selectedCountry}
-                empty="No geolocation data reported."
+                empty={t.stats.countries.empty}
               />
             )}
           </Panel>
           <Panel
-            title="Popular plugins"
-            description="Most adopted plugins across reporting servers."
+            title={t.stats.plugins.title}
+            description={t.stats.plugins.description}
           >
             {plugins === null ? (
               <Loading />
@@ -645,7 +633,7 @@ export default function Stats() {
               <DistributionList
                 items={pluginItems}
                 limit={10}
-                empty="No plugin telemetry reported."
+                empty={t.stats.plugins.empty}
               />
             )}
           </Panel>
@@ -653,23 +641,18 @@ export default function Stats() {
 
         <div className="mt-6">
           <h2 className="text-3xl font-extrabold md:text-4xl">
-            Players
+            {t.stats.players.title}
           </h2>
-          <p className="mt-2 max-w-2xl text-muted">
-            Server online mode ratio and anonymous player client breakdown
-            summed across reporting servers.
-          </p>
+          <p className="mt-2 max-w-2xl text-muted">{t.stats.players.description}</p>
         </div>
 
         <Panel
-          title="Player breakdown"
-          description={
-            PLAYER_VIEWS.find((view) => view.id === playerView)?.description
-          }
+          title={t.stats.players.breakdown}
+          description={views.find((view) => view.id === playerView)?.description}
           actions={
             <Segmented
-              label="Player breakdown"
-              options={PLAYER_VIEWS}
+              label={t.stats.players.breakdown}
+              options={views}
               value={playerView}
               onChange={setPlayerView}
             />
@@ -680,20 +663,18 @@ export default function Stats() {
           ) : (
             <DistributionList
               items={shares(
-                systems[
-                  PLAYER_VIEWS.find((view) => view.id === playerView)!.key
-                ],
+                systems[views.find((view) => view.id === playerView)!.key],
               )}
               limit={8}
-              empty="No data reported yet."
+              empty={t.stats.players.empty}
             />
           )}
         </Panel>
 
         <div className="grid gap-6 md:grid-cols-2">
           <Panel
-            title="Client brands"
-            description="Minecraft launchers and mod loaders reported by connected clients."
+            title={t.stats.players.clientBrands}
+            description={t.stats.players.clientBrandsDescription}
           >
             {systems === null ? (
               <Loading />
@@ -701,13 +682,13 @@ export default function Stats() {
               <DistributionList
                 items={shares(systems.client_brands)}
                 limit={8}
-                empty="No client brand data reported yet."
+                empty={t.stats.players.clientBrandsEmpty}
               />
             )}
           </Panel>
           <Panel
-            title="Player locales"
-            description="Preferred language settings configured by connected players."
+            title={t.stats.players.locales}
+            description={t.stats.players.localesDescription}
           >
             {systems === null ? (
               <Loading />
@@ -715,19 +696,14 @@ export default function Stats() {
               <DistributionList
                 items={shares(systems.player_locales)}
                 limit={8}
-                empty="No player locale data reported yet."
+                empty={t.stats.players.localesEmpty}
               />
             )}
           </Panel>
         </div>
         <div className="mt-6">
-          <h2 className="text-3xl font-extrabold md:text-4xl">
-            Systems & hardware
-          </h2>
-          <p className="mt-2 max-w-2xl text-muted">
-            Operating systems, CPU architectures, software versions, and memory
-            footprints reported by server hosts.
-          </p>
+          <h2 className="text-3xl font-extrabold md:text-4xl">{t.stats.systems.title}</h2>
+          <p className="mt-2 max-w-2xl text-muted">{t.stats.systems.description}</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -739,7 +715,7 @@ export default function Stats() {
                 <DistributionList
                   items={shares(panel.items)}
                   limit={panel.limit}
-                  empty="No data reported."
+                  empty={t.stats.systems.empty}
                 />
               )}
             </Panel>
@@ -748,8 +724,8 @@ export default function Stats() {
 
         <div className="grid gap-6 lg:grid-cols-2">
           <Panel
-            title="Plugin languages"
-            description="Binding languages used by active plugins across reporting servers."
+            title={t.stats.systems.pluginLanguages}
+            description={t.stats.systems.pluginLanguagesDescription}
           >
             {systems === null ? (
               <Loading />
@@ -757,13 +733,13 @@ export default function Stats() {
               <DistributionList
                 items={shares(systems.plugin_languages)}
                 limit={10}
-                empty="No plugin language data reported."
+                empty={t.stats.systems.pluginLanguagesEmpty}
               />
             )}
           </Panel>
           <Panel
-            title="Server CPUs"
-            description="The processors reported most often."
+            title={t.stats.systems.cpus}
+            description={t.stats.systems.cpusDescription}
           >
             {systems === null ? (
               <Loading />
@@ -771,42 +747,27 @@ export default function Stats() {
               <DistributionList
                 items={shares(systems.cpu_models)}
                 limit={10}
-                empty="No data reported."
+                empty={t.stats.systems.empty}
               />
             )}
           </Panel>
         </div>
 
         <aside className="mt-6 border-l-3 border-success bg-success/10 px-5 py-4">
-          <h2 className="font-extrabold text-success">
-            Privacy-preserving open telemetry
-          </h2>
+          <h2 className="font-extrabold text-success">{t.stats.privacy.title}</h2>
           <p className="mt-2 max-w-4xl text-sm text-muted">
-            Pumpkin and Vine telemetry is completely transparent,
-            non-identifying, and privacy-first. We collect aggregated system
-            metrics (OS, CPU architecture, memory range, software versions,
-            authentication mode, and anonymous player client settings without
-            usernames, IPs, or raw UUIDs) to help benchmark performance,
-            optimize multi-threading, and prioritize Minecraft version
-            compatibility. To learn more or integrate your own tools, visit our{" "}
-            <a
-              href={API_DOCS_URL}
-              target="_blank"
-              rel="noopener"
-              className={inlineLink}
-            >
-              Telemetry API documentation
-            </a>{" "}
-            or inspect the telemetry modules in our{" "}
-            <a
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noopener"
-              className={inlineLink}
-            >
-              GitHub repository
-            </a>
-            .
+            {rich(t.stats.privacy.body, {
+              docs: (text) => (
+                <a href={API_DOCS_URL} target="_blank" rel="noopener" className={inlineLink}>
+                  {text}
+                </a>
+              ),
+              github: (text) => (
+                <a href={GITHUB_URL} target="_blank" rel="noopener" className={inlineLink}>
+                  {text}
+                </a>
+              ),
+            })}
           </p>
         </aside>
       </div>

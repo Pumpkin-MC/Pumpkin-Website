@@ -1,9 +1,13 @@
 import type { ReactNode } from "react";
+import type { Messages } from "../../i18n";
+import { rich, type RichTags } from "../../i18n/rich";
+import { DOCS_URL } from "../../links";
 import type { CodeSample } from "./CodeBlock";
 import type { SnippetName } from "./snippet-languages";
-import { DOCS_URL } from "../../links";
 
-export type GuideId = "rust" | "python" | "csharp" | "c" | "go" | "kotlin" | "d" | "zig" | "typescript";
+export const GUIDE_IDS = ["rust", "python", "csharp", "c", "go", "kotlin", "d", "zig", "typescript"] as const;
+
+export type GuideId = (typeof GUIDE_IDS)[number];
 
 export type StepContent = ReactNode | CodeSample;
 
@@ -37,378 +41,331 @@ function Link({ href, children }: { href: string; children: ReactNode }) {
   );
 }
 
-const terminal = (snippet: SnippetName): CodeSample => ({ snippet, label: "Terminal" });
+/**
+ * Renders inline markup of a translated paragraph: <code> becomes an inline
+ * code tag, every other tag name is looked up in the link targets.
+ */
+function body(text: string, links: Record<string, string> = {}): ReactNode {
+  const tags: RichTags = { code: (children) => <Code>{children}</Code> };
+  for (const [tag, href] of Object.entries(links)) {
+    tags[tag] = (children) => <Link href={href}>{children}</Link>;
+  }
+  return rich(text, tags);
+}
 
-export const guides: Guide[] = [
-  {
-    id: "rust",
-    label: "Rust",
-    docsHref: `${DOCS_URL}/plugin-dev/rust/creating-project`,
-    docsLabel: "the Rust documentation",
-    steps: [
-      {
-        title: "Creating a new project",
-        content: [
-          <p key="build">Pumpkin plugins use the Cargo build system.</p>,
-          <p key="template">
-            The complete code for this plugin can be found as a{" "}
-            <Link href="https://github.com/Pumpkin-MC/pumpkin-rust-template">template on GitHub</Link>.
-          </p>,
-        ],
-      },
-      {
-        title: "Installing the toolchain",
-        content: [
-          <p key="target">
-            Before we can compile a plugin, we have to have the <Code>wasm32-wasip2</Code> target installed. You can
-            install the target by running:
-          </p>,
-          terminal("rustTarget"),
-        ],
-      },
-      {
-        title: "Initializing a new crate",
-        content: [
-          <p key="folder">
-            First we need to create a new project folder. You can do this by running this command in the folder you
-            created:
-          </p>,
-          terminal("rustNewCrate"),
-          <p key="cargo">
-            After adding this, we want to create a new directory called <Code>.cargo</Code> and add in a{" "}
-            <Code>config.toml</Code> file with the following contents:
-          </p>,
-          { snippet: "rustCargoConfig", label: ".cargo/config.toml" },
-          <p key="tree">Altogether your new folder structure should look like this:</p>,
-          { snippet: "rustTree", label: "Project layout" },
-        ],
-      },
-      {
-        title: "Configuring the crate",
-        content: [
-          <p key="cdylib">
-            Since Pumpkin plugins are loaded at runtime as dynamic libraries, we need to tell Cargo to build this crate
-            as one.
-          </p>,
-          { snippet: "rustManifest", label: "Cargo.toml" },
-          <p key="deps">
-            Next we need to add some basic dependencies. Since Pumpkin is still in early development, the internal
-            crates aren't published to crates.io, so we need to tell Cargo to download the dependencies directly from
-            GitHub.
-          </p>,
-          { snippet: "rustManifestWithDeps", label: "Cargo.toml" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "python",
-    label: "Python",
-    docsHref: `${DOCS_URL}/plugin-dev/python/quick-start`,
-    docsLabel: "the Python documentation",
-    steps: [
-      {
-        title: "Installation",
-        content: [
-          <p key="install">
-            First, you need to install the <Code>pumpkin-api-py</Code> library:
-          </p>,
-          terminal("pythonInstall"),
-        ],
-      },
-      {
-        title: "Creating your first plugin",
-        content: [
-          <p key="file">
-            Create a file named <Code>main.py</Code> and add the following content:
-          </p>,
-          { snippet: "pythonPlugin", label: "main.py" },
-        ],
-      },
-      {
-        title: "Building the plugin",
-        content: [
-          <p key="build">Build your plugin into a WebAssembly component using the provided build tool:</p>,
-          terminal("pythonBuild"),
-          <p key="output">
-            This will generate a <Code>my_plugin.wasm</Code> file that you can place in the plugins folder of your
-            Pumpkin server.
-          </p>,
-        ],
-      },
-    ],
-  },
-  {
-    id: "csharp",
-    label: "C#",
-    docsHref: `${DOCS_URL}/plugin-dev/csharp/quick-start`,
-    docsLabel: "the C# documentation",
-    steps: [
-      {
-        title: "Installation",
-        content: [
-          <p key="sdk">
-            You will need the <Code>.NET SDK</Code> and the WASI workload to compile C# plugins for Pumpkin.
-          </p>,
-          terminal("csharpInstall"),
-        ],
-      },
-      {
-        title: "Creating your first plugin",
-        content: [
-          <p key="library">Create a new class library and add the following code:</p>,
-          { snippet: "csharpPlugin", label: "MyPlugin.cs" },
-        ],
-      },
-      {
-        title: "Building the plugin",
-        content: [
-          <p key="build">Compile the plugin to WebAssembly using the WASI runtime identifier:</p>,
-          terminal("csharpBuild"),
-          <p key="output">
-            This will generate a <Code>.wasm</Code> file in your output directory that can be loaded by Pumpkin.
-          </p>,
-        ],
-      },
-    ],
-  },
-  {
-    id: "c",
-    label: "C/C++",
-    docsHref: "https://github.com/Pumpkin-MC/pumpkin-api-c",
-    docsLabel: "the GitHub repository",
-    steps: [
-      {
-        title: "Installation",
-        content: [
-          <p key="sdk">
-            You will need the <Code>wasi-sdk</Code> to compile C/C++ plugins for Pumpkin. Download the latest release
-            from the <Link href="https://github.com/WebAssembly/wasi-sdk/releases">wasi-sdk repository</Link>.
-          </p>,
-          <p key="repo">
-            The complete code for this plugin can be found in the{" "}
-            <Link href="https://github.com/Pumpkin-MC/pumpkin-api-c">pumpkin-api-c repository</Link>.
-          </p>,
-        ],
-      },
-      {
-        title: "Creating your first plugin",
-        content: [
-          <p key="file">
-            Create a file named <Code>main.c</Code> and add the following content:
-          </p>,
-          { snippet: "cPlugin", label: "main.c" },
-        ],
-      },
-      {
-        title: "Building the plugin",
-        content: [
-          <p key="clang">
-            To compile this plugin into a WebAssembly component, use <Code>clang</Code> from the <Code>wasi-sdk</Code>:
-          </p>,
-          terminal("cBuild"),
-          <p key="output">
-            This will generate a <Code>my_plugin.wasm</Code> file that can be loaded by Pumpkin.
-          </p>,
-        ],
-      },
-    ],
-  },
-  {
-    id: "go",
-    label: "Go",
-    docsHref: `${DOCS_URL}/plugin-dev/go/quick-start`,
-    docsLabel: "the Go documentation",
-    steps: [
-      {
-        title: "Installation",
-        content: [
-          <p key="tools">
-            You will need <Link href="https://go.dev/doc/install">Go 1.23 or later</Link> and <Code>tinygo</Code> to
-            compile Go plugins for Pumpkin.
-          </p>,
-          terminal("goInstall"),
-        ],
-      },
-      {
-        title: "Creating your first plugin",
-        content: [
-          <p key="file">
-            Create a file named <Code>main.go</Code> and add the following content:
-          </p>,
-          { snippet: "goPlugin", label: "main.go" },
-        ],
-      },
-      {
-        title: "Building the plugin",
-        content: [
-          <p key="build">
-            Compile the plugin to WebAssembly using <Code>tinygo</Code>:
-          </p>,
-          terminal("goBuild"),
-          <p key="output">
-            This will generate a <Code>my_plugin.wasm</Code> file that can be loaded by Pumpkin.
-          </p>,
-        ],
-      },
-    ],
-  },
-  {
-    id: "kotlin",
-    label: "Kotlin",
-    docsHref: `${DOCS_URL}/plugin-dev/kotlin/quick-start`,
-    docsLabel: "the Kotlin documentation",
-    steps: [
-      {
-        title: "Installation",
-        content: [
-          <p key="needs">You will need a number of things installed.</p>,
-          <ul key="list" className="grid list-inside list-disc gap-1 marker:text-pumpkin">
-            <li>Git</li>
-            <li>JDK 17+</li>
-            <li>
-              <Link href="https://rust-lang.org/">Rust</Link> (only default/host toolchain)
-            </li>
-            <li>
-              <Link href="https://github.com/bytecodealliance/wasm-tools">wasm-tools</Link>
-            </li>
-            <li>
-              <Code>make</Code> (e.g. <Link href="https://www.gnu.org/software/make/">GNU Make</Link>)
-            </li>
-          </ul>,
-          <p key="template">Unlike most of the other APIs, this one is actually a template instead. Clone it and rename.</p>,
-          terminal("kotlinClone"),
-          <p key="rename">
-            Then change the <Code>rootProject.name</Code> in <Code>settings.gradle.kts</Code>, and the{" "}
-            <Code>PROJECT_NAME</Code> in <Code>Makefile</Code>. They must both match. Whatever you name the project is
-            going to be the filename of the Wasm produced.
-          </p>,
-        ],
-      },
-      {
-        title: "Creating your first plugin",
-        content: [
-          <p key="prepared">
-            The template already has some code prepared. <Code>src/wasmWasiMain/kotlin/plugin/Plugin.kt</Code> contains:
-          </p>,
-          { snippet: "kotlinPlugin", label: "Plugin.kt" },
-        ],
-      },
-      {
-        title: "Building the plugin",
-        content: [
-          <p key="make">
-            Compile the plugin to WebAssembly by running the <Code>Makefile</Code>:
-          </p>,
-          terminal("kotlinBuild"),
-          <p key="slow">This will take a while the first time as it builds some Rust dependencies from source.</p>,
-          <p key="output">
-            Once it is done, <Code>my_kotlin_plugin.wasm</Code> (or whatever your Gradle project name is) will appear
-            in <Code>build</Code>, ready to load into Pumpkin.
-          </p>,
-        ],
-      },
-    ],
-  },
-  {
-    id: "d",
-    label: "D",
-    docsHref: `${DOCS_URL}/plugin-dev/d/quick-start`,
-    docsLabel: "the D documentation",
-    steps: [
-      {
-        title: "Installation",
-        content: [
-          <p key="needs">
-            You will need <Link href="https://github.com/ldc-developers/ldc">LDC</Link> 1.43 or later with the{" "}
-            <Code>addon-wasi</Code> package installed, and <Link href="https://dub.pm/">DUB</Link>.
-          </p>,
-          <p key="package">
-            The bindings come from the <Link href="https://github.com/Pumpkin-MC/pumpkin-api-d">pumpkin-api-d</Link>{" "}
-            package. Declare it in a <Code>dub.json</Code> next to your plugin:
-          </p>,
-          { snippet: "dManifest", label: "dub.json" },
-        ],
-      },
-      {
-        title: "Creating your first plugin",
-        content: [
-          <p key="source">
-            Then put the plugin itself in <Code>source/app.d</Code>:
-          </p>,
-          { snippet: "dPlugin", label: "app.d" },
-        ],
-      },
-      {
-        title: "Building the plugin",
-        content: [
-          <p key="dub">
-            Compile the plugin into a WebAssembly component targeting <Code>wasm32-wasip2</Code> with DUB:
-          </p>,
-          terminal("dBuild"),
-          <p key="output">
-            <Code>my-d-plugin.wasm</Code> appears in the project root, ready to load into Pumpkin.
-          </p>,
-        ],
-      },
-    ],
-  },
-  {
-    id: "zig",
-    label: "Zig",
-    docsHref: `${DOCS_URL}/plugin-dev/zig/quick-start`,
-    docsLabel: "the Zig documentation",
-    steps: [
-      {
-        title: "Setting up the project",
-        content: [
-          <p key="needs">
-            You will need <Link href="https://ziglang.org/download/">Zig</Link> 0.16.0 or later and{" "}
-            <Link href="https://github.com/bytecodealliance/wasm-tools">wasm-tools</Link> in your <Code>PATH</Code>.
-          </p>,
-          <p key="fetch">
-            Fetch and add the <Link href="https://github.com/Pumpkin-MC/pumpkin-api-zig">pumpkin-api-zig</Link> package
-            as a dependency:
-          </p>,
-          terminal("zigFetch"),
-          <p key="build-zig">
-            Create a <Code>build.zig</Code> file in the root of your project:
-          </p>,
-          { snippet: "zigBuildZig", label: "build.zig" },
-        ],
-      },
-      {
-        title: "Creating your first plugin",
-        content: [
-          <p key="source">
-            Create your plugin source code in <Code>src/main.zig</Code>:
-          </p>,
-          { snippet: "zigPlugin", label: "src/main.zig" },
-        ],
-      },
-      {
-        title: "Building the plugin",
-        content: [
-          <p key="build">Compile the plugin into a WebAssembly component:</p>,
-          terminal("zigBuild"),
-          <p key="output">
-            This will produce <Code>zig-out/my-zig-plugin.wasm</Code> ready to be loaded into Pumpkin.
-          </p>,
-        ],
-      },
-    ],
-  },
-  {
-    id: "typescript",
-    label: "TypeScript",
-    docsHref: "https://github.com/Pumpkin-MC/pumpkin-api-ts",
-    docsLabel: "the pumpkin-api-ts repository",
-    intro: (
-      <p>
-        There is no written quick start for TypeScript yet. The API and its setup instructions live in the{" "}
-        <Link href="https://github.com/Pumpkin-MC/pumpkin-api-ts">pumpkin-api-ts repository</Link>.
-      </p>
-    ),
-    steps: [],
-  },
-];
+const RUST_TEMPLATE_URL = "https://github.com/Pumpkin-MC/pumpkin-rust-template";
+const WASI_SDK_URL = "https://github.com/WebAssembly/wasi-sdk/releases";
+const API_C_URL = "https://github.com/Pumpkin-MC/pumpkin-api-c";
+const GO_URL = "https://go.dev/doc/install";
+const RUST_URL = "https://rust-lang.org/";
+const WASM_TOOLS_URL = "https://github.com/bytecodealliance/wasm-tools";
+const GNU_MAKE_URL = "https://www.gnu.org/software/make/";
+const LDC_URL = "https://github.com/ldc-developers/ldc";
+const DUB_URL = "https://dub.pm/";
+const API_D_URL = "https://github.com/Pumpkin-MC/pumpkin-api-d";
+const ZIG_URL = "https://ziglang.org/download/";
+const API_ZIG_URL = "https://github.com/Pumpkin-MC/pumpkin-api-zig";
+const API_TS_URL = "https://github.com/Pumpkin-MC/pumpkin-api-ts";
+
+/** Builds the per-language plugin guides for the current language. */
+export function getGuides(t: Messages): Guide[] {
+  const text = t.developers.guides;
+  const terminal = (snippet: SnippetName): CodeSample => ({ snippet, label: text.terminal });
+
+  return [
+    {
+      id: "rust",
+      label: "Rust",
+      docsHref: `${DOCS_URL}/plugin-dev/rust/creating-project`,
+      docsLabel: text.rust.docsLabel,
+      steps: [
+        {
+          title: text.rust.steps.create,
+          content: [
+            <p key="build">{text.rust.text.build}</p>,
+            <p key="template">{body(text.rust.text.template, { template: RUST_TEMPLATE_URL })}</p>,
+          ],
+        },
+        {
+          title: text.rust.steps.toolchain,
+          content: [
+            <p key="target">{body(text.rust.text.target)}</p>,
+            terminal("rustTarget"),
+          ],
+        },
+        {
+          title: text.rust.steps.crate,
+          content: [
+            <p key="folder">{text.rust.text.folder}</p>,
+            terminal("rustNewCrate"),
+            <p key="cargo">{body(text.rust.text.cargo)}</p>,
+            { snippet: "rustCargoConfig", label: ".cargo/config.toml" },
+            <p key="tree">{text.rust.text.tree}</p>,
+            { snippet: "rustTree", label: text.projectLayout },
+          ],
+        },
+        {
+          title: text.rust.steps.configure,
+          content: [
+            <p key="cdylib">{text.rust.text.cdylib}</p>,
+            { snippet: "rustManifest", label: "Cargo.toml" },
+            <p key="deps">{text.rust.text.deps}</p>,
+            { snippet: "rustManifestWithDeps", label: "Cargo.toml" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "python",
+      label: "Python",
+      docsHref: `${DOCS_URL}/plugin-dev/python/quick-start`,
+      docsLabel: text.python.docsLabel,
+      steps: [
+        {
+          title: text.python.steps.install,
+          content: [
+            <p key="install">{body(text.python.text.install)}</p>,
+            terminal("pythonInstall"),
+          ],
+        },
+        {
+          title: text.python.steps.create,
+          content: [
+            <p key="file">{body(text.python.text.file)}</p>,
+            { snippet: "pythonPlugin", label: "main.py" },
+          ],
+        },
+        {
+          title: text.python.steps.build,
+          content: [
+            <p key="build">{text.python.text.build}</p>,
+            terminal("pythonBuild"),
+            <p key="output">{body(text.python.text.output)}</p>,
+          ],
+        },
+      ],
+    },
+    {
+      id: "csharp",
+      label: "C#",
+      docsHref: `${DOCS_URL}/plugin-dev/csharp/quick-start`,
+      docsLabel: text.csharp.docsLabel,
+      steps: [
+        {
+          title: text.csharp.steps.install,
+          content: [
+            <p key="sdk">{body(text.csharp.text.sdk)}</p>,
+            terminal("csharpInstall"),
+          ],
+        },
+        {
+          title: text.csharp.steps.create,
+          content: [
+            <p key="library">{text.csharp.text.library}</p>,
+            { snippet: "csharpPlugin", label: "MyPlugin.cs" },
+          ],
+        },
+        {
+          title: text.csharp.steps.build,
+          content: [
+            <p key="build">{text.csharp.text.build}</p>,
+            terminal("csharpBuild"),
+            <p key="output">{body(text.csharp.text.output)}</p>,
+          ],
+        },
+      ],
+    },
+    {
+      id: "c",
+      label: "C/C++",
+      docsHref: API_C_URL,
+      docsLabel: text.c.docsLabel,
+      steps: [
+        {
+          title: text.c.steps.install,
+          content: [
+            <p key="sdk">{body(text.c.text.sdk, { sdk: WASI_SDK_URL })}</p>,
+            <p key="repo">{body(text.c.text.repo, { repo: API_C_URL })}</p>,
+          ],
+        },
+        {
+          title: text.c.steps.create,
+          content: [
+            <p key="file">{body(text.c.text.file)}</p>,
+            { snippet: "cPlugin", label: "main.c" },
+          ],
+        },
+        {
+          title: text.c.steps.build,
+          content: [
+            <p key="clang">{body(text.c.text.clang)}</p>,
+            terminal("cBuild"),
+            <p key="output">{body(text.c.text.output)}</p>,
+          ],
+        },
+      ],
+    },
+    {
+      id: "go",
+      label: "Go",
+      docsHref: `${DOCS_URL}/plugin-dev/go/quick-start`,
+      docsLabel: text.go.docsLabel,
+      steps: [
+        {
+          title: text.go.steps.install,
+          content: [
+            <p key="tools">{body(text.go.text.tools, { go: GO_URL })}</p>,
+            terminal("goInstall"),
+          ],
+        },
+        {
+          title: text.go.steps.create,
+          content: [
+            <p key="file">{body(text.go.text.file)}</p>,
+            { snippet: "goPlugin", label: "main.go" },
+          ],
+        },
+        {
+          title: text.go.steps.build,
+          content: [
+            <p key="build">{body(text.go.text.build)}</p>,
+            terminal("goBuild"),
+            <p key="output">{body(text.go.text.output)}</p>,
+          ],
+        },
+      ],
+    },
+    {
+      id: "kotlin",
+      label: "Kotlin",
+      docsHref: `${DOCS_URL}/plugin-dev/kotlin/quick-start`,
+      docsLabel: text.kotlin.docsLabel,
+      steps: [
+        {
+          title: text.kotlin.steps.install,
+          content: [
+            <p key="needs">{text.kotlin.text.needs}</p>,
+            <ul key="list" className="grid list-inside list-disc gap-1 marker:text-pumpkin">
+              <li>Git</li>
+              <li>JDK 17+</li>
+              <li>{body(text.kotlin.text.rust, { rust: RUST_URL })}</li>
+              <li>{body(text.kotlin.text.wasmTools, { tools: WASM_TOOLS_URL })}</li>
+              <li>{body(text.kotlin.text.make, { make: GNU_MAKE_URL })}</li>
+            </ul>,
+            <p key="template">{text.kotlin.text.template}</p>,
+            terminal("kotlinClone"),
+            <p key="rename">{body(text.kotlin.text.rename)}</p>,
+          ],
+        },
+        {
+          title: text.kotlin.steps.create,
+          content: [
+            <p key="prepared">{body(text.kotlin.text.prepared)}</p>,
+            { snippet: "kotlinPlugin", label: "Plugin.kt" },
+          ],
+        },
+        {
+          title: text.kotlin.steps.build,
+          content: [
+            <p key="make">{body(text.kotlin.text.makeCommand)}</p>,
+            terminal("kotlinBuild"),
+            <p key="slow">{text.kotlin.text.slow}</p>,
+            <p key="output">{body(text.kotlin.text.output)}</p>,
+          ],
+        },
+      ],
+    },
+    {
+      id: "d",
+      label: "D",
+      docsHref: `${DOCS_URL}/plugin-dev/d/quick-start`,
+      docsLabel: text.d.docsLabel,
+      steps: [
+        {
+          title: text.d.steps.install,
+          content: [
+            <p key="needs">{body(text.d.text.needs, { ldc: LDC_URL, dub: DUB_URL })}</p>,
+            <p key="package">{body(text.d.text.package, { api: API_D_URL })}</p>,
+            { snippet: "dManifest", label: "dub.json" },
+          ],
+        },
+        {
+          title: text.d.steps.create,
+          content: [
+            <p key="source">{body(text.d.text.source)}</p>,
+            { snippet: "dPlugin", label: "app.d" },
+          ],
+        },
+        {
+          title: text.d.steps.build,
+          content: [
+            <p key="dub">{body(text.d.text.dub)}</p>,
+            terminal("dBuild"),
+            <p key="output">{body(text.d.text.output)}</p>,
+          ],
+        },
+      ],
+    },
+    {
+      id: "zig",
+      label: "Zig",
+      docsHref: `${DOCS_URL}/plugin-dev/zig/quick-start`,
+      docsLabel: text.zig.docsLabel,
+      steps: [
+        {
+          title: text.zig.steps.install,
+          content: [
+            <p key="needs">{body(text.zig.text.needs, { zig: ZIG_URL, tools: WASM_TOOLS_URL })}</p>,
+            <p key="fetch">{body(text.zig.text.fetch, { api: API_ZIG_URL })}</p>,
+            terminal("zigFetch"),
+            <p key="build-zig">{body(text.zig.text.buildFile)}</p>,
+            { snippet: "zigBuildZig", label: "build.zig" },
+          ],
+        },
+        {
+          title: text.zig.steps.create,
+          content: [
+            <p key="source">{body(text.zig.text.source)}</p>,
+            { snippet: "zigPlugin", label: "src/main.zig" },
+          ],
+        },
+        {
+          title: text.zig.steps.build,
+          content: [
+            <p key="build">{text.zig.text.build}</p>,
+            terminal("zigBuild"),
+            <p key="output">{body(text.zig.text.output)}</p>,
+          ],
+        },
+      ],
+    },
+    {
+      id: "typescript",
+      label: "TypeScript",
+      docsHref: API_TS_URL,
+      docsLabel: text.typescript.docsLabel,
+      intro: <p>{body(text.typescript.intro, { repo: API_TS_URL })}</p>,
+      steps: [],
+    },
+  ];
+}
+
+/**
+ * Returns either the first command of a guide or an explanatory note, for the
+ * inline picker on the developers page.
+ */
+export function getFirstSteps(t: Messages): Record<GuideId, { snippet: SnippetName } | { note: ReactNode }> {
+  const text = t.developers.guides;
+
+  return {
+    rust: { snippet: "rustTarget" },
+    python: { snippet: "pythonInstall" },
+    csharp: { snippet: "csharpInstall" },
+    c: { note: <>{body(text.firstSteps.c, { sdk: WASI_SDK_URL })}</> },
+    go: { snippet: "goInstall" },
+    kotlin: { snippet: "kotlinClone" },
+    d: { note: <>{body(text.firstSteps.d, { ldc: LDC_URL, dub: DUB_URL })}</> },
+    zig: { snippet: "zigFetch" },
+    typescript: { note: <>{body(text.firstSteps.typescript, { api: API_TS_URL })}</> },
+  };
+}
