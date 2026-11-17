@@ -37,7 +37,12 @@ function Panel({ panel, open }: { panel: MenuPanel; open: boolean }) {
                   href={withBase(link.href)}
                   className={`group/link block ${column.compact ? "py-1.5" : "py-2"} px-3 text-[0.95rem] leading-snug font-bold text-fg hover:bg-pumpkin hover:text-black focus-visible:bg-pumpkin focus-visible:text-black focus-visible:outline-none`}
                 >
-                  {link.label}
+                  {link.Icon ? (
+                    <span className="flex items-center gap-2">
+                      <link.Icon className="size-4 shrink-0" />
+                      {link.label}
+                    </span>
+                  ) : link.label}
                   {link.hint && (
                     <small className="mt-0.5 block text-[0.8rem] font-medium text-muted group-hover/link:text-black group-focus-visible/link:text-black">
                       {link.hint}
