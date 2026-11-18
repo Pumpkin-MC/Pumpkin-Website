@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.63",
-  "commit": "87f8822ac36da62102350977be2f62f155a303dc",
-  "updated": "2026-11-16",
+  "commit": "c60b81fc8e2b30496e99cbf33b31cdeaf38aa7ba",
+  "updated": "2026-11-17",
   "categories": [
     {
       "id": "entities",
@@ -4963,7 +4963,7 @@
             {
               "number": 4197,
               "title": "Entities that pass through nether portals don't appears at the other side",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 4194,
@@ -5225,7 +5225,7 @@
             {
               "number": 4247,
               "title": "Can't waterlog stairs or slabs",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -5377,7 +5377,7 @@
             {
               "number": 4247,
               "title": "Can't waterlog stairs or slabs",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
