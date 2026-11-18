@@ -9,9 +9,11 @@ import {
   type NamedLink,
 } from "../links";
 import type { Messages } from "../i18n";
+import { DiscordIcon, XIcon, YouTubeIcon } from "./icons";
 
 export interface MenuLink extends NamedLink {
   hint?: string;
+  Icon?: typeof DiscordIcon;
 }
 
 export interface MenuColumn {
@@ -97,9 +99,9 @@ export function getMenuPanels(t: Messages): MenuPanel[] {
         {
           heading: community.talk,
           links: [
-            { ...community.discord, href: DISCORD_URL },
-            { ...community.x, href: X_URL },
-            { ...community.youtube, href: YOUTUBE_URL },
+            { ...community.discord, href: DISCORD_URL, Icon: DiscordIcon },
+            { ...community.x, href: X_URL, Icon: XIcon },
+            { ...community.youtube, href: YOUTUBE_URL, Icon: YouTubeIcon },
           ],
         },
         {
