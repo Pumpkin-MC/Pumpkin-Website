@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.63",
-  "commit": "c60b81fc8e2b30496e99cbf33b31cdeaf38aa7ba",
-  "updated": "2026-11-17",
+  "commit": "490c67794e6a156b7dd42935f2c39ca33dff33e5",
+  "updated": "2026-11-19",
   "categories": [
     {
       "id": "entities",
@@ -544,36 +544,14 @@
           "id": "pillager",
           "name": "Pillager",
           "group": "Hostile",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/pillager.rs",
-          "note": "Implements crossbow combat, raid movement, revenge targeting, and creaking avoidance.",
-          "items": [
-            {
-              "text": "Crossbow charging/shooting, patrol and raid movement",
-              "done": true
-            },
-            {
-              "text": "Avoid creaking entities and retaliate against attackers",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/pillager.rs",
-              "line": 42
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/ranged_crossbow_attack.rs",
-              "line": 44
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "ravager",
@@ -966,36 +944,14 @@
           "id": "wither_skeleton",
           "name": "Wither Skeleton",
           "group": "Hostile",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/skeleton/wither.rs",
-          "note": "Applies the Wither effect on melee hits, shoots flaming arrows, and is immune to Wither.",
-          "items": [
-            {
-              "text": "Inherited skeleton movement and shared equipment spawning",
-              "done": true
-            },
-            {
-              "text": "Apply Wither after a successful melee attack",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/wither.rs",
-              "line": 13
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/equipment.rs",
-              "line": 485
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "zoglin",
@@ -1248,34 +1204,12 @@
           "group": "Passive",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/bee.rs",
-          "note": "Combat exists. Hive/pollination/crop behaviour is not wired; the absence of a Brain framework is not the issue.",
-          "items": [
-            {
-              "text": "Angry melee, sting gating, neutral targeting and sting death",
-              "done": true
-            },
-            {
-              "text": "Hive entry/exit, pollination and crop growth",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/bee.rs",
-              "line": 40
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/behavior/neutral.rs",
-              "line": 12
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "camel",
@@ -1643,7 +1577,7 @@
           "id": "iron_golem",
           "name": "Iron Golem",
           "group": "Passive",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/iron_golem.rs",
           "issues": [
             {
@@ -1652,69 +1586,25 @@
               "state": "closed"
             }
           ],
-          "note": "Implements village patrol/return goals, village defense targeting, high-knockback melee, crackiness stages, and iron-ingot repair.",
-          "items": [
-            {
-              "text": "Melee, neutral anger, flower offering and attack animation",
-              "done": true
-            },
-            {
-              "text": "Village-defence targeting",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/iron_golem.rs",
-              "line": 41
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/behavior/neutral.rs",
-              "line": 12
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "llama",
           "name": "Llama",
           "group": "Passive",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/llama.rs",
-          "note": "Implements spit ranged combat, caravan following, carpet decoration, and tiered chest inventory.",
-          "items": [
-            {
-              "text": "Spit attacks, taming/chest state, feeding and breeding",
-              "done": true
-            },
-            {
-              "text": "Caravan following and functional chest inventory",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/llama.rs",
-              "line": 52
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/ranged_attack.rs",
-              "line": 26
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "mooshroom",
@@ -2190,36 +2080,14 @@
           "id": "trader_llama",
           "name": "Trader Llama",
           "group": "Passive",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/trader_llama.rs",
-          "note": "Implements spit ranged combat, caravan following, and wandering-trader defense targeting.",
-          "items": [
-            {
-              "text": "Spit attacks, taming/chest state, feeding and breeding",
-              "done": true
-            },
-            {
-              "text": "Caravan following and functional chest inventory",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/trader_llama.rs",
-              "line": 52
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/ranged_attack.rs",
-              "line": 26
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "tropical_fish",
@@ -2405,37 +2273,20 @@
           "id": "villager",
           "name": "Villager",
           "group": "Villager",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/villager/mod.rs",
-          "note": "Implements villager Brain schedules, POI job-site claiming, profession leveling/trading, sleep, gossip, breeding, and iron golem summoning.",
-          "items": [
-            {
-              "text": "Trading, work/restock, sleep/wakeup and reputation/gossip",
-              "done": true
-            },
-            {
-              "text": "Breeding and meeting/activity schedule parity",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/villager/mod.rs",
-              "line": 58
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "wandering_trader",
           "name": "Wandering Trader",
           "group": "Villager",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/wandering_trader.rs",
           "issues": [
             {
@@ -2449,39 +2300,12 @@
               "state": "closed"
             }
           ],
-          "note": "Implements world spawning with trader llamas, trade offers, night invisibility/milk potion drinking, and wander goals.",
-          "items": [
-            {
-              "text": "Trades, potion use, wandering and entity NBT",
-              "done": true
-            },
-            {
-              "text": "Natural spawning, llama escort and active spawn-state persistence",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/wandering_trader.rs",
-              "line": 53
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-world/src/world_info/anvil.rs",
-              "line": 40
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-world/src/world_info/data_files.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "arrow",
@@ -4035,44 +3859,17 @@
           "id": "dragon_egg",
           "name": "Dragon Egg",
           "group": "Blocks",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/dragon_egg.rs",
           "ids": [
             "minecraft:dragon_egg"
           ],
-          "note": "Implements gravity falling and interaction/attack teleportation within world bounds.",
-          "items": [
-            {
-              "text": "Delayed falling after placement and neighbour changes",
-              "done": true
-            },
-            {
-              "text": "Teleport interaction",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "fn placed",
-              "source": "crates/pumpkin-core/src/block/blocks/dragon_egg.rs",
-              "line": 50
-            },
-            {
-              "label": "fn get_state_for_neighbor_update",
-              "source": "crates/pumpkin-core/src/block/blocks/dragon_egg.rs",
-              "line": 54
-            },
-            {
-              "label": "placed_with_delay",
-              "source": "crates/pumpkin-core/src/block/blocks/falling.rs",
-              "line": 24
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "dried_ghast",
@@ -4428,7 +4225,7 @@
             {
               "number": 2976,
               "title": "Bug: Furnace Interaction Restores Tool Durability in Survival Mode",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -7044,7 +6841,7 @@
             {
               "number": 3822,
               "title": "Dispensers can only shear sheep and beehives",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3627,
@@ -7676,7 +7473,7 @@
             {
               "number": 3830,
               "title": "Fix shearing animation",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3574,
