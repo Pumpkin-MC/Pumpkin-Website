@@ -1,6 +1,6 @@
 {
   "version": "26.3-26.63",
-  "commit": "490c67794e6a156b7dd42935f2c39ca33dff33e5",
+  "commit": "d0c0a5d73d3757258f7afb2ca240279d52653862",
   "updated": "2026-11-19",
   "categories": [
     {
@@ -5061,7 +5061,7 @@
             {
               "number": 4457,
               "title": "smithing table bug",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -7580,7 +7580,7 @@
             {
               "number": 3062,
               "title": "Sweeping attack effect appears in the wrong position",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Registration. Sweep and damage live in the combat code.",
@@ -7613,7 +7613,7 @@
             {
               "number": 1552,
               "title": "Riptide Tridents inconsistently work while it's raining",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
