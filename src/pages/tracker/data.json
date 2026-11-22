@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.63",
-  "commit": "d0c0a5d73d3757258f7afb2ca240279d52653862",
-  "updated": "2026-11-19",
+  "commit": "36fec42f60f9daaedabc328095335dc168aee69f",
+  "updated": "2026-11-21",
   "categories": [
     {
       "id": "entities",
@@ -3630,7 +3630,7 @@
             {
               "number": 3847,
               "title": "dupe with chiseled bookshelfs",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3646,
