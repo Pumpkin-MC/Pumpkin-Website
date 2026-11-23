@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.63",
-  "commit": "36fec42f60f9daaedabc328095335dc168aee69f",
-  "updated": "2026-11-21",
+  "commit": "a49be4bee2113e4cf812de3117c61bc3e9d06d3f",
+  "updated": "2026-11-23",
   "categories": [
     {
       "id": "entities",
@@ -79,43 +79,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/cave_spider.rs",
-          "note": "Difficulty-scaled poison, daylight-gated targeting, and armadillo avoidance are implemented. LeapAtTargetGoal and wall-climbing navigation remain missing.",
-          "items": [
-            {
-              "text": "Difficulty-scaled poison on melee hit and `SpiderTargetGoal`",
-              "done": true
-            },
-            {
-              "text": "`AvoidEntityGoal` for armadillos",
-              "done": true
-            },
-            {
-              "text": "`LeapAtTargetGoal` and wall-climber navigation",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/cave_spider.rs",
-              "line": 26
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/active_target.rs",
-              "line": 35
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/spider_attack.rs",
-              "line": 14
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "creaking",
@@ -153,7 +122,7 @@
             {
               "number": 3069,
               "title": "Trident Drowned Only Attack in Melee Range",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 2162,
@@ -337,36 +306,14 @@
           "id": "husk",
           "name": "Husk",
           "group": "Hostile",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/zombie/husk.rs",
-          "note": "Implements difficulty-scaled Hunger on unarmed melee hits, submerged conversion to zombie, camel husk jockey spawning, and inherited zombie goals.",
-          "items": [
-            {
-              "text": "Inherited zombie behaviour and baby/NBT handling",
-              "done": true
-            },
-            {
-              "text": "Hunger on attacks and submerged conversion to zombie",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombie/husk.rs",
-              "line": 15
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombie/mod.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "illusioner",
@@ -720,43 +667,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/spider.rs",
-          "note": "Daylight-gated targeting and armadillo avoidance are implemented. LeapAtTargetGoal and wall-climbing navigation remain missing.",
-          "items": [
-            {
-              "text": "Daylight-neutral targeting (`SpiderTargetGoal`)",
-              "done": true
-            },
-            {
-              "text": "`AvoidEntityGoal` for armadillos",
-              "done": true
-            },
-            {
-              "text": "`LeapAtTargetGoal` and wall-climber navigation",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/spider.rs",
-              "line": 37
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/active_target.rs",
-              "line": 35
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/spider_attack.rs",
-              "line": 14
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "stray",
@@ -879,29 +795,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/warden.rs",
-          "note": "Emergence and direct melee exist. Vibration listening, sniffing, anger-based target selection and sonic-boom combat are absent.",
-          "items": [
-            {
-              "text": "Emergence, darkness, melee and direct player targeting",
-              "done": true
-            },
-            {
-              "text": "Vibration/anger-driven targeting, sniffing and sonic boom",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/warden.rs",
-              "line": 39
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "witch",
@@ -916,29 +815,12 @@
               "state": "closed"
             }
           ],
-          "note": "Potion combat exists. Target selection only has revenge/player targets, lacking vanilla injured-raider healing selection.",
-          "items": [
-            {
-              "text": "Potion drinking/throwing and raid movement",
-              "done": true
-            },
-            {
-              "text": "Select and heal injured raiders",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/witch.rs",
-              "line": 33
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "wither_skeleton",
@@ -959,34 +841,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/zoglin.rs",
-          "note": "The active target constructor is scoped to PLAYER. Excluding creepers/zoglins in a predicate does not broaden that target type.",
-          "items": [
-            {
-              "text": "Melee, revenge and adult attack launch",
-              "done": true
-            },
-            {
-              "text": "Select living targets beyond players",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zoglin.rs",
-              "line": 37
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/active_target.rs",
-              "line": 35
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "zombie",
