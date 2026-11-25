@@ -26,7 +26,7 @@
     "items": [
       {
         "big": "Không JVM (máy ảo Java)",
-        "lead": "Một tệp thực thi bản địa. Không cần cài đặt, không cờ tùy chỉnh, không tập lệnh khởi động.",
+        "lead": "Một tệp thực thi gốc. Không cần cài đặt, không cờ tùy chỉnh, không tập lệnh khởi động.",
         "rest": "Thả nó vào 1 thư mục và chạy."
       },
       {
