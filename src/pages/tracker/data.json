@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.63",
-  "commit": "cfc4bffd252cca614e5189066c4b290abb2ff9d1",
-  "updated": "2026-11-24",
+  "commit": "bb43ab090485c17b29b11f02dfbfdc563a6358b7",
+  "updated": "2026-11-26",
   "categories": [
     {
       "id": "entities",
@@ -278,29 +278,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/hoglin.rs",
-          "note": "Conversion and attack launch exist. The goal/runtime paths do not implement the repellent/retreat activities shown by the vanilla AI.",
-          "items": [
-            {
-              "text": "Melee launch and conversion to zoglin",
-              "done": true
-            },
-            {
-              "text": "Repellent avoidance and retreat behaviour",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/hoglin.rs",
-              "line": 33
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "husk",
@@ -1566,31 +1549,14 @@
           "id": "parrot",
           "name": "Parrot",
           "group": "Passive",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/parrot.rs",
-          "note": "Implements taming, cookie poisoning, flying navigation, mob sound imitation, and shoulder perching.",
-          "items": [
-            {
-              "text": "Poisonous-food interaction and generic movement",
-              "done": true
-            },
-            {
-              "text": "Taming, owner following, shoulder landing and flying movement",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/parrot.rs",
-              "line": 31
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "pig",
@@ -2025,7 +1991,7 @@
           "id": "wolf",
           "name": "Wolf",
           "group": "Passive",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/wolf.rs",
           "issues": [
             {
@@ -2039,39 +2005,12 @@
               "state": "closed"
             }
           ],
-          "note": "Implements taming, sitting, collar dyeing, pack retaliation, leap-at-target combat, and prey/skeleton interactions.",
-          "items": [
-            {
-              "text": "Taming, owner following/defence and neutral anger",
-              "done": true
-            },
-            {
-              "text": "Stay seated when ordered and leap attacks",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/wolf.rs",
-              "line": 51
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/sit_when_ordered_to.rs",
-              "line": 12
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/behavior/neutral.rs",
-              "line": 12
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "zombie_horse",
@@ -3452,7 +3391,7 @@
             {
               "number": 4288,
               "title": "Chest changes are lost when the last player leaves (item duplication)",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 4011,
@@ -4573,7 +4512,7 @@
             {
               "number": 4194,
               "title": "Can't turn off a nether portal with water",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -4779,7 +4718,7 @@
             {
               "number": 4537,
               "title": "Shulker box doesn't check for blocks on top",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 4341,
@@ -6627,7 +6566,7 @@
             {
               "number": 3105,
               "title": "Observers doesnt work",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -7345,7 +7284,7 @@
             {
               "number": 4187,
               "title": "Ender pearl don't works when you try to interract with a block with it",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
