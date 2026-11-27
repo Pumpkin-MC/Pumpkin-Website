@@ -1,6 +1,6 @@
 {
-  "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-  "updated": "2026-11-11",
+  "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
+  "updated": "2026-11-27",
   "method": "Inherited tracker claims, including file-presence and TODO heuristics. Not current verified parity.",
   "entries": {
     "entities:blaze": {
@@ -27,18 +27,18 @@
     },
     "entities:bogged": {
       "status": "partial",
-      "note": "Wraps the skeleton base, so it shoots a bow like vanilla.",
+      "note": "Shearing for mushrooms via Shearable is implemented. The shared bow attack still constructs a plain ARROW payload instead of poison-tipped arrows.",
       "items": [
         {
-          "text": "Skeleton goal set with bow attack",
+          "text": "Inherited skeleton bow attack and equipment",
           "done": true
         },
         {
-          "text": "Poison tipped arrows",
-          "done": false
+          "text": "Shearing interaction (`minecraft:shearing/bogged`)",
+          "done": true
         },
         {
-          "text": "Shearing for mushrooms",
+          "text": "Poison-tipped arrow payload",
           "done": false
         }
       ]
@@ -66,8 +66,8 @@
       ]
     },
     "entities:cave_spider": {
-      "status": "partial",
-      "note": "Difficulty-scaled poison, daylight-gated targeting, and armadillo avoidance are implemented. LeapAtTargetGoal and wall-climbing navigation remain missing.",
+      "status": "done",
+      "note": "Implements difficulty-scaled poison, daylight-gated targeting, armadillo avoidance, LeapAtTargetGoal, and wall-climber navigation.",
       "items": [
         {
           "text": "Difficulty-scaled poison on melee hit and `SpiderTargetGoal`",
@@ -79,7 +79,7 @@
         },
         {
           "text": "`LeapAtTargetGoal` and wall-climber navigation",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -614,8 +614,8 @@
       ]
     },
     "entities:spider": {
-      "status": "partial",
-      "note": "Daylight-gated targeting and armadillo avoidance are implemented. LeapAtTargetGoal and wall-climbing navigation remain missing.",
+      "status": "done",
+      "note": "Implements daylight-gated targeting, armadillo avoidance, LeapAtTargetGoal, and wall-climber navigation with climbing metadata sync.",
       "items": [
         {
           "text": "Daylight-neutral targeting (`SpiderTargetGoal`)",
@@ -627,7 +627,7 @@
         },
         {
           "text": "`LeapAtTargetGoal` and wall-climber navigation",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -655,17 +655,14 @@
     },
     "entities:sulfur_cube": {
       "status": "done",
+      "note": "Implements sulfur cube jumping movement, body rotation/hydration, block-consumption conversion, shearing, and elastic entity bouncing.",
       "items": [
         {
-          "text": "Entity type and sizes",
+          "text": "Jumping movement, hydration, and elastic bouncing",
           "done": true
         },
         {
-          "text": "`SulfurCubeTemptGoal`",
-          "done": true
-        },
-        {
-          "text": "`SulfurCubeSearchForItemsGoal`",
+          "text": "Block consumption, body item storage, and shearing",
           "done": true
         }
       ]
@@ -947,48 +944,30 @@
       ]
     },
     "entities:armadillo": {
-      "status": "partial",
+      "status": "done",
+      "note": "Implements armadillo Brain AI, threat-proximity rolling/unrolling, periodic scute shedding, brushing, and breeding.",
       "items": [
         {
-          "text": "Roll up when threatened",
+          "text": "Scute shedding, brushing, and breeding",
           "done": true
         },
         {
-          "text": "Scute shedding and brushing",
+          "text": "Trigger rolling from nearby threats",
           "done": true
-        },
-        {
-          "text": "Breed and tempt",
-          "done": true
-        },
-        {
-          "text": "Brain migration",
-          "done": false
         }
       ]
     },
     "entities:axolotl": {
-      "status": "partial",
+      "status": "done",
+      "note": "Implements axolotl Brain AI, amphibious navigation, play-dead on damage, bucket pickup, and regeneration support.",
       "items": [
         {
-          "text": "Attack, breed and tempt",
+          "text": "Variants, breeding, and bucket interaction",
           "done": true
         },
         {
-          "text": "Variants and bucket",
+          "text": "Water navigation and trigger playing dead on damage",
           "done": true
-        },
-        {
-          "text": "Playing dead",
-          "done": true
-        },
-        {
-          "text": "Brain migration",
-          "done": false
-        },
-        {
-          "text": "Water-bound navigation",
-          "done": false
         }
       ]
     },
@@ -1014,40 +993,16 @@
       ]
     },
     "entities:bee": {
-      "status": "partial",
-      "note": "Registers the generic animal set only, so bees never enter hives, pollinate or grow crops.",
+      "status": "done",
+      "note": "Implements anger/sting combat, flower pollination, crop growth, and beehive/bee-nest entry and occupancy lifecycle.",
       "items": [
         {
-          "text": "Generic animal goals",
+          "text": "Anger, sting combat, and flight movement",
           "done": true
         },
         {
-          "text": "Nectar, sting and hive timer state",
+          "text": "Hive entry/exit, pollination and crop growth",
           "done": true
-        },
-        {
-          "text": "`BeeAttackGoal` and stinger damage",
-          "done": false
-        },
-        {
-          "text": "Hive goals",
-          "done": false
-        },
-        {
-          "text": "`BeePollinateGoal` and `BeeGrowCropGoal`",
-          "done": false
-        },
-        {
-          "text": "`BeeWanderGoal`",
-          "done": false
-        },
-        {
-          "text": "Anger targets",
-          "done": false
-        },
-        {
-          "text": "Flying navigation",
-          "done": false
         }
       ]
     },
@@ -1155,23 +1110,16 @@
       ]
     },
     "entities:copper_golem": {
-      "status": "partial",
+      "status": "done",
+      "note": "Implements copper golem Brain AI, chest-to-chest item sorting/transport, oxidation weathering, shearing/waxing, and statue conversion.",
       "items": [
         {
-          "text": "Oxidation states and weather",
+          "text": "Copper golem states, waxing, scraping, and statue conversion",
           "done": true
         },
         {
-          "text": "Lightning strike reset",
+          "text": "Chest-to-chest item sorting and oxidation ticking",
           "done": true
-        },
-        {
-          "text": "Item transport between chests",
-          "done": false
-        },
-        {
-          "text": "Brain migration",
-          "done": false
         }
       ]
     },
@@ -1518,32 +1466,16 @@
       ]
     },
     "entities:panda": {
-      "status": "partial",
-      "note": "Genes and pose flags are synced, but every panda-specific goal is missing.",
+      "status": "done",
+      "note": "Implements panda gene inheritance, bamboo-gated breeding, eating held items, rolling, sneezing, lying on back, and custom move control.",
       "items": [
         {
-          "text": "Generic goals",
+          "text": "Panda genes, variants, and offspring inheritance",
           "done": true
         },
         {
-          "text": "Genes and pose flags",
+          "text": "Gene-driven eating, rolling, sneezing and bamboo-gated breeding",
           "done": true
-        },
-        {
-          "text": "`PandaPanicGoal`, `PandaBreedGoal` and `PandaAttackGoal`",
-          "done": false
-        },
-        {
-          "text": "`PandaAvoidGoal`",
-          "done": false
-        },
-        {
-          "text": "Sit, lie on back, sneeze and roll",
-          "done": false
-        },
-        {
-          "text": "`PandaHurtByTargetGoal`",
-          "done": false
         }
       ]
     },
@@ -1720,23 +1652,16 @@
       ]
     },
     "entities:sniffer": {
-      "status": "partial",
+      "status": "done",
+      "note": "Implements sniffer Brain AI, autonomous sniffing/searching/digging cycle with loot table seed drops, explored positions, and breeding.",
       "items": [
         {
-          "text": "Digging and seed drops",
+          "text": "Sniffer states, breeding, and NBT persistence",
           "done": true
         },
         {
-          "text": "Breed and tempt",
+          "text": "Automatic sniff/search/dig cycle",
           "done": true
-        },
-        {
-          "text": "Explored positions",
-          "done": true
-        },
-        {
-          "text": "Brain migration",
-          "done": false
         }
       ]
     },
@@ -1955,12 +1880,32 @@
       ]
     },
     "entities:zombie_nautilus": {
-      "status": "planned",
-      "note": "New in 26.2. Not implemented."
+      "status": "partial",
+      "note": "Implements water-bound navigation, temptation, dashing, riding, variants, daylight burning with body-slot sun protection, and NBT persistence. Autonomous underwater movement and combat AI remain missing.",
+      "items": [
+        {
+          "text": "Dedicated `ZombieNautilusEntity`, riding, dash, variants, and sun protection",
+          "done": true
+        },
+        {
+          "text": "Autonomous underwater movement and combat AI",
+          "done": false
+        }
+      ]
     },
     "entities:mannequin": {
-      "status": "planned",
-      "note": "New in 26.x. Not implemented."
+      "status": "done",
+      "note": "Implements player profile, skin layers, main hand, immovable state, poses, custom/default descriptions, implicit components, and NBT persistence.",
+      "items": [
+        {
+          "text": "Dedicated `MannequinEntity` wired in entity factory",
+          "done": true
+        },
+        {
+          "text": "Profile, layers, description, poses, and NBT persistence",
+          "done": true
+        }
+      ]
     },
     "entities:villager": {
       "status": "done",
@@ -2041,8 +1986,18 @@
       "status": "done"
     },
     "entities:dragon_fireball": {
-      "status": "planned",
-      "note": "Not implemented."
+      "status": "done",
+      "note": "Implements dragon fireball flight, deflection, impact splash particles, and dragon breath AreaEffectCloud spawning.",
+      "items": [
+        {
+          "text": "Dedicated `DragonFireballEntity` wired in entity factory",
+          "done": true
+        },
+        {
+          "text": "Impact splash event and dragon breath cloud spawning",
+          "done": true
+        }
+      ]
     },
     "entities:egg": {
       "status": "done"
@@ -2173,44 +2128,36 @@
     },
     "entities:acacia_chest_boat": {
       "status": "partial",
-      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
-          "text": "Placement and riding",
+          "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Paddle state sync",
+          "text": "Chest inventory and container interaction",
           "done": true
         },
         {
-          "text": "Vanilla boat physics",
-          "done": false
-        },
-        {
-          "text": "Chest inventory",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ]
     },
     "entities:bamboo_chest_raft": {
       "status": "partial",
-      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
-          "text": "Placement and riding",
+          "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Paddle state sync",
+          "text": "Chest inventory and container interaction",
           "done": true
         },
         {
-          "text": "Vanilla boat physics",
-          "done": false
-        },
-        {
-          "text": "Chest inventory",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ]
@@ -2253,22 +2200,18 @@
     },
     "entities:birch_chest_boat": {
       "status": "partial",
-      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
-          "text": "Placement and riding",
+          "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Paddle state sync",
+          "text": "Chest inventory and container interaction",
           "done": true
         },
         {
-          "text": "Vanilla boat physics",
-          "done": false
-        },
-        {
-          "text": "Chest inventory",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ]
@@ -2293,22 +2236,18 @@
     },
     "entities:cherry_chest_boat": {
       "status": "partial",
-      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
-          "text": "Placement and riding",
+          "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Paddle state sync",
+          "text": "Chest inventory and container interaction",
           "done": true
         },
         {
-          "text": "Vanilla boat physics",
-          "done": false
-        },
-        {
-          "text": "Chest inventory",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ]
@@ -2317,15 +2256,16 @@
       "status": "done"
     },
     "entities:command_block_minecart": {
-      "status": "partial",
+      "status": "done",
+      "note": "Implements dedicated CommandBlockMinecart with command/output storage, NBT persistence, editor packet updates, and activator-rail execution with cooldown.",
       "items": [
         {
-          "text": "Rides as a plain minecart",
+          "text": "Shared rail movement and damage handling",
           "done": true
         },
         {
-          "text": "Command block execution",
-          "done": false
+          "text": "Command storage, editing and activator-rail execution",
+          "done": true
         }
       ]
     },
@@ -2349,22 +2289,18 @@
     },
     "entities:dark_oak_chest_boat": {
       "status": "partial",
-      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
-          "text": "Placement and riding",
+          "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Paddle state sync",
+          "text": "Chest inventory and container interaction",
           "done": true
         },
         {
-          "text": "Vanilla boat physics",
-          "done": false
-        },
-        {
-          "text": "Chest inventory",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ]
@@ -2395,22 +2331,18 @@
     },
     "entities:jungle_chest_boat": {
       "status": "partial",
-      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
-          "text": "Placement and riding",
+          "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Paddle state sync",
+          "text": "Chest inventory and container interaction",
           "done": true
         },
         {
-          "text": "Vanilla boat physics",
-          "done": false
-        },
-        {
-          "text": "Chest inventory",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ]
@@ -2435,22 +2367,18 @@
     },
     "entities:mangrove_chest_boat": {
       "status": "partial",
-      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
-          "text": "Placement and riding",
+          "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Paddle state sync",
+          "text": "Chest inventory and container interaction",
           "done": true
         },
         {
-          "text": "Vanilla boat physics",
-          "done": false
-        },
-        {
-          "text": "Chest inventory",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ]
@@ -2478,22 +2406,18 @@
     },
     "entities:oak_chest_boat": {
       "status": "partial",
-      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
-          "text": "Placement and riding",
+          "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Paddle state sync",
+          "text": "Chest inventory and container interaction",
           "done": true
         },
         {
-          "text": "Vanilla boat physics",
-          "done": false
-        },
-        {
-          "text": "Chest inventory",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ]
@@ -2518,22 +2442,18 @@
     },
     "entities:pale_oak_chest_boat": {
       "status": "partial",
-      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
-          "text": "Placement and riding",
+          "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Paddle state sync",
+          "text": "Chest inventory and container interaction",
           "done": true
         },
         {
-          "text": "Vanilla boat physics",
-          "done": false
-        },
-        {
-          "text": "Chest inventory",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ]
@@ -2558,36 +2478,33 @@
     },
     "entities:poplar_chest_boat": {
       "status": "partial",
-      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
-          "text": "Placement and riding",
+          "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Paddle state sync",
+          "text": "Chest inventory and container interaction",
           "done": true
         },
         {
-          "text": "Vanilla boat physics",
-          "done": false
-        },
-        {
-          "text": "Chest inventory",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ]
     },
     "entities:spawner_minecart": {
-      "status": "partial",
+      "status": "done",
+      "note": "Implements dedicated SpawnerMinecart with mob-spawner parameters, NBT persistence, delay countdown, and entity spawning ticks.",
       "items": [
         {
-          "text": "Rides as a plain minecart",
+          "text": "Shared rail movement and damage handling",
           "done": true
         },
         {
-          "text": "Spawner logic",
-          "done": false
+          "text": "Spawner state, delay and entity spawning",
+          "done": true
         }
       ]
     },
@@ -2611,22 +2528,18 @@
     },
     "entities:spruce_chest_boat": {
       "status": "partial",
-      "note": "Placement, riding and paddle sync work. Vanilla water physics are not ported.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
-          "text": "Placement and riding",
+          "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Paddle state sync",
+          "text": "Chest inventory and container interaction",
           "done": true
         },
         {
-          "text": "Vanilla boat physics",
-          "done": false
-        },
-        {
-          "text": "Chest inventory",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ]
@@ -2739,8 +2652,18 @@
       "status": "done"
     },
     "entities:ominous_item_spawner": {
-      "status": "planned",
-      "note": "Not implemented."
+      "status": "done",
+      "note": "Implements countdown timer, tracked item sync, downward projectile and item spawning, NBT persistence, and explosion/fluid immunity.",
+      "items": [
+        {
+          "text": "Dedicated `OminousItemSpawnerEntity` wired in entity factory",
+          "done": true
+        },
+        {
+          "text": "Countdown ticking and item/projectile spawning",
+          "done": true
+        }
+      ]
     },
     "entities:tnt": {
       "status": "done"
@@ -2776,8 +2699,18 @@
       "note": "1 TODO left in the source."
     },
     "blocks:beehive": {
-      "status": "partial",
-      "note": "Stores bees, but bees never enter or leave it."
+      "status": "done",
+      "note": "Implements honey level harvesting, shearing, bee occupancy storage, nectar timers, and ticking bee release.",
+      "items": [
+        {
+          "text": "Honey level updates, shearing, and bottle harvesting",
+          "done": true
+        },
+        {
+          "text": "Bee entry/release and ticking hive lifecycle",
+          "done": true
+        }
+      ]
     },
     "blocks:blast_furnace": {
       "status": "done"
@@ -2822,8 +2755,18 @@
       "status": "done"
     },
     "blocks:chiseled_bookshelf": {
-      "status": "partial",
-      "note": "1 TODO left in the source."
+      "status": "done",
+      "note": "Implements book storage, slot-targeted insertion/removal, comparator output, sounds, and Used item statistic tracking.",
+      "items": [
+        {
+          "text": "Slot-targeted book storage and comparator output",
+          "done": true
+        },
+        {
+          "text": "Increment the used-block statistic on inserting a book",
+          "done": true
+        }
+      ]
     },
     "blocks:cobweb": {
       "status": "done"
@@ -2979,16 +2922,16 @@
       "status": "done"
     },
     "blocks:jukebox": {
-      "status": "partial",
-      "note": "Disc playback, state updates, and comparator notifications on replacement are implemented. Insertion still omits the BlockChange game event.",
+      "status": "done",
+      "note": "Implements disc playback, ejection, redstone/comparator output, statistics, and BlockChange game events on insertion and stop.",
       "items": [
         {
-          "text": "Disc insertion/ejection, comparator output, and replacement comparator update",
+          "text": "Disc playback, state updates, and comparator notifications",
           "done": true
         },
         {
           "text": "`GameEvent::BlockChange` on disc insertion",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -3067,7 +3010,17 @@
     },
     "blocks:shulker_box": {
       "status": "partial",
-      "note": "1 TODO left in the source."
+      "note": "Inventory, placement, comparator output, and blocked-lid checks (including ridden vehicles) are implemented. Preventing reopening during the closing animation remains a TODO.",
+      "items": [
+        {
+          "text": "Inventory opening, placement, comparator output, and lid-obstruction checks",
+          "done": true
+        },
+        {
+          "text": "Prevent reopening during closing animation",
+          "done": false
+        }
+      ]
     },
     "blocks:signs": {
       "status": "done"
@@ -3109,8 +3062,18 @@
       "status": "done"
     },
     "blocks:structure_block": {
-      "status": "partial",
-      "note": "Stores settings. Loading and saving structures is not verified."
+      "status": "done",
+      "note": "Implements structure block configuration, update packets, corner detection, and redstone/action-triggered structure capture, save, and placement.",
+      "items": [
+        {
+          "text": "Structure block modes, NBT state, and update packet",
+          "done": true
+        },
+        {
+          "text": "Structure capture/save/load execution",
+          "done": true
+        }
+      ]
     },
     "blocks:structure_void": {
       "status": "done"
@@ -3141,14 +3104,14 @@
     },
     "blocks:vault": {
       "status": "partial",
-      "note": "Key validation and state transitions exist, but use_with_item drops hardcoded emerald, diamond, and iron stacks instead of rolling configured loot tables, VaultBlockEntity has no tick state machine, and rewarded_players is not persisted to NBT.",
+      "note": "Key validation, state transitions, and configured loot table rolling are implemented. VaultBlockEntity still has no tick state machine and rewarded_players is not persisted to NBT.",
       "items": [
         {
-          "text": "Key validation, state changes, and sounds",
+          "text": "Key validation, state changes, sounds, and loot table rolls",
           "done": true
         },
         {
-          "text": "Vault loot table rolls, tick cycle, and rewarded-player NBT persistence",
+          "text": "Vault tick cycle and `rewarded_players` NBT persistence",
           "done": false
         }
       ]
@@ -3166,8 +3129,18 @@
       "status": "done"
     },
     "blocks:fire-fire": {
-      "status": "partial",
-      "note": "1 TODO left in the source."
+      "status": "done",
+      "note": "Implements fire spread, burnout, rain extinguishing, and environment-attribute driven increased fire burnout.",
+      "items": [
+        {
+          "text": "Fire spread, flammability, and extinguishing",
+          "done": true
+        },
+        {
+          "text": "Environment-attribute driven increased fire burnout",
+          "done": true
+        }
+      ]
     },
     "blocks:sculk-sculk_catalyst": {
       "status": "partial",
@@ -3402,16 +3375,16 @@
       "status": "done"
     },
     "blocks:redstone-dispenser": {
-      "status": "partial",
-      "note": "Projectiles, experience bottles, buckets, fire charges, flint and steel, shears, saddles, TNT, shulker boxes, and armor dispensing are implemented. Bone meal, boats, and brush dispensing remain incomplete.",
+      "status": "done",
+      "note": "Implements projectiles, buckets, fire charges, flint and steel, shears, saddles, TNT, shulker boxes, armor, boats, bone meal, chest-on-equine, and armadillo brush dispensing.",
       "items": [
         {
-          "text": "Projectiles, experience bottles, buckets, ignition, shears, saddles, TNT, armor, and shulker boxes",
+          "text": "Projectiles, buckets, ignition, shears, TNT, shulkers, and armor",
           "done": true
         },
         {
           "text": "Bone meal, boat, chest-on-equine, and brush dispensing",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -3614,16 +3587,16 @@
       "status": "done"
     },
     "items:compass": {
-      "status": "partial",
-      "note": "Lodestone binding on right-click is implemented, but inventory ticking does not clear the target when the linked lodestone is broken.",
+      "status": "done",
+      "note": "Implements lodestone binding on right-click and inventory tick validation that clears the tracked target when the lodestone block is removed.",
       "items": [
         {
-          "text": "Lodestone binding and stack splitting on right-click",
+          "text": "Lodestone binding on right-click (`LodestoneTrackerImpl`)",
           "done": true
         },
         {
           "text": "Inventory tick verification of tracked lodestone block",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -3643,16 +3616,16 @@
       "status": "done"
     },
     "items:goat_horn": {
-      "status": "partial",
-      "note": "Plays the instrument sound, sets the active hand, and emits the InstrumentPlay game event, but does not apply the use cooldown.",
+      "status": "done",
+      "note": "Implements instrument sound playback, active hand state, InstrumentPlay game event emission, Used statistic tracking, and cooldown enforcement.",
       "items": [
         {
-          "text": "Instrument sound playback and InstrumentPlay game event",
+          "text": "Instrument sound, active hand, and `InstrumentPlay` game event",
           "done": true
         },
         {
           "text": "Use cooldown enforcement",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -3694,8 +3667,7 @@
       "status": "done"
     },
     "commands:ban-ip": {
-      "status": "done",
-      "note": "Alias of /banip."
+      "status": "done"
     },
     "commands:banlist": {
       "status": "done"
@@ -3803,8 +3775,7 @@
       "status": "done"
     },
     "commands:pardon-ip": {
-      "status": "done",
-      "note": "Alias of /pardonip."
+      "status": "done"
     },
     "commands:particle": {
       "status": "done"
@@ -3834,16 +3805,13 @@
       "status": "done"
     },
     "commands:save-all": {
-      "status": "done",
-      "note": "Alias of /saveall."
+      "status": "done"
     },
     "commands:save-off": {
-      "status": "done",
-      "note": "Alias of /saveoff."
+      "status": "done"
     },
     "commands:save-on": {
-      "status": "done",
-      "note": "Alias of /saveon."
+      "status": "done"
     },
     "commands:say": {
       "status": "done"
@@ -3970,8 +3938,7 @@
       "note": "Ticks per second."
     },
     "commands:stopwatch": {
-      "status": "done",
-      "note": "Timing helper."
+      "status": "done"
     },
     "commands:raid": {
       "status": "done",
@@ -3996,7 +3963,18 @@
       "status": "done"
     },
     "redstone:sculk-sensors-shriekers-and-calibrated-sensors": {
-      "status": "done"
+      "status": "partial",
+      "note": "Sculk sensor redstone output, calibrated directional filtering, phase cooldown ticks, and shrieker warning levels are implemented, but World::post_game_event only notifies mob listeners and never dispatches vibrations to sculk sensors or shriekers.",
+      "items": [
+        {
+          "text": "Sensor signal output, calibrated filtering, and shrieker warning levels",
+          "done": true
+        },
+        {
+          "text": "World game-event vibration listener dispatch to sensors and shriekers",
+          "done": false
+        }
+      ]
     },
     "redstone:daylight-detector": {
       "status": "done"
@@ -4026,7 +4004,18 @@
       "status": "done"
     },
     "redstone:pistons-and-block-swapping": {
-      "status": "done"
+      "status": "partial",
+      "note": "Extension, sticky retraction, rapid retraction pulse dropping, entity pushing, and game events are implemented. Moving-piston NBT still omits pushed_block_state and base removal drops breaking player context.",
+      "items": [
+        {
+          "text": "Push/pull solver, rapid retraction, entity pushing, and game events",
+          "done": true
+        },
+        {
+          "text": "Persist `pushed_block_state` in `PistonBlockEntity` NBT and pass breaking player",
+          "done": false
+        }
+      ]
     },
     "redstone:dropper": {
       "status": "done"
@@ -4162,6 +4151,46 @@
     },
     "blocks:plant-pale_hanging_moss": {
       "status": "done"
+    },
+    "commands:compute": {
+      "status": "done",
+      "note": "Implements /compute number-provider evaluation command.",
+      "items": [
+        {
+          "text": "Registered `/compute` command with provider evaluation",
+          "done": true
+        }
+      ]
+    },
+    "commands:perf": {
+      "status": "done",
+      "note": "Implements /perf start and stop profiling metrics capture command.",
+      "items": [
+        {
+          "text": "Registered `/perf start|stop` command",
+          "done": true
+        }
+      ]
+    },
+    "commands:posteffect": {
+      "status": "done",
+      "note": "Implements /posteffect add, remove, and list shader commands.",
+      "items": [
+        {
+          "text": "Registered `/posteffect` command",
+          "done": true
+        }
+      ]
+    },
+    "commands:swing": {
+      "status": "done",
+      "note": "Implements /swing arm animation command for target entities.",
+      "items": [
+        {
+          "text": "Registered `/swing` command",
+          "done": true
+        }
+      ]
     }
   }
 }

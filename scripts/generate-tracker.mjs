@@ -70,8 +70,8 @@ function entitySource(id) {
     furnace_minecart: "entity/vehicle/minecart/furnace.rs",
     hopper_minecart: "entity/vehicle/minecart/hopper.rs",
     tnt_minecart: "entity/vehicle/minecart/tnt.rs",
-    command_block_minecart: "entity/vehicle/minecart.rs",
-    spawner_minecart: "entity/vehicle/minecart.rs",
+    command_block_minecart: "entity/vehicle/minecart/command_block.rs",
+    spawner_minecart: "entity/vehicle/minecart/spawner.rs",
     experience_bottle: "entity/projectile/experience_bottle.rs",
   };
   if (overrides[id]) return ensureSource(id, `${ROOT}/` + overrides[id]);
@@ -490,22 +490,23 @@ const ITEM_GROUP_ORDER = ITEM_GROUPS.map((g) => g[0]);
 itemEntries.sort((a, b) => ITEM_GROUP_ORDER.indexOf(a.group) - ITEM_GROUP_ORDER.indexOf(b.group) || a.name.localeCompare(b.name));
 
 const VANILLA_COMMANDS = [
-  "advancement", "attribute", "ban", "ban-ip", "banlist", "bossbar", "clear", "clone", "damage", "data", "datapack", "debug",
+  "advancement", "attribute", "ban", "ban-ip", "banlist", "bossbar", "clear", "clone", "compute", "damage", "data", "datapack", "debug",
   "defaultgamemode", "deop", "dialog", "difficulty", "effect", "enchant", "execute", "experience", "fetchprofile", "fill",
   "fillbiome", "forceload", "function", "gamemode", "gamerule", "give", "help", "item", "kick", "kill", "list", "locate",
-  "loot", "me", "msg", "op", "pardon", "pardon-ip", "particle", "place", "playsound", "random", "recipe",
+  "loot", "me", "msg", "op", "pardon", "pardon-ip", "particle", "perf", "place", "playsound", "posteffect", "random", "recipe",
   "reload", "return", "ride", "rotate", "save-all", "save-off", "save-on", "say", "schedule", "scoreboard", "seed", "setblock",
-  "setidletimeout", "setworldspawn", "spawnpoint", "spectate", "spreadplayers", "stop", "stopsound", "summon", "tag", "team",
+  "setidletimeout", "setworldspawn", "spawnpoint", "spectate", "spreadplayers", "stop", "stopsound", "stopwatch", "summon", "swing", "tag", "team",
   "teammsg", "teleport", "tell", "tellraw", "test", "tick", "time", "title", "tm", "tp", "transfer", "trigger", "version",
   "w", "waypoint", "weather", "whitelist", "worldborder", "xp",
 ];
-const COMMAND_ALIASES = { "ban-ip": "banip", "pardon-ip": "pardonip", "save-all": "saveall", "save-off": "saveoff", "save-on": "saveon", tell: "msg", w: "msg", tm: "teammsg", tp: "teleport", xp: "experience", version: "pumpkin" };
-const PUMPKIN_COMMANDS = { pumpkin: "Version and build info.", plugin: "Load and unload plugins.", plugins: "List loaded plugins.", tps: "Ticks per second.", stopwatch: "Timing helper.", raid: "Raid debugging." };
+const COMMAND_FILES = { "ban-ip": "banip", "pardon-ip": "pardonip", "save-all": "saveall", "save-off": "saveoff", "save-on": "saveon" };
+const COMMAND_ALIASES = { tell: "msg", w: "msg", tm: "teammsg", tp: "teleport", xp: "experience", version: "pumpkin" };
+const PUMPKIN_COMMANDS = { pumpkin: "Version and build info.", plugin: "Load and unload plugins.", plugins: "List loaded plugins.", tps: "Ticks per second.", raid: "Raid debugging." };
 
 const commandFiles = new Set(fs.readdirSync(path.join(SRC, "command/commands")).map((f) => f.replace(/\.rs$/, "")));
 const commandEntries = [];
 for (const name of VANILLA_COMMANDS) {
-  const file = COMMAND_ALIASES[name] || name;
+  const file = COMMAND_ALIASES[name] || COMMAND_FILES[name] || name;
   const exists = commandFiles.has(file);
   const entry = {
     id: name,
@@ -514,7 +515,7 @@ for (const name of VANILLA_COMMANDS) {
     status: "unknown",
   };
   if (exists) entry.source = `${ROOT}/command/commands/${file}.rs`;
-  if (COMMAND_ALIASES[name] && exists) entry.note = `Alias of /${COMMAND_ALIASES[name] === "pumpkin" ? "pumpkin" : COMMAND_ALIASES[name]}.`;
+  if (COMMAND_ALIASES[name] && exists) entry.note = `Alias of /${COMMAND_ALIASES[name]}.`;
   commandEntries.push(entry);
 }
 for (const name of Object.keys(PUMPKIN_COMMANDS)) {

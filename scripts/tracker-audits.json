@@ -1,10 +1,10 @@
 {
   "entries": {
     "entities:spider": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "Daylight-gated targeting and armadillo avoidance are implemented. LeapAtTargetGoal and wall-climbing navigation remain missing.",
+      "note": "Implements daylight-gated targeting, armadillo avoidance, LeapAtTargetGoal, and wall-climber navigation with climbing metadata sync.",
       "items": [
         {
           "text": "Daylight-neutral targeting (`SpiderTargetGoal`)",
@@ -16,38 +16,47 @@
         },
         {
           "text": "`LeapAtTargetGoal` and wall-climber navigation",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/spider.rs",
-          "sha256": "f257c3215eb9321cb3df4f7f0dfdb432494e337446a74039719c3053c7bbad78"
+          "sha256": "65eb9857e5984e4a7b6d3b4e59738c37e56f5d59fb35d064c59ac242b862b0c8"
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/goal/active_target.rs",
-          "sha256": "36a9a1546011758d80fbf0306102e437138550bcfec2cc38c97db135bf80b4a0"
+          "sha256": "cc1c5494f6bb8f04fc201723996f2a35ffe5355a2b180808e8badb832ff34202"
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/goal/spider_attack.rs",
-          "sha256": "bbe055ebeeb4f3832f5eae3e0715d5b649c5c0762f6068ad18a758f9d3688bec"
+          "sha256": "6a7e5bda5191a9c3ee5876926fa3893018beefcbc72d53494be164b3de7aed08"
+        },
+        {
+          "source": "crates/pumpkin-core/src/entity/ai/goal/leap_at_target.rs",
+          "sha256": "dbac434d26f98d5bcd6edd9dff579f5ab32b5c7e2d496ecb6b4dedd8f0d047bc"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Navigator::wall_climber and LeapAtTargetGoal in spider setup",
           "source": "crates/pumpkin-core/src/entity/mob/spider.rs",
-          "line": 37
+          "line": 102
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Spider target goal",
           "source": "crates/pumpkin-core/src/entity/ai/goal/active_target.rs",
           "line": 35
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Spider attack goal",
           "source": "crates/pumpkin-core/src/entity/ai/goal/spider_attack.rs",
           "line": 14
+        },
+        {
+          "label": "LeapAtTargetGoal",
+          "source": "crates/pumpkin-core/src/entity/ai/goal/leap_at_target.rs",
+          "line": 1
         }
       ],
       "vanilla": {
@@ -58,10 +67,10 @@
       }
     },
     "entities:cave_spider": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "Difficulty-scaled poison, daylight-gated targeting, and armadillo avoidance are implemented. LeapAtTargetGoal and wall-climbing navigation remain missing.",
+      "note": "Implements difficulty-scaled poison, daylight-gated targeting, armadillo avoidance, LeapAtTargetGoal, and wall-climber navigation.",
       "items": [
         {
           "text": "Difficulty-scaled poison on melee hit and `SpiderTargetGoal`",
@@ -73,38 +82,29 @@
         },
         {
           "text": "`LeapAtTargetGoal` and wall-climber navigation",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/cave_spider.rs",
-          "sha256": "5cb2cd28861386a1d19a9c305561b7bbba3610eb8aee659d790da0749a22800d"
+          "sha256": "8676a5e9dc0d5e2b0f9c3f7828a7bdffd97529063eb0b920a3b67e355cfdfcf8"
         },
         {
-          "source": "crates/pumpkin-core/src/entity/ai/goal/active_target.rs",
-          "sha256": "36a9a1546011758d80fbf0306102e437138550bcfec2cc38c97db135bf80b4a0"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/ai/goal/spider_attack.rs",
-          "sha256": "bbe055ebeeb4f3832f5eae3e0715d5b649c5c0762f6068ad18a758f9d3688bec"
+          "source": "crates/pumpkin-core/src/entity/mob/spider.rs",
+          "sha256": "65eb9857e5984e4a7b6d3b4e59738c37e56f5d59fb35d064c59ac242b862b0c8"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "CaveSpiderEntity wires shared spider AI and wall climbing",
           "source": "crates/pumpkin-core/src/entity/mob/cave_spider.rs",
-          "line": 26
-        },
-        {
-          "label": "Reviewed behaviour and runtime hooks",
-          "source": "crates/pumpkin-core/src/entity/ai/goal/active_target.rs",
           "line": 35
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
-          "source": "crates/pumpkin-core/src/entity/ai/goal/spider_attack.rs",
-          "line": 14
+          "label": "Shared wall-climber and LeapAtTargetGoal setup",
+          "source": "crates/pumpkin-core/src/entity/mob/spider.rs",
+          "line": 102
         }
       ],
       "vanilla": {
@@ -116,7 +116,7 @@
     },
     "entities:skeleton": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared bow interval is fixed at 20 ticks. Vanilla reassesses the bow goal using difficulty-dependent intervals.",
       "items": [
@@ -140,7 +140,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/goal/bow_attack.rs",
-          "sha256": "d4e0fcf72c0f7104cddc41b0f32f0e441162a2d8473e615024f007c08cba4094"
+          "sha256": "9dd46ba214c701e29d9adb5c482a2bf200311cf4f8b0f8d756148b493944cdae"
         }
       ],
       "evidence": [
@@ -169,7 +169,7 @@
     },
     "entities:wither_skeleton": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Applies the Wither effect on melee hits, shoots flaming arrows, and is immune to Wither.",
       "items": [
@@ -185,11 +185,11 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/skeleton/wither.rs",
-          "sha256": "1bd56b974335a422987e87883dffb26ba5119d44cb4fad932fabb7b04ead0274"
+          "sha256": "81244b05161160cd074d2d3e5a87552358bf2177339af5b21f323d5896c3f102"
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/equipment.rs",
-          "sha256": "cfca37358874953708133f516a7bdc8fd386ca0313deeffdc99af40c1b5ec57a"
+          "sha256": "ba5c9704a6107fa7303e4edd8798f4e7791de5cd8fcf0fe7aa367201193cb6db"
         }
       ],
       "evidence": [
@@ -213,7 +213,7 @@
     },
     "entities:drowned": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements ranged trident attacks, amphibious water/ground navigation switching, beach/water seeking goals, and zombie nautilus jockey spawning.",
       "items": [
@@ -229,7 +229,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/zombie/drowned.rs",
-          "sha256": "f3e413f407cda3445b637d4037d2778ba1d4bd038a6af790cde596042d914e99"
+          "sha256": "7b07c2443a520c701e1b207f534035ec42740eef14da307f9964bdabfac2ab39"
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/zombie/mod.rs",
@@ -371,7 +371,7 @@
     },
     "entities:guardian": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The source has targets and retaliation, but no beam attack or guardian swimming controller. Elder guardian also applies mining fatigue; the two entities are not look-only scaffolds.",
       "items": [
@@ -391,7 +391,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-          "sha256": "d60a8e8b666bbd8e5e9327b36ac2f01e5f2db842d2913b62b2e2efa59a6bb976"
+          "sha256": "fd2adc93e2c043d4817343154c81615bf06cbb8a0df899b82983b2b4a0cb23fc"
         }
       ],
       "evidence": [
@@ -415,7 +415,7 @@
     },
     "entities:elder_guardian": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The source has targets and retaliation, but no beam attack or guardian swimming controller. Elder guardian also applies mining fatigue; the two entities are not look-only scaffolds.",
       "items": [
@@ -431,11 +431,11 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/elder_guardian.rs",
-          "sha256": "84c0e7ac555f2f6e6efe897f897f6f00cac1b5f1ab4a101721b622cd1f0395a1"
+          "sha256": "9d513a5cee1ffb02aafed25094668015ec71204d967ef213911d50cf97d00c26"
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-          "sha256": "d60a8e8b666bbd8e5e9327b36ac2f01e5f2db842d2913b62b2e2efa59a6bb976"
+          "sha256": "fd2adc93e2c043d4817343154c81615bf06cbb8a0df899b82983b2b4a0cb23fc"
         }
       ],
       "evidence": [
@@ -459,7 +459,7 @@
     },
     "entities:breeze": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The runtime has basic goals but no wind-charge attack, combat jump or slide behaviour.",
       "items": [
@@ -475,7 +475,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/breeze.rs",
-          "sha256": "9d1958b0d0d386d70a02950c1f5a847a5b04214fc80f269285bce36b65e1f28c"
+          "sha256": "f0d8298198560654b39260daf1bbd7b5e60d196c453a2155f7c21550042cfcc1"
         }
       ],
       "evidence": [
@@ -494,7 +494,7 @@
     },
     "entities:warden": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Emergence and direct melee exist. Vibration listening, sniffing, anger-based target selection and sonic-boom combat are absent.",
       "items": [
@@ -510,7 +510,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/warden.rs",
-          "sha256": "1e0c75e27378aaa36d8b7d9a59f2d6ddc1a22fd44c2e2226a5f2dc3125597d52"
+          "sha256": "5ece2b48fb459bc97963293e24df4ae488922c1e3e860267d6cbd018d6a57b2a"
         }
       ],
       "evidence": [
@@ -528,40 +528,40 @@
       }
     },
     "entities:bee": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "Combat exists. Hive/pollination/crop behaviour is not wired; the absence of a Brain framework is not the issue.",
+      "note": "Implements anger/sting combat, flower pollination, crop growth, and beehive/bee-nest entry and occupancy lifecycle.",
       "items": [
         {
-          "text": "Angry melee, sting gating, neutral targeting and sting death",
+          "text": "Anger, sting combat, and flight movement",
           "done": true
         },
         {
           "text": "Hive entry/exit, pollination and crop growth",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/bee.rs",
-          "sha256": "12d1511abb664b53b9a5cf945d0ab233095ca3b32510a47ada777befc74974f7"
+          "sha256": "e0b428af674964a34936b5c33bb0d7e216004df264020ee1865b46562254b209"
         },
         {
-          "source": "crates/pumpkin-core/src/entity/ai/behavior/neutral.rs",
-          "sha256": "3b3f5a42c12dafeaa4936eb793589de8ab466e6eb0ceacff84a07505c1b4e57f"
+          "source": "crates/pumpkin-core/src/block/entities/beehive.rs",
+          "sha256": "a7d0dee1ab9617122e15e376061847afc9e2500675ef07178f4ba46b2ef13ccf"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "BeeEntity goals and hive entry logic",
           "source": "crates/pumpkin-core/src/entity/passive/bee.rs",
-          "line": 40
+          "line": 265
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
-          "source": "crates/pumpkin-core/src/entity/ai/behavior/neutral.rs",
-          "line": 12
+          "label": "BeehiveBlockEntity occupancy and release tick",
+          "source": "crates/pumpkin-core/src/block/entities/beehive.rs",
+          "line": 137
         }
       ],
       "vanilla": {
@@ -573,7 +573,7 @@
     },
     "entities:enderman": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements stare provocation, teleportation, water/rain damage, sunlight avoidance, and block carrying with death drops.",
       "items": [
@@ -589,11 +589,11 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/enderman.rs",
-          "sha256": "c7783f9f06fff7a0dd5ee29f6e66fba77b5438102fdb76fa792eb7b883776f9c"
+          "sha256": "06f172e711d95781f6900774250b272212ff61172c51e9e6d0aabff808d5f3ec"
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/goal/active_target.rs",
-          "sha256": "36a9a1546011758d80fbf0306102e437138550bcfec2cc38c97db135bf80b4a0"
+          "sha256": "cc1c5494f6bb8f04fc201723996f2a35ffe5355a2b180808e8badb832ff34202"
         }
       ],
       "evidence": [
@@ -617,7 +617,7 @@
     },
     "entities:parrot": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements taming, cookie poisoning, flying navigation, mob sound imitation, and shoulder perching.",
       "items": [
@@ -633,7 +633,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/parrot.rs",
-          "sha256": "e8a651b3cc493f236b04d379d2ab076234ae3755c7b46129cf11d3c1d915b000"
+          "sha256": "ed3c32c4c8962cbbf15527092a3a79e0f69390419b3b6794b6f9247de76dd468"
         }
       ],
       "evidence": [
@@ -652,7 +652,7 @@
     },
     "entities:wolf": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements taming, sitting, collar dyeing, pack retaliation, leap-at-target combat, and prey/skeleton interactions.",
       "items": [
@@ -668,7 +668,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/wolf.rs",
-          "sha256": "02b7b27fb6170a9be99f54ca38e7c13a03741faa3a137ed8c8ab3143d0e8fd10"
+          "sha256": "52ffff7ceebc13e277ef73479c355aa1fb333d334f156f1a9bebe5976fc9ee3c"
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/goal/sit_when_ordered_to.rs",
@@ -705,7 +705,7 @@
     },
     "entities:iron_golem": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements village patrol/return goals, village defense targeting, high-knockback melee, crackiness stages, and iron-ingot repair.",
       "items": [
@@ -721,7 +721,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/iron_golem.rs",
-          "sha256": "afe340020c25d8ed3abfe118cf714dd052cd87dfb8215af13f4d229633dbb6ff"
+          "sha256": "3f1e5889f3c65d33d00915ebfb6aa298726d5916019239b194f55607a1d8c1d4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/behavior/neutral.rs",
@@ -793,7 +793,7 @@
     },
     "entities:zombified_piglin": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements anger targeting, group alerts, spear-use combat, and baby/jockey spawning.",
       "items": [
@@ -809,7 +809,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/zombified_piglin.rs",
-          "sha256": "9afcf95e2fa885c54c88108a90cf9ab931e7ddd43a75d2cd65ca4df4dfd9b53d"
+          "sha256": "35be88ae91ec0b03263a7faaf9755f0dcc6552973bf33dc158c7cd32ae692769"
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/behavior/neutral.rs",
@@ -837,57 +837,43 @@
     },
     "entities:bogged": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The shared bow attack always constructs a plain ARROW payload; the wrapper supplies neither poison arrows nor shearing.",
+      "note": "Shearing for mushrooms via Shearable is implemented. The shared bow attack still constructs a plain ARROW payload instead of poison-tipped arrows.",
       "items": [
         {
-          "text": "Inherited skeleton ranged attacks and equipment",
+          "text": "Inherited skeleton bow attack and equipment",
           "done": true
         },
         {
-          "text": "Poison arrow payload and shearing interaction",
+          "text": "Shearing interaction (`minecraft:shearing/bogged`)",
+          "done": true
+        },
+        {
+          "text": "Poison-tipped arrow payload",
           "done": false
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/skeleton/bogged.rs",
-          "sha256": "159fbeed4983adf37757b945332734f67617eed9bcba790d840e094088f04148"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/mob/skeleton/mod.rs",
-          "sha256": "ab4431c3b2d9be42d7c13aba10dffec1bfba150ebcbfd06a36f547e28fb96cd0"
+          "sha256": "b8c38d059d4861802029c20b1ddfda78ed6d07f441612dc15bce4362e57a0e9f"
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/goal/bow_attack.rs",
-          "sha256": "d4e0fcf72c0f7104cddc41b0f32f0e441162a2d8473e615024f007c08cba4094"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/mob/equipment.rs",
-          "sha256": "cfca37358874953708133f516a7bdc8fd386ca0313deeffdc99af40c1b5ec57a"
+          "sha256": "9dd46ba214c701e29d9adb5c482a2bf200311cf4f8b0f8d756148b493944cdae"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Shearable implementation for BoggedSkeletonEntity",
           "source": "crates/pumpkin-core/src/entity/mob/skeleton/bogged.rs",
-          "line": 12
+          "line": 52
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
-          "source": "crates/pumpkin-core/src/entity/mob/skeleton/mod.rs",
-          "line": 33
-        },
-        {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Shared bow attack still fires plain ARROW",
           "source": "crates/pumpkin-core/src/entity/ai/goal/bow_attack.rs",
           "line": 40
-        },
-        {
-          "label": "Reviewed behaviour and runtime hooks",
-          "source": "crates/pumpkin-core/src/entity/mob/equipment.rs",
-          "line": 485
         }
       ],
       "vanilla": {
@@ -899,7 +885,7 @@
     },
     "entities:stray": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared bow attack constructs a plain ARROW item, and the wrapper does not override it with slowness.",
       "items": [
@@ -919,7 +905,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/goal/bow_attack.rs",
-          "sha256": "d4e0fcf72c0f7104cddc41b0f32f0e441162a2d8473e615024f007c08cba4094"
+          "sha256": "9dd46ba214c701e29d9adb5c482a2bf200311cf4f8b0f8d756148b493944cdae"
         }
       ],
       "evidence": [
@@ -943,7 +929,7 @@
     },
     "entities:parched": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared bow attack uses a plain ARROW rather than the variant-specific payload. This was previously only marked unverified.",
       "items": [
@@ -963,7 +949,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/goal/bow_attack.rs",
-          "sha256": "d4e0fcf72c0f7104cddc41b0f32f0e441162a2d8473e615024f007c08cba4094"
+          "sha256": "9dd46ba214c701e29d9adb5c482a2bf200311cf4f8b0f8d756148b493944cdae"
         }
       ],
       "evidence": [
@@ -987,7 +973,7 @@
     },
     "entities:pillager": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements crossbow combat, raid movement, revenge targeting, and creaking avoidance.",
       "items": [
@@ -1003,11 +989,11 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/pillager.rs",
-          "sha256": "865721de7223c9e563e6cc3c9425a1bd8d71f0ace2962bf81b555009494d595e"
+          "sha256": "c41cb0ef3adff9d893266452ec158bf7db58d95bdc31f2dec777860eb61c442c"
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/goal/ranged_crossbow_attack.rs",
-          "sha256": "ba4abb2edce50afaf581e40b709f7c978c1eab344cf7b9a154975356472ba521"
+          "sha256": "13eee96e6b6671fa1f532944b45dc1204da05eef727b5226c119502d5999a04e"
         }
       ],
       "evidence": [
@@ -1136,7 +1122,7 @@
     },
     "entities:witch": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Potion combat exists. Target selection only has revenge/player targets, lacking vanilla injured-raider healing selection.",
       "items": [
@@ -1152,7 +1138,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/witch.rs",
-          "sha256": "86f73a3f36e3ac70591d8b56b7e506a0b64f0dc122013f3595b864356bfb0ed1"
+          "sha256": "e9ab7b82f77db34fb94b270ee524a2ac44017a3ce97b2de5794f19a54790eb89"
         }
       ],
       "evidence": [
@@ -1381,7 +1367,7 @@
     },
     "entities:llama": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements spit ranged combat, caravan following, carpet decoration, and tiered chest inventory.",
       "items": [
@@ -1401,7 +1387,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/goal/ranged_attack.rs",
-          "sha256": "079ba842bcc3a0186c0db637809b862cf1b2589b60f623c972dc70bf8344a8d2"
+          "sha256": "0efcf6b07c40c9f66f0455d5e5dd2941a50e38370ee839d79cd208e2d493bfa4"
         }
       ],
       "evidence": [
@@ -1425,7 +1411,7 @@
     },
     "entities:trader_llama": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements spit ranged combat, caravan following, and wandering-trader defense targeting.",
       "items": [
@@ -1445,7 +1431,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/goal/ranged_attack.rs",
-          "sha256": "079ba842bcc3a0186c0db637809b862cf1b2589b60f623c972dc70bf8344a8d2"
+          "sha256": "0efcf6b07c40c9f66f0455d5e5dd2941a50e38370ee839d79cd208e2d493bfa4"
         }
       ],
       "evidence": [
@@ -1469,7 +1455,7 @@
     },
     "entities:fox": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Stalking, crouching, pouncing, breeding/trust, and defending trusted players are implemented. Powder-snow climbing, shelter/sleeping, and berry foraging goals remain unimplemented.",
       "items": [
@@ -1485,7 +1471,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/fox/mod.rs",
-          "sha256": "e3d8be80800b5f0246b1b73c4ca8fbf539e80bbf176025cbdc521c37fb1359ed"
+          "sha256": "0151a7774fb2d8d9e8c2c513fa80043b22ec76163b6e5016a98e74a9fd296a23"
         },
         {
           "source": "crates/pumpkin-core/src/entity/passive/fox/goals.rs",
@@ -1512,31 +1498,31 @@
       }
     },
     "entities:panda": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "Gene/animation fields exist, but mob_tick only ages the animal. Generic BreedGoal does not implement the vanilla panda bamboo requirement or specialised state behaviours.",
+      "note": "Implements panda gene inheritance, bamboo-gated breeding, eating held items, rolling, sneezing, lying on back, and custom move control.",
       "items": [
         {
-          "text": "Genes, flags, feeding and generic breeding",
+          "text": "Panda genes, variants, and offspring inheritance",
           "done": true
         },
         {
           "text": "Gene-driven eating, rolling, sneezing and bamboo-gated breeding",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/panda.rs",
-          "sha256": "5fca13df3624803b2c26ac7de0fec32ce87e0fd946df7ec520284f6ad80d5531"
+          "sha256": "44453a906bad985a166272b4ddffc610e920337e3fc5efdc477dc61d5cb0c9ac"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "PandaEntity constructor and gene-driven goals",
           "source": "crates/pumpkin-core/src/entity/passive/panda.rs",
-          "line": 50
+          "line": 206
         }
       ],
       "vanilla": {
@@ -1548,7 +1534,7 @@
     },
     "entities:goat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The source has no ram/long-jump behaviour. The bucket branch consumes the empty bucket and plays a sound but does not return a milk bucket.",
       "items": [
@@ -1564,7 +1550,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/goat.rs",
-          "sha256": "2fcf91c8896c92fe1f1df5465e07076d8fb4cc4a8d4b378653823ff44c211b84"
+          "sha256": "8cb3540b173b6176687e5d25b297f71ba78a4856e26cf099d4f7aafc01c62ff9"
         }
       ],
       "evidence": [
@@ -1617,31 +1603,31 @@
       }
     },
     "entities:copper_golem": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The constructor only has generic movement/look goals. No sorting/chest transport or autonomous oxidation tick is wired.",
+      "note": "Implements copper golem Brain AI, chest-to-chest item sorting/transport, oxidation weathering, shearing/waxing, and statue conversion.",
       "items": [
         {
-          "text": "Oxidation state, axe/honeycomb interaction and lightning handling",
+          "text": "Copper golem states, waxing, scraping, and statue conversion",
           "done": true
         },
         {
           "text": "Chest-to-chest item sorting and oxidation ticking",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/copper_golem.rs",
-          "sha256": "b6dd59c66172a6f9bfe092833e60b5aeda4d563f017bc0e432f1ae45d24e63f9"
+          "sha256": "9c3136ddf2bc266b94ee4ef8a271c554dc5572cec7a93ceec99eb116ef150e48"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "CopperGolemEntity constructor, weathering, and chest transport",
           "source": "crates/pumpkin-core/src/entity/passive/copper_golem.rs",
-          "line": 37
+          "line": 107
         }
       ],
       "vanilla": {
@@ -1723,7 +1709,7 @@
     },
     "entities:ocelot": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements fish-trusting interaction, panic/avoidance, and leap/ocelot melee attacks against prey.",
       "items": [
@@ -1739,7 +1725,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/ocelot.rs",
-          "sha256": "ffd902efdd8be982ab14f2e331c04b09223a2ffe60a7f90a310ca4ba1fb2e0d5"
+          "sha256": "c46085c78f67e1afc24627f645925b7140eb99b37dcc5d3326f9d224f240bd1d"
         }
       ],
       "evidence": [
@@ -1758,7 +1744,7 @@
     },
     "entities:dolphin": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements water navigation, air-supply breathing goal, treasure leading, swimming-with-player Dolphin's Grace, and item play.",
       "items": [
@@ -1774,11 +1760,11 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/dolphin.rs",
-          "sha256": "9ff37444d3c5b88ebf01e6fffe176f01785b6fd2bc47231e5cc3bab2db292713"
+          "sha256": "58ff4448a75b7dc88e85777416b88b37f7a80181c9b24e35e8ee50c8b7901c44"
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-          "sha256": "d60a8e8b666bbd8e5e9327b36ac2f01e5f2db842d2913b62b2e2efa59a6bb976"
+          "sha256": "fd2adc93e2c043d4817343154c81615bf06cbb8a0df899b82983b2b4a0cb23fc"
         }
       ],
       "evidence": [
@@ -1802,7 +1788,7 @@
     },
     "entities:nautilus": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The constructor has no goals and the runtime only handles passenger effects/cooldowns/particles. Riding state exists but does not supply autonomous nautilus AI.",
       "items": [
@@ -1818,11 +1804,11 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/nautilus.rs",
-          "sha256": "4bb7d5475513b2ebd69aef3f8d51e4896711de66102084cf156852b060b02798"
+          "sha256": "1310ba901d2e90544acb99def99bc749e6e5577bab6d0377ab337e5e3d916be5"
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-          "sha256": "d60a8e8b666bbd8e5e9327b36ac2f01e5f2db842d2913b62b2e2efa59a6bb976"
+          "sha256": "fd2adc93e2c043d4817343154c81615bf06cbb8a0df899b82983b2b4a0cb23fc"
         }
       ],
       "evidence": [
@@ -1846,34 +1832,36 @@
     },
     "entities:sulfur_cube": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-      "scope": "Entity factory construction path only; registry and spawn-rule support are separate.",
-      "note": "Implements sulfur cube jumping movement, body rotation/hydration, block-consumption conversion, and elastic entity bouncing.",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
+      "scope": "Reviewed implementation and runtime wiring against Pumpkin master source. Source review; no live-client parity test.",
+      "note": "Implements sulfur cube jumping movement, body rotation/hydration, block-consumption conversion, shearing, and elastic entity bouncing.",
       "files": [
         {
-          "source": "crates/pumpkin-core/src/entity/type.rs",
-          "sha256": "6f1f5509eb292df79133bba17a7096d55ccbaa5dffc3d988672dacefefede226"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/mod.rs",
-          "sha256": "a66a1aeb30f33912b2731bb587c23904036944e9afe588fa295db3e6c0dfe2f0"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/living.rs",
-          "sha256": "8966581fab06f24efc61bfbcce30303f4f1db6d7916030dc4bb9b13f9b9915be"
+          "source": "crates/pumpkin-core/src/entity/mob/sulfur_cube.rs",
+          "sha256": "a809e994ae1276d330e28b67d70c97fcf1d0e99d45628569f79d3d20708c1109"
         }
       ],
       "evidence": [
         {
-          "label": "Entity factory and generic fallback",
-          "source": "crates/pumpkin-core/src/entity/type.rs",
-          "line": 341
+          "label": "SulfurCubeEntity implementation",
+          "source": "crates/pumpkin-core/src/entity/mob/sulfur_cube.rs",
+          "line": 1
+        }
+      ],
+      "items": [
+        {
+          "text": "Jumping movement, hydration, and elastic bouncing",
+          "done": true
+        },
+        {
+          "text": "Block consumption, body item storage, and shearing",
+          "done": true
         }
       ]
     },
     "entities:camel_husk": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Entity factory construction path only; registry and spawn-rule support are separate.",
       "note": "Shares the camel implementation with husk variant handling and riding.",
       "files": [
@@ -1883,7 +1871,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/type.rs",
-          "sha256": "6f1f5509eb292df79133bba17a7096d55ccbaa5dffc3d988672dacefefede226"
+          "sha256": "3f2642b5340f4e0db24e0bf6f3d12056e906c06445cc0499ff0bb595141a8788"
         }
       ],
       "evidence": [
@@ -1900,116 +1888,160 @@
       ]
     },
     "entities:zombie_nautilus": {
-      "status": "planned",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-      "scope": "Entity factory construction path only; registry and spawn-rule support are separate.",
-      "note": "The entity registry includes this type, but from_type has no dedicated construction branch for it. It falls back to a generic Entity or LivingEntity, without this type's dedicated behaviour.",
+      "status": "partial",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
+      "scope": "Reviewed implementation and runtime wiring against Pumpkin master source. Source review; no live-client parity test.",
+      "note": "Implements water-bound navigation, temptation, dashing, riding, variants, daylight burning with body-slot sun protection, and NBT persistence. Autonomous underwater movement and combat AI remain missing.",
       "files": [
         {
+          "source": "crates/pumpkin-core/src/entity/passive/zombie_nautilus.rs",
+          "sha256": "073ca56ed232e0557c6057b3c17fe662e9601a24ab7e5dc30b82c4a30bce87c3"
+        },
+        {
           "source": "crates/pumpkin-core/src/entity/type.rs",
-          "sha256": "6f1f5509eb292df79133bba17a7096d55ccbaa5dffc3d988672dacefefede226"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/mod.rs",
-          "sha256": "a66a1aeb30f33912b2731bb587c23904036944e9afe588fa295db3e6c0dfe2f0"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/living.rs",
-          "sha256": "8966581fab06f24efc61bfbcce30303f4f1db6d7916030dc4bb9b13f9b9915be"
+          "sha256": "3f2642b5340f4e0db24e0bf6f3d12056e906c06445cc0499ff0bb595141a8788"
         }
       ],
       "evidence": [
         {
-          "label": "Entity factory and generic fallback",
+          "label": "ZombieNautilusEntity constructor only adds TemptGoal",
+          "source": "crates/pumpkin-core/src/entity/passive/zombie_nautilus.rs",
+          "line": 60
+        },
+        {
+          "label": "Entity factory wiring",
           "source": "crates/pumpkin-core/src/entity/type.rs",
-          "line": 341
+          "line": 239
+        }
+      ],
+      "items": [
+        {
+          "text": "Dedicated `ZombieNautilusEntity`, riding, dash, variants, and sun protection",
+          "done": true
+        },
+        {
+          "text": "Autonomous underwater movement and combat AI",
+          "done": false
         }
       ]
     },
     "entities:mannequin": {
-      "status": "planned",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-      "scope": "Entity factory construction path only; registry and spawn-rule support are separate.",
-      "note": "The entity registry includes this type, but from_type has no dedicated construction branch for it. It falls back to a generic Entity or LivingEntity, without this type's dedicated behaviour.",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
+      "scope": "Reviewed implementation and runtime wiring against Pumpkin master source. Source review; no live-client parity test.",
+      "note": "Implements player profile, skin layers, main hand, immovable state, poses, custom/default descriptions, implicit components, and NBT persistence.",
       "files": [
         {
+          "source": "crates/pumpkin-core/src/entity/decoration/mannequin.rs",
+          "sha256": "cf9d1da132c0a4d21996a0c6961a319f1d890dbcfd5b34d6542708ef2eb99b1c"
+        },
+        {
           "source": "crates/pumpkin-core/src/entity/type.rs",
-          "sha256": "6f1f5509eb292df79133bba17a7096d55ccbaa5dffc3d988672dacefefede226"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/mod.rs",
-          "sha256": "a66a1aeb30f33912b2731bb587c23904036944e9afe588fa295db3e6c0dfe2f0"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/living.rs",
-          "sha256": "8966581fab06f24efc61bfbcce30303f4f1db6d7916030dc4bb9b13f9b9915be"
+          "sha256": "3f2642b5340f4e0db24e0bf6f3d12056e906c06445cc0499ff0bb595141a8788"
         }
       ],
       "evidence": [
         {
-          "label": "Entity factory and generic fallback",
+          "label": "MannequinEntity implementation",
+          "source": "crates/pumpkin-core/src/entity/decoration/mannequin.rs",
+          "line": 70
+        },
+        {
+          "label": "Entity factory wiring",
           "source": "crates/pumpkin-core/src/entity/type.rs",
-          "line": 341
+          "line": 251
+        }
+      ],
+      "items": [
+        {
+          "text": "Dedicated `MannequinEntity` wired in entity factory",
+          "done": true
+        },
+        {
+          "text": "Profile, layers, description, poses, and NBT persistence",
+          "done": true
         }
       ]
     },
     "entities:dragon_fireball": {
-      "status": "planned",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-      "scope": "Entity factory construction path only; registry and spawn-rule support are separate.",
-      "note": "The entity registry includes this type, but from_type has no dedicated construction branch for it. It falls back to a generic Entity or LivingEntity, without this type's dedicated behaviour.",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
+      "scope": "Reviewed implementation and runtime wiring against Pumpkin master source. Source review; no live-client parity test.",
+      "note": "Implements dragon fireball flight, deflection, impact splash particles, and dragon breath AreaEffectCloud spawning.",
       "files": [
         {
+          "source": "crates/pumpkin-core/src/entity/projectile/dragon_fireball.rs",
+          "sha256": "b5ead93bfd720c6f44a434e97a7b647fcf40cfaac3b87e7950ee2fa1bad74d6f"
+        },
+        {
           "source": "crates/pumpkin-core/src/entity/type.rs",
-          "sha256": "6f1f5509eb292df79133bba17a7096d55ccbaa5dffc3d988672dacefefede226"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/mod.rs",
-          "sha256": "a66a1aeb30f33912b2731bb587c23904036944e9afe588fa295db3e6c0dfe2f0"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/living.rs",
-          "sha256": "8966581fab06f24efc61bfbcce30303f4f1db6d7916030dc4bb9b13f9b9915be"
+          "sha256": "3f2642b5340f4e0db24e0bf6f3d12056e906c06445cc0499ff0bb595141a8788"
         }
       ],
       "evidence": [
         {
-          "label": "Entity factory and generic fallback",
+          "label": "DragonFireballEntity::on_hit spawns dragon breath cloud",
+          "source": "crates/pumpkin-core/src/entity/projectile/dragon_fireball.rs",
+          "line": 105
+        },
+        {
+          "label": "Entity factory wiring",
           "source": "crates/pumpkin-core/src/entity/type.rs",
-          "line": 341
+          "line": 301
+        }
+      ],
+      "items": [
+        {
+          "text": "Dedicated `DragonFireballEntity` wired in entity factory",
+          "done": true
+        },
+        {
+          "text": "Impact splash event and dragon breath cloud spawning",
+          "done": true
         }
       ]
     },
     "entities:ominous_item_spawner": {
-      "status": "planned",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
-      "scope": "Entity factory construction path only; registry and spawn-rule support are separate.",
-      "note": "The entity registry includes this type, but from_type has no dedicated construction branch for it. It falls back to a generic Entity or LivingEntity, without this type's dedicated behaviour.",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
+      "scope": "Reviewed implementation and runtime wiring against Pumpkin master source. Source review; no live-client parity test.",
+      "note": "Implements countdown timer, tracked item sync, downward projectile and item spawning, NBT persistence, and explosion/fluid immunity.",
       "files": [
         {
+          "source": "crates/pumpkin-core/src/entity/ominous_item_spawner.rs",
+          "sha256": "9d24ea93847ee22f8765a33260222de873420906a954cf49e43ea261b9029694"
+        },
+        {
           "source": "crates/pumpkin-core/src/entity/type.rs",
-          "sha256": "6f1f5509eb292df79133bba17a7096d55ccbaa5dffc3d988672dacefefede226"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/mod.rs",
-          "sha256": "a66a1aeb30f33912b2731bb587c23904036944e9afe588fa295db3e6c0dfe2f0"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/living.rs",
-          "sha256": "8966581fab06f24efc61bfbcce30303f4f1db6d7916030dc4bb9b13f9b9915be"
+          "sha256": "3f2642b5340f4e0db24e0bf6f3d12056e906c06445cc0499ff0bb595141a8788"
         }
       ],
       "evidence": [
         {
-          "label": "Entity factory and generic fallback",
+          "label": "OminousItemSpawnerEntity::spawn_item",
+          "source": "crates/pumpkin-core/src/entity/ominous_item_spawner.rs",
+          "line": 108
+        },
+        {
+          "label": "Entity factory wiring",
           "source": "crates/pumpkin-core/src/entity/type.rs",
-          "line": 341
+          "line": 322
+        }
+      ],
+      "items": [
+        {
+          "text": "Dedicated `OminousItemSpawnerEntity` wired in entity factory",
+          "done": true
+        },
+        {
+          "text": "Countdown ticking and item/projectile spawning",
+          "done": true
         }
       ]
     },
     "blocks:redstone-daylight_detector": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
       "note": "Implements sky-light signal calculation, inverted mode toggling, and scheduled updates.",
       "items": [
@@ -2037,7 +2069,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/world/mod.rs",
-          "sha256": "8e34659a4492d37280ea8f6f85554ea907dfaff25af980d26ba960c9f6eee6d3"
+          "sha256": "ed8c24d67f9e06261fa14bc2d5aaaf0f053fb09656a73c1c2ab605031304e74c"
         }
       ],
       "evidence": [
@@ -2060,7 +2092,7 @@
     },
     "blocks:farmland": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Water fluid hydration, rain hydration, crop check, fence-gate exception, and trampling are implemented. Entity upward displacement on dirt conversion remains a TODO.",
       "items": [
@@ -2076,7 +2108,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/farmland.rs",
-          "sha256": "fee70074210aef4ce887ae1adb2335041ed72a312c2fd4b9982bf000053c5a91"
+          "sha256": "40411fd5e3dad522709c3759a02932a50347061300d9c16f53631dce29aa8633"
         }
       ],
       "evidence": [
@@ -2095,7 +2127,7 @@
     },
     "items:mace": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements piecewise smash damage scaling, Density and Breach enchantment hooks, AoE knockback, fall-reset impulse context, and landing particles.",
       "items": [
@@ -2115,11 +2147,11 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/player.rs",
-          "sha256": "2da3a927af6f1f7b2d955ad663efeb028dd0b1cc260146836169933aa97db2f4"
+          "sha256": "0dd9195d27afa08a31c681a38454444d1697ce86367273503e59df770ee47d72"
         },
         {
           "source": "crates/pumpkin-core/src/entity/combat.rs",
-          "sha256": "f4b8eb889a5d824f6f2c66506ead7d34f15e7f0b0d4e7f90377241aa39d7665c"
+          "sha256": "2789791eb35f81f79c5de82c5834ae9ecd34a3ae9f32d7fce286ce88d01b1302"
         }
       ],
       "evidence": [
@@ -2148,7 +2180,7 @@
     },
     "entities:item": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
       "note": "Implements item stack merging, pickup delay, age despawning, and fluid buoyancy.",
       "items": [
@@ -2168,7 +2200,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/item.rs",
-          "sha256": "750edc2eb21362271b3d4395385f906d6683bcc654b3076d284ddd54383b6a74"
+          "sha256": "29b8dd910df77e282b7721ea6a03256de75b6dd1bc993407ee48a989d79d4ab0"
         }
       ],
       "evidence": [
@@ -2191,7 +2223,7 @@
     },
     "blocks:note": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
       "note": "Implements instrument selection from below block, note cycling, redstone trigger, and mob head sound playback.",
       "items": [
@@ -2207,7 +2239,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/note.rs",
-          "sha256": "66f56a8c04ef6876f46b67f267e02f56622afb8cda3ecb99eeb7958114741d56"
+          "sha256": "5c4cbdb6666f7f5380cf052cca4660352097371a655debb50ed285e7401d6ca0"
         }
       ],
       "evidence": [
@@ -2225,7 +2257,7 @@
     },
     "blocks:dragon_egg": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
       "note": "Implements gravity falling and interaction/attack teleportation within world bounds.",
       "items": [
@@ -2245,7 +2277,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/block/blocks/falling.rs",
-          "sha256": "1eac3807ef4a9df60e36ac62b4339c9a49fb82016014bf7ae5c0a9e4e12b5bbd"
+          "sha256": "8997ede001eb718c64ebbe46589e9b3a737ff5f3f94e4e521f81d9df6c617ad7"
         }
       ],
       "evidence": [
@@ -2267,31 +2299,31 @@
       ]
     },
     "entities:sniffer": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "Digging-state methods exist, but no behaviour invokes transition_to/can_dig to start autonomous foraging.",
+      "note": "Implements sniffer Brain AI, autonomous sniffing/searching/digging cycle with loot table seed drops, explored positions, and breeding.",
       "items": [
         {
-          "text": "Breeding, digging-state effects and explored-position storage",
+          "text": "Sniffer states, breeding, and NBT persistence",
           "done": true
         },
         {
           "text": "Automatic sniff/search/dig cycle",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/sniffer.rs",
-          "sha256": "ccbf8fe9993e7352bb55b4d39482d30b8cac5313fde607460ddd1a711e674769"
+          "sha256": "306791dc2c210fcc6577126c7ece3530f85a585ba5f5db6e45410c13abd4c3f6"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "SnifferEntity Brain and digging lifecycle",
           "source": "crates/pumpkin-core/src/entity/passive/sniffer.rs",
-          "line": 49
+          "line": 90
         }
       ],
       "vanilla": {
@@ -2302,31 +2334,31 @@
       }
     },
     "entities:armadillo": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "Threat predicates and rolling handlers exist but are not called by a proximity detection goal/runtime path. Merely having the state methods did not establish automatic rolling.",
+      "note": "Implements armadillo Brain AI, threat-proximity rolling/unrolling, periodic scute shedding, brushing, and breeding.",
       "items": [
         {
-          "text": "Scute shedding, brushing and rolling-state handlers",
+          "text": "Scute shedding, brushing, and breeding",
           "done": true
         },
         {
           "text": "Trigger rolling from nearby threats",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/armadillo.rs",
-          "sha256": "4dd95fcb30f2b5b9c3fc3fda8febbbd8f353008b3f8d90ad2c95ad0be32ff914"
+          "sha256": "9c29a52189793479a028fead88d9e70c9e5387530959ee7a80e24bdfe8fefd3f"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "ArmadilloEntity Brain and threat-triggered rolling",
           "source": "crates/pumpkin-core/src/entity/passive/armadillo.rs",
-          "line": 35
+          "line": 135
         }
       ],
       "vanilla": {
@@ -2338,7 +2370,7 @@
     },
     "entities:zoglin": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The active target constructor is scoped to PLAYER. Excluding creepers/zoglins in a predicate does not broaden that target type.",
       "items": [
@@ -2354,11 +2386,11 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/zoglin.rs",
-          "sha256": "d34d7ffa5aa6543dfdd8819e549eb900ededb2ac550dac58c5f32417d7b1fae2"
+          "sha256": "c0bca5d9c4e7bc5f6d4dd5273cf20e4feba176799d5811bd2b2c306e1bbb5151"
         },
         {
           "source": "crates/pumpkin-core/src/entity/ai/goal/active_target.rs",
-          "sha256": "36a9a1546011758d80fbf0306102e437138550bcfec2cc38c97db135bf80b4a0"
+          "sha256": "cc1c5494f6bb8f04fc201723996f2a35ffe5355a2b180808e8badb832ff34202"
         }
       ],
       "evidence": [
@@ -2382,7 +2414,7 @@
     },
     "blocks:bed": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Sleeping and occupied-bed checks exist. The occupied-bed path still sends the occupied message without waking the villager.",
       "items": [
@@ -2398,7 +2430,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/bed.rs",
-          "sha256": "016ab828984702d7975b588bc9df09c033fd9ba217e74e0f13ce75bb0cb27fcf"
+          "sha256": "00e27a88785169a82c1526198e9df44610960227790d9829ff52abd57c21b4a6"
         }
       ],
       "evidence": [
@@ -2417,7 +2449,7 @@
     },
     "blocks:campfire": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements cooking, smoke/signal states, extinguishing, entity fire damage, and ignition by burning projectiles.",
       "items": [
@@ -2433,11 +2465,11 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/campfire.rs",
-          "sha256": "ccd435f6220e0e23a9919bb86e195b867634fbec6929bbcec70a5672ffb9996b"
+          "sha256": "e69af9a32e908c987dc2bca0c844fb979ad15424019a97fdbb5d77cb61bfffc5"
         },
         {
           "source": "crates/pumpkin-core/src/block/entities/campfire.rs",
-          "sha256": "84737e9f7388b2fa86793d426cb05f2cd0db9e1ae6ce876b5a3a5f98625a7fb6"
+          "sha256": "40eeeb8bc8156ea3fc389b2223b6932dca12f3f42aebfa4868c421f64b48eaea"
         }
       ],
       "evidence": [
@@ -2461,7 +2493,7 @@
     },
     "blocks:chests": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements single/double chest inventory, trapped chest redstone output, and top obstruction checks including sitting cats.",
       "items": [
@@ -2477,7 +2509,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/chests.rs",
-          "sha256": "2094e3fbfa993315c9165540cf419e214f6d04466eec8d4b74ef3b96b70656bb"
+          "sha256": "c0e8e16a57df5f28b1d3d848cde7ddafe2028cbf4107259fcd79e1c7eeff5a6c"
         }
       ],
       "evidence": [
@@ -2495,31 +2527,31 @@
       }
     },
     "blocks:chiseled_bookshelf": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "Book storage and last-interacted-slot comparator handling exist. try_add_book does not increment the player used-block statistic.",
+      "note": "Implements book storage, slot-targeted insertion/removal, comparator output, sounds, and Used item statistic tracking.",
       "items": [
         {
-          "text": "Slot-based book insertion/removal and comparator output",
+          "text": "Slot-targeted book storage and comparator output",
           "done": true
         },
         {
           "text": "Increment the used-block statistic on inserting a book",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/chiseled_bookshelf.rs",
-          "sha256": "2b45962ea8c164274d532a5df3a222b60c300d8d2b32c55ccb6daa51c892d8e2"
+          "sha256": "829bd53a0709a69580dda67ae94ce422793264efa13acdf55735497da316e4ff"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "try_add_book increments StatisticCategory::Used",
           "source": "crates/pumpkin-core/src/block/blocks/chiseled_bookshelf.rs",
-          "line": 30
+          "line": 143
         }
       ],
       "vanilla": {
@@ -2531,7 +2563,7 @@
     },
     "blocks:conduit": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements prismarine frame validation, activation state, Conduit Power aura, and hostile mob attacks.",
       "items": [
@@ -2547,7 +2579,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/conduit.rs",
-          "sha256": "ef0c68d13224ec5c00dc86dad9cecb4079176fac2cf2257038913792ac45a821"
+          "sha256": "e4af890e97d0ad38700a11906f15061b3c39cb4c319853a41e08243a9b17e3ad"
         },
         {
           "source": "crates/pumpkin-core/src/block/entities/conduit.rs",
@@ -2610,7 +2642,7 @@
     },
     "blocks:ender_chest": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Personal inventory works. The opening path lacks the guarded-block interaction that angers piglins. Sitting cats do not obstruct vanilla ender chests, so that is not a parity gap.",
       "items": [
@@ -2626,7 +2658,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/ender_chest.rs",
-          "sha256": "899950d004c083e98ed097dd03da85d19dc21ea4e3fb2f75210552604856bc99"
+          "sha256": "2373bd317a97cbd6da918b34a94bdfd6e0e2b28d902979a6466cc5836cf19621"
         }
       ],
       "evidence": [
@@ -2679,40 +2711,40 @@
       }
     },
     "blocks:jukebox": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "Disc playback, state updates, and comparator notifications on replacement are implemented. Insertion still omits the BlockChange game event.",
+      "note": "Implements disc playback, ejection, redstone/comparator output, statistics, and BlockChange game events on insertion and stop.",
       "items": [
         {
-          "text": "Disc insertion/ejection, comparator output, and replacement comparator update",
+          "text": "Disc playback, state updates, and comparator notifications",
           "done": true
         },
         {
           "text": "`GameEvent::BlockChange` on disc insertion",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/jukebox.rs",
-          "sha256": "746aaa68930263160a65c7eae084a4311cbd675353d62233f8a3ee9388c06aac"
+          "sha256": "058eae08ea5c1f1e1c0feec3460b9ff7867c93d441243991f8cc7ead9f9bd2b1"
         },
         {
           "source": "crates/pumpkin-core/src/block/entities/jukebox.rs",
-          "sha256": "b7046286c1943dd0e335b6ea1d552ee912790713f8d52a6bfbc7a1a8a4c22140"
+          "sha256": "98c33ba58426630777d7906692a9b041cab7c4831d0c283431d54b6e4a284bfa"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "JukeboxBlock emits GameEvent::BlockChange on insertion",
           "source": "crates/pumpkin-core/src/block/blocks/jukebox.rs",
-          "line": 29
+          "line": 165
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "JukeboxBlockEntity playback management",
           "source": "crates/pumpkin-core/src/block/entities/jukebox.rs",
-          "line": 31
+          "line": 109
         }
       ],
       "vanilla": {
@@ -2724,12 +2756,12 @@
     },
     "blocks:shulker_box": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The inventory works, but the synced event handler explicitly lacks the closing-state restriction. Source review does not establish full lid/collision parity.",
+      "note": "Inventory, placement, comparator output, and blocked-lid checks (including ridden vehicles) are implemented. Preventing reopening during the closing animation remains a TODO.",
       "items": [
         {
-          "text": "Inventory opening, placement and comparator output",
+          "text": "Inventory opening, placement, comparator output, and lid-obstruction checks",
           "done": true
         },
         {
@@ -2740,21 +2772,21 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/shulker_box.rs",
-          "sha256": "951b1bd69531a8c39225aa58244d03a64cc8167c49d38974bc1b6e2ce2ff3963"
+          "sha256": "81d139b5e20d0831a0166a9379d5f26cf4748be3bef81c78e170c50beb63a38c"
         },
         {
           "source": "crates/pumpkin-core/src/block/entities/shulker_box.rs",
-          "sha256": "804bb2632dc83f0d83fb8149f0dde8ad94a8c68517a709bda1a3e12a6120284c"
+          "sha256": "224f23ab1f9c73e84970746c7d2fecb544cf94511d2df3663c31286c2318bed3"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "TODO for closing-state check and can_open lid collision check",
           "source": "crates/pumpkin-core/src/block/blocks/shulker_box.rs",
-          "line": 28
+          "line": 67
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "ShulkerBoxBlockEntity",
           "source": "crates/pumpkin-core/src/block/entities/shulker_box.rs",
           "line": 27
         }
@@ -2767,40 +2799,40 @@
       }
     },
     "blocks:structure_block": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The block and block entity store configuration. They do not implement capture or placement of structure contents.",
+      "note": "Implements structure block configuration, update packets, corner detection, and redstone/action-triggered structure capture, save, and placement.",
       "items": [
         {
-          "text": "Settings screen and NBT persistence",
+          "text": "Structure block modes, NBT state, and update packet",
           "done": true
         },
         {
           "text": "Structure capture/save/load execution",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/structure_block.rs",
-          "sha256": "511d06254ce77ffe35722a58e957e95fa4715400c7b20ebfd43589e99ccefc26"
+          "sha256": "b07a7da70448de96889961aa09323d9627d1661c3b8fbf6ebeeb81e9030ec827"
         },
         {
           "source": "crates/pumpkin-core/src/block/entities/structure_block.rs",
-          "sha256": "1676df60ee6756840b2e08659ebf617f19063714cd8305758d7952ec268807a0"
+          "sha256": "b9b8cc5fbbfa2788bb491bca130136b762631b4ed2eab2cd92829be84bfa36e0"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Redstone-triggered save/load actions",
           "source": "crates/pumpkin-core/src/block/blocks/structure_block.rs",
-          "line": 13
+          "line": 80
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "StructureBlockBlockEntity save and placement execution",
           "source": "crates/pumpkin-core/src/block/entities/structure_block.rs",
-          "line": 30
+          "line": 283
         }
       ],
       "vanilla": {
@@ -2811,31 +2843,31 @@
       }
     },
     "blocks:fire-fire": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "Fire spread exists. Increased burnout is hardcoded to biome IDs, whereas the Lantern reference reads the environment attribute at the position.",
+      "note": "Implements fire spread, burnout, rain extinguishing, and environment-attribute driven increased fire burnout.",
       "items": [
         {
-          "text": "Scheduled spread, rain extinguishing and burning",
+          "text": "Fire spread, flammability, and extinguishing",
           "done": true
         },
         {
           "text": "Environment-attribute driven increased fire burnout",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/fire/fire.rs",
-          "sha256": "eee3937d4692da885dc8c4f7ac2dabe44680f6d78bf305af3f9f8bea5f7baedc"
+          "sha256": "5c0595c1fc8c553e350d25d95b9caed6f9a90297fea6f0ae3a72f5c0c528d9da"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "EnvironmentAttribute::GameplayIncreasedFireBurnout lookup",
           "source": "crates/pumpkin-core/src/block/blocks/fire/fire.rs",
-          "line": 33
+          "line": 121
         }
       ],
       "vanilla": {
@@ -2917,7 +2949,7 @@
     },
     "blocks:piston-piston_head": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements base validation, survival/creative break propagation, and neighbor state updates.",
       "items": [
@@ -2933,7 +2965,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/piston/piston_head.rs",
-          "sha256": "9865a489ec87e52047bf9b1e78eeb89800a99bf0bb3f4f4d35b19ec477ec13b4"
+          "sha256": "10f2e2f220c48c664e0d9bee82405c459cec5311a6f7b6ad34e0a24034860ef0"
         }
       ],
       "evidence": [
@@ -2952,7 +2984,7 @@
     },
     "blocks:piston-piston": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Extension, sticky retraction, rapid retraction pulse dropping, entity pushing, and activate/deactivate game events are implemented. Moving-piston NBT still omits pushed_block_state.",
       "items": [
@@ -2968,7 +3000,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/piston/piston.rs",
-          "sha256": "6d39c144d109ea556a395cf4472beac40bb113e55eb90157fb1f01f6ae252486"
+          "sha256": "748d0fb61029b2a0101b7f2e514fbb20c324c61b0a6e92bad0001127345b662f"
         },
         {
           "source": "crates/pumpkin-core/src/block/entities/piston.rs",
@@ -2996,7 +3028,7 @@
     },
     "blocks:plant-big_dripleaf": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements entity tilt scheduling, projectile hit tilting, redstone lock, bone meal growth, and waterlogging.",
       "items": [
@@ -3012,7 +3044,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/plant/big_dripleaf.rs",
-          "sha256": "e4c7f8b31abe88ab6f1b1c950545aa466bfff5a944937ba10eda155058d7e340"
+          "sha256": "65bdc508f779fa29f32f3eddb4b06ac80e75a9e4b322d85d8476d6a4698f8a22"
         }
       ],
       "evidence": [
@@ -3031,7 +3063,7 @@
     },
     "blocks:plant-lily_pad": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements water/ice placement support and boat/raft collision breaking.",
       "items": [
@@ -3047,7 +3079,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/plant/lily_pad.rs",
-          "sha256": "230923d411fdc01b7dad2e8dd9ac6a47dcb374171aa986fab2e1e87f5b5f2ef5"
+          "sha256": "9ff2ce62f9a912c5bff04f5fac71603236c86da4b04839bd92faa58b04398391"
         }
       ],
       "evidence": [
@@ -3101,7 +3133,7 @@
     },
     "blocks:plant-sea_pickles": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements cluster placement, waterlogged state, and coral-top bone meal spread.",
       "items": [
@@ -3117,7 +3149,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/plant/sea_pickles.rs",
-          "sha256": "5aae8c6edbb7f16ac43edc71504f2e95251c07d8076c97f9b7c4326eda88642f"
+          "sha256": "3e64b600e0d92c3006b091b52dd5705f2550d00bfd6e75826189c3ad3eeaa19d"
         }
       ],
       "evidence": [
@@ -3136,7 +3168,7 @@
     },
     "blocks:plant-sugar_cane": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements adjacent water/frosted-ice support checks and random-tick vertical growth.",
       "items": [
@@ -3152,7 +3184,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/plant/sugar_cane.rs",
-          "sha256": "57181cb6716b802ebe7411d0865052d818d52f48e6e430bebfb121baadaa8054"
+          "sha256": "809feff47845cdc2eb76152a64fc6222d96ac8686779748ff11303949d0a322c"
         }
       ],
       "evidence": [
@@ -3171,7 +3203,7 @@
     },
     "blocks:redstone-rails-activator_rail": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements rail placement, curve/slope shaping, waterlogging, and vanilla 8-rail power propagation.",
       "items": [
@@ -3187,7 +3219,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/redstone/rails/activator_rail.rs",
-          "sha256": "4576f70304c24ab072b0786e297d9851660baa8a6f3e54ec53535f95f3b71926"
+          "sha256": "87ca97ee06c7517157376290cd79a6cedc0922cfb5fc22432cc9c6a644650390"
         }
       ],
       "evidence": [
@@ -3206,7 +3238,7 @@
     },
     "blocks:redstone-rails-powered_rail": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements rail placement, curve/slope shaping, waterlogging, and vanilla 8-rail power propagation.",
       "items": [
@@ -3222,7 +3254,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/redstone/rails/powered_rail.rs",
-          "sha256": "2fa827041acacbd02a2793b884f9823a3a9f2b2a1bbeecffd15e0f7a67100ac9"
+          "sha256": "2a3f1f7d1c9d552b8703aae58d77b10865c066427358e3437eca2bde5d0ed88d"
         }
       ],
       "evidence": [
@@ -3241,7 +3273,7 @@
     },
     "blocks:redstone-bell": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements directional ringing, synced block events, and BlockChange game event emission.",
       "items": [
@@ -3257,7 +3289,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/redstone/bell.rs",
-          "sha256": "fc4600a074035dfe00a3537eb126b7a248c2b9b702eb2d45d550f626d33ff5bf"
+          "sha256": "c0678d73fe72a17ee35c6188cd6bc4031d371a651d86b26a2f06dc876c7459a6"
         },
         {
           "source": "crates/pumpkin-core/src/block/entities/bell.rs",
@@ -3284,40 +3316,45 @@
       }
     },
     "blocks:redstone-dispenser": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "Projectiles, experience bottles, buckets, fire charges, flint and steel, shears, saddles, TNT, shulker boxes, and armor dispensing are implemented. Bone meal, boats, and brush dispensing remain incomplete.",
+      "note": "Implements projectiles, buckets, fire charges, flint and steel, shears, saddles, TNT, shulker boxes, armor, boats, bone meal, chest-on-equine, and armadillo brush dispensing.",
       "items": [
         {
-          "text": "Projectiles, experience bottles, buckets, ignition, shears, saddles, TNT, armor, and shulker boxes",
+          "text": "Projectiles, buckets, ignition, shears, TNT, shulkers, and armor",
           "done": true
         },
         {
           "text": "Bone meal, boat, chest-on-equine, and brush dispensing",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/redstone/dispenser.rs",
-          "sha256": "34316c17ff5ee983d31483267825a6a3398db4bf389b365907db7a285c8e45fe"
+          "sha256": "e370e30c8d8775a098d8cb5b8546de88e2f6a12246943787fe5e84f4c23bd45b"
         },
         {
           "source": "crates/pumpkin-core/src/block/entities/dispenser.rs",
-          "sha256": "51b42dc273e01bd8c478e4e1ad749f03f871263d023f538fbe991679f4b73416"
+          "sha256": "eeb61c6cf6862ec82b53f0150a508d1156f0d68eb0d7d32e4158f3919e642239"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "dispense_boat",
           "source": "crates/pumpkin-core/src/block/blocks/redstone/dispenser.rs",
-          "line": 85
+          "line": 525
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "dispense_bone_meal, dispense_brush, and dispense_chest",
+          "source": "crates/pumpkin-core/src/block/blocks/redstone/dispenser.rs",
+          "line": 931
+        },
+        {
+          "label": "DispenserBlockEntity",
           "source": "crates/pumpkin-core/src/block/entities/dispenser.rs",
-          "line": 21
+          "line": 1
         }
       ],
       "vanilla": {
@@ -3399,7 +3436,7 @@
     },
     "entities:creaking": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Gaze changes call stop_in_place once. Shared AI continues ticking goals/navigation without a can_move gate, so the frozen flag does not continuously suppress movement/attacks. Brain migration alone was a misleading gap.",
       "items": [
@@ -3415,11 +3452,11 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/creaking.rs",
-          "sha256": "2c04bc1c03a7b5321ce36402269e349dfbfe27b1e68b11be7d6a712ee851be71"
+          "sha256": "f3221f169cf5a818967684fbadc9fe13159bd35733dcf8e1264e31cc59bbd7d9"
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-          "sha256": "d60a8e8b666bbd8e5e9327b36ac2f01e5f2db842d2913b62b2e2efa59a6bb976"
+          "sha256": "fd2adc93e2c043d4817343154c81615bf06cbb8a0df899b82983b2b4a0cb23fc"
         }
       ],
       "evidence": [
@@ -3443,7 +3480,7 @@
     },
     "entities:creeper": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Explosion handling explicitly omits the area-effect cloud for active potion effects.",
       "items": [
@@ -3459,7 +3496,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/creeper.rs",
-          "sha256": "8b50a37a5f71650857dce56a5bbb6cced9aeba0ffab8b45bf8ade997aec2fc5f"
+          "sha256": "1d73867838867b8ddd0fea5bc306f03f1dccfbb069b7f9df74ec9e5ed26ff166"
         }
       ],
       "evidence": [
@@ -3478,7 +3515,7 @@
     },
     "entities:endermite": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements powder-snow climbing, melee/revenge/wander/look goals, and the 2400-tick despawn timer.",
       "items": [
@@ -3498,7 +3535,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-          "sha256": "d60a8e8b666bbd8e5e9327b36ac2f01e5f2db842d2913b62b2e2efa59a6bb976"
+          "sha256": "fd2adc93e2c043d4817343154c81615bf06cbb8a0df899b82983b2b4a0cb23fc"
         }
       ],
       "evidence": [
@@ -3522,7 +3559,7 @@
     },
     "entities:hoglin": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Conversion and attack launch exist. The goal/runtime paths do not implement the repellent/retreat activities shown by the vanilla AI.",
       "items": [
@@ -3538,7 +3575,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/hoglin.rs",
-          "sha256": "56b39297a938658e8e10d3c083d89721391b23feb3922786e3beb85cc371da3b"
+          "sha256": "a04823350fe28091c1787bff539369c0d47160907edb40d3bbedfdc387b2c9f4"
         }
       ],
       "evidence": [
@@ -3557,7 +3594,7 @@
     },
     "entities:husk": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements difficulty-scaled Hunger on unarmed melee hits, submerged conversion to zombie, camel husk jockey spawning, and inherited zombie goals.",
       "items": [
@@ -3573,7 +3610,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/zombie/husk.rs",
-          "sha256": "d953eae056530b537be46d2ef693e5f67b0cd7eb0ba29d6c124b1e71b2563195"
+          "sha256": "e563fc45ffbdcb2ef37285b7108081dc666ba9d2fa2914593df85b66fb3596bf"
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/zombie/mod.rs",
@@ -3601,7 +3638,7 @@
     },
     "entities:piglin": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Hand-written activities implement real behaviour. Group anger propagation remains missing; switching to a Brain implementation is not itself a gameplay gap.",
       "items": [
@@ -3617,7 +3654,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/piglin.rs",
-          "sha256": "94da60302eaf8001c21e9e68d42e953b9db72748584297fb79a4810526af2d92"
+          "sha256": "e376faa07dcd0a529d14949d214a7e30a7392cb9f58a9e87d639244b5660c2d8"
         }
       ],
       "evidence": [
@@ -3741,7 +3778,7 @@
     },
     "entities:zombie_villager": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements villager profession/gossip/trade persistence, weakness + golden apple curing with iron bars/bed acceleration, and village movement.",
       "items": [
@@ -3757,7 +3794,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/mob/zombie/zombie_villager.rs",
-          "sha256": "e97135da1e51119b110e52ff46e14039fdc860b7fc32211798c319290f12966c"
+          "sha256": "9737836db50c5ca8c82d0db178842e43f92da0db6448e77e792e9c59abf89ab3"
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/zombie/mod.rs",
@@ -3820,7 +3857,7 @@
     },
     "entities:wither": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Movement explicitly accelerates towards a target in the air, so saying the wither does not fly was wrong. Primary targeting only registers revenge; side heads do have autonomous target selection.",
       "items": [
@@ -3836,7 +3873,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/boss/wither.rs",
-          "sha256": "29acc70e53208677f1254a6e0820e8316cbb88f89ae8c24a0193f2be15712307"
+          "sha256": "bb17db8dbac28ef723b52c192360cd47967991bb1f6ad6e53be9601b1c737959"
         }
       ],
       "evidence": [
@@ -3854,40 +3891,36 @@
       }
     },
     "entities:axolotl": {
-      "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The play-dead state/timer exists, but no damage hook selects it. The shared mob uses ground navigation rather than axolotl water movement.",
+      "note": "Implements axolotl Brain AI, amphibious navigation, play-dead on damage, bucket pickup, and regeneration support.",
       "items": [
         {
-          "text": "Melee, breeding, bucket state and play-dead timer",
+          "text": "Variants, breeding, and bucket interaction",
           "done": true
         },
         {
           "text": "Water navigation and trigger playing dead on damage",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/axolotl.rs",
-          "sha256": "887f25fe64c26191e2255c8c062b37472e50799def588e4a7a12a471649fc917"
-        },
-        {
-          "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-          "sha256": "d60a8e8b666bbd8e5e9327b36ac2f01e5f2db842d2913b62b2e2efa59a6bb976"
+          "sha256": "f9a7f366b83e13a91d70334d21ae171af8d1d8b236108d2daaeb14b6f86898e7"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Amphibious navigation in AxolotlEntity::new",
           "source": "crates/pumpkin-core/src/entity/passive/axolotl.rs",
-          "line": 45
+          "line": 213
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
-          "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-          "line": 120
+          "label": "PLAY_DEAD_TICKS triggered on damage",
+          "source": "crates/pumpkin-core/src/entity/passive/axolotl.rs",
+          "line": 529
         }
       ],
       "vanilla": {
@@ -3899,7 +3932,7 @@
     },
     "entities:bat": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements roosting, hanging state transitions, erratic flight movement, and cave spawn rules.",
       "items": [
@@ -3919,7 +3952,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-          "sha256": "d60a8e8b666bbd8e5e9327b36ac2f01e5f2db842d2913b62b2e2efa59a6bb976"
+          "sha256": "fd2adc93e2c043d4817343154c81615bf06cbb8a0df899b82983b2b4a0cb23fc"
         }
       ],
       "evidence": [
@@ -3942,49 +3975,49 @@
       }
     },
     "blocks:beehive": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The block reports honey level. Its block entity serialises stored bees but has no ticking release path, and bee AI has no hive entry path.",
+      "note": "Implements honey level harvesting, shearing, bee occupancy storage, nectar timers, and ticking bee release.",
       "items": [
         {
-          "text": "Honey comparator output and stored bee NBT",
+          "text": "Honey level updates, shearing, and bottle harvesting",
           "done": true
         },
         {
           "text": "Bee entry/release and ticking hive lifecycle",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/beehive.rs",
-          "sha256": "42a9d978e51f2b671db80d14c3d3c914af475d47fd0a0f36fcabf42e147bbec6"
+          "sha256": "05985295e4f9de73dbf50de212ff110ac75da0ee47b1872eb86bb6bc1e1bb105"
         },
         {
           "source": "crates/pumpkin-core/src/block/entities/beehive.rs",
-          "sha256": "29e76d26673b186c8fc8de1f4278f21eff0fd53a333d940446477fb085f06e37"
+          "sha256": "a7d0dee1ab9617122e15e376061847afc9e2500675ef07178f4ba46b2ef13ccf"
         },
         {
           "source": "crates/pumpkin-core/src/entity/passive/bee.rs",
-          "sha256": "12d1511abb664b53b9a5cf945d0ab233095ca3b32510a47ada777befc74974f7"
+          "sha256": "e0b428af674964a34936b5c33bb0d7e216004df264020ee1865b46562254b209"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "BeehiveBlock behaviour",
           "source": "crates/pumpkin-core/src/block/blocks/beehive.rs",
-          "line": 8
+          "line": 172
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "BeehiveBlockEntity::tick and add_occupant",
           "source": "crates/pumpkin-core/src/block/entities/beehive.rs",
-          "line": 14
+          "line": 137
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "BeeEntity hive entry",
           "source": "crates/pumpkin-core/src/entity/passive/bee.rs",
-          "line": 40
+          "line": 265
         }
       ],
       "vanilla": {
@@ -4031,7 +4064,7 @@
     },
     "entities:happy_ghast": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The entity uses generic ground navigation, and its interaction only delegates feeding. Harness riding/passenger handling is not implemented here.",
       "items": [
@@ -4047,11 +4080,11 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/happy_ghast.rs",
-          "sha256": "1ec62a33ab1271d07da1aafed45b32ffd5281de2b5c68e71250b359a68ff8a46"
+          "sha256": "f9e008747d443b34c8bba09e3149fee451a5e7f66f5a747485d9e97e154e952c"
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-          "sha256": "d60a8e8b666bbd8e5e9327b36ac2f01e5f2db842d2913b62b2e2efa59a6bb976"
+          "sha256": "fd2adc93e2c043d4817343154c81615bf06cbb8a0df899b82983b2b4a0cb23fc"
         }
       ],
       "evidence": [
@@ -4110,7 +4143,7 @@
     },
     "entities:strider": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The constructor/runtime do not implement lava navigation/walking or update the cold/suffocating state from the environment.",
       "items": [
@@ -4126,7 +4159,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/strider.rs",
-          "sha256": "36697889a5848c55d774e97b5d62d18037e7f84c68d5795ec57697d6b605349b"
+          "sha256": "8776e3c80e4c4f240544a0df9ad0ec1d7ff028cb3b82fb34e67bd0693c128f41"
         }
       ],
       "evidence": [
@@ -4145,7 +4178,7 @@
     },
     "entities:tadpole": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements water navigation, tadpole Brain AI, bucket pickup, and growth into biome-specific frog variants.",
       "items": [
@@ -4161,7 +4194,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/tadpole.rs",
-          "sha256": "a5a8167eba96dcbd115a23dce69155ee61ac960d2c8715737545090cb999586c"
+          "sha256": "888064b7a2f68f750da2ed770b83ece4583289ee5523c8718a4ef8e4a377f36f"
         },
         {
           "source": "crates/pumpkin-core/src/entity/ageable.rs",
@@ -4169,7 +4202,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-          "sha256": "d60a8e8b666bbd8e5e9327b36ac2f01e5f2db842d2913b62b2e2efa59a6bb976"
+          "sha256": "fd2adc93e2c043d4817343154c81615bf06cbb8a0df899b82983b2b4a0cb23fc"
         }
       ],
       "evidence": [
@@ -4198,7 +4231,7 @@
     },
     "entities:villager": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements villager Brain schedules, POI job-site claiming, profession leveling/trading, sleep, gossip, breeding, and iron golem summoning.",
       "items": [
@@ -4214,7 +4247,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/villager/mod.rs",
-          "sha256": "4b948a3ceb3618458b0b94bb5f999091e7a825c684279ae1c8b9915aeb75978d"
+          "sha256": "b721154c6f6420fea93196e27b202f3ad97407f202952758f6e9dfb89cb7c328"
         }
       ],
       "evidence": [
@@ -4233,7 +4266,7 @@
     },
     "entities:wandering_trader": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements world spawning with trader llamas, trade offers, night invisibility/milk potion drinking, and wander goals.",
       "items": [
@@ -4249,15 +4282,15 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/passive/wandering_trader.rs",
-          "sha256": "5242071d82fbf4e660364b07a648d43b19f54743800f6ccd6e68c199b32f33c2"
+          "sha256": "b4bcd66a15891950325efdf7a21466b7488a7cc9a0c0b2f77bbf3fc41ed696e1"
         },
         {
           "source": "crates/pumpkin-world/src/world_info/anvil.rs",
-          "sha256": "0ddcd3380b82db20bdb1195311b9b7f18c5f99a1e2a565478b06d115ab1e863e"
+          "sha256": "a2744edf8ba67414a82080f2f21095a33ab6ff44156db2e81bf68de2b7548baa"
         },
         {
           "source": "crates/pumpkin-world/src/world_info/data_files.rs",
-          "sha256": "6fe1884e9fc1c8415b2dad8e9634100da480cbc1b299a96d9a9cadf918aaaca1"
+          "sha256": "8db665ce3f8bc5303149418959b7fd704295ab2413170e8d01ee9680dfed41ce"
         }
       ],
       "evidence": [
@@ -4286,7 +4319,7 @@
     },
     "entities:experience_bottle": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements thrown bottle projectile physics, splash particles, and experience orb spawning on impact.",
       "items": [
@@ -4302,7 +4335,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/projectile/experience_bottle.rs",
-          "sha256": "29be4d2549e7c82c32e59105a645736a058f231132e3cdc843dee69bae159ce3"
+          "sha256": "51252671dcacef516c91618de152d85765953d10665d7bbfa081939fddf54643"
         },
         {
           "source": "crates/pumpkin-core/src/item/items/experience_bottle.rs",
@@ -4330,7 +4363,7 @@
     },
     "entities:fishing_bobber": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements cast physics, entity hooking, water bite timer, and fishing loot table evaluation with luck/enchantment bonuses.",
       "items": [
@@ -4346,7 +4379,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/projectile/fishing_bobber.rs",
-          "sha256": "e42dedb2123e9f340d94969924d802e85816b2e129a985c37b0dca35e5fe9431"
+          "sha256": "65b35f72a8b37a7349fbc33c7d5a79e395b64a6baf31b374fbfd5f607557fc3d"
         },
         {
           "source": "crates/pumpkin-core/src/item/items/fishing_rod.rs",
@@ -4374,7 +4407,7 @@
     },
     "items:fishing_rod": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements bobber casting, retrieval, hooked entity pulling, and fishing loot table rolls.",
       "items": [
@@ -4394,7 +4427,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/projectile/fishing_bobber.rs",
-          "sha256": "e42dedb2123e9f340d94969924d802e85816b2e129a985c37b0dca35e5fe9431"
+          "sha256": "65b35f72a8b37a7349fbc33c7d5a79e395b64a6baf31b374fbfd5f607557fc3d"
         }
       ],
       "evidence": [
@@ -4418,7 +4451,7 @@
     },
     "entities:acacia_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
       "items": [
@@ -4434,7 +4467,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -4462,27 +4495,27 @@
     },
     "entities:acacia_chest_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
           "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Water-status/buoyancy physics",
-          "done": false
+          "text": "Chest inventory and container interaction",
+          "done": true
         },
         {
-          "text": "Chest inventory and container interaction",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -4491,12 +4524,12 @@
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Chest boat 27-slot inventory and interaction",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "line": 26
+          "line": 75
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Vehicle module",
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
           "line": 1
         }
@@ -4510,27 +4543,27 @@
     },
     "entities:bamboo_chest_raft": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
           "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Water-status/buoyancy physics",
-          "done": false
+          "text": "Chest inventory and container interaction",
+          "done": true
         },
         {
-          "text": "Chest inventory and container interaction",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -4539,12 +4572,12 @@
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Chest boat 27-slot inventory and interaction",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "line": 26
+          "line": 75
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Vehicle module",
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
           "line": 1
         }
@@ -4558,7 +4591,7 @@
     },
     "entities:bamboo_raft": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
       "items": [
@@ -4574,7 +4607,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -4602,7 +4635,7 @@
     },
     "entities:birch_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
       "items": [
@@ -4618,7 +4651,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -4646,27 +4679,27 @@
     },
     "entities:birch_chest_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
           "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Water-status/buoyancy physics",
-          "done": false
+          "text": "Chest inventory and container interaction",
+          "done": true
         },
         {
-          "text": "Chest inventory and container interaction",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -4675,12 +4708,12 @@
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Chest boat 27-slot inventory and interaction",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "line": 26
+          "line": 75
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Vehicle module",
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
           "line": 1
         }
@@ -4694,7 +4727,7 @@
     },
     "entities:cherry_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
       "items": [
@@ -4710,7 +4743,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -4738,27 +4771,27 @@
     },
     "entities:cherry_chest_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
           "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Water-status/buoyancy physics",
-          "done": false
+          "text": "Chest inventory and container interaction",
+          "done": true
         },
         {
-          "text": "Chest inventory and container interaction",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -4767,12 +4800,12 @@
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Chest boat 27-slot inventory and interaction",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "line": 26
+          "line": 75
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Vehicle module",
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
           "line": 1
         }
@@ -4786,7 +4819,7 @@
     },
     "entities:dark_oak_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
       "items": [
@@ -4802,7 +4835,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -4830,27 +4863,27 @@
     },
     "entities:dark_oak_chest_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
           "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Water-status/buoyancy physics",
-          "done": false
+          "text": "Chest inventory and container interaction",
+          "done": true
         },
         {
-          "text": "Chest inventory and container interaction",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -4859,12 +4892,12 @@
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Chest boat 27-slot inventory and interaction",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "line": 26
+          "line": 75
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Vehicle module",
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
           "line": 1
         }
@@ -4878,7 +4911,7 @@
     },
     "entities:jungle_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
       "items": [
@@ -4894,7 +4927,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -4922,27 +4955,27 @@
     },
     "entities:jungle_chest_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
           "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Water-status/buoyancy physics",
-          "done": false
+          "text": "Chest inventory and container interaction",
+          "done": true
         },
         {
-          "text": "Chest inventory and container interaction",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -4951,12 +4984,12 @@
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Chest boat 27-slot inventory and interaction",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "line": 26
+          "line": 75
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Vehicle module",
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
           "line": 1
         }
@@ -4970,7 +5003,7 @@
     },
     "entities:mangrove_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
       "items": [
@@ -4986,7 +5019,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -5014,27 +5047,27 @@
     },
     "entities:mangrove_chest_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
           "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Water-status/buoyancy physics",
-          "done": false
+          "text": "Chest inventory and container interaction",
+          "done": true
         },
         {
-          "text": "Chest inventory and container interaction",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -5043,12 +5076,12 @@
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Chest boat 27-slot inventory and interaction",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "line": 26
+          "line": 75
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Vehicle module",
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
           "line": 1
         }
@@ -5062,7 +5095,7 @@
     },
     "entities:oak_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
       "items": [
@@ -5078,7 +5111,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -5106,27 +5139,27 @@
     },
     "entities:oak_chest_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
           "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Water-status/buoyancy physics",
-          "done": false
+          "text": "Chest inventory and container interaction",
+          "done": true
         },
         {
-          "text": "Chest inventory and container interaction",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -5135,12 +5168,12 @@
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Chest boat 27-slot inventory and interaction",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "line": 26
+          "line": 75
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Vehicle module",
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
           "line": 1
         }
@@ -5154,7 +5187,7 @@
     },
     "entities:pale_oak_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
       "items": [
@@ -5170,7 +5203,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -5198,27 +5231,27 @@
     },
     "entities:pale_oak_chest_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
           "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Water-status/buoyancy physics",
-          "done": false
+          "text": "Chest inventory and container interaction",
+          "done": true
         },
         {
-          "text": "Chest inventory and container interaction",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -5227,12 +5260,12 @@
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Chest boat 27-slot inventory and interaction",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "line": 26
+          "line": 75
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Vehicle module",
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
           "line": 1
         }
@@ -5246,7 +5279,7 @@
     },
     "entities:poplar_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
       "items": [
@@ -5262,7 +5295,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -5290,27 +5323,27 @@
     },
     "entities:poplar_chest_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
           "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Water-status/buoyancy physics",
-          "done": false
+          "text": "Chest inventory and container interaction",
+          "done": true
         },
         {
-          "text": "Chest inventory and container interaction",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -5319,12 +5352,12 @@
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Chest boat 27-slot inventory and interaction",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "line": 26
+          "line": 75
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Vehicle module",
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
           "line": 1
         }
@@ -5338,7 +5371,7 @@
     },
     "entities:spruce_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller.",
       "items": [
@@ -5354,7 +5387,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -5382,27 +5415,27 @@
     },
     "entities:spruce_chest_boat": {
       "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The shared boat ticks damage state and water contact, but has no vanilla water-status/buoyancy controller. Chest variants use the same implementation without a container inventory.",
+      "note": "The shared boat ticks damage state, water contact, and 27-slot chest container inventories, but still has no vanilla water-status/buoyancy controller.",
       "items": [
         {
           "text": "Mounting, paddle metadata, damage and water-contact timer",
           "done": true
         },
         {
-          "text": "Water-status/buoyancy physics",
-          "done": false
+          "text": "Chest inventory and container interaction",
+          "done": true
         },
         {
-          "text": "Chest inventory and container interaction",
+          "text": "Water-status/buoyancy physics",
           "done": false
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "sha256": "5ad6419c5b979e938e0e03746e121e71b66290c31811b780457a56b02c05acb4"
+          "sha256": "430294d44af6dd1e0cbe66390b4a99dff37ed8c74b9b205c810cc9d67cc95da4"
         },
         {
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
@@ -5411,12 +5444,12 @@
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Chest boat 27-slot inventory and interaction",
           "source": "crates/pumpkin-core/src/entity/vehicle/boat.rs",
-          "line": 26
+          "line": 75
         },
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "Vehicle module",
           "source": "crates/pumpkin-core/src/entity/vehicle/mod.rs",
           "line": 1
         }
@@ -5429,10 +5462,10 @@
       }
     },
     "entities:command_block_minecart": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The minecart selects MinecartKind::Other and has no command-block state or execution hook.",
+      "note": "Implements dedicated CommandBlockMinecart with command/output storage, NBT persistence, editor packet updates, and activator-rail execution with cooldown.",
       "items": [
         {
           "text": "Shared rail movement and damage handling",
@@ -5440,20 +5473,29 @@
         },
         {
           "text": "Command storage, editing and activator-rail execution",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
+          "source": "crates/pumpkin-core/src/entity/vehicle/minecart/command_block.rs",
+          "sha256": "0a53c9986b39d7e717789b810232622dd80c0b0533e42e4c36edd176255e5624"
+        },
+        {
           "source": "crates/pumpkin-core/src/entity/vehicle/minecart.rs",
-          "sha256": "003671d9360ce04a8a45cdb86538abb2bc22c9b366fe9f939d16c59966fb433f"
+          "sha256": "8fd3dedba5a97d24f43c6fd6cc90fee0e5bb379af0c0114ec0d301dfd54903e4"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "CommandBlockMinecart implementation",
+          "source": "crates/pumpkin-core/src/entity/vehicle/minecart/command_block.rs",
+          "line": 35
+        },
+        {
+          "label": "Activator-rail activation in MinecartEntity",
           "source": "crates/pumpkin-core/src/entity/vehicle/minecart.rs",
-          "line": 39
+          "line": 272
         }
       ],
       "vanilla": {
@@ -5464,10 +5506,10 @@
       }
     },
     "entities:spawner_minecart": {
-      "status": "partial",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "The minecart selects MinecartKind::Other and has no spawner state or ticking spawning implementation.",
+      "note": "Implements dedicated SpawnerMinecart with mob-spawner parameters, NBT persistence, delay countdown, and entity spawning ticks.",
       "items": [
         {
           "text": "Shared rail movement and damage handling",
@@ -5475,20 +5517,29 @@
         },
         {
           "text": "Spawner state, delay and entity spawning",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
+          "source": "crates/pumpkin-core/src/entity/vehicle/minecart/spawner.rs",
+          "sha256": "f2fefdf4b2770cc8a548e16de449958297e836191ac86c5937f168c8fe28d08d"
+        },
+        {
           "source": "crates/pumpkin-core/src/entity/vehicle/minecart.rs",
-          "sha256": "003671d9360ce04a8a45cdb86538abb2bc22c9b366fe9f939d16c59966fb433f"
+          "sha256": "8fd3dedba5a97d24f43c6fd6cc90fee0e5bb379af0c0114ec0d301dfd54903e4"
         }
       ],
       "evidence": [
         {
-          "label": "Reviewed behaviour and runtime hooks",
+          "label": "SpawnerMinecart::tick delegates to tick_spawner",
+          "source": "crates/pumpkin-core/src/entity/vehicle/minecart/spawner.rs",
+          "line": 57
+        },
+        {
+          "label": "SpawnerMinecart wired into MinecartEntity",
           "source": "crates/pumpkin-core/src/entity/vehicle/minecart.rs",
-          "line": 39
+          "line": 541
         }
       ],
       "vanilla": {
@@ -5500,7 +5551,7 @@
     },
     "entities:armor_stand": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Break handling explicitly omits equipment drops. Igniting/burning armor-stand damage tags are also not implemented.",
       "items": [
@@ -5516,7 +5567,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/decoration/armor_stand.rs",
-          "sha256": "9fa9e7f02d1783be5c88a8216dfe1faef2908968da15ebd35c8dcb4024b19de8"
+          "sha256": "5a65f88b5be4dc924d7061065e4b9a8d55f6f612acb0ffde735e2235b3a3fd3c"
         }
       ],
       "evidence": [
@@ -5535,7 +5586,7 @@
     },
     "entities:cushion": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Sitting plays the cushion sit sound, but neither the cushion nor shared dismount path plays the vanilla get-up sound.",
       "items": [
@@ -5555,7 +5606,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/mod.rs",
-          "sha256": "a66a1aeb30f33912b2731bb587c23904036944e9afe588fa295db3e6c0dfe2f0"
+          "sha256": "c466f2a9085031392b4d04c0ef215f4d382515455d617c791b4af7f4fd92c9f3"
         }
       ],
       "evidence": [
@@ -5579,7 +5630,7 @@
     },
     "entities:leash_knot": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Registered in the entity factory with knot attachment, leash transfer, and break handling.",
       "items": [
@@ -5595,11 +5646,11 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/decoration/leash_knot.rs",
-          "sha256": "a20c42c62acec71fa66b0595c77a55425d0bf808bb7de6dabdc65094dd3320df"
+          "sha256": "86db07bd365669db58f88512f87bcad43611dd2d03e8a823c0d7ecaccc48b496"
         },
         {
           "source": "crates/pumpkin-core/src/entity/mod.rs",
-          "sha256": "a66a1aeb30f33912b2731bb587c23904036944e9afe588fa295db3e6c0dfe2f0"
+          "sha256": "c466f2a9085031392b4d04c0ef215f4d382515455d617c791b4af7f4fd92c9f3"
         }
       ],
       "evidence": [
@@ -5623,7 +5674,7 @@
     },
     "entities:painting": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Painting drops are implemented. The remaining difference is that no hanging-entity tick checks wall support after placement.",
       "items": [
@@ -5643,7 +5694,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/mod.rs",
-          "sha256": "a66a1aeb30f33912b2731bb587c23904036944e9afe588fa295db3e6c0dfe2f0"
+          "sha256": "c466f2a9085031392b4d04c0ef215f4d382515455d617c791b4af7f4fd92c9f3"
         }
       ],
       "evidence": [
@@ -5667,7 +5718,7 @@
     },
     "items:elytra": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Implements equip behavior, glide initiation validation, and flight durability wear.",
       "items": [
@@ -5683,11 +5734,11 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/entity/player.rs",
-          "sha256": "2da3a927af6f1f7b2d955ad663efeb028dd0b1cc260146836169933aa97db2f4"
+          "sha256": "0dd9195d27afa08a31c681a38454444d1697ce86367273503e59df770ee47d72"
         },
         {
           "source": "crates/pumpkin-core/src/entity/mod.rs",
-          "sha256": "a66a1aeb30f33912b2731bb587c23904036944e9afe588fa295db3e6c0dfe2f0"
+          "sha256": "c466f2a9085031392b4d04c0ef215f4d382515455d617c791b4af7f4fd92c9f3"
         },
         {
           "source": "crates/pumpkin-core/src/net/java/play/player_command.rs",
@@ -5720,7 +5771,7 @@
     },
     "items:name_tag": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Applies custom names to living entities and sets mob persistence.",
       "items": [
@@ -5740,11 +5791,11 @@
         },
         {
           "source": "crates/pumpkin-core/src/entity/mod.rs",
-          "sha256": "a66a1aeb30f33912b2731bb587c23904036944e9afe588fa295db3e6c0dfe2f0"
+          "sha256": "c466f2a9085031392b4d04c0ef215f4d382515455d617c791b4af7f4fd92c9f3"
         },
         {
           "source": "crates/pumpkin-core/src/entity/mob/mod.rs",
-          "sha256": "d60a8e8b666bbd8e5e9327b36ac2f01e5f2db842d2913b62b2e2efa59a6bb976"
+          "sha256": "fd2adc93e2c043d4817343154c81615bf06cbb8a0df899b82983b2b4a0cb23fc"
         }
       ],
       "evidence": [
@@ -5823,7 +5874,7 @@
     },
     "blocks:dried_ghast": {
       "status": "done",
-      "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Verified implementation against vanilla 26.3 block behaviour.",
       "note": "Implements waterlogged hydration stages, ambient sounds/particles, and happy ghastling spawning.",
       "items": [
@@ -5835,7 +5886,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/dried_ghast.rs",
-          "sha256": "131c0bf79656f4d4e6b9cc219be8407e2e49aa5ca6875e213d3315c83365af7b"
+          "sha256": "8960a6722f76dcb5e6d0c58481c5c589896727a3b824b9795aab880a2aeee6be"
         }
       ],
       "evidence": [
@@ -5923,23 +5974,23 @@
     },
     "blocks:vault": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "Key validation and state transitions exist, but use_with_item drops hardcoded emerald, diamond, and iron stacks instead of rolling configured loot tables, VaultBlockEntity has no tick state machine, and rewarded_players is not persisted to NBT.",
+      "note": "Key validation, state transitions, and configured loot table rolling are implemented. VaultBlockEntity still has no tick state machine and rewarded_players is not persisted to NBT.",
       "items": [
         {
-          "text": "Key validation, state changes, and sounds",
+          "text": "Key validation, state changes, sounds, and loot table rolls",
           "done": true
         },
         {
-          "text": "Vault loot table rolls, tick cycle, and rewarded-player NBT persistence",
+          "text": "Vault tick cycle and `rewarded_players` NBT persistence",
           "done": false
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/vault.rs",
-          "sha256": "5346a8471303a9d8cf632c64810476969c0af5bec1b3a13b25815f432716c5f9"
+          "sha256": "f5d37b3c3b451a0108d3e461260c40628ff0f81d25e0c95e396eae5de30c810b"
         },
         {
           "source": "crates/pumpkin-core/src/block/entities/vault.rs",
@@ -5948,20 +5999,20 @@
       ],
       "evidence": [
         {
+          "label": "VaultBlock rolls configured loot tables",
           "source": "crates/pumpkin-core/src/block/blocks/vault.rs",
-          "line": 109,
-          "label": "VaultBlock::use_with_item drops hardcoded loot stacks"
+          "line": 131
         },
         {
+          "label": "VaultBlockEntity::from_nbt initializes empty rewarded_players",
           "source": "crates/pumpkin-core/src/block/entities/vault.rs",
-          "line": 38,
-          "label": "VaultBlockEntity::write_nbt omits rewarded_players"
+          "line": 34
         }
       ]
     },
     "blocks:creaking_heart": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Updates Uprooted and Dormant states from flanking Pale Oak logs, but CreakingHeartBlockEntity has no tick to transition to Awake, spawn or link a Creaking, or generate resin.",
       "items": [
@@ -5977,7 +6028,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/creaking_heart.rs",
-          "sha256": "1837d81e1505fc2f3eb11ad4db56b8dbd2cfa213a2d91702305be139490fc893"
+          "sha256": "3ba1b2cd569d3ce7f9f3d490593fdde61f8ada9a1955fbe2154dcf3525bf2092"
         },
         {
           "source": "crates/pumpkin-core/src/block/entities/creaking_heart.rs",
@@ -5999,7 +6050,7 @@
     },
     "blocks:beacon": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Pyramid level validation, periodic effect application, and GUI handling exist in BeaconBlockEntity, but BeaconBlock omits placed/broken block entity lifecycle hooks and beam occlusion checks.",
       "items": [
@@ -6019,7 +6070,7 @@
         },
         {
           "source": "crates/pumpkin-core/src/block/entities/beacon.rs",
-          "sha256": "e08bf9368aee5ee75a2a59889d7f636686ff957113345bf7dd00c4c76b763f3b"
+          "sha256": "4bb1fdb79c65ac7ce564c1efa41283826209ac4ba106f4b634593ec86abf68b6"
         }
       ],
       "evidence": [
@@ -6037,7 +6088,7 @@
     },
     "blocks:redstone-sculk_sensor": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Redstone signal output, calibrated directional filtering, and phase cooldown ticks are implemented, but World::post_game_event only notifies mob listeners and never triggers sculk sensors.",
       "items": [
@@ -6053,7 +6104,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/redstone/sculk_sensor.rs",
-          "sha256": "3612b19c48f3b9e3625762c926439a77f1f64ccf8ad1502c2b6d0717b9ee59e3"
+          "sha256": "4bdcbb6bc62777cfcd1c3b535a6c5f4cb1b07b19dbfee57202372a760f0a49bd"
         },
         {
           "source": "crates/pumpkin-core/src/world/game_event.rs",
@@ -6075,7 +6126,7 @@
     },
     "blocks:sculk-sculk_shrieker": {
       "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Direct player stepping, warning levels, Darkness application, and Warden spawning are implemented, but world game events do not dispatch vibrations to shriekers.",
       "items": [
@@ -6091,7 +6142,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/block/blocks/sculk/sculk_shrieker.rs",
-          "sha256": "a7e3310a7a1a16a48f0a00112f32b92b858e36081d09c0a173984adb8419364c"
+          "sha256": "94bac8021ac28441b2fcd91627135af5f5d1d73049b94a6f018bead1dba55b15"
         },
         {
           "source": "crates/pumpkin-core/src/world/game_event.rs",
@@ -6113,7 +6164,7 @@
     },
     "blocks:lodestone": {
       "status": "done",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
       "note": "Compass binding via LodestoneTrackerImpl is implemented in CompassItem::use_on_block.",
       "items": [
@@ -6125,7 +6176,7 @@
       "files": [
         {
           "source": "crates/pumpkin-core/src/item/items/compass.rs",
-          "sha256": "de426cc4832ad62ab7f4753104f6cc365df853da49d1a6d971265e84a802563d"
+          "sha256": "94195c197458fc614c3548d53958bd2ecf1f95746f515e9f4c09e491ba2b3982"
         }
       ],
       "evidence": [
@@ -6137,62 +6188,256 @@
       ]
     },
     "items:compass": {
-      "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "Lodestone binding on right-click is implemented, but inventory ticking does not clear the target when the linked lodestone is broken.",
+      "note": "Implements lodestone binding on right-click and inventory tick validation that clears the tracked target when the lodestone block is removed.",
       "items": [
         {
-          "text": "Lodestone binding and stack splitting on right-click",
+          "text": "Lodestone binding on right-click (`LodestoneTrackerImpl`)",
           "done": true
         },
         {
           "text": "Inventory tick verification of tracked lodestone block",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/item/items/compass.rs",
-          "sha256": "de426cc4832ad62ab7f4753104f6cc365df853da49d1a6d971265e84a802563d"
+          "sha256": "94195c197458fc614c3548d53958bd2ecf1f95746f515e9f4c09e491ba2b3982"
+        },
+        {
+          "source": "crates/pumpkin-core/src/entity/player.rs",
+          "sha256": "0dd9195d27afa08a31c681a38454444d1697ce86367273503e59df770ee47d72"
         }
       ],
       "evidence": [
         {
+          "label": "CompassItem lodestone binding",
           "source": "crates/pumpkin-core/src/item/items/compass.rs",
-          "line": 24,
-          "label": "CompassItem::use_on_block"
+          "line": 45
+        },
+        {
+          "label": "Player inventory tick validates LodestoneTrackerImpl",
+          "source": "crates/pumpkin-core/src/entity/player.rs",
+          "line": 6517
         }
       ]
     },
     "items:goat_horn": {
-      "status": "partial",
-      "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
+      "status": "done",
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
       "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-      "note": "Plays the instrument sound, sets the active hand, and emits the InstrumentPlay game event, but does not apply the use cooldown.",
+      "note": "Implements instrument sound playback, active hand state, InstrumentPlay game event emission, Used statistic tracking, and cooldown enforcement.",
       "items": [
         {
-          "text": "Instrument sound playback and InstrumentPlay game event",
+          "text": "Instrument sound, active hand, and `InstrumentPlay` game event",
           "done": true
         },
         {
           "text": "Use cooldown enforcement",
-          "done": false
+          "done": true
         }
       ],
       "files": [
         {
           "source": "crates/pumpkin-core/src/item/items/goat_horn.rs",
-          "sha256": "8d05c7a62bc0af7bb93019f41725a65238ebb366a0f2c589818840c7aabec437"
+          "sha256": "de43417f2c2da73e42b94eec14c68c6b414b6383e89bf7ec849e02a52ac1b471"
         }
       ],
       "evidence": [
         {
+          "label": "GoatHornItem cooldown check and start_cooldown",
           "source": "crates/pumpkin-core/src/item/items/goat_horn.rs",
-          "line": 27,
-          "label": "GoatHornItem::normal_use_with_hand"
+          "line": 63
         }
       ]
+    },
+    "commands:compute": {
+      "status": "done",
+      "scope": "Reviewed implementation and runtime wiring against Pumpkin master source. Source review; no live-client parity test.",
+      "note": "Implements /compute number-provider evaluation command.",
+      "items": [
+        {
+          "text": "Registered `/compute` command with provider evaluation",
+          "done": true
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/command/commands/compute.rs",
+          "sha256": "d501f4830ecd556c5bd4874843bf69c7b26ef318cbbd9bc273e500b798550c71"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "compute::register",
+          "source": "crates/pumpkin-core/src/command/commands/compute.rs",
+          "line": 1199
+        }
+      ],
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4"
+    },
+    "commands:perf": {
+      "status": "done",
+      "scope": "Reviewed implementation and runtime wiring against Pumpkin master source. Source review; no live-client parity test.",
+      "note": "Implements /perf start and stop profiling metrics capture command.",
+      "items": [
+        {
+          "text": "Registered `/perf start|stop` command",
+          "done": true
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/command/commands/perf.rs",
+          "sha256": "6975b35f7e2f525c633e16f011628dd74caf499e16634b43d4cb74281fc2b10f"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "perf::register",
+          "source": "crates/pumpkin-core/src/command/commands/perf.rs",
+          "line": 112
+        }
+      ],
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4"
+    },
+    "commands:posteffect": {
+      "status": "done",
+      "scope": "Reviewed implementation and runtime wiring against Pumpkin master source. Source review; no live-client parity test.",
+      "note": "Implements /posteffect add, remove, and list shader commands.",
+      "items": [
+        {
+          "text": "Registered `/posteffect` command",
+          "done": true
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/command/commands/posteffect.rs",
+          "sha256": "d52a2b7a8831e8f800aaf1a0bf064b7139a69be667364e15bff080eadccff00f"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "posteffect::register",
+          "source": "crates/pumpkin-core/src/command/commands/posteffect.rs",
+          "line": 207
+        }
+      ],
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4"
+    },
+    "commands:swing": {
+      "status": "done",
+      "scope": "Reviewed implementation and runtime wiring against Pumpkin master source. Source review; no live-client parity test.",
+      "note": "Implements /swing arm animation command for target entities.",
+      "items": [
+        {
+          "text": "Registered `/swing` command",
+          "done": true
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/command/commands/swing.rs",
+          "sha256": "19d728170c12423024e07a91d1ff39bc307f24627c2281d6fe312dfb1049c2a7"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "swing::register",
+          "source": "crates/pumpkin-core/src/command/commands/swing.rs",
+          "line": 96
+        }
+      ],
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4"
+    },
+    "redstone:pistons-and-block-swapping": {
+      "status": "partial",
+      "scope": "Reviewed implementation and runtime wiring against Pumpkin master source. Source review; no live-client parity test.",
+      "note": "Extension, sticky retraction, rapid retraction pulse dropping, entity pushing, and game events are implemented. Moving-piston NBT still omits pushed_block_state and base removal drops breaking player context.",
+      "items": [
+        {
+          "text": "Push/pull solver, rapid retraction, entity pushing, and game events",
+          "done": true
+        },
+        {
+          "text": "Persist `pushed_block_state` in `PistonBlockEntity` NBT and pass breaking player",
+          "done": false
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/block/blocks/piston/piston.rs",
+          "sha256": "748d0fb61029b2a0101b7f2e514fbb20c324c61b0a6e92bad0001127345b662f"
+        },
+        {
+          "source": "crates/pumpkin-core/src/block/entities/piston.rs",
+          "sha256": "2ac1e7c17fa41617963f575b8bbeaa056917f510b05daec307b5834bfdfadc06"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "PistonBlock extension/retraction",
+          "source": "crates/pumpkin-core/src/block/blocks/piston/piston.rs",
+          "line": 33
+        },
+        {
+          "label": "PistonBlockEntity::write_nbt TODO for pushed_block_state",
+          "source": "crates/pumpkin-core/src/block/entities/piston.rs",
+          "line": 277
+        }
+      ],
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4"
+    },
+    "redstone:sculk-sensors-shriekers-and-calibrated-sensors": {
+      "status": "partial",
+      "scope": "Reviewed implementation and runtime wiring against Pumpkin master source. Source review; no live-client parity test.",
+      "note": "Sculk sensor redstone output, calibrated directional filtering, phase cooldown ticks, and shrieker warning levels are implemented, but World::post_game_event only notifies mob listeners and never dispatches vibrations to sculk sensors or shriekers.",
+      "items": [
+        {
+          "text": "Sensor signal output, calibrated filtering, and shrieker warning levels",
+          "done": true
+        },
+        {
+          "text": "World game-event vibration listener dispatch to sensors and shriekers",
+          "done": false
+        }
+      ],
+      "files": [
+        {
+          "source": "crates/pumpkin-core/src/block/blocks/redstone/sculk_sensor.rs",
+          "sha256": "4bdcbb6bc62777cfcd1c3b535a6c5f4cb1b07b19dbfee57202372a760f0a49bd"
+        },
+        {
+          "source": "crates/pumpkin-core/src/block/blocks/sculk/sculk_shrieker.rs",
+          "sha256": "94bac8021ac28441b2fcd91627135af5f5d1d73049b94a6f018bead1dba55b15"
+        },
+        {
+          "source": "crates/pumpkin-core/src/world/game_event.rs",
+          "sha256": "dc4f24411519a919e030ff8d2b2fd5a1201d12c505e030548619c4e93e4ea452"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "SculkSensorBlock implementation",
+          "source": "crates/pumpkin-core/src/block/blocks/redstone/sculk_sensor.rs",
+          "line": 27
+        },
+        {
+          "label": "SculkShriekerBlock implementation",
+          "source": "crates/pumpkin-core/src/block/blocks/sculk/sculk_shrieker.rs",
+          "line": 79
+        },
+        {
+          "label": "World::post_game_event only iterates mob listeners",
+          "source": "crates/pumpkin-core/src/world/game_event.rs",
+          "line": 57
+        }
+      ],
+      "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4"
     }
   },
   "updated": "2026-11-09"
