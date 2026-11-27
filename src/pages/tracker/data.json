@@ -1,6 +1,6 @@
 {
   "version": "26.3-26.63",
-  "commit": "bb43ab090485c17b29b11f02dfbfdc563a6358b7",
+  "commit": "9b4c00eab828504d73d3da4e449a0669e13a242b",
   "updated": "2026-11-26",
   "categories": [
     {
@@ -361,34 +361,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/skeleton/parched.rs",
-          "note": "The shared bow attack uses a plain ARROW rather than the variant-specific payload. This was previously only marked unverified.",
-          "items": [
-            {
-              "text": "Inherited skeleton ranged attacks",
-              "done": true
-            },
-            {
-              "text": "Variant-specific arrow payload",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/parched.rs",
-              "line": 13
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/bow_attack.rs",
-              "line": 40
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "phantom",
@@ -583,39 +561,12 @@
               "state": "closed"
             }
           ],
-          "note": "The shared bow interval is fixed at 20 ticks. Vanilla reassesses the bow goal using difficulty-dependent intervals.",
-          "items": [
-            {
-              "text": "Held-bow-gated ranged attacks and default equipment",
-              "done": true
-            },
-            {
-              "text": "Difficulty-scaled bow interval",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/skeleton.rs",
-              "line": 14
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/mod.rs",
-              "line": 33
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/bow_attack.rs",
-              "line": 40
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "slime",
@@ -663,34 +614,12 @@
           "group": "Hostile",
           "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/skeleton/stray.rs",
-          "note": "The shared bow attack constructs a plain ARROW item, and the wrapper does not override it with slowness.",
-          "items": [
-            {
-              "text": "Inherited skeleton ranged attacks and equipment",
-              "done": true
-            },
-            {
-              "text": "Slowness arrow payload",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/skeleton/stray.rs",
-              "line": 13
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/goal/bow_attack.rs",
-              "line": 40
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "sulfur_cube",
@@ -702,7 +631,7 @@
             {
               "number": 3114,
               "title": "Sulfur Cube mobs do not have AI",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "The reviewed source has changed. The previous assessment needs a new review.",
@@ -890,36 +819,14 @@
           "id": "zombified_piglin",
           "name": "Zombified Piglin",
           "group": "Hostile",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/mob/zombified_piglin.rs",
-          "note": "Implements anger targeting, group alerts, spear-use combat, and baby/jockey spawning.",
-          "items": [
-            {
-              "text": "Anger targeting, universal reset, revenge and group alerts",
-              "done": true
-            },
-            {
-              "text": "Spear-specific attack behaviour",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "b45bc903dee3f78d4c5d54d7cee87886968409f6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/mob/zombified_piglin.rs",
-              "line": 40
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/ai/behavior/neutral.rs",
-              "line": 12
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "ender_dragon",
@@ -3265,7 +3172,7 @@
             {
               "number": 4178,
               "title": "Campfire dupes food",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3020,
@@ -3831,29 +3738,12 @@
               "state": "closed"
             }
           ],
-          "note": "Water fluid hydration, rain hydration, crop check, fence-gate exception, and trampling are implemented. Entity upward displacement on dirt conversion remains a TODO.",
-          "items": [
-            {
-              "text": "Water/rain hydration, crop detection, fence-gate check, and trampling",
-              "done": true
-            },
-            {
-              "text": "Push entities up when converting to dirt",
-              "done": false
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/farmland.rs",
-              "line": 25
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "fence_gates",
@@ -4944,7 +4834,7 @@
             {
               "number": 4458,
               "title": "stone cutter bug",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
@@ -5244,7 +5134,7 @@
             {
               "number": 3772,
               "title": "Fire propagation from natural lava source is infinite",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3659,
@@ -5299,7 +5189,7 @@
             {
               "number": 3107,
               "title": "Sculk Shrieker doesnt activate",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "The reviewed source has changed. The previous assessment needs a new review.",
@@ -5839,7 +5729,7 @@
             {
               "number": 3557,
               "title": "Lily pads cannot be placed on waterlogged blocks",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "The reviewed source has changed. The previous assessment needs a new review.",
@@ -6140,7 +6030,7 @@
             {
               "number": 3558,
               "title": "Sugar cane cannot be planted beside water or waterlogged blocks",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "The reviewed source has changed. The previous assessment needs a new review.",
@@ -6303,7 +6193,7 @@
           "id": "redstone-bell",
           "name": "Bell",
           "group": "Redstone",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/redstone/bell.rs",
           "ids": [
             "minecraft:bell"
@@ -6325,34 +6215,12 @@
               "state": "open"
             }
           ],
-          "note": "Implements directional ringing, synced block events, and BlockChange game event emission.",
-          "items": [
-            {
-              "text": "Interaction/projectile/redstone ringing",
-              "done": true
-            },
-            {
-              "text": "Activation game events",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "900ebf77f457011647189448085bc64c7d7c27c6",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/blocks/redstone/bell.rs",
-              "line": 22
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/block/entities/bell.rs",
-              "line": 23
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "redstone-buttons",
@@ -6486,12 +6354,12 @@
             {
               "number": 3627,
               "title": "Dispensers drop bone meal instead of applying it as fertilizer",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3518,
               "title": "Dispensers lose aquatic mobs from filled buckets",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "The reviewed source has changed. The previous assessment needs a new review.",
@@ -7176,7 +7044,7 @@
             {
               "number": 4477,
               "title": "The sword's sweeping effect appeared in the wrong location.",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3062,
@@ -7490,12 +7358,12 @@
             {
               "number": 3082,
               "title": "Chest on chest boat doesnt work",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3068,
               "title": "Boats cannot be broken by hand",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3061,
@@ -7544,12 +7412,12 @@
             {
               "number": 3973,
               "title": "Placing a powder snow bucket by hand consumes the bucket instead of returning an empty one",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3971,
               "title": "Mob buckets do not keep the mob data, so a released axolotl gets a random color",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3969,
@@ -7622,7 +7490,7 @@
             {
               "number": 3108,
               "title": "Player disconnects when picking up any painting into the inventory.",
-              "state": "open"
+              "state": "closed"
             },
             {
               "number": 3103,
@@ -7763,7 +7631,7 @@
             {
               "number": 4388,
               "title": "Bundle does not work as it should.",
-              "state": "open"
+              "state": "closed"
             }
           ],
           "note": "Implementation source found. Behaviour has not been reviewed for this snapshot.",
