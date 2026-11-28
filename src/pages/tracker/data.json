@@ -1,7 +1,7 @@
 {
   "version": "26.3-26.63",
-  "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
-  "updated": "2026-11-27",
+  "commit": "f0262c1c31c55fb2b979c0a28f38ec3c390c4d43",
+  "updated": "2026-11-28",
   "categories": [
     {
       "id": "entities",
@@ -3004,37 +3004,20 @@
           "id": "villager",
           "name": "Villager",
           "group": "Villager",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/villager/mod.rs",
-          "note": "Implements villager Brain schedules, POI job-site claiming, profession leveling/trading, sleep, gossip, breeding, and iron golem summoning.",
-          "items": [
-            {
-              "text": "Trading, work/restock, sleep/wakeup and reputation/gossip",
-              "done": true
-            },
-            {
-              "text": "Breeding and meeting/activity schedule parity",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/villager/mod.rs",
-              "line": 58
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "wandering_trader",
           "name": "Wandering Trader",
           "group": "Villager",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/entity/passive/wandering_trader.rs",
           "issues": [
             {
@@ -3048,39 +3031,12 @@
               "state": "closed"
             }
           ],
-          "note": "Implements world spawning with trader llamas, trade offers, night invisibility/milk potion drinking, and wander goals.",
-          "items": [
-            {
-              "text": "Trades, potion use, wandering and entity NBT",
-              "done": true
-            },
-            {
-              "text": "Natural spawning, llama escort and active spawn-state persistence",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
             "scope": "Compared the tracked behaviour claims and runtime wiring with vanilla source through Lantern. Source review; no live-client parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-core/src/entity/passive/wandering_trader.rs",
-              "line": 53
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-world/src/world_info/anvil.rs",
-              "line": 40
-            },
-            {
-              "label": "Reviewed behaviour and runtime hooks",
-              "source": "crates/pumpkin-world/src/world_info/data_files.rs",
-              "line": 37
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "arrow",
@@ -8689,48 +8645,17 @@
           "id": "redstone-daylight_detector",
           "name": "Daylight Detector",
           "group": "Redstone",
-          "status": "done",
+          "status": "partial",
           "source": "crates/pumpkin-core/src/block/blocks/redstone/daylight_detector.rs",
           "ids": [
             "minecraft:daylight_detector"
           ],
-          "note": "Implements sky-light signal calculation, inverted mode toggling, and scheduled updates.",
-          "items": [
-            {
-              "text": "Sky brightness and sun-angle signal calculation",
-              "done": true
-            },
-            {
-              "text": "Inverted mode and 0–15 clamping",
-              "done": true
-            },
-            {
-              "text": "20-tick updates and neighbour notification",
-              "done": true
-            }
-          ],
+          "note": "The reviewed source has changed. The previous assessment needs a new review.",
           "review": {
             "commit": "0674049bbc6c2b31e84779c9cda31a0f485b8db4",
             "scope": "Source review of the listed behaviours and merged fixes; no in-game parity test.",
-            "current": true
-          },
-          "evidence": [
-            {
-              "label": "pub fn calculate_signal_strength",
-              "source": "crates/pumpkin-core/src/block/blocks/redstone/daylight_detector.rs",
-              "line": 69
-            },
-            {
-              "label": "fn tick(",
-              "source": "crates/pumpkin-core/src/block/entities/daylight_detector.rs",
-              "line": 37
-            },
-            {
-              "label": "fn get_effective_sky_brightness",
-              "source": "crates/pumpkin-core/src/world/mod.rs",
-              "line": 5399
-            }
-          ]
+            "current": false
+          }
         },
         {
           "id": "redstone-rails-detector_rail",
